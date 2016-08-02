@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Cuiyun Gao&#39;s Daily Digest</title>
+  <subtitle>Work Hard, and Play Harder.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://cuiyungao.github.io/"/>
+  <updated>2016-07-04T09:05:12.000Z</updated>
+  <id>http://cuiyungao.github.io/</id>
+  
+  <author>
+    <name>Cuiyun Gao</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Three Impactful ML Topics at ICML&#39;16</title>
+    <link href="http://cuiyungao.github.io/2016/07/04/memory-network/"/>
+    <id>http://cuiyungao.github.io/2016/07/04/memory-network/</id>
+    <published>2016-07-04T07:32:54.000Z</published>
+    <updated>2016-07-04T09:05:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Summary from a talk on ICML’16.</p>
+<a id="more"></a>
+<p>##<center><strong>Deep Residual Networks</strong></center>##<br>Residual networks可以在深度增加的同时提高准确率，可以产生许多问题的representations。适当的weight initialization和batch normalization使得网络可以</p>
+<h3 id="Memory-Networks-for-Language-Understanding"><a href="#Memory-Networks-for-Language-Understanding" class="headerlink" title="Memory Networks for Language Understanding"></a><center><strong>Memory Networks for Language Understanding</strong></center></h3><p><code>Memory Networks</code>是结合large memory跟可读可写的learning component的一类模型。结合了<code>Reasoning</code> with <code>attention</code> over <code>memory</code> (RAM)。大部分ML有limited memory，针对”low level” tasks，比如object detection。</p>
+<p>得到word Embedding的过程是一个<code>encoding</code>的过程。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Summary from a talk on ICML’16.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Find Researchers Here</title>
+    <link href="http://cuiyungao.github.io/2016/07/04/researcher/"/>
+    <id>http://cuiyungao.github.io/2016/07/04/researcher/</id>
+    <published>2016-07-04T07:27:10.000Z</published>
+    <updated>2016-07-04T07:32:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>With researchers in some fields related to NLP and deep learning contained.</p>
+<a id="more"></a>
+<h3 id="Natural-Language-Processing"><a href="#Natural-Language-Processing" class="headerlink" title="Natural Language Processing"></a><center><strong>Natural Language Processing</strong></center></h3><ul>
+<li>Jason Weston<br><a href="http://www.thespermwhale.com/jaseweston/" target="_blank" rel="external">Link.</a> Research Scientist at Facebook.</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;With researchers in some fields related to NLP and deep learning contained.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Predicting Amazon Ratings Using Neural Networks</title>
+    <link href="http://cuiyungao.github.io/2016/06/30/predictingamazon/"/>
+    <id>http://cuiyungao.github.io/2016/06/30/predictingamazon/</id>
+    <published>2016-06-30T09:41:17.000Z</published>
+    <updated>2016-06-30T09:51:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>The paper compares 3 different methods, bag-of-words model, word2vec (using RandomForests) and word2vec (using K Nearest Neighbors).</p>
+<a id="more"></a>
+<p>Word vectors经常被用作features应用于许多NLP领域，有两种模型CBOW和Skip-Gram。<code>Doc2vec</code>是word2vec的改进版，区别在于<code>model architecture</code>。在<code>doc2vec</code>中，algorithms是distributed memory (dm) and distributed bag of word (dbow)，但是其分类效果并不如word2vec。</p>
+<p>结果显示word2vec的准确率是最高的，而且运行时间最短。</p>
+<p>Original paper can be download <a href="http://cseweb.ucsd.edu/~jmcauley/cse190/reports/sp15/014.pdf" target="_blank" rel="external">here</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The paper compares 3 different methods, bag-of-words model, word2vec (using RandomForests) and word2vec (using K Nearest Neighbors).&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Rating Prediction" scheme="http://cuiyungao.github.io/tags/Rating-Prediction/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>User Modeling with Neural Network for Review Rating Prediction</title>
+    <link href="http://cuiyungao.github.io/2016/06/30/usermodeling/"/>
+    <id>http://cuiyungao.github.io/2016/06/30/usermodeling/</id>
+    <published>2016-06-30T03:38:13.000Z</published>
+    <updated>2016-06-30T09:41:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>[IJCAI’15] User Modeling with Neural Network for Review Rating Prediction. <a href="http://ir.hit.edu.cn/~dytang/" target="_blank" rel="external">Duyu Tang</a>, Bing Qin, Ting Liu<br>Proceeding of The 24th International Joint Conference on Artificial Intelligence.</p>
+<a id="more"></a>
+<p>作者Duyu Tang的分析集中于sentiment analysis，一年发了很多NLP的顶会文章（EMNLP, ACL, IJCAI, etc.）。</p>
+<p>本文通过考虑user information来改善review rating prediction。启发源于lexical composition model，将<code>compositional modifier</code>作为一个matrix, 用<code>matrix-vector mulplication</code>作为compositon function。本文延伸lexical semantic compositio models，建立了<code>user-word composition vector model</code> (UWCVM)，并将结果作为feature用supervised learning framework来进行review rating prediction。</p>
+<h3 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a><center><strong>Problem Definition</strong></center></h3><p>Review rating prediction可以看做是a classificaiton/regression problem，由Pang and Lee <a href="http://www.cs.cornell.edu/home/llee/papers/pang-lee-stars.pdf" target="_blank" rel="external">2005</a>最开始做，采用<code>metric labeling</code> framework。Rating的performance很大程度上依赖于<code>feature representation</code>的选择。</p>
+<p>Problem: Given a review $r_{k_j}$ comprised of $n$ words $\{w_1,w_2,…,w_n\}$ written by user $u_k$ as input, review rating prediction aims at infering the numeric rating (1~4 or 1~5 stars) of $r_{k_j}$. The problem can be regarded as a multi-class classification problem by inferring a discrete rating score.</p>
+<h3 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a><center><strong>Methodology</strong></center></h3><p>The method includes two <code>composition models</code>, the user-word composition vector model (<strong>DWCVM</strong>) and the document composition vector model (<strong>DCVM</strong>). The former model将原始的word vectors加入user information，the latter model则将modified word vectors转化成review representation，并用其作为feature来进行rating prediction。Training的过程采用Pang and Lee提出的<code>supervised metric labeling</code>的方法。整个过程如下图表示：<br><br></p>
+<center><img src="/img/papers/usermodeling.png" width="50%"></center>
+
+<h4 id="User-Word-Composition-Vector-Model"><a href="#User-Word-Composition-Vector-Model" class="headerlink" title="User-Word Composition Vector Model"></a>User-Word Composition Vector Model</h4><p>整个model将original word vectors融入user information。融入的方法有两种：<code>additive</code>和<code>multiplicative</code>。给定两个向量$v_1$和$v_2$，<strong>Additive</strong>的结合方式认为输出向量$p$是a linear function of Cartesian product of $v_1$ and $v_2$，如下：</p>
+<p>$$<br>p = \mathbf{A}\times v_1 + \mathbf{B}\times v_2<br>$$<br>其中$\mathbf{A}$和$\mathbf{B}$是matrices parameters，用来encode $v_1$, $v_2$对$p$的贡献。<strong>Multiplicative</strong>的结合方式认为输出向量$p$是a linear function of the tensor product of $v_1$ and $v_2$，如下：</p>
+<p>$$<br>p = \mathbf{T}\times v_1 \times v_2 = \mathbf{U}_1 \times v_2<br>$$<br>其中$\mathbf{T}$是一个rank为3的tensor，将$v_1,v_2$的tensor product映射到$p$上。$\mathbf{T}$和$\v_1$的Partial product可以被看做生成新的矩阵$\mathbf{U}_1$，这个矩阵可以modify原始的word vectors。这两种结合方式可以用下图表示：<br><br></p>
+<center><img src="/img/papers/usermodeling2.png" width="50%"></center>
+
+<p>文章选用<code>multiplicative composition</code>，因为这种结合方式符合最初的用user information来改善word vectors的想法。后面的实验也验证了multiplicative composition的结合方式准确率要高于additive composition。</p>
+<p>为了减少parameter size，user representation被用low-rank plus diagonal approximation来表示：$\mathbf{U}_k=\mathbf{U}_{k1} \times \mathbf{U}_{k2} + diag(u^{\prime})$，其中$\mathbf{U}_{k1}\in \mathbb{R}^{d\times r}$, $\mathbf{U}_{k2}\in \mathbb{R}^{r\times d}$, $u^{\prime}\in \mathbb{R}^d$。$u^{\prime}$是每个user共享的background representation，以应对某些在test set中有而在training set中没有的users，即<code>Out-Of-Vocabulary</code> situation。最终modified word vectors $p_i$：</p>
+<p>$$<br>p_i = tanh(\mathbf{e}_{ik}) = tanh(\mathbf{U}_k\times \mathbf{e}_i)<br>\; = tanh((\mathbf{U}_{k1}\times \mathbf{U}_{k2} + diag(u^{\prime})) \times \mathbf{e}_i)<br>$$</p>
+<h4 id="Document-Composition-Vector-Model"><a href="#Document-Composition-Vector-Model" class="headerlink" title="Document Composition Vector Model"></a>Document Composition Vector Model</h4><p>文中采用一个简单而有效的方法<a href="http://anthology.aclweb.org/P/P14/P14-1006.pdf" target="_blank" rel="external">paper</a>, recursivley uses <code>biTanh</code> function来生成document representation:</p>
+<p>$$<br>biTanh(p) = \sum_{i=1}^n tanh(p_{i-1} + p_i)<br>$$<br>Each sentence将user-modified word vectors作为输入，得到sentence vectors；然后再将sentence vectors输入到<code>biTanh</code>得到最终的document vector $vec(doc)$。<code>biTanh</code>的Recursive use可以看做是two pairs of bag-of-word convolutional neural network，其中window size是2，parameters通过<code>addition</code>和<code>tanh</code>来定义。</p>
+<h4 id="Rating-Prediction-with-Metric-Labeling"><a href="#Rating-Prediction-with-Metric-Labeling" class="headerlink" title="Rating Prediction with Metric Labeling"></a>Rating Prediction with Metric Labeling</h4><p>Review representation被用来进行review rating prediction，方法是<code>metric labeling</code> framework。</p>
+<h4 id="Model-Training"><a href="#Model-Training" class="headerlink" title="Model Training"></a>Model Training</h4><p>获取back-propagation中对于whole set of parameters的derivative of the loss, 然后用stochastic gradient descent with mini-batch来更新这些parameters。文中用<code>dropout</code>来避免neural network being over-fitting。</p>
+<p><strong>Note:</strong> Cases that rating does not match with review texts is not considered. [Zhang et al., SIGIR’14]  <a href="http://dl.acm.org/citation.cfm?id=2609501" target="_blank" rel="external">Paper</a></p>
+<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center><strong>Experiment</strong></center></h3><p>实验数据集有两个：<code>Yelp13</code>和<code>RT05</code>。实验结果说明:</p>
+<ul>
+<li>Semantic composition可以提高预测的准确度，并且结合<span style="color:white">metric labeling</span>可以改善结果，因为它基于”similar items, similar labels”的idea。</li>
+<li>一个用户有越多的reviews，则这个用户的rating可以被很好地估计。</li>
+<li>SSPE [Tang et al., 2014a]  <a href="http://anthology.aclweb.org/C/C14/C14-1018.pdf" target="_blank" rel="external">paper</a>更适用于short review.</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;[IJCAI’15] User Modeling with Neural Network for Review Rating Prediction. &lt;a href=&quot;http://ir.hit.edu.cn/~dytang/&quot;&gt;Duyu Tang&lt;/a&gt;, Bing Qin, Ting Liu&lt;br&gt;Proceeding of The 24th International Joint Conference on Artificial Intelligence.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Rating Prediction" scheme="http://cuiyungao.github.io/tags/Rating-Prediction/"/>
+    
+      <category term="Neural Network" scheme="http://cuiyungao.github.io/tags/Neural-Network/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UFLDL Tutorial</title>
+    <link href="http://cuiyungao.github.io/2016/06/29/UFLDL/"/>
+    <id>http://cuiyungao.github.io/2016/06/29/UFLDL/</id>
+    <published>2016-06-29T14:39:40.000Z</published>
+    <updated>2016-06-29T14:43:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>The page records the knowledge learnt from UFLDL tutorial provided by Stanford. The resource can be found <a href="http://ufldl.stanford.edu/tutorial/" target="_blank" rel="external">here</a>.</p>
+<a id="more"></a>
+<p>The tutorial主要介绍unsupervised feature learning和deep learning，以及如何实现相关的算法。由于算法实现主要是matlab，所以主要记录里面的知识要点。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The page records the knowledge learnt from UFLDL tutorial provided by Stanford. The resource can be found &lt;a href=&quot;http://ufldl.stanford.edu/tutorial/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Collaborative Filtering (CF)</title>
+    <link href="http://cuiyungao.github.io/2016/06/29/cf/"/>
+    <id>http://cuiyungao.github.io/2016/06/29/cf/</id>
+    <published>2016-06-29T09:22:55.000Z</published>
+    <updated>2016-07-19T02:31:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This webpage contains information and implementation related to collaborative filtering.</p>
+<a id="more"></a>
+<p>对于recommender system，最常用的两个方法是<code>Content-Based</code>和<code>Collaborative Filtering (CF)</code>。CF基于users对items的态度来推荐items，即<code>&quot;wisdom of the crows&quot;</code>。相反，CB关注items的属性，用items之间的相似度来进行推荐。</p>
+<p>CF分为<code>Memory-based CF</code>和<code>Model-based CF</code>。</p>
+<h3 id="Implementation-Steps"><a href="#Implementation-Steps" class="headerlink" title="Implementation Steps"></a><center><strong>Implementation Steps</strong></center></h3><p>We use <code>scikit-learn</code> library将数据分成testing set和training set。For example,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import pandas as pd</div><div class="line">from sklearn import cross_validation as cv</div><div class="line">header = [&apos;user_id&apos;,&apos;item_id&apos;,&apos;rating&apos;,&apos;timestamp&apos;]</div><div class="line">data = pd.read_csv(&apos;ml-100k/u.data&apos;, sep=&apos;\t&apos;, names=header)</div><div class="line">train_data, test_data = cv.train_test_split(data, test_size=0.25)</div></pre></td></tr></table></figure>
+<p>基于<code>cosine similarity</code>，我们得到<code>user_similarity</code>和<code>item_similarity</code>，对于<code>user-based CF</code>,我们用下面的公式：</p>
+<p>$$<br>\hat{x}_{k,m} = \bar{x}_k + \frac{\sum_{u_a} sim_u(u_k, u_a)(x_{a,m}-\bar{x}_{u_a})}{\sum_{u_a} \|sim_u(u_k, u_a)\|}<br>$$</p>
+<p>Users $k$ and $a$可以被当做是weights。Normalize确保评分在1~5之间。由于有相似taste的两个users可能在评分上一个偏高，一个偏低，所以前面需要加上user的平均rating作为bias。对于<code>item-based CF</code>,公式如下：</p>
+<p>$$<br>\hat{x}_{k,m} = \frac{\sum_{i_b} sim_i(i_m,i_b)(x_{k,b})}{\sum_{i_b} \|sim_i(i_m,i_b)\|}<br>$$</p>
+<h3 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a><center><strong>Evaluation</strong></center></h3><p>Metric采用<code>Root Mean Squared Error (RMSE)</code>,公式如下：</p>
+<p>$$<br>RMSE = \sqrt{\frac{1}{N}\sum (x_i-\hat{x}_i)^2}<br>$$</p>
+<p>实现采用<code>sklearn</code>提供的<code>mean_square_error</code> (MSE), RMSE是MSE的平方根。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from sklearn.metrics import mean_squared_error</div><div class="line">from math import sqrt</div><div class="line">def rmse(prediction, ground_truth):</div><div class="line">  # find nonzeros places in groundtruth and extract from the prediction accordingly</div><div class="line">  prediction = prediction[ground_truth.nonzero()].flatten() </div><div class="line">  ground_truth = ground_truth[ground_truth.nonzero()].flatten()</div><div class="line">  return sqrt(mean_squared_error(prediction, ground_truth))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">print &apos;User-based CF RMSE: &apos; + str(rmse(user_prediction, test_data_matrix))</div><div class="line">print &apos;Item-based CF RMSE: &apos; + str(rmse(item_prediction, test_data_matrix))</div></pre></td></tr></table></figure>
+<p><span style="color:red">Drawback:</span> Memory-based CF doesn’t scale to real-world scenarios and cannot solve cold-start problem well. <code>Model-based</code> CF methods are scalabel and can deal with higher sparsity level than memory-based, but also suffers from cold-start problem.</p>
+<p>Original <a href="http://online.cambridgecoding.com/notebooks/eWReNYcAfB/implementing-your-own-recommender-systems-in-python-2" target="_blank" rel="external">Link</a>. Also implemented locally.</p>
+<h3 id="Recosystem"><a href="#Recosystem" class="headerlink" title="Recosystem"></a>Recosystem</h3><p>Recommender system using parallel matrix factorization <a href="https://cran.r-project.org/web/packages/recosystem/index.html" target="_blank" rel="external">Link.</a>. The author’s <a href="http://statr.me/2016/07/recommender-system-using-parallel-matrix-factorization/" target="_blank" rel="external">intro</a>.</p>
+<h3 id="Fast-Recommendation-for-Activity-Stream"><a href="#Fast-Recommendation-for-Activity-Stream" class="headerlink" title="Fast Recommendation for Activity Stream"></a>Fast Recommendation for Activity Stream</h3><p>Fast Recommendations for Activity Streams Using Vowpal Wabbit <a href="http://blog.getstream.io/fast-recommendations-for-activity-streams-using-vowpal-wabbit" target="_blank" rel="external">Link</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This webpage contains information and implementation related to collaborative filtering.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Recommend System" scheme="http://cuiyungao.github.io/tags/Recommend-System/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Good-Turing Estimation 大数据处理平滑算法</title>
+    <link href="http://cuiyungao.github.io/2016/06/29/goodturing/"/>
+    <id>http://cuiyungao.github.io/2016/06/29/goodturing/</id>
+    <published>2016-06-29T09:22:55.000Z</published>
+    <updated>2016-07-18T06:40:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>参数平滑算法</p>
+<a id="more"></a>
+<p>参数平滑算法，是在训练数据不足时，采用某种方式对统计结果和概率估计进行必要的调整和修补，以降低由于数据稀疏现象带来的统计误差。</p>
+<p>在实际应用中，数据稀疏会产生大量空值，影响后续处理的性能和效果，所以需要平滑算法。</p>
+<p><code>Good-Turing</code>估计经常用在数据平滑方面。基本思想是：将统计参数按出现次数聚类，然后用出现次数加1的类来估计当前类。假定，一个元素在文本$W$中出现$r$次的概率是$\theta(r)$，$N_r$表示元素在$W$中正好出现$r$次的个数，即$N_r=|{x_j: #(x_j)=r}|$，满足：</p>
+<p>$$<br>N = \sum_{r} rN_r.<br>$$</p>
+<p>Good-Turing估计$\theta(r)$为：$\hat{\theta}(r) = \frac{1}{N} (r+1) \frac{N_{r+1}}{N_r}$.</p>
+<p>具体的分析过程可以看<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODIzNDQ3Mw==&amp;mid=2649965669&amp;idx=1&amp;sn=297fa2d2b48c4a46135aeaa73d2d437a&amp;scene=0#wechat_redirect" target="_blank" rel="external">这里</a>。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参数平滑算法&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Data Mining" scheme="http://cuiyungao.github.io/tags/Data-Mining/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Memorization and Exploration in Recurrent Neural Language Models</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/memorization/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/memorization/</id>
+    <published>2016-06-28T14:27:33.000Z</published>
+    <updated>2016-06-28T14:38:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Deep Learning | Los Angeles Meetup</p>
+<a id="more"></a>
+<p>The speaker explains <code>recurrent memory networks</code>.<a href="https://www.youtube.com/watch?v=nPUW0akp5s0" target="_blank" rel="external">Link</a></p>
+<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><ul>
+<li>LSTM is a powerful sequential model.</li>
+<li>It has complicated design of input gate, forget gate, update gate and cell.</li>
+<li>LSTM achieves SOTA in many NLP tasks: sentence completion, sentiment analysis, parsing….</li>
+</ul>
+<h3 id="Recurrent-Memory-Networks"><a href="#Recurrent-Memory-Networks" class="headerlink" title="Recurrent Memory Networks"></a>Recurrent Memory Networks</h3><ol>
+<li><p>amplify the power of RNN</p>
+</li>
+<li><p>offer a way to interpret and discover <code>dependencies</code> in data</p>
+</li>
+<li><p>outperform TreeLSTM models that explicitly use syntactic information in Sentence Completion Challenge</p>
+</li>
+</ol>
+<h3 id="First-Attempt"><a href="#First-Attempt" class="headerlink" title="First Attempt"></a>First Attempt</h3><p>Combine linearly source context vector, target context (Memory block) and target hidden state LSTM</p>
+<ol>
+<li><p>Did not see any gain in BLEU</p>
+</li>
+<li><p>Potentially bias toward target LM</p>
+</li>
+<li><p><code>Gating combination</code> might be essential for the model</p>
+</li>
+</ol>
+<h3 id="Better-Memorization"><a href="#Better-Memorization" class="headerlink" title="Better Memorization"></a>Better Memorization</h3><p>Better memorization leads to better translation</p>
+<ol>
+<li>LSTM does not offer any representation advantage compared to vanilla RNN</li>
+<li>Gradient in LSTM just flows nicer</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Deep Learning | Los Angeles Meetup&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Data Crawling</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/crawler/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/crawler/</id>
+    <published>2016-06-28T13:26:03.000Z</published>
+    <updated>2016-07-04T12:10:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This webpage contains information about data crawling, such as some useful tools and summaries.</p>
+<a id="more"></a>
+<h3 id="Data-scraper-for-Facebook-Pages"><a href="#Data-scraper-for-Facebook-Pages" class="headerlink" title="Data scraper for Facebook Pages"></a>Data scraper for Facebook Pages</h3><p><a href="https://github.com/minimaxir/facebook-page-post-scraper" target="_blank" rel="external">Link.</a> Data scraper for Facebook Pages, and also code accompanying the blog post How to Scrape Data From Facebook Page Posts for Statistical Analysis. An example is shown below.<br><br></p>
+<center><img src="/img/daily/fb_scraper_data.png" width="50%"></center>
+
+<h3 id="Web-Crawler-System-in-Python"><a href="#Web-Crawler-System-in-Python" class="headerlink" title="Web Crawler System in Python"></a>Web Crawler System in Python</h3><p><a href="https://github.com/binux/pyspider" target="_blank" rel="external">Link.</a></p>
+<ul>
+<li>Write script in Python</li>
+<li>Powerful WebUI with script editor, task monitor, project manager and result viewer</li>
+<li>MySQL, MongoDB, Redis, SQLite, Elasticsearch; PostgreSQL with SQLAlchemy as database backend</li>
+<li>RabbitMQ, Beanstalk, Redis and Kombu as message queue</li>
+<li>Task priority, retry, periodical, recrawl by age, etc…</li>
+<li>Distributed architecture, Crawl Javascript pages, Python 2&amp;3, etc…</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This webpage contains information about data crawling, such as some useful tools and summaries.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Data Mining" scheme="http://cuiyungao.github.io/tags/Data-Mining/"/>
+    
+      <category term="Crawler" scheme="http://cuiyungao.github.io/tags/Crawler/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Generative Topic Embedding:a Continuous Representation of Documents</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/acl16/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/acl16/</id>
+    <published>2016-06-28T12:30:48.000Z</published>
+    <updated>2016-06-29T07:57:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>[ACL’16] From 清华<a href="http://bigml.cs.tsinghua.edu.cn/~jun/publications.shtml" target="_blank" rel="external">Zhu Jun</a>‘s Group</p>
+<a id="more"></a>
+<p><a href="http://www.weibo.com/ttarticle/p/show?id=2309403989692323372292" target="_blank" rel="external">Summary</a> from 洪亮劼</p>
+<h3 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a><center><strong>Problem Definition</strong></center></h3><p>Given the hyperparameters $\alpha$, $\gamma$, $\mu$, the learning objective is to find the embeddings $\mathbf{V}$, the topics $\mathbf{T}$, and the word-topic and document-topic distributions $p(\mathbf{Z}_i, \phi_i|d_i, \mathbf{A}, \mathbf{V}, \mathbf{T})$.</p>
+<p>Here, $\mathbf{Z},\mathbf{T},\phi$ denote the collection of the document-specific $\{\mathbf{Z}_i\}_{i=1}^M$, $\{\mathbf{T}_i\}_{i=1}^M$, $\{\phi_i\}_{i=1}^M$. $\mathbf{V}$, $\mathbf{A}$, and $\mathbf{T}_i$ stand for the embeddings, the bigram residuals, and the topics, respectively.</p>
+<p>As a whole, a generative word embedding model <code>PSDVec</code> (Li et al., 2015, <a href="http://www.aclweb.org/anthology/D15-1183" target="_blank" rel="external">ref</a>), by incorporating topics into it. The new model is named <code>TopicVec</code>.</p>
+<h3 id="TopicVec-Model"><a href="#TopicVec-Model" class="headerlink" title="TopicVec Model"></a><center><strong>TopicVec Model</strong></center></h3><p>模型结合了topic modeling和word embeddings。In TopicVec, an embedding link function对一个topic中的word distribution进行建模，而不是LDA中的categorical distribution。这个link function的优势是semantic relatedness在embedding space当中被encoded。其它的过程跟LDA很相似，同样用Dirichlet priors来regularize topic distributions，用variational inference algorithm来进行optimization。这个过程可以得到跟words在同样embedding space的topic embeddings。Topic embeddings的目的是来估计underlying semantic centroids。</p>
+<p>The whole process:</p>
+<ol>
+<li><p>For the $k$-th topic, draw a tpic embedding uniformly from a hyperball of radius $\gamma$, i.e., $t_k\sim Unif(B_{\gamma})$;</p>
+</li>
+<li><p>For each document $d_i$:<br>(a) Draw the mixing proportions $\phi_i$ from the Dirichlet prior Dir($\alpha$);<br>(b) For the $j$-th word:<br> $\;$ i. Draw topic assignment $z_{ij}$ from the categorical distribution Cat($\phi_i$);<br> $\;$ ii. Draw word $w_{ij}$ from $\mathbf{S}$ according to $P(w_{ij}|w_{i,j-c}:w_{i,j-1},z_{ij},d_i)$.</p>
+</li>
+</ol>
+<center><span style="color:white">Graphical representation of TopicVec</span></center><br><center><img src="/img/papers/topicvec.png" width="40%"></center>
+
+<p>The notations are listed in the following table:</p>
+<center><img src="/img/papers/topicvec1.png" width="40%"></center>
+
+<h3 id="Word-Embeddings-amp-Topic-Modeling"><a href="#Word-Embeddings-amp-Topic-Modeling" class="headerlink" title="Word Embeddings &amp; Topic Modeling"></a><center><strong>Word Embeddings &amp; Topic Modeling</strong></center></h3><p>Word embedding通过一个小的context window里面的local word collocation patterns,将words映射到一个低维连续的embedding space。而topic modeling通过同一文档里面的global word collocation patterns，将documents映射到一个低维的topic space。这两个可以互补，本文由此得到TopicVec Model。其中，topics由embedding vectors来表示，并在documents之间共享。每个word的probability由local context和topic来决定。Topic embedding由variational inference method产生，同时得到每个document的topic mixing probability。结合topic embedding和topic mixing probability，可以在低维连续空间里面得到每个document的representation。</p>
+<p>Euclidean distance不是衡量两个embeddings之间相似度的最优方法，已有的方法大部分采用exponentiated cosine similarity作为link function，所以cosine similarity可能是较好的估计语义相似度的方法。</p>
+<h3 id="Inspirations"><a href="#Inspirations" class="headerlink" title="Inspirations"></a><center><strong>Inspirations</strong></center></h3><ul>
+<li>从此方法得到的word embeddings，然后再用DRNN等方法来进行classification？</li>
+<li>可以用于DTM上么？</li>
+</ul>
+<p>本文的code可以在这里<a href="https://github.com/askerlee/topicvec" target="_blank" rel="external">下载</a>,Nguyen et al. (2015)的方法与之类似，将word embeddings作为latent features，但是实现速度慢，对large corpus不可行，code可以在<a href="https://github.com/datquocnguyen/LFTM" target="_blank" rel="external">这里</a>找到。 </p>
+<p>The original paper can be found <a href="https://arxiv.org/abs/1606.02979" target="_blank" rel="external">here</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;[ACL’16] From 清华&lt;a href=&quot;http://bigml.cs.tsinghua.edu.cn/~jun/publications.shtml&quot;&gt;Zhu Jun&lt;/a&gt;‘s Group&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Topic Modeling" scheme="http://cuiyungao.github.io/tags/Topic-Modeling/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Study Material for Deep Learning and NLP</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/material/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/material/</id>
+    <published>2016-06-28T12:21:47.000Z</published>
+    <updated>2016-06-28T12:46:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>The website summaries the material for understanding deep learning and NLP.</p>
+<a id="more"></a>
+<h4 id="How-to-Start-Learning-Deep-Learning"><a href="#How-to-Start-Learning-Deep-Learning" class="headerlink" title="How to Start Learning Deep Learning"></a>How to Start Learning Deep Learning</h4><p><a href="http://ofir.io/How-to-Start-Learning-Deep-Learning/" target="_blank" rel="external">Link</a></p>
+<h4 id="Book-First-Contact-with-TensorFlow"><a href="#Book-First-Contact-with-TensorFlow" class="headerlink" title="[Book] First Contact with TensorFlow"></a>[Book] First Contact with TensorFlow</h4><p><a href="http://www.jorditorres.org/first-contact-with-tensorflow/" target="_blank" rel="external">Link</a> The book introduces how to use TensorFlow to implement the basic functions of neural network and also parallelism.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The website summaries the material for understanding deep learning and NLP.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="material" scheme="http://cuiyungao.github.io/tags/material/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LDA Understanding</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
+    <published>2016-06-28T09:17:25.000Z</published>
+    <updated>2016-07-20T06:24:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
+<a id="more"></a>
+<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Useful Source Code for NLP</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/code/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/code/</id>
+    <published>2016-06-28T09:17:25.000Z</published>
+    <updated>2016-07-29T03:27:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This page contains useful code related to NLP.</p>
+<a id="more"></a>
+<h3 id="TensorFlow-v0-9-now-available-with-improved-mobile-support"><a href="#TensorFlow-v0-9-now-available-with-improved-mobile-support" class="headerlink" title="TensorFlow v0.9 now available with improved mobile support."></a>TensorFlow v0.9 now available with improved mobile support.</h3><p><a href="https://developers.googleblog.com/2016/06/tensorflow-v09-now-available-with.html" target="_blank" rel="external">Link</a> TensorFlow now supports mobile invocation.</p>
+<h3 id="Tensorflow-and-theano-CNN-code-for-insurance-QA-question-Answer-matching"><a href="#Tensorflow-and-theano-CNN-code-for-insurance-QA-question-Answer-matching" class="headerlink" title="Tensorflow and theano CNN code for insurance QA(question Answer matching)."></a>Tensorflow and theano CNN code for insurance QA(question Answer matching).</h3><p><a href="https://github.com/white127/insuranceQA-cnn" target="_blank" rel="external">Link.</a> Theano和tensorflow的网络结构都是一致的: word embedings + CNN + max pooling + cosine similarity.目前再insuranceQA的test1数据集上，top-1准确率可以达到62%左右，跟论文上是一致的。这里只提供了CNN的代码，后面测试了LSTM和LSTM+CNN的方法，LSTM+CNN的方法比单纯使用CNN或LSTM效果还要更好一些，在test1上的准确率可以再提示5%-6%.</p>
+<h3 id="LSTM-language-model-with-CNN-over-characters-in-TensorFlow"><a href="#LSTM-language-model-with-CNN-over-characters-in-TensorFlow" class="headerlink" title="LSTM language model with CNN over characters in TensorFlow."></a>LSTM language model with CNN over characters in TensorFlow.</h3><p><a href="https://github.com/carpedm20/lstm-char-cnn-tensorflow" target="_blank" rel="external">Link.</a>Tensorflow implementation of Character-Aware Neural Language Models <a href="http://arxiv.org/abs/1508.06615" target="_blank" rel="external">paper</a>.</p>
+<h3 id="Topic-Augmented-Neural-Response-Generation-with-a-Joint-Attention-Mechanism"><a href="#Topic-Augmented-Neural-Response-Generation-with-a-Joint-Attention-Mechanism" class="headerlink" title="Topic Augmented Neural Response Generation with a Joint Attention Mechanism"></a>Topic Augmented Neural Response Generation with a Joint Attention Mechanism</h3><p><a href="https://github.com/LynetteXing1991/TAJA-Seq2Seq" target="_blank" rel="external">Link.</a> Use attention model.</p>
+<h3 id="Text-input-with-relevant-emoji-sorted-with-deep-learning"><a href="#Text-input-with-relevant-emoji-sorted-with-deep-learning" class="headerlink" title="Text input with relevant emoji sorted with deep learning"></a>Text input with relevant emoji sorted with deep learning</h3><p><a href="http://codepen.io/Idlework/pen/xOgGqM" target="_blank" rel="external">link.</a> After inputing a sentence, the related emojis are shown in the top. I’ve tried the project, and it’s amazing. It uses API from <a href="http://getdango.com/emoji-and-deep-learning.html" target="_blank" rel="external">Dango</a>. The webpage recommends deep learning <a href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="external">material</a>. I need to read them in detail, which maybe helpful for review analysis.</p>
+<h3 id="Information-Extraction-with-Reinforcement-Learning"><a href="#Information-Extraction-with-Reinforcement-Learning" class="headerlink" title="Information Extraction with Reinforcement Learning"></a>Information Extraction with Reinforcement Learning</h3><p><a href="https://github.com/karthikncode/DeepRL-InformationExtraction" target="_blank" rel="external">Link.</a> It’s based on Torch and python.</p>
+<h3 id="Visualization-Toolbox-for-Long-Short-Term-Memory-networks-LSTMs"><a href="#Visualization-Toolbox-for-Long-Short-Term-Memory-networks-LSTMs" class="headerlink" title="Visualization Toolbox for Long Short Term Memory networks (LSTMs)"></a>Visualization Toolbox for Long Short Term Memory networks (LSTMs)</h3><p><a href="https://github.com/HendrikStrobelt/LSTMVis" target="_blank" rel="external">Link.</a> Visual Analysis for State Changes in RNNs. More information about LSTMVis, an introduction video, and the link to the live demo can be found <a href="http://lstm.seas.harvard.edu/" target="_blank" rel="external">here</a>.</p>
+<h3 id="Attention-Sum-Reader"><a href="#Attention-Sum-Reader" class="headerlink" title="Attention Sum Reader"></a>Attention Sum Reader</h3><p><a href="https://github.com/rkadlec/asreader" target="_blank" rel="external">Link.</a> This is a Theano/Blocks implementation of the Attention Sum Reader model as presented in “Text Comprehension with the Attention Sum Reader Network” available at <a href="http://arxiv.org/abs/1603.01547" target="_blank" rel="external">here</a>. </p>
+<h3 id="Wider-amp-deep-learning-better-together-with-TensorFlow"><a href="#Wider-amp-deep-learning-better-together-with-TensorFlow" class="headerlink" title="Wider &amp; deep learning: better together with TensorFlow"></a>Wider &amp; deep learning: better together with TensorFlow</h3><p><a href="https://research.googleblog.com/2016/06/wide-deep-learning-better-together-with.html" target="_blank" rel="external">Link.</a> <span style="color:white">Query的过程就是找出类似的词的过程，这个可以用phrase extraction？是否可以用在rating prediction上面。</span></p>
+<h3 id="Minimal-Character-Level-Language-Model"><a href="#Minimal-Character-Level-Language-Model" class="headerlink" title="Minimal Character-Level Language Model"></a>Minimal Character-Level Language Model</h3><p><span style="color:red">需看~！</span><a href="https://github.com/weixsong/min-char-rnn" target="_blank" rel="external">Link.</a> Minimal character-level language model with a Vanilla Recurrent Neural Network, in Python/numpy.</p>
+<h3 id="LSTM-Parser"><a href="#LSTM-Parser" class="headerlink" title="LSTM-Parser"></a>LSTM-Parser</h3><p><a href="https://github.com/clab/joint-lstm-parser" target="_blank" rel="external">Link.</a> Based on <code>C++</code> language. Transition-based joint syntactic dependency parser and semantic role labeler using stack LSTM RNN architecture. Paper <code>Greedy, joint syntactic-semantic parsing with stack LSTMs</code> can be downloaded <a href="http://www.taln.upf.edu/content/biblio/785" target="_blank" rel="external">here</a>.</p>
+<h3 id="Pre-trained-Word-Embedding-in-Keras"><a href="#Pre-trained-Word-Embedding-in-Keras" class="headerlink" title="Pre-trained Word Embedding in Keras"></a>Pre-trained Word Embedding in Keras</h3><p><a href="http://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html" target="_blank" rel="external">Link.</a> Based on Keras library. In this tutorial, we will walk you through the process of solving a text classification problem using pre-trained word embeddings and a convolutional neural network.</p>
+<h3 id="Building-Machine-Learning-Estimator-in-TensorFlow"><a href="#Building-Machine-Learning-Estimator-in-TensorFlow" class="headerlink" title="Building Machine Learning Estimator in TensorFlow"></a>Building Machine Learning Estimator in TensorFlow</h3><p><a href="http://terrytangyuan.github.io/2016/07/08/understand-and-build-tensorflow-estimator/" target="_blank" rel="external">Link.</a> The purpose of this post is to help you better understand the underlying principles of estimators in TensorFlow Learn and point out some tips and hints if you ever want to build your own estimator that’s suitable for your particular application.</p>
+<h3 id="TensorLayer-Deep-learning-and-Reinforcement-learning-library"><a href="#TensorLayer-Deep-learning-and-Reinforcement-learning-library" class="headerlink" title="TensorLayer: Deep learning and Reinforcement learning library"></a>TensorLayer: Deep learning and Reinforcement learning library</h3><p><a href="https://github.com/zsdonghao/tensorlayer" target="_blank" rel="external">Link.</a> It was designed to provide a higher-level API to TensorFlow in order to speed-up experimentations. </p>
+<h3 id="Neural-Relation-Extraction"><a href="#Neural-Relation-Extraction" class="headerlink" title="Neural Relation Extraction"></a>Neural Relation Extraction</h3><p><a href="https://github.com/thunlp/NRE" target="_blank" rel="external">Link.</a> Neural relation extraction aims to extract relations from plain text with neural models, which has been the state-of-the-art methods for relation extraction. In this project, we provide our implementations of CNN [Zeng et al., 2014] and PCNN [Zeng et al.,2015] and their extended version with sentence-level attention scheme [Lin et al., 2016] </p>
+<h3 id="Make-a-Chatting-Robot"><a href="#Make-a-Chatting-Robot" class="headerlink" title="Make a Chatting Robot"></a>Make a Chatting Robot</h3><p><a href="https://github.com/warmheartli/ChatBotCourse" target="_blank" rel="external">Link.</a> 自己动手做聊天机器人教程.</p>
+<h3 id="Door-to-Machine-Learning"><a href="#Door-to-Machine-Learning" class="headerlink" title="Door to Machine Learning"></a>Door to Machine Learning</h3><p><a href="https://github.com/warmheartli/MachineLearningCourse" target="_blank" rel="external">Link.</a> 机器学习精简入门教程.</p>
+<h3 id="Sequence-Classification-with-LSTM-RNN-with-Keras"><a href="#Sequence-Classification-with-LSTM-RNN-with-Keras" class="headerlink" title="Sequence Classification with LSTM RNN with Keras"></a>Sequence Classification with LSTM RNN with Keras</h3><p><a href="http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/" target="_blank" rel="external">Link.</a> Python based.实验结果证明加了CNN的效果更好，用dropout避免过拟合，但是实验结果不是那么理想，原因是深度只有3，当层数增加的时候可以实现比不用dropout更好的效果。</p>
+<h3 id="Neural-Conversation-Models"><a href="#Neural-Conversation-Models" class="headerlink" title="Neural Conversation Models"></a>Neural Conversation Models</h3><p><a href="https://github.com/pbhatia243/Neural_Conversation_Models" target="_blank" rel="external">Link.</a> TensorFlow based.支持simple seq2seq models和attention based seq2seq models.</p>
+<h3 id="深度学习主机环境配置"><a href="#深度学习主机环境配置" class="headerlink" title="深度学习主机环境配置"></a>深度学习主机环境配置</h3><p><a href="http://www.52nlp.cn/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%BB%E6%9C%BA%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-ubuntu16-04-geforce-gtx1080-tensorflow" target="_blank" rel="external">Link.</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This page contains useful code related to NLP.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="code" scheme="http://cuiyungao.github.io/tags/code/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Deep Recursive Neural Networks for Compositionality in Language</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/drnn/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/drnn/</id>
+    <published>2016-06-28T07:04:35.000Z</published>
+    <updated>2016-06-28T09:26:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Irsoy, Ozan, and Claire Cardie. “Deep recursive neural networks for compositionality in language.” Advances in Neural Information Processing Systems. 2014.</p>
+<a id="more"></a>
+<h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a><center><strong>Recursive Neural Network</strong></center></h3><p>Recursive neural networks (RNNs) comprise a class of architecture that can operate on <code>structured input</code>. <span style="color:white">The same set of weights is recursively applied within a structural setting.</span> Given a positional directed acyclic graph, it visits the nodes in topological order, and recursively applies transformations to generate further representations from previously computed representations of children.</p>
+<p>A <code>recurrent neural network</code> is simply a <code>recursive</code> neural network with a particular structure (Figure 1c).<br><br></p>
+<center><img src="/img/papers/drnn.png" width="60%"></center>
+
+<p><span style="color:red">Problem:</span> Even though RNNs are deep in structure, they lack the capacity for hierarchical representation that exists in conventional deep feed-forward networks and recurrent neural networks.</p>
+<h3 id="Recurrent-v-s-Recursive"><a href="#Recurrent-v-s-Recursive" class="headerlink" title="Recurrent v.s. Recursive"></a><center><strong>Recurrent v.s. Recursive</strong></center></h3><p>Recurrent neural networks are deep in time, while recursive neural networks are deep in structure (due to the repeated application of recursive connections). Recently, the notions of depth in time - the result of recurrent connections, and depth in space - the result of stacking multiple layers on top of one another, are distinguished for recurrent neural network. Deep recurrent neural networks were proposed for composing these concepts. They are created by stacking multiple recurrent layers on top of each other. This allows the extra notion of depth to be incorporated into temporal processing. </p>
+<p>Inspired by <code>deep recurrent</code> neural networks, <code>deep recursive</code> neural networks are proposed in this paper.</p>
+<h3 id="Deep-Recursive-Neural-Networks"><a href="#Deep-Recursive-Neural-Networks" class="headerlink" title="Deep Recursive Neural Networks"></a><center><strong>Deep Recursive Neural Networks</strong></center></h3><p>An important benefit of depth is the hierarchy among <code>hidden representations</code>: every hidden layer conceptually lies in a different representation space and potentially is a more abstract representation of the input than the previous layer.</p>
+<p>The DRNN is constructed by <code>stacking</code> multiple layers of individual <code>recursive</code> nets:<br><br></p>
+<center><img src="/img/papers/drnnformula.png" width="50%"></center>
+
+<p>where $i$ means the multiple stacked layers, $W_L^{(i)}$, $W_R^{(i)}$, and $b^{(i)}$ are the weight matrices that connect the left and right children to the parent, and a bias vector, respectively. $V^{(i)}$ is the weight matrix that connects the $(i-1)$th hidden layer to the $i$th hidden layer. For the untying shown in Figure 1b, every node is represented in the same space above the first, regardless of their <code>leafness</code>. Figure 2 shows the weights that are untied or shared.<br><br></p>
+<center><img src="/img/papers/drnnfig2.png" width="60%"></center>
+
+<p>For <code>prediction</code>, we connect the output layer to <span style="color: red">only</span> the <code>final hidden layer</code>.<br><br></p>
+<center><img src="/img/papers/drnnformula2.png" width="20%"></center>
+
+<p>If we connect the output layer to all hidden layers, multiple hidden layers can have <code>synergistic effects</code> on the output and make it more difficult to qualitatively analyze each layer.</p>
+<h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a><center><strong>Results</strong></center></h3><p><span style="color:white">Data:</span> Stanford Sentiment Treebank (SST) <a href="http://nlp.stanford.edu/pubs/SocherEtAl_EMNLP2013.pdf" target="_blank" rel="external">link</a></p>
+<h4 id="Result-1"><a href="#Result-1" class="headerlink" title="Result 1"></a>Result 1</h4><p>Comparing with multiplicative RNN and the more recent Paragraph Vectors, DRNNs outperform their shallow counterparts of the same size. Deep RNN outperforms the baselines, achieving <code>state-of-the-art</code> performance on the task.<br><br></p>
+<center><img src="/img/papers/drnnresult1.png" width="60%"></center>
+
+<p><span style="color: red">Reason:</span> The authors attribute an important contribution of the improvement to <code>dropouts</code>.</p>
+<h4 id="Result-2"><a href="#Result-2" class="headerlink" title="Result 2"></a>Result 2</h4><p>For searching <code>nearest neighbor phrases</code>, different layers capture different aspects. <code>One-nor</code> distance mearsure is used.<br><br></p>
+<center><img src="/img/papers/drnnresult2.png" width="60%"></center>
+
+<p><span style="color: red">Analysis:</span> The first layer is dominated by one of the words that is composed. The seconde layer takes syntactic similarity more into account. The third layer captures the sentiment.</p>
+<p><span style="color: red">Inspiration:</span> Can we apply this into emoji detection?<br><br><br>Paper can be download <a href="https://www.cs.cornell.edu/~oirsoy/files/nips14drsv.pdf" target="_blank" rel="external">here</a>.<br>Code is written in C++, can be found <a href="https://github.com/oir/deep-recursive" target="_blank" rel="external">here</a>.<br>Introduction webpage is <a href="http://www.cs.cornell.edu/~oirsoy/drsv.htm" target="_blank" rel="external">here</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Irsoy, Ozan, and Claire Cardie. “Deep recursive neural networks for compositionality in language.” Advances in Neural Information Processing Systems. 2014.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to read:character level deep learning</title>
+    <link href="http://cuiyungao.github.io/2016/06/27/howtoread/"/>
+    <id>http://cuiyungao.github.io/2016/06/27/howtoread/</id>
+    <published>2016-06-27T08:26:48.000Z</published>
+    <updated>2016-06-28T02:37:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>A character level model for sentiment classification is demonstrated with TensorFlow.</p>
+<a id="more"></a>
+<p>Some NLP applications are impressive, such as Gmail’s <a href="http://arxiv.org/abs/1606.04870" target="_blank" rel="external">auto-reply</a> and FB’s <a href="https://code.facebook.com/posts/181565595577955" target="_blank" rel="external">deep-text</a>. The models are built with framework <a href="http://keras.io/" target="_blank" rel="external">Keras</a>, with TensorFlow as back-end.</p>
+<h3 id="Keras"><a href="#Keras" class="headerlink" title="Keras"></a><center><strong>Keras</strong></center></h3><p>The core data structure of Keras is a <code>model</code>, a way to organize layers. The main type of the model is the <code>sequential model</code>, a linear stack of layers.</p>
+<h3 id="Character-Level-Model"><a href="#Character-Level-Model" class="headerlink" title="Character-Level Model"></a><center><strong>Character-Level Model</strong></center></h3><p>The typical problem of sentiment analysis is, given a text $x_i$ (<em>e.g.</em>, a movie review), we need to figure out whether the review is positive(1) or negative(0), denoted as $y_i$. A network $f(x_i)$ is created to predict the lable of the review. Typically, the text is split into <code>a sequence of words</code>, and then learn <code>fixed length embedding</code> of the sequence, which later is used for classification.</p>
+<p>In a <code>recurrent model</code>, each word is encoded as <code>a vector</code> (<span style="color:red">word embeddings</span><a href="http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/" target="_blank" rel="external">Christopher Olah</a>) and also his explanation about <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">LSTMs</a>.</p>
+<p>The neural network tries to learn the specific sequences of letters from words <code>separated by spaces</code> or <code>other punctuation points</code>. The visualization of some internal processes of <code>char-rnn models</code> can be found in this <a href="http://arxiv.org/abs/1506.02078" target="_blank" rel="external">paper</a>.</p>
+<h3 id="Building-a-Sentiment-Model"><a href="#Building-a-Sentiment-Model" class="headerlink" title="Building a Sentiment Model"></a><center><strong>Building a Sentiment Model</strong></center></h3><ol>
+<li><p>Dataset: <a href="https://www.kaggle.com/c/word2vec-nlp-tutorial/data" target="_blank" rel="external">labelled lebeledTrainData.tsv</a>.</p>
+</li>
+<li><p>Split the text into sentences. This <code>bounds the maximum length of a sequence</code>.</p>
+</li>
+<li><p>Encode each sentence from characters to a fixed length encoding.</p>
+</li>
+<li><p>Use a bi-directional LSTM to read sentence by sentence and create a complete document encoding.</p>
+</li>
+</ol>
+<center><span style="color:white">Full Model Architecture</span></center><br><center><img src="/img/daily/fullmodel.jpg" style="width:500px;"></center>
+
+<p>The model uses <span style="color:red">two bi-directional LSTM</span>. It starts from reading characters and forming concepts of “words”, then uses <code>a bi-directional LSTM</code> to read “words” as <code>a sequence</code> and account for their <code>position</code>. Then, a <code>second</code> bi-directional LSTM is used for each sentence for the final document encoding.</p>
+<p><a href="https://github.com/offbit/char-models" target="_blank" rel="external">Code</a></p>
+<h3 id="Advantage-of-Character-Level-Modelling"><a href="#Advantage-of-Character-Level-Modelling" class="headerlink" title="Advantage of Character-Level Modelling"></a><center><strong>Advantage of Character-Level Modelling</strong></center></h3><p>It enables us to deal with common miss-spellings, different permutation of words (think run, runs, running). Texts that contain <code>emojis</code>, <code>signaling chars</code>, <code>hashtags</code>, and all the <code>funky annotations</code> that are being used in social media are very interesting directions.</p>
+<h3 id="Take-Home"><a href="#Take-Home" class="headerlink" title="Take Home"></a><center><strong>Take Home</strong></center></h3><p>Some things might improve the <code>generalisation</code> and <code>reduce overfitting</code>:</p>
+<ol>
+<li><p>Different hidden layer sizes. Smaller layers will reduce the ability of the model to overfit to the training set.</p>
+</li>
+<li><p>Larger dropout rates.</p>
+</li>
+<li><p>$l2/l1$ regularization.</p>
+</li>
+<li><p>A deeper and/or wider architecture of cnn encoder.</p>
+</li>
+<li><p>Different doc encoder, maybe include <code>an attention model</code>.</p>
+</li>
+</ol>
+<p><a href="https://offbit.github.io/how-to-read/" target="_blank" rel="external">link</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;A character level model for sentiment classification is demonstrated with TensorFlow.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="character level" scheme="http://cuiyungao.github.io/tags/character-level/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Courses for NLP and Deep Learning</title>
+    <link href="http://cuiyungao.github.io/2016/06/27/nlpcourses/"/>
+    <id>http://cuiyungao.github.io/2016/06/27/nlpcourses/</id>
+    <published>2016-06-27T08:01:41.000Z</published>
+    <updated>2016-06-27T08:06:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>The website contains the courses related to NLP and deep learning.</p>
+<a id="more"></a>
+<h3 id="1-Deep-learning-for-text-mining-from-scratch"><a href="#1-Deep-learning-for-text-mining-from-scratch" class="headerlink" title="1. Deep learning for text mining from scratch"></a><a href="http://textminingonline.com/deep-learning-for-text-mining-from-scratch" target="_blank" rel="external">1. Deep learning for text mining from scratch</a></h3><p>This website contains links for <code>optimization</code> and <code>statistics</code>, and also very useful tutorials for <code>NLP</code>, such as UFLDL tutorial.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The website contains the courses related to NLP and deep learning.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Courses" scheme="http://cuiyungao.github.io/tags/Courses/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Dive into TensorFlow</title>
+    <link href="http://cuiyungao.github.io/2016/06/27/diveTensorflow/"/>
+    <id>http://cuiyungao.github.io/2016/06/27/diveTensorflow/</id>
+    <published>2016-06-27T03:37:45.000Z</published>
+    <updated>2016-06-29T02:03:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Get started with TensorFlow.</p>
+<a id="more"></a>
+<h3 id="TensorFlow"><a href="#TensorFlow" class="headerlink" title="TensorFlow"></a><center><strong>TensorFlow</strong></center></h3><p>TensorFlow is an open source software library for <code>numerical computation</code> using <code>data flow graphs</code>. <code>Nodes</code> in the graph represent <code>mathematical operations</code>, while the <code>graph edges</code> represent the <code>multidimensional data arrays</code> (<em>tensors</em>) communicated between them.</p>
+<blockquote style="color:white"><br>    TensorFlow programs use a tensor data structure to represent all data - only tensors are passed between operations in the computation graph.<br></blockquote>
+
+<h3 id="USAGE"><a href="#USAGE" class="headerlink" title="USAGE"></a><center><strong>USAGE</strong></center></h3><p>A scalar, vector, or matrix is a ternsor. A tensor has a rank, a shape, and a static type. Tensor’s dimension can be described by <code>rank, shape, and dimension number</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">scalar = tf.constant(100)</div><div class="line">vector = tf.constant([1,2,3,4])</div><div class="line">matrix = tf.constant([[1,2],[3,4]])</div><div class="line">## get shape</div><div class="line">scalar.get_shape()</div></pre></td></tr></table></figure>
+<p>Virables must be initialized by running an <code>init</code> Op after haveing launched the graph.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var = tf.Variable(10)</div><div class="line">ten = tf.constant(10)</div><div class="line">new_var = tf.mul(var, ten)</div><div class="line">upate = tf.assign(var, new_var)</div><div class="line"></div><div class="line">init_op = tf.initialize_all_variables()</div><div class="line">with tf.Session() as sess:</div><div class="line">  sess.run(init_op)</div><div class="line">  print(sess.run(var))</div><div class="line">  for _ in range(5):</div><div class="line">    sess.run(update)</div><div class="line">    print(sess.run(var))</div></pre></td></tr></table></figure>
+<p>Variables are in-memory buffers containing tensors. During model training, variables can be used to hold and update parameters.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">weight = tf.Variable(tf.random_normal([4096,500], stddev=0.25))</div><div class="line">weight_update = tf.Variable(weight.initialized_value())</div></pre></td></tr></table></figure>
+<p>To get the results, we need to execute the graph with a <code>run()</code> call on the <span style="color:white">Session</span> object.</p>
+<p><code>Feed</code> temporarily replaces the output of an update with a tensor value. The most common “feed” operations is created by <code>tf.placeholder()</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">plh1 = tf.placeholder(tf.float32)</div><div class="line">plh2 = tf.placeholder(tf.float32)</div><div class="line">result = tf.mul(plh1, plh2)</div><div class="line">with tf.Session as sess:</div><div class="line">  print(sess.run([result], feed_dict=&#123;plh1:[100.], plh2:[200.]&#125;))</div></pre></td></tr></table></figure>
+<p><a href="http://textminingonline.com/dive-into-tensorflow-part-ii-basic-concepts" target="_blank" rel="external">Link</a></p>
+<h3 id="How-Good-is-Your-Fit"><a href="#How-Good-is-Your-Fit" class="headerlink" title="How Good is Your Fit?"></a><center><strong>How Good is Your Fit?</strong></center></h3><p>Through the <a href="https://www.youtube.com/watch?v=cJA5IHIIL30" target="_blank" rel="external">video</a> provided by TensorFlow, here summaries the ways to prevent or reduce overfitting:</p>
+<ul>
+<li>Split up the data into 3 sets: the training set, test set, and cross validation set.</li>
+</ul>
+<p>Along with the parameters averaging, the model is not too dependent on any particular subset of the overall data set.</p>
+<ul>
+<li>For neural networks particularly, <span style="color:white">regularization</span> is a common way.</li>
+</ul>
+<p>There are a few different types, such as L1 and L2, but each follows the same general principle - the model is <code>penalized</code> for having weights and biases that are too large.</p>
+<ul>
+<li>Another method is <span style="color:white">Max Norm constraints</span>. </li>
+</ul>
+<p>It directly adds a size limit to the weights or biases.</p>
+<ul>
+<li>A completely different approach is <span style="color:white">Dropout</span>. </li>
+</ul>
+<p>It randomly switches off ceratin neurons in the network, preventing the model from becoming too dependent on a set of neurons and its associated weights and biases.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Get started with TensorFlow.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="TensorFlow" scheme="http://cuiyungao.github.io/tags/TensorFlow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SPINN</title>
+    <link href="http://cuiyungao.github.io/2016/06/26/SPINN/"/>
+    <id>http://cuiyungao.github.io/2016/06/26/SPINN/</id>
+    <published>2016-06-26T03:58:46.000Z</published>
+    <updated>2016-06-27T02:59:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hybrid tree-sequence neural networks with SPINN, published at Stanford</p>
+<a id="more"></a>
+<h2 id="Online-Reading-Summay"><a href="#Online-Reading-Summay" class="headerlink" title=" - Online Reading Summay - "></a><center> - Online Reading Summay - </center></h2><h3 id="SPINN"><a href="#SPINN" class="headerlink" title="SPINN"></a><center><strong>SPINN</strong></center></h3><p><a href="http://www.foldl.me/2016/spinn-hybrid-tree-sequence-models/" target="_blank" rel="external">Stack-augmented Parser-Interpreter Neural Network</a>. This is a hybrid tree-sequence architecture, 融合了recursive 和recurrent neural networks，比当中的任何一个要好。</p>
+<h3 id="GOAL"><a href="#GOAL" class="headerlink" title="GOAL"></a><center><strong>GOAL</strong></center></h3><p>output compact, sufficient representations of natural language. </p>
+<h3 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a><center><strong>IDEA</strong></center></h3><p>Compute representations bottom-up, starting at the leaves and moving to nonterminals. This allows <span style="color:red">linguistic structure</span> to guide computation.</p>
+<h3 id="TECH"><a href="#TECH" class="headerlink" title="TECH"></a><center><strong>TECH</strong></center></h3><p><em>Shift-Reduce Parsing</em>, a method for building parse structures from sequence inputs in linear time. It works by exploiting an auxiliary <span style="color:white">stack</span> structure, which stores partially-parsed subtrees, and a <span style="color:white">buffer</span>, which stores input tokens which have yet to be parsed. This can generate the constituency tree.</p>
+<p>For a sentence with <code>$n$ tokens</code>, we can produce its parse with a <code>shift-reduce parser</code> in exactly $2n-1$ transitions.</p>
+<h4 id="Shift-Phase"><a href="#Shift-Phase" class="headerlink" title="Shift Phase:"></a>Shift Phase:</h4><p>Pulls the <code>next word embeddings</code> from the buffer and pushes it onto the stack;</p>
+<h4 id="Recude-Phase"><a href="#Recude-Phase" class="headerlink" title="Recude Phase:"></a>Recude Phase:</h4><p>Combines top two elements of the stack $\vec{c_1},\vec{c_2}$ into a single element $\vec{p}$ via the standard <code>recursive neural network feedforward</code>: </p>
+<p>$$<br>\vec{p} = \sigma(W[\vec{c_1}, \vec{c_2}]).<br>$$</p>
+<p>Now we have a <code>shift-reduce parser</code>, deep-learning style. The feedforward speed is <code>up to 25x improvement</code> over the recursive neura network, but <code>2~5 times slower</code> than a recurrent neural network.</p>
+<p>Recursive neural networks have often been dissed as <strong>too slow</strong> and “not batchable”, and this development proves both points wrong.</p>
+<h3 id="Hybrid-Tree-Sequence-Networks"><a href="#Hybrid-Tree-Sequence-Networks" class="headerlink" title="Hybrid Tree-Sequence Networks"></a><center><strong>Hybrid Tree-Sequence Networks</strong></center></h3><center><span style="color:white">Visualization of the post-order tree traversal performed by a shift-reduce parser.</span></center><br><center><img src="/img/papers/tree-shift-reduce-with-trace.gif" alt=""></center>
+
+<p>Why not have a <code>recurrent</code> neural network follow along this path of arrows?</p>
+<p><strong>Tracking Memory</strong>: At any given timestep $t$, a new tracking value $\vec{m_t}$ is computed by $\vec{m_t} = Track(\vec{m_t-1}, \vec{c_1}, \vec{c_2}, \vec{b_1})$.</p>
+<p>This tracking memory is then passed noto the <code>recursive composition function</code>, via $\vec{p} = \sigma(W[\vec{c_1};\vec{c_2};\vec{m_t}])$.</p>
+<p><span style="color:red">A recurrent neural network has just been interwovened into a recursive neural network.</span></p>
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a><center>Result</center></h3><p>A representation $f(x)$ for an input sentence $x$ is built by a new way. It shows a high-accuracy result on the <a href="http://nlp.stanford.edu/projects/snli/" target="_blank" rel="external">Stanford Natural Language Inference dataset</a>.</p>
+<p><a href="http://www.foldl.me/uploads/papers/acl2016-spinn.pdf" title="Published paper" target="_blank" rel="external">Published paper</a>: A fast unified model for parsing and sentence understanding.<br><a href="https://github.com/stanfordnlp/spinn" target="_blank" rel="external">Code</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hybrid tree-sequence neural networks with SPINN, published at Stanford&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
+  </entry>
+  
+</feed>
