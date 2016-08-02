@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>User Modeling with Neural Network for Review Rating Prediction | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[IJCAI’15] User Modeling with Neural Network for Review Rating Prediction. Duyu Tang, Bing Qin, Ting LiuProceeding of The 24th International Joint Conference on Artificial Intelligence.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="User Modeling with Neural Network for Review Rating Prediction">
+<meta property="og:url" content="http://yoursite.com/2016/06/30/usermodeling/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[IJCAI’15] User Modeling with Neural Network for Review Rating Prediction. Duyu Tang, Bing Qin, Ting LiuProceeding of The 24th International Joint Conference on Artificial Intelligence.">
+<meta property="og:image" content="http://yoursite.com/img/papers/usermodeling.png">
+<meta property="og:image" content="http://yoursite.com/img/papers/usermodeling2.png">
+<meta property="og:updated_time" content="2016-06-30T09:41:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="User Modeling with Neural Network for Review Rating Prediction">
+<meta name="twitter:description" content="[IJCAI’15] User Modeling with Neural Network for Review Rating Prediction. Duyu Tang, Bing Qin, Ting LiuProceeding of The 24th International Joint Conference on Artificial Intelligence.">
+<meta name="twitter:image" content="http://yoursite.com/img/papers/usermodeling.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="0" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/categories/home">My Home</a></li>
+				        
+							<li><a href="/categories/papers">Paper Reading</a></li>
+				        
+							<li><a href="/categories/daily">Daily Digest</a></li>
+				        
+							<li><a href="/categories/works">My Works</a></li>
+				        
+							<li><a href="/about">About Me</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/cuiyungao" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:cygao@cse.cuhk.edu.hk" title="mail">mail</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/gcyydxf" title="facebook">facebook</a>
+					        
+								<a class="google" target="_blank" href="https://plus.google.com/106483857856474344673/posts" title="google">google</a>
+					        
+								<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/gao-cuiyun-3405a9104?trk=hp-identity-name" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Courses/" style="font-size: 10px;">Courses</a> <a href="/tags/Crawler/" style="font-size: 10px;">Crawler</a> <a href="/tags/Data-Mining/" style="font-size: 13.33px;">Data Mining</a> <a href="/tags/Deep-Learning/" style="font-size: 16.67px;">Deep Learning</a> <a href="/tags/LDA/" style="font-size: 10px;">LDA</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/Neural-Network/" style="font-size: 10px;">Neural Network</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Rating-Prediction/" style="font-size: 13.33px;">Rating Prediction</a> <a href="/tags/Recommend-System/" style="font-size: 10px;">Recommend System</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Topic-Modeling/" style="font-size: 10px;">Topic Modeling</a> <a href="/tags/character-level/" style="font-size: 10px;">character level</a> <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/material/" style="font-size: 10px;">material</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">John Doe</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img lazy-src="0" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">John Doe</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/home">My Home</a></li>
+		        
+					<li><a href="/categories/papers">Paper Reading</a></li>
+		        
+					<li><a href="/categories/daily">Daily Digest</a></li>
+		        
+					<li><a href="/categories/works">My Works</a></li>
+		        
+					<li><a href="/about">About Me</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cuiyungao" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:cygao@cse.cuhk.edu.hk" title="mail">mail</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/gcyydxf" title="facebook">facebook</a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/106483857856474344673/posts" title="google">google</a>
+			        
+						<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/gao-cuiyun-3405a9104?trk=hp-identity-name" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-usermodeling" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/30/usermodeling/" class="article-date">
+  	<time datetime="2016-06-30T03:38:13.000Z" itemprop="datePublished">2016-06-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      User Modeling with Neural Network for Review Rating Prediction
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Neural-Network/">Neural Network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rating-Prediction/">Rating Prediction</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/papers/">papers</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[IJCAI’15] User Modeling with Neural Network for Review Rating Prediction. <a href="http://ir.hit.edu.cn/~dytang/" target="_blank" rel="external">Duyu Tang</a>, Bing Qin, Ting Liu<br>Proceeding of The 24th International Joint Conference on Artificial Intelligence.</p>
+<a id="more"></a>
+<p>作者Duyu Tang的分析集中于sentiment analysis，一年发了很多NLP的顶会文章（EMNLP, ACL, IJCAI, etc.）。</p>
+<p>本文通过考虑user information来改善review rating prediction。启发源于lexical composition model，将<code>compositional modifier</code>作为一个matrix, 用<code>matrix-vector mulplication</code>作为compositon function。本文延伸lexical semantic compositio models，建立了<code>user-word composition vector model</code> (UWCVM)，并将结果作为feature用supervised learning framework来进行review rating prediction。</p>
+<h3 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a><center><strong>Problem Definition</strong></center></h3><p>Review rating prediction可以看做是a classificaiton/regression problem，由Pang and Lee <a href="http://www.cs.cornell.edu/home/llee/papers/pang-lee-stars.pdf" target="_blank" rel="external">2005</a>最开始做，采用<code>metric labeling</code> framework。Rating的performance很大程度上依赖于<code>feature representation</code>的选择。</p>
+<p>Problem: Given a review $r_{k_j}$ comprised of $n$ words $\{w_1,w_2,…,w_n\}$ written by user $u_k$ as input, review rating prediction aims at infering the numeric rating (1~4 or 1~5 stars) of $r_{k_j}$. The problem can be regarded as a multi-class classification problem by inferring a discrete rating score.</p>
+<h3 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a><center><strong>Methodology</strong></center></h3><p>The method includes two <code>composition models</code>, the user-word composition vector model (<strong>DWCVM</strong>) and the document composition vector model (<strong>DCVM</strong>). The former model将原始的word vectors加入user information，the latter model则将modified word vectors转化成review representation，并用其作为feature来进行rating prediction。Training的过程采用Pang and Lee提出的<code>supervised metric labeling</code>的方法。整个过程如下图表示：<br><br></p>
+<center><img src="/img/papers/usermodeling.png" width="50%"></center>
+
+<h4 id="User-Word-Composition-Vector-Model"><a href="#User-Word-Composition-Vector-Model" class="headerlink" title="User-Word Composition Vector Model"></a>User-Word Composition Vector Model</h4><p>整个model将original word vectors融入user information。融入的方法有两种：<code>additive</code>和<code>multiplicative</code>。给定两个向量$v_1$和$v_2$，<strong>Additive</strong>的结合方式认为输出向量$p$是a linear function of Cartesian product of $v_1$ and $v_2$，如下：</p>
+<p>$$<br>p = \mathbf{A}\times v_1 + \mathbf{B}\times v_2<br>$$<br>其中$\mathbf{A}$和$\mathbf{B}$是matrices parameters，用来encode $v_1$, $v_2$对$p$的贡献。<strong>Multiplicative</strong>的结合方式认为输出向量$p$是a linear function of the tensor product of $v_1$ and $v_2$，如下：</p>
+<p>$$<br>p = \mathbf{T}\times v_1 \times v_2 = \mathbf{U}_1 \times v_2<br>$$<br>其中$\mathbf{T}$是一个rank为3的tensor，将$v_1,v_2$的tensor product映射到$p$上。$\mathbf{T}$和$\v_1$的Partial product可以被看做生成新的矩阵$\mathbf{U}_1$，这个矩阵可以modify原始的word vectors。这两种结合方式可以用下图表示：<br><br></p>
+<center><img src="/img/papers/usermodeling2.png" width="50%"></center>
+
+<p>文章选用<code>multiplicative composition</code>，因为这种结合方式符合最初的用user information来改善word vectors的想法。后面的实验也验证了multiplicative composition的结合方式准确率要高于additive composition。</p>
+<p>为了减少parameter size，user representation被用low-rank plus diagonal approximation来表示：$\mathbf{U}_k=\mathbf{U}_{k1} \times \mathbf{U}_{k2} + diag(u^{\prime})$，其中$\mathbf{U}_{k1}\in \mathbb{R}^{d\times r}$, $\mathbf{U}_{k2}\in \mathbb{R}^{r\times d}$, $u^{\prime}\in \mathbb{R}^d$。$u^{\prime}$是每个user共享的background representation，以应对某些在test set中有而在training set中没有的users，即<code>Out-Of-Vocabulary</code> situation。最终modified word vectors $p_i$：</p>
+<p>$$<br>p_i = tanh(\mathbf{e}_{ik}) = tanh(\mathbf{U}_k\times \mathbf{e}_i)<br>\; = tanh((\mathbf{U}_{k1}\times \mathbf{U}_{k2} + diag(u^{\prime})) \times \mathbf{e}_i)<br>$$</p>
+<h4 id="Document-Composition-Vector-Model"><a href="#Document-Composition-Vector-Model" class="headerlink" title="Document Composition Vector Model"></a>Document Composition Vector Model</h4><p>文中采用一个简单而有效的方法<a href="http://anthology.aclweb.org/P/P14/P14-1006.pdf" target="_blank" rel="external">paper</a>, recursivley uses <code>biTanh</code> function来生成document representation:</p>
+<p>$$<br>biTanh(p) = \sum_{i=1}^n tanh(p_{i-1} + p_i)<br>$$<br>Each sentence将user-modified word vectors作为输入，得到sentence vectors；然后再将sentence vectors输入到<code>biTanh</code>得到最终的document vector $vec(doc)$。<code>biTanh</code>的Recursive use可以看做是two pairs of bag-of-word convolutional neural network，其中window size是2，parameters通过<code>addition</code>和<code>tanh</code>来定义。</p>
+<h4 id="Rating-Prediction-with-Metric-Labeling"><a href="#Rating-Prediction-with-Metric-Labeling" class="headerlink" title="Rating Prediction with Metric Labeling"></a>Rating Prediction with Metric Labeling</h4><p>Review representation被用来进行review rating prediction，方法是<code>metric labeling</code> framework。</p>
+<h4 id="Model-Training"><a href="#Model-Training" class="headerlink" title="Model Training"></a>Model Training</h4><p>获取back-propagation中对于whole set of parameters的derivative of the loss, 然后用stochastic gradient descent with mini-batch来更新这些parameters。文中用<code>dropout</code>来避免neural network being over-fitting。</p>
+<p><strong>Note:</strong> Cases that rating does not match with review texts is not considered. [Zhang et al., SIGIR’14]  <a href="http://dl.acm.org/citation.cfm?id=2609501" target="_blank" rel="external">Paper</a></p>
+<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center><strong>Experiment</strong></center></h3><p>实验数据集有两个：<code>Yelp13</code>和<code>RT05</code>。实验结果说明:</p>
+<ul>
+<li>Semantic composition可以提高预测的准确度，并且结合<span style="color:white">metric labeling</span>可以改善结果，因为它基于”similar items, similar labels”的idea。</li>
+<li>一个用户有越多的reviews，则这个用户的rating可以被很好地估计。</li>
+<li>SSPE [Tang et al., 2014a]  <a href="http://anthology.aclweb.org/C/C14/C14-1018.pdf" target="_blank" rel="external">paper</a>更适用于short review.</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/30/predictingamazon/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Predicting Amazon Ratings Using Neural Networks
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/29/UFLDL/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UFLDL Tutorial</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="usermodeling" data-title="User Modeling with Neural Network for Review Rating Prediction" data-url="http://yoursite.com/2016/06/30/usermodeling/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 John Doe
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: /
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

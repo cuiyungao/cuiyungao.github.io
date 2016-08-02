@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Collaborative Filtering (CF) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This webpage contains information and implementation related to collaborative filtering.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Collaborative Filtering (CF)">
+<meta property="og:url" content="http://yoursite.com/2016/06/29/cf/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="This webpage contains information and implementation related to collaborative filtering.">
+<meta property="og:updated_time" content="2016-07-19T02:31:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Collaborative Filtering (CF)">
+<meta name="twitter:description" content="This webpage contains information and implementation related to collaborative filtering.">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="0" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/categories/home">My Home</a></li>
+				        
+							<li><a href="/categories/papers">Paper Reading</a></li>
+				        
+							<li><a href="/categories/daily">Daily Digest</a></li>
+				        
+							<li><a href="/categories/works">My Works</a></li>
+				        
+							<li><a href="/about">About Me</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/cuiyungao" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="mailto:cygao@cse.cuhk.edu.hk" title="mail">mail</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/gcyydxf" title="facebook">facebook</a>
+					        
+								<a class="google" target="_blank" href="https://plus.google.com/106483857856474344673/posts" title="google">google</a>
+					        
+								<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/gao-cuiyun-3405a9104?trk=hp-identity-name" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Courses/" style="font-size: 10px;">Courses</a> <a href="/tags/Crawler/" style="font-size: 10px;">Crawler</a> <a href="/tags/Data-Mining/" style="font-size: 13.33px;">Data Mining</a> <a href="/tags/Deep-Learning/" style="font-size: 16.67px;">Deep Learning</a> <a href="/tags/LDA/" style="font-size: 10px;">LDA</a> <a href="/tags/NLP/" style="font-size: 20px;">NLP</a> <a href="/tags/Neural-Network/" style="font-size: 10px;">Neural Network</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Rating-Prediction/" style="font-size: 13.33px;">Rating Prediction</a> <a href="/tags/Recommend-System/" style="font-size: 10px;">Recommend System</a> <a href="/tags/TensorFlow/" style="font-size: 10px;">TensorFlow</a> <a href="/tags/Topic-Modeling/" style="font-size: 10px;">Topic Modeling</a> <a href="/tags/character-level/" style="font-size: 10px;">character level</a> <a href="/tags/code/" style="font-size: 10px;">code</a> <a href="/tags/material/" style="font-size: 10px;">material</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">John Doe</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img lazy-src="0" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">John Doe</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/categories/home">My Home</a></li>
+		        
+					<li><a href="/categories/papers">Paper Reading</a></li>
+		        
+					<li><a href="/categories/daily">Daily Digest</a></li>
+		        
+					<li><a href="/categories/works">My Works</a></li>
+		        
+					<li><a href="/about">About Me</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cuiyungao" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:cygao@cse.cuhk.edu.hk" title="mail">mail</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/gcyydxf" title="facebook">facebook</a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/106483857856474344673/posts" title="google">google</a>
+			        
+						<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/gao-cuiyun-3405a9104?trk=hp-identity-name" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-cf" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/29/cf/" class="article-date">
+  	<time datetime="2016-06-29T09:22:55.000Z" itemprop="datePublished">2016-06-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Collaborative Filtering (CF)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Recommend-System/">Recommend System</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/daily/">daily</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This webpage contains information and implementation related to collaborative filtering.</p>
+<a id="more"></a>
+<p>对于recommender system，最常用的两个方法是<code>Content-Based</code>和<code>Collaborative Filtering (CF)</code>。CF基于users对items的态度来推荐items，即<code>&quot;wisdom of the crows&quot;</code>。相反，CB关注items的属性，用items之间的相似度来进行推荐。</p>
+<p>CF分为<code>Memory-based CF</code>和<code>Model-based CF</code>。</p>
+<h3 id="Implementation-Steps"><a href="#Implementation-Steps" class="headerlink" title="Implementation Steps"></a><center><strong>Implementation Steps</strong></center></h3><p>We use <code>scikit-learn</code> library将数据分成testing set和training set。For example,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import pandas as pd</div><div class="line">from sklearn import cross_validation as cv</div><div class="line">header = [&apos;user_id&apos;,&apos;item_id&apos;,&apos;rating&apos;,&apos;timestamp&apos;]</div><div class="line">data = pd.read_csv(&apos;ml-100k/u.data&apos;, sep=&apos;\t&apos;, names=header)</div><div class="line">train_data, test_data = cv.train_test_split(data, test_size=0.25)</div></pre></td></tr></table></figure>
+<p>基于<code>cosine similarity</code>，我们得到<code>user_similarity</code>和<code>item_similarity</code>，对于<code>user-based CF</code>,我们用下面的公式：</p>
+<p>$$<br>\hat{x}_{k,m} = \bar{x}_k + \frac{\sum_{u_a} sim_u(u_k, u_a)(x_{a,m}-\bar{x}_{u_a})}{\sum_{u_a} \|sim_u(u_k, u_a)\|}<br>$$</p>
+<p>Users $k$ and $a$可以被当做是weights。Normalize确保评分在1~5之间。由于有相似taste的两个users可能在评分上一个偏高，一个偏低，所以前面需要加上user的平均rating作为bias。对于<code>item-based CF</code>,公式如下：</p>
+<p>$$<br>\hat{x}_{k,m} = \frac{\sum_{i_b} sim_i(i_m,i_b)(x_{k,b})}{\sum_{i_b} \|sim_i(i_m,i_b)\|}<br>$$</p>
+<h3 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a><center><strong>Evaluation</strong></center></h3><p>Metric采用<code>Root Mean Squared Error (RMSE)</code>,公式如下：</p>
+<p>$$<br>RMSE = \sqrt{\frac{1}{N}\sum (x_i-\hat{x}_i)^2}<br>$$</p>
+<p>实现采用<code>sklearn</code>提供的<code>mean_square_error</code> (MSE), RMSE是MSE的平方根。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from sklearn.metrics import mean_squared_error</div><div class="line">from math import sqrt</div><div class="line">def rmse(prediction, ground_truth):</div><div class="line">  # find nonzeros places in groundtruth and extract from the prediction accordingly</div><div class="line">  prediction = prediction[ground_truth.nonzero()].flatten() </div><div class="line">  ground_truth = ground_truth[ground_truth.nonzero()].flatten()</div><div class="line">  return sqrt(mean_squared_error(prediction, ground_truth))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">print &apos;User-based CF RMSE: &apos; + str(rmse(user_prediction, test_data_matrix))</div><div class="line">print &apos;Item-based CF RMSE: &apos; + str(rmse(item_prediction, test_data_matrix))</div></pre></td></tr></table></figure>
+<p><span style="color:red">Drawback:</span> Memory-based CF doesn’t scale to real-world scenarios and cannot solve cold-start problem well. <code>Model-based</code> CF methods are scalabel and can deal with higher sparsity level than memory-based, but also suffers from cold-start problem.</p>
+<p>Original <a href="http://online.cambridgecoding.com/notebooks/eWReNYcAfB/implementing-your-own-recommender-systems-in-python-2" target="_blank" rel="external">Link</a>. Also implemented locally.</p>
+<h3 id="Recosystem"><a href="#Recosystem" class="headerlink" title="Recosystem"></a>Recosystem</h3><p>Recommender system using parallel matrix factorization <a href="https://cran.r-project.org/web/packages/recosystem/index.html" target="_blank" rel="external">Link.</a>. The author’s <a href="http://statr.me/2016/07/recommender-system-using-parallel-matrix-factorization/" target="_blank" rel="external">intro</a>.</p>
+<h3 id="Fast-Recommendation-for-Activity-Stream"><a href="#Fast-Recommendation-for-Activity-Stream" class="headerlink" title="Fast Recommendation for Activity Stream"></a>Fast Recommendation for Activity Stream</h3><p>Fast Recommendations for Activity Streams Using Vowpal Wabbit <a href="http://blog.getstream.io/fast-recommendations-for-activity-streams-using-vowpal-wabbit" target="_blank" rel="external">Link</a>.</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/29/UFLDL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          UFLDL Tutorial
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/29/goodturing/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Good-Turing Estimation 大数据处理平滑算法</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="cf" data-title="Collaborative Filtering (CF)" data-url="http://yoursite.com/2016/06/29/cf/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 John Doe
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: /
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
