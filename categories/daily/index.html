@@ -20,7 +20,7 @@
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
   <meta name="summary" content="null">
-  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -34,10 +34,10 @@
   </a>
   <div class="brand-wrap">
     <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <a href="/" class="avatar"><img src="/img/head.jpg"></a>
       <hgroup class="introduce">
         <h5 class="nickname">Cuiyun Gao</h5>
-        <a href="mailto:undefined" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        <a href="mailto:undefined" title="cygao@cse.cuhk.edu.hk" class="mail">cygao@cse.cuhk.edu.hk</a>
       </hgroup>
     </div>
   </div>
@@ -45,43 +45,36 @@
     
         <li class="waves-block waves-effect">
           <a href="/"  >
-            <i class="icon icon-lg icon-home"></i>
-            主页
+            <i class="icon icon-lg icon-My Home"></i>
+            My Home
           </a>
         </li>
     
         <li class="waves-block waves-effect">
-          <a href="/archives"  >
-            <i class="icon icon-lg icon-archives"></i>
-            Archives
+          <a href="/"  >
+            <i class="icon icon-lg icon-Paper Reading"></i>
+            Paper Reading
           </a>
         </li>
     
         <li class="waves-block waves-effect">
-          <a href="/tags"  >
-            <i class="icon icon-lg icon-tags"></i>
-            Tags
+          <a href="/"  >
+            <i class="icon icon-lg icon-Daily Digest"></i>
+            Daily Digest
           </a>
         </li>
     
         <li class="waves-block waves-effect">
-          <a href="https://github.com/yscoder" target="_blank" >
-            <i class="icon icon-lg icon-github"></i>
-            Github
+          <a href="/"  >
+            <i class="icon icon-lg icon-My Works"></i>
+            My Works
           </a>
         </li>
     
         <li class="waves-block waves-effect">
-          <a href="http://www.weibo.com/ysweb" target="_blank" >
-            <i class="icon icon-lg icon-weibo"></i>
-            Weibo
-          </a>
-        </li>
-    
-        <li class="waves-block waves-effect">
-          <a href="/404"  >
-            <i class="icon icon-lg icon-link"></i>
-            测试
+          <a href="/"  >
+            <i class="icon icon-lg icon-About Me"></i>
+            About Me
           </a>
         </li>
     
@@ -421,7 +414,7 @@
 <script>
 var BLOG_SHARE = {
     title: "Cuiyun Gao's Daily Digest",
-    pic: "/img/logo.jpg",
+    pic: "/img/head.jpg",
     summary: document.getElementsByName('summary')[0].content,
     url: "http://cuiyungao.github.io/categories/daily/index.html"
 };
@@ -489,6 +482,29 @@ var BLOG_SHARE = {
 
 <script src="/js/search.js"></script>
 
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 
