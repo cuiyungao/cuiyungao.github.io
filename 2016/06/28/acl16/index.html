@@ -18,7 +18,7 @@
 <meta property="og:description" content="[ACL’16] From 清华Zhu Jun‘s Group">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/topicvec.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/topicvec1.png">
-<meta property="og:updated_time" content="2016-06-29T07:57:21.000Z">
+<meta property="og:updated_time" content="2016-08-03T03:38:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Generative Topic Embedding:a Continuous Representation of Documents">
 <meta name="twitter:description" content="[ACL’16] From 清华Zhu Jun‘s Group">
@@ -173,10 +173,10 @@
 <li><p>For each document $d_i$:<br>(a) Draw the mixing proportions $\phi_i$ from the Dirichlet prior Dir($\alpha$);<br>(b) For the $j$-th word:<br> $\;$ i. Draw topic assignment $z_{ij}$ from the categorical distribution Cat($\phi_i$);<br> $\;$ ii. Draw word $w_{ij}$ from $\mathbf{S}$ according to $P(w_{ij}|w_{i,j-c}:w_{i,j-1},z_{ij},d_i)$.</p>
 </li>
 </ol>
-<center><span style="color:white">Graphical representation of TopicVec</span></center><br><center><img src="/img/papers/topicvec.png" width="40%"></center>
+<center><span style="color:white">Graphical representation of TopicVec</span></center><br><center><img src="/img/papers/topicvec.png" width="70%"></center>
 
 <p>The notations are listed in the following table:</p>
-<center><img src="/img/papers/topicvec1.png" width="40%"></center>
+<center><img src="/img/papers/topicvec1.png" width="70%"></center>
 
 <h3 id="Word-Embeddings-amp-Topic-Modeling"><a href="#Word-Embeddings-amp-Topic-Modeling" class="headerlink" title="Word Embeddings &amp; Topic Modeling"></a><center><strong>Word Embeddings &amp; Topic Modeling</strong></center></h3><p>Word embedding通过一个小的context window里面的local word collocation patterns,将words映射到一个低维连续的embedding space。而topic modeling通过同一文档里面的global word collocation patterns，将documents映射到一个低维的topic space。这两个可以互补，本文由此得到TopicVec Model。其中，topics由embedding vectors来表示，并在documents之间共享。每个word的probability由local context和topic来决定。Topic embedding由variational inference method产生，同时得到每个document的topic mixing probability。结合topic embedding和topic mixing probability，可以在低维连续空间里面得到每个document的representation。</p>
 <p>Euclidean distance不是衡量两个embeddings之间相似度的最优方法，已有的方法大部分采用exponentiated cosine similarity作为link function，所以cosine similarity可能是较好的估计语义相似度的方法。</p>
