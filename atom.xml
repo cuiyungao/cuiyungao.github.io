@@ -315,12 +315,12 @@
     <link href="http://cuiyungao.github.io/2016/06/28/crawler/"/>
     <id>http://cuiyungao.github.io/2016/06/28/crawler/</id>
     <published>2016-06-28T13:26:03.000Z</published>
-    <updated>2016-07-04T12:10:39.000Z</updated>
+    <updated>2016-08-03T04:35:55.000Z</updated>
     
     <content type="html"><![CDATA[<p>This webpage contains information about data crawling, such as some useful tools and summaries.</p>
 <a id="more"></a>
 <h3 id="Data-scraper-for-Facebook-Pages"><a href="#Data-scraper-for-Facebook-Pages" class="headerlink" title="Data scraper for Facebook Pages"></a>Data scraper for Facebook Pages</h3><p><a href="https://github.com/minimaxir/facebook-page-post-scraper" target="_blank" rel="external">Link.</a> Data scraper for Facebook Pages, and also code accompanying the blog post How to Scrape Data From Facebook Page Posts for Statistical Analysis. An example is shown below.<br><br></p>
-<center><img src="/img/daily/fb_scraper_data.png" width="50%"></center>
+<center><img src="/img/daily/fb_scraper_data.png" width="80%"></center>
 
 <h3 id="Web-Crawler-System-in-Python"><a href="#Web-Crawler-System-in-Python" class="headerlink" title="Web Crawler System in Python"></a>Web Crawler System in Python</h3><p><a href="https://github.com/binux/pyspider" target="_blank" rel="external">Link.</a></p>
 <ul>
