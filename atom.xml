@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-03T03:43:23.000Z</updated>
+  <updated>2016-08-03T03:44:02.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Three Impactful ML Topics at ICML&#39;16</title>
+    <title>Impactful ML Topics at ICML&#39;16</title>
     <link href="http://cuiyungao.github.io/2016/07/04/memory-network/"/>
     <id>http://cuiyungao.github.io/2016/07/04/memory-network/</id>
     <published>2016-07-04T07:32:54.000Z</published>
-    <updated>2016-08-03T03:43:23.000Z</updated>
+    <updated>2016-08-03T03:44:02.000Z</updated>
     
     <content type="html"><![CDATA[<p>Summary from a talk on ICML’16.</p>
 <a id="more"></a>
