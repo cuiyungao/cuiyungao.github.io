@@ -186,36 +186,6 @@
   </entry>
   
   <entry>
-    <title>Good-Turing Estimation 大数据处理平滑算法</title>
-    <link href="http://cuiyungao.github.io/2016/06/29/goodturing/"/>
-    <id>http://cuiyungao.github.io/2016/06/29/goodturing/</id>
-    <published>2016-06-29T09:22:55.000Z</published>
-    <updated>2016-08-03T04:34:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>参数平滑算法</p>
-<a id="more"></a>
-<p>参数平滑算法，是在训练数据不足时，采用某种方式对统计结果和概率估计进行必要的调整和修补，以降低由于数据稀疏现象带来的统计误差。</p>
-<p>在实际应用中，数据稀疏会产生大量空值，影响后续处理的性能和效果，所以需要平滑算法。</p>
-<p><code>Good-Turing</code>估计经常用在数据平滑方面。基本思想是：将统计参数按出现次数聚类，然后用出现次数加1的类来估计当前类。假定，一个元素在文本$W$中出现$r$次的概率是$\theta(r)$，$N_r$表示元素在$W$中正好出现$r$次的个数，即$N_r=|{x_j: \sharp(x_j)=r}|$，满足：</p>
-<p>$$<br>N = \sum_{r} rN_r.<br>$$</p>
-<p>Good-Turing估计$\theta(r)$为：$\hat{\theta}(r) = \frac{1}{N} (r+1) \frac{N_{r+1}}{N_r}$.</p>
-<p>具体的分析过程可以看<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODIzNDQ3Mw==&amp;mid=2649965669&amp;idx=1&amp;sn=297fa2d2b48c4a46135aeaa73d2d437a&amp;scene=0#wechat_redirect" target="_blank" rel="external">这里</a>。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参数平滑算法&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="Data Mining" scheme="http://cuiyungao.github.io/tags/Data-Mining/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Collaborative Filtering (CF)</title>
     <link href="http://cuiyungao.github.io/2016/06/29/cf/"/>
     <id>http://cuiyungao.github.io/2016/06/29/cf/</id>
@@ -253,6 +223,36 @@
     
     
       <category term="Recommend System" scheme="http://cuiyungao.github.io/tags/Recommend-System/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Good-Turing Estimation 大数据处理平滑算法</title>
+    <link href="http://cuiyungao.github.io/2016/06/29/goodturing/"/>
+    <id>http://cuiyungao.github.io/2016/06/29/goodturing/</id>
+    <published>2016-06-29T09:22:55.000Z</published>
+    <updated>2016-08-03T04:34:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>参数平滑算法</p>
+<a id="more"></a>
+<p>参数平滑算法，是在训练数据不足时，采用某种方式对统计结果和概率估计进行必要的调整和修补，以降低由于数据稀疏现象带来的统计误差。</p>
+<p>在实际应用中，数据稀疏会产生大量空值，影响后续处理的性能和效果，所以需要平滑算法。</p>
+<p><code>Good-Turing</code>估计经常用在数据平滑方面。基本思想是：将统计参数按出现次数聚类，然后用出现次数加1的类来估计当前类。假定，一个元素在文本$W$中出现$r$次的概率是$\theta(r)$，$N_r$表示元素在$W$中正好出现$r$次的个数，即$N_r=|{x_j: \sharp(x_j)=r}|$，满足：</p>
+<p>$$<br>N = \sum_{r} rN_r.<br>$$</p>
+<p>Good-Turing估计$\theta(r)$为：$\hat{\theta}(r) = \frac{1}{N} (r+1) \frac{N_{r+1}}{N_r}$.</p>
+<p>具体的分析过程可以看<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODIzNDQ3Mw==&amp;mid=2649965669&amp;idx=1&amp;sn=297fa2d2b48c4a46135aeaa73d2d437a&amp;scene=0#wechat_redirect" target="_blank" rel="external">这里</a>。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参数平滑算法&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Data Mining" scheme="http://cuiyungao.github.io/tags/Data-Mining/"/>
     
   </entry>
   
@@ -432,33 +432,6 @@
   </entry>
   
   <entry>
-    <title>LDA Understanding</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
-    <published>2016-06-28T09:17:25.000Z</published>
-    <updated>2016-07-20T06:24:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
-<a id="more"></a>
-<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Useful Source Code for NLP</title>
     <link href="http://cuiyungao.github.io/2016/06/28/code/"/>
     <id>http://cuiyungao.github.io/2016/06/28/code/</id>
@@ -501,6 +474,62 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="code" scheme="http://cuiyungao.github.io/tags/code/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/tweet2vec/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/tweet2vec/</id>
+    <published>2016-06-28T09:17:25.000Z</published>
+    <updated>2016-08-03T12:38:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”</p>
+<a id="more"></a>
+<h3 id="Major-Idea"><a href="#Major-Idea" class="headerlink" title="Major Idea"></a><center><strong>Major Idea</strong></center></h3><p>作者利用tweet用户的hashtag作为groundtruth，基于Character-level对每一条的embeddings进行学习，对hashtag进行推测，并与已有的word2vec跟Glove进行对比，发现Tweet2Vec的准确率最高。</p>
+<h3 id="Techniques"><a href="#Techniques" class="headerlink" title="Techniques"></a><center><strong>Techniques</strong></center></h3><p>基于Character-level，以及作者曾经提出Bi-directional gated recurrent unit (Bi-GRU)’14来学习tweet的表示形式。</p>
+<h4 id="Character-level-CNN-Tweet-Model"><a href="#Character-level-CNN-Tweet-Model" class="headerlink" title="Character-level CNN Tweet Model"></a>Character-level CNN Tweet Model</h4><p>作者采用temporal convolutional和temporal max-pooling operations，即计算一维的输入和输出之间的convolution和pooling函数。给定一个离散的输入函数$f(x)\in [1,l]\mapsto \mathbb{R}$，一个离散的kernel函数$k(x)\in [1,m]\mapsto \mathbb{R}$，stride $s$，$k(x)$和$f(x)$之间的卷积$g(y)\in [1,(l-m+1)/s]\mathbb{R}$, 对$f(x)$的pooling操作$h(y)\in [1, (l-m+1)/s]\mapsto \mathbb{R}$：<br>$$<br>g(y) = \sum_{x=1}^m k(x)\cdot f(y\cdot s - x + c)<br>h(y) = max_{x=1}^m f(y\cdot s - x + c)<br>$$<br>其中，$c=m-s+1$是一个补偿常量。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LDA Understanding</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
+    <published>2016-06-28T09:17:25.000Z</published>
+    <updated>2016-07-20T06:24:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
+<a id="more"></a>
+<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
     
   </entry>
   

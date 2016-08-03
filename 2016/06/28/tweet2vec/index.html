@@ -3,27 +3,27 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Memorization and Exploration in Recurrent Neural Language Models | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder.</title>
+  <title>Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
   <meta name="keywords" content="Deep Learning,NLP">
-  <meta name="description" content="Deep Learning | Los Angeles Meetup">
+  <meta name="description" content="SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Memorization and Exploration in Recurrent Neural Language Models">
-<meta property="og:url" content="http://cuiyungao.github.io/2016/06/28/memorization/index.html">
+<meta property="og:title" content="Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/06/28/tweet2vec/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
-<meta property="og:description" content="Deep Learning | Los Angeles Meetup">
-<meta property="og:updated_time" content="2016-06-28T14:38:07.000Z">
+<meta property="og:description" content="SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”">
+<meta property="og:updated_time" content="2016-08-03T12:38:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Memorization and Exploration in Recurrent Neural Language Models">
-<meta name="twitter:description" content="Deep Learning | Los Angeles Meetup">
+<meta name="twitter:title" content="Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder">
+<meta name="twitter:description" content="SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;Deep Learning | Los Angeles Meetup&lt;/p&gt;">
+  <meta name="summary" content="&lt;p&gt;SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”&lt;/p&gt;">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -101,7 +101,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Memorization and Exploration in Recurrent Neural Language Models</div>
+        <div class="flex-col header-title ellipsis">Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -118,15 +118,15 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Memorization and Exploration in Recurrent Neural Language Models</h1>
+    <h1 class="author">Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-06-28T14:27:33.000Z" itemprop="datePublished" class="page-time">
+            <time datetime="2016-06-28T09:17:25.000Z" itemprop="datePublished" class="page-time">
   2016-06-28
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/papers/">papers</a></li></ul>
 
         
     </h5>
@@ -134,7 +134,7 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-memorization" 
+      <article id="post-tweet2vec" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
@@ -148,7 +148,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LSTM"><span class="post-toc-text">LSTM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Recurrent-Memory-Networks"><span class="post-toc-text">Recurrent Memory Networks</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#First-Attempt"><span class="post-toc-text">First Attempt</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Better-Memorization"><span class="post-toc-text">Better Memorization</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Major-Idea"><span class="post-toc-text">Major Idea</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Techniques"><span class="post-toc-text">Techniques</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Character-level-CNN-Tweet-Model"><span class="post-toc-text">Character-level CNN Tweet Model</span></a></li></ol></li></ol>
             </nav>
             
         </aside>
@@ -156,41 +156,16 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>Deep Learning | Los Angeles Meetup</p>
+            <p>SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”</p>
 <a id="more"></a>
-<p>The speaker explains <code>recurrent memory networks</code>.<a href="https://www.youtube.com/watch?v=nPUW0akp5s0" target="_blank" rel="external">Link</a></p>
-<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><ul>
-<li>LSTM is a powerful sequential model.</li>
-<li>It has complicated design of input gate, forget gate, update gate and cell.</li>
-<li>LSTM achieves SOTA in many NLP tasks: sentence completion, sentiment analysis, parsing….</li>
-</ul>
-<h3 id="Recurrent-Memory-Networks"><a href="#Recurrent-Memory-Networks" class="headerlink" title="Recurrent Memory Networks"></a>Recurrent Memory Networks</h3><ol>
-<li><p>amplify the power of RNN</p>
-</li>
-<li><p>offer a way to interpret and discover <code>dependencies</code> in data</p>
-</li>
-<li><p>outperform TreeLSTM models that explicitly use syntactic information in Sentence Completion Challenge</p>
-</li>
-</ol>
-<h3 id="First-Attempt"><a href="#First-Attempt" class="headerlink" title="First Attempt"></a>First Attempt</h3><p>Combine linearly source context vector, target context (Memory block) and target hidden state LSTM</p>
-<ol>
-<li><p>Did not see any gain in BLEU</p>
-</li>
-<li><p>Potentially bias toward target LM</p>
-</li>
-<li><p><code>Gating combination</code> might be essential for the model</p>
-</li>
-</ol>
-<h3 id="Better-Memorization"><a href="#Better-Memorization" class="headerlink" title="Better Memorization"></a>Better Memorization</h3><p>Better memorization leads to better translation</p>
-<ol>
-<li>LSTM does not offer any representation advantage compared to vanilla RNN</li>
-<li>Gradient in LSTM just flows nicer</li>
-</ol>
+<h3 id="Major-Idea"><a href="#Major-Idea" class="headerlink" title="Major Idea"></a><center><strong>Major Idea</strong></center></h3><p>作者利用tweet用户的hashtag作为groundtruth，基于Character-level对每一条的embeddings进行学习，对hashtag进行推测，并与已有的word2vec跟Glove进行对比，发现Tweet2Vec的准确率最高。</p>
+<h3 id="Techniques"><a href="#Techniques" class="headerlink" title="Techniques"></a><center><strong>Techniques</strong></center></h3><p>基于Character-level，以及作者曾经提出Bi-directional gated recurrent unit (Bi-GRU)’14来学习tweet的表示形式。</p>
+<h4 id="Character-level-CNN-Tweet-Model"><a href="#Character-level-CNN-Tweet-Model" class="headerlink" title="Character-level CNN Tweet Model"></a>Character-level CNN Tweet Model</h4><p>作者采用temporal convolutional和temporal max-pooling operations，即计算一维的输入和输出之间的convolution和pooling函数。给定一个离散的输入函数$f(x)\in [1,l]\mapsto \mathbb{R}$，一个离散的kernel函数$k(x)\in [1,m]\mapsto \mathbb{R}$，stride $s$，$k(x)$和$f(x)$之间的卷积$g(y)\in [1,(l-m+1)/s]\mathbb{R}$, 对$f(x)$的pooling操作$h(y)\in [1, (l-m+1)/s]\mapsto \mathbb{R}$：<br>$$<br>g(y) = \sum_{x=1}^m k(x)\cdot f(y\cdot s - x + c)<br>h(y) = max_{x=1}^m f(y\cdot s - x + c)<br>$$<br>其中，$c=m-s+1$是一个补偿常量。</p>
 
             <blockquote>
                 <p>
                 Permalink：
-                <a href="http://cuiyungao.github.io/2016/06/28/memorization/" target="_blank" rel="external">http://cuiyungao.github.io/2016/06/28/memorization/</a>
+                <a href="http://cuiyungao.github.io/2016/06/28/tweet2vec/" target="_blank" rel="external">http://cuiyungao.github.io/2016/06/28/tweet2vec/</a>
                 </p>
                 <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
             </blockquote>
@@ -199,18 +174,18 @@
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2016/06/29/goodturing/" id="post-prev" class="post-nav-link">
+      <a href="/2016/06/28/code/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Good-Turing Estimation 大数据处理平滑算法</h4>
+        <h4 class="title">Useful Source Code for NLP</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/06/28/crawler/" id="post-next" class="post-nav-link">
+      <a href="/2016/06/28/lda/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Data Crawling</h4>
+        <h4 class="title">LDA Understanding</h4>
       </a>
     </div>
   
@@ -221,7 +196,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="memorization" data-title="Memorization and Exploration in Recurrent Neural Language Models" data-url="http://cuiyungao.github.io/2016/06/28/memorization/index.html"></div>
+	<div class="ds-thread" data-thread-key="tweet2vec" data-title="Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder" data-url="http://cuiyungao.github.io/2016/06/28/tweet2vec/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
