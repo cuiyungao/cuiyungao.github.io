@@ -353,7 +353,7 @@
     <link href="http://cuiyungao.github.io/2016/06/28/acl16/"/>
     <id>http://cuiyungao.github.io/2016/06/28/acl16/</id>
     <published>2016-06-28T12:30:48.000Z</published>
-    <updated>2016-08-03T03:38:58.000Z</updated>
+    <updated>2016-08-03T03:39:46.000Z</updated>
     
     <content type="html"><![CDATA[<p>[ACL’16] From 清华<a href="http://bigml.cs.tsinghua.edu.cn/~jun/publications.shtml" target="_blank" rel="external">Zhu Jun</a>‘s Group</p>
 <a id="more"></a>
@@ -369,7 +369,7 @@
 <li><p>For each document $d_i$:<br>(a) Draw the mixing proportions $\phi_i$ from the Dirichlet prior Dir($\alpha$);<br>(b) For the $j$-th word:<br> $\;$ i. Draw topic assignment $z_{ij}$ from the categorical distribution Cat($\phi_i$);<br> $\;$ ii. Draw word $w_{ij}$ from $\mathbf{S}$ according to $P(w_{ij}|w_{i,j-c}:w_{i,j-1},z_{ij},d_i)$.</p>
 </li>
 </ol>
-<center><span style="color:white">Graphical representation of TopicVec</span></center><br><center><img src="/img/papers/topicvec.png" width="70%"></center>
+<center>Graphical representation of TopicVec</center><br><center><img src="/img/papers/topicvec.png" width="70%"></center>
 
 <p>The notations are listed in the following table:</p>
 <center><img src="/img/papers/topicvec1.png" width="70%"></center>
