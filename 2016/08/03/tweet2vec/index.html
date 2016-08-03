@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/tweet2vec.png">
-<meta property="og:updated_time" content="2016-08-03T13:35:44.000Z">
+<meta property="og:updated_time" content="2016-08-03T14:04:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder">
 <meta name="twitter:description" content="SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”">
@@ -150,7 +150,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Major-Idea"><span class="post-toc-text">Major Idea</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Techniques"><span class="post-toc-text">Techniques</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Character-level-CNN-Tweet-Model"><span class="post-toc-text">Character-level CNN Tweet Model</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Long-Short-Term-Memory-LSTM"><span class="post-toc-text">Long-Short Term Memory (LSTM)</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Major-Idea"><span class="post-toc-text">Major Idea</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Techniques"><span class="post-toc-text">Techniques</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Character-level-CNN-Tweet-Model"><span class="post-toc-text">Character-level CNN Tweet Model</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Long-Short-Term-Memory-LSTM"><span class="post-toc-text">Long-Short Term Memory (LSTM)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Combined-Model"><span class="post-toc-text">Combined Model</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Experiments"><span class="post-toc-text">Experiments</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Summary"><span class="post-toc-text">Summary</span></a></li></ol>
             </nav>
             
         </aside>
@@ -167,6 +167,13 @@
 
 <h4 id="Long-Short-Term-Memory-LSTM"><a href="#Long-Short-Term-Memory-LSTM" class="headerlink" title="Long-Short Term Memory (LSTM)"></a>Long-Short Term Memory (LSTM)</h4><p>给定一个输入序列$X=(x_1, x_2, …, x_N)$，LSTM计算hidden vector sequence $h=(h_1, h_2, …, h_N)$和output vector sequence $Y=(y_1, y_2, …, y_N)$。每一个时间步骤，一个模块的输出是由一组gates (前一个hidden state $h_{t1}$组成的函数)和当前时间步骤的输入控制的。forget gate $f_t$，input gate $i_t$和output gate $o_t$。这些gates集中决定了当前memory cess $c_t$的过渡和当前的hidden state $h_t$。LSTM的过渡函数定义如下：<br>$$<br>i_t = \sigma(W_i\cdot [h_{t-1}, x_t]+b_i)<br>f_t = \sigma(W_f\cdot [h_{t-1}, x_t]+b_f)<br>l_t = tanh(W_l\cdot [h_{t-1}, x_t]+b_l)<br>o_t = \sigma(W_o\cdot [h_{t-1}, x_t]+b_o)<br>c_t = f_t\odot c_{t-1} + i_t\odot l_t<br>h_t = o_t\odot tanh(c_t)<br>$$<br>其中，$\odot$表示component-wise multiplicaiton。$f_t$控制过去的memory cell要舍弃的信息，而$i_t$控制新的信息储存在current memory cell的程度，$o_t$是基于memory cell $c_t$的输出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LSTM是学习`long-term denpendencies`，所以在卷基层之后用LSTM学习获取特征的序列中存在的依赖。</div></pre></td></tr></table></figure></p>
 <p>在seq-to-seq中，LSTM定义了output上的分布，之后用softmax来序列预测tokens。<br>$$<br>P(Y|X)=\prod_{t\in [1,N]} \frac{exp(g(h_{t-1}, y_t))}{\sum_{y^{\prime} exp(g(h_{t1}, y_t^{\prime}))}}<br>$$<br>其中，g是activation function。</p>
+<h4 id="Combined-Model"><a href="#Combined-Model" class="headerlink" title="Combined Model"></a>Combined Model</h4><p>Figure 1呈现了整个encoder-decoder过程。输入是由matrix呈现的tweet，字符由one-hot vector表示。<br><mark>Encoder部分</mark>，在Character-level CNN的较高层卷积之后不经过pooling，直接作为LSTM的输入，encoder过程可以表示为：<br>$$<br>H^{conv} = CharCNN(T)<br>h_t = LSTM(g_t, h_{t-1}))<br>$$<br>其中，g=H^{conv}是一个特征矩阵，每一行代表LSTM的一个time step，$h_t$是$t$时刻的hidden representation。LSTM作用于$H^{conv}$的每一层，生成下一个序列的embedding。最终输出结果$enc_N$用来表示整条tweet。</p>
+<p><mark>Decoder部分</mark>，用两层的LSTM作用于encoded representation。每一时间步骤中，字符的预测是：<br>$$<br>P(C_t|\cdot) = softmax(T_t, h_{t-1})<br>$$<br>其中，$C_t$指的是时间$t$的字符，$T_t$表示时刻$t$的one-hot vector。最终的结果是一个decoded tweet matrix $T^{dec}$，与实际的tweet进行比较，并学习模型的参数。</p>
+<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h3><p>实验用于两个分类任务： tweet semantic relatedness和tweet sentiment classification。3 million tweets。感觉数据量也挺小。准确率在0.6~0.7左右。</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p><mark>Character level的deep learning的优势:</mark>占用内存少，不需要存储所有word的表示，只需要存储已有的character；不依赖于语言，只需要字符；而且不需要NLP的预处理，比如word segmentation。<br><mark>劣势是：</mark>运行速度慢，在文章的实验中，word2vec的速度是tweet2vec的6~7倍，原因是从word变成character输入意味着GRU的输入量变大。<br>Character level可以用在NLP的很多方面，比如named entity recognition, POS tagging, text classification, and language modeling。</p>
+<blockquote><br>文章highlight了tweet2vec的优势，对word segmentation error, spelling mistakes, special characters, interpret emojis, in-vocab tokens非常有效。<br></blockquote>
+
+<p><a href="http://soroush.mit.edu/publications/tweet2vec_vvr.pdf" target="_blank" rel="external">Published paper</a>.</p>
 
             <blockquote>
                 <p>
