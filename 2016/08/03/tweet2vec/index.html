@@ -16,10 +16,12 @@
 <meta property="og:url" content="http://cuiyungao.github.io/2016/08/03/tweet2vec/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”">
-<meta property="og:updated_time" content="2016-08-03T12:42:16.000Z">
+<meta property="og:image" content="http://cuiyungao.github.io/img/papers/tweet2vec.png">
+<meta property="og:updated_time" content="2016-08-03T13:07:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder">
 <meta name="twitter:description" content="SIGIR’16的文章，来自MIT Media Lab。Vosoughi, Soroush, Prashanth Vijayaraghavan, and Deb Roy. “Tweet2Vec: Learning Tweet Embeddings Using Character-level CNN-LSTM Encoder-Decoder.”">
+<meta name="twitter:image" content="http://cuiyungao.github.io/img/papers/tweet2vec.png">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
@@ -160,7 +162,8 @@
 <a id="more"></a>
 <h3 id="Major-Idea"><a href="#Major-Idea" class="headerlink" title="Major Idea"></a><center><strong>Major Idea</strong></center></h3><p>作者利用tweet用户的hashtag作为groundtruth，基于Character-level对每一条的embeddings进行学习，对hashtag进行推测，并与已有的word2vec跟Glove进行对比，发现Tweet2Vec的准确率最高。</p>
 <h3 id="Techniques"><a href="#Techniques" class="headerlink" title="Techniques"></a><center><strong>Techniques</strong></center></h3><p>基于Character-level，以及作者曾经提出Bi-directional gated recurrent unit (Bi-GRU)’14来学习tweet的表示形式。</p>
-<h4 id="Character-level-CNN-Tweet-Model"><a href="#Character-level-CNN-Tweet-Model" class="headerlink" title="Character-level CNN Tweet Model"></a>Character-level CNN Tweet Model</h4><p>作者采用temporal convolutional和temporal max-pooling operations，即计算一维的输入和输出之间的convolution和pooling函数。给定一个离散的输入函数$f(x)\in [1,l]\mapsto \mathbb{R}$，一个离散的kernel函数$k(x)\in [1,m]\mapsto \mathbb{R}$，stride $s$，$k(x)$和$f(x)$之间的卷积$g(y)\in [1,(l-m+1)/s]\mathbb{R}$, 对$f(x)$的pooling操作$h(y)\in [1, (l-m+1)/s]\mapsto \mathbb{R}$：<br>$$<br>g(y) = \sum_{x=1}^m k(x)\cdot f(y\cdot s - x + c)<br>h(y) = max_{x=1}^m f(y\cdot s - x + c)<br>$$<br>其中，$c=m-s+1$是一个补偿常量。</p>
+<h4 id="Character-level-CNN-Tweet-Model"><a href="#Character-level-CNN-Tweet-Model" class="headerlink" title="Character-level CNN Tweet Model"></a>Character-level CNN Tweet Model</h4><p>作者采用temporal convolutional和temporal max-pooling operations，即计算一维的输入和输出之间的convolution和pooling函数。给定一个离散的输入函数$f(x)\in [1,l]\mapsto \mathbb{R}$，一个离散的kernel函数$k(x)\in [1,m]\mapsto \mathbb{R}$，stride $s$，$k(x)$和$f(x)$之间的卷积$g(y)\in [1,(l-m+1)/s]\mathbb{R}$, 对$f(x)$的pooling操作$h(y)\in [1, (l-m+1)/s]\mapsto \mathbb{R}$：<br>$$<br>g(y) = \sum_{x=1}^m k(x)\cdot f(y\cdot s - x + c)<br>h(y) = max_{x=1}^m f(y\cdot s - x + c)<br>$$<br>其中，$c=m-s+1$是一个补偿常量。tweet的character set包含英语字母，数字，特殊字符和不明确的字符，总共统计了70个字符。每个字符被encode成一个one-hot vector $x_i\in {0,1}^70$，单个tweet的最大长度是150，所以每个tweet被表示成了一个binary matrix $x_{1…150}\in {0,1}^{150\times70}$。表示成matix的tweet输入到一个包含4层一维卷基层的deep model。每个卷基层操作采用filter $w\in \mathbb{R}^l$来获取n-gram的character feature。一般来说，对于一个tweet $s$，在层$h$的一个特征$c_i$由下面式子生成：<br>$$<br>c_i^(h) (s) = g(w^(h)\cdot \hat{c}_i^(h-1) + b^(h))<br>$$<br>其中，$\hat{c}_i^(0)=x_{i…i+l-1}$, $b^(h)\in \mathbb{R}$是h层的bias，$g$是一个rectified linear unit。整体框架如下图所示：</p>
+<center><img src="/img/papers/tweet2vec.png" width="70%"></center>
 
             <blockquote>
                 <p>
