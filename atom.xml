@@ -231,13 +231,13 @@
     <link href="http://cuiyungao.github.io/2016/06/29/goodturing/"/>
     <id>http://cuiyungao.github.io/2016/06/29/goodturing/</id>
     <published>2016-06-29T09:22:55.000Z</published>
-    <updated>2016-07-18T06:40:06.000Z</updated>
+    <updated>2016-08-03T03:46:18.000Z</updated>
     
     <content type="html"><![CDATA[<p>参数平滑算法</p>
 <a id="more"></a>
 <p>参数平滑算法，是在训练数据不足时，采用某种方式对统计结果和概率估计进行必要的调整和修补，以降低由于数据稀疏现象带来的统计误差。</p>
 <p>在实际应用中，数据稀疏会产生大量空值，影响后续处理的性能和效果，所以需要平滑算法。</p>
-<p><code>Good-Turing</code>估计经常用在数据平滑方面。基本思想是：将统计参数按出现次数聚类，然后用出现次数加1的类来估计当前类。假定，一个元素在文本$W$中出现$r$次的概率是$\theta(r)$，$N_r$表示元素在$W$中正好出现$r$次的个数，即$N_r=|{x_j: #(x_j)=r}|$，满足：</p>
+<p><code>Good-Turing</code>估计经常用在数据平滑方面。基本思想是：将统计参数按出现次数聚类，然后用出现次数加1的类来估计当前类。假定，一个元素在文本$W$中出现$r$次的概率是$\theta(r)$，$N_r$表示元素在$W$中正好出现$r$次的个数，即$N_r=|{x_j: (x_j)=r}|$，满足：</p>
 <p>$$<br>N = \sum_{r} rN_r.<br>$$</p>
 <p>Good-Turing估计$\theta(r)$为：$\hat{\theta}(r) = \frac{1}{N} (r+1) \frac{N_{r+1}}{N_r}$.</p>
 <p>具体的分析过程可以看<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODIzNDQ3Mw==&amp;mid=2649965669&amp;idx=1&amp;sn=297fa2d2b48c4a46135aeaa73d2d437a&amp;scene=0#wechat_redirect" target="_blank" rel="external">这里</a>。</p>
