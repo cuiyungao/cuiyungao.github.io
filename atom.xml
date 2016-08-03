@@ -430,33 +430,6 @@
   </entry>
   
   <entry>
-    <title>LDA Understanding</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
-    <published>2016-06-28T09:17:25.000Z</published>
-    <updated>2016-07-20T06:24:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
-<a id="more"></a>
-<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Useful Source Code for NLP</title>
     <link href="http://cuiyungao.github.io/2016/06/28/code/"/>
     <id>http://cuiyungao.github.io/2016/06/28/code/</id>
@@ -499,6 +472,33 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="code" scheme="http://cuiyungao.github.io/tags/code/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LDA Understanding</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
+    <published>2016-06-28T09:17:25.000Z</published>
+    <updated>2016-07-20T06:24:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
+<a id="more"></a>
+<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
     
   </entry>
   
@@ -741,11 +741,11 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
   </entry>
   
