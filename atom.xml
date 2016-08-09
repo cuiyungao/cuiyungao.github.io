@@ -769,7 +769,7 @@
     <link href="http://cuiyungao.github.io/2016/06/27/diveTensorflow/"/>
     <id>http://cuiyungao.github.io/2016/06/27/diveTensorflow/</id>
     <published>2016-06-27T03:37:45.000Z</published>
-    <updated>2016-08-09T06:11:03.000Z</updated>
+    <updated>2016-08-09T06:12:02.000Z</updated>
     
     <content type="html"><![CDATA[<p>Get started with TensorFlow.</p>
 <a id="more"></a>
@@ -807,7 +807,7 @@
 <h4 id="TF-Learn-Estimators"><a href="#TF-Learn-Estimators" class="headerlink" title="TF.Learn Estimators"></a>TF.Learn Estimators</h4><p><code>TF.Learn</code>是一个high-level的模块，提供了很多机器学习的算法，比如k-means，random forests, SVM, Gaussian Mixture Model Clustering和Linear/logistic regression。</p>
 <h4 id="Statistical-Distributions"><a href="#Statistical-Distributions" class="headerlink" title="Statistical Distributions"></a>Statistical Distributions</h4><p><code>tf.contrib.distributions</code>提供了很多的分布，比如Bernoulli, Beta, Chi2, Dirichlet, Gamma, Uniform等。</p>
 <h4 id="Layer-Components"><a href="#Layer-Components" class="headerlink" title="Layer Components"></a>Layer Components</h4><p><code>tf.contrib.layers</code>里提供了很多生成layer操作和相关权重以及bias variables的函数，比如batch normalization, convolution layer, dropout layer等。当然还有one-hot encoding。<code>tf.contrib.layers.optimizers</code>提供了很多优化算法，比如Adagrad, SGC, Momentum等，经常用于数值分析上的优化问题，包括优化参数空间以找到一个较好的模型。<code>tf.contrib.layers.reguarizers</code>提供了许多的Regularizers，比如L1和L2的正则器，常用于通过惩罚模型中大量的特征，以减少overfitting的风险。许多算法需要计算gradients，在参数空间中寻找最佳参数前通常需要初始化模型参数，<code>tf.contrib.layers.initilizers</code>提供了类似Xavier的初始化方法，用于保证所有层gradients的scale大致保持一致。<code>tf.contrib.layers.feature_column</code>将连续的或者分类的特征用bucketing/binning, crossing/composition和embedding的方法来转化。<code>tf.contrib.layers.embedding</code>讲高维的分类特征转变成低维的dense的实数向量，通常被称为<mark>an embedding vector</mark>。这些低维的紧密的矩阵后面被连接起来，形成一个连续的特征，然后输入到模型中。</p>
-<h4 id="Loss-Functions-and-Metrics"><a href="#Loss-Functions-and-Metrics" class="headerlink" title="Loss Functions and Metrics"></a><center><strong>Loss Functions and Metrics</strong></center></h4><p><code>tf.contrib.losses</code>提供了很多loss functions，比如sigmoid, softmax cross entropy, log-loss, hinge loss, sum of squares, sum of pairwise squares等。衡量标准在<code>tf.contrib.metrics</code>，比如precision, recall, accuracy, auc, MSE以及它们演变出来的一些版本。</p>
+<h4 id="Loss-Functions-and-Metrics"><a href="#Loss-Functions-and-Metrics" class="headerlink" title="Loss Functions and Metrics"></a>Loss Functions and Metrics</h4><p><code>tf.contrib.losses</code>提供了很多loss functions，比如sigmoid, softmax cross entropy, log-loss, hinge loss, sum of squares, sum of pairwise squares等。衡量标准在<code>tf.contrib.metrics</code>，比如precision, recall, accuracy, auc, MSE以及它们演变出来的一些版本。</p>
 ]]></content>
     
     <summary type="html">
