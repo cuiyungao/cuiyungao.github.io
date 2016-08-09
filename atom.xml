@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-03T14:15:38.000Z</updated>
+  <updated>2016-08-09T02:05:47.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,81 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>fastText与Word2Vec之间的比较</title>
+    <link href="http://cuiyungao.github.io/2016/08/09/fastvsword/"/>
+    <id>http://cuiyungao.github.io/2016/08/09/fastvsword/</id>
+    <published>2016-08-09T01:29:03.000Z</published>
+    <updated>2016-08-09T02:05:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇文章总结了试验fastText跟Word2Vec在embedding上的performance，源于<a href="http://nbviewer.jupyter.org/github/jayantj/gensim/blob/683720515165a332baed8a2a46b6711cefd2d739/docs/notebooks/Word2Vec_FastText_Comparison.ipynb" target="_blank" rel="external">这篇文章</a>。</p>
+<a id="more"></a>
+<h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a><center><strong>Dataset</strong></center></h3><p>训练embedding的数据集有两个，一个是<code>text8</code> corpus，一个是nltk自带的<code>brown</code> corpus。Groundtruth是<code>questtions-words</code>文本，可以从<a href="https://raw.githubusercontent.com/arfon/word2vec/master/questions-words.txt" target="_blank" rel="external">这里</a>下载。</p>
+<h4 id="text8-Corpus-Download"><a href="#text8-Corpus-Download" class="headerlink" title="text8 Corpus Download"></a>text8 Corpus Download</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://mattmahoney.net/dc/text8.zip</div></pre></td></tr></table></figure>
+<h4 id="brown-Corpus-Download"><a href="#brown-Corpus-Download" class="headerlink" title="brown Corpus Download"></a>brown Corpus Download</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">import nltk</div><div class="line"># 从当中选择brown corpus进行下载</div><div class="line">nltk.download()</div><div class="line"></div><div class="line"># Generate brown corpus text file</div><div class="line">with open(&apos;brown_corp.txt&apos;, &apos;w+&apos;) as f:</div><div class="line">    for word in nltk.corpus.brown.words():</div><div class="line">        f.write(&apos;&#123;word&#125; &apos;.format(word=word))</div></pre></td></tr></table></figure>
+<h3 id="Model-Training"><a href="#Model-Training" class="headerlink" title="Model Training"></a><center><strong>Model Training</strong></center></h3><p>用fastText和Word2Vec分别对上述两个数据集进行训练，得到word embeddings。</p>
+<h4 id="fastText-Training"><a href="#fastText-Training" class="headerlink" title="fastText Training"></a>fastText Training</h4><p>下载<a href="https://github.com/facebookresearch/fastText" target="_blank" rel="external">fastText</a>源码，对上述两个数据集进行训练。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./fasttext skipgram -input brown_corp.txt -output brown_ft</div><div class="line">./fasttext skipgram -input text8 -output text8_ft</div></pre></td></tr></table></figure></p>
+<h4 id="Word2Vec-Training"><a href="#Word2Vec-Training" class="headerlink" title="Word2Vec Training"></a>Word2Vec Training</h4><p>Word2Vec的训练基于gensim，采用<code>logging</code>来对过程进行输出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">from nltk.corpus import brown</div><div class="line">from gensim.models import Word2Vec</div><div class="line">from gensim.models.word2vec import Text8Corpus</div><div class="line">import logging</div><div class="line"></div><div class="line">logging.basicConfig(format=&apos;%(asctime)s : %(levelname)s : %(message)s&apos;)</div><div class="line">logging.root.setLevel(level=logging.INFO)</div><div class="line"></div><div class="line">MODELS_DIR = &apos;models/&apos;</div><div class="line"></div><div class="line">brown_gs = Word2Vec(brown.sents())</div><div class="line">brown_gs.save_word2vec_format(MODELS_DIR + &apos;brown_gs.vec&apos;)</div><div class="line"></div><div class="line">text8_gs = Word2Vec(Text8Corpus(&apos;text8&apos;))</div><div class="line">text8_gs.save_word2vec_format(MODELS_DIR + &apos;text8_gs.vec&apos;)</div></pre></td></tr></table></figure></p>
+<h3 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a><center><strong>Comparison</strong></center></h3><p>用<code>questions-words.txt</code>提供的数据作为Groundtruth，从<code>semantic</code>和<code>syntactic</code>两方面来对两种embedding的方法进行比较。</p>
+<h4 id="Based-on-Brown-Corpus"><a href="#Based-on-Brown-Corpus" class="headerlink" title="Based on Brown Corpus"></a>Based on Brown Corpus</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">from gensim.models import Word2Vec</div><div class="line"></div><div class="line">def print_accuracy(model, questions_file):</div><div class="line">    print(&apos;Evaluating...\n&apos;)</div><div class="line">    acc = model.accuracy(questions_file)</div><div class="line">    for section in acc:</div><div class="line">        correct = len(section[&apos;correct&apos;])</div><div class="line">        total = len(section[&apos;correct&apos;]) + len(section[&apos;incorrect&apos;])</div><div class="line">        total = total if total else 1</div><div class="line">        accuracy = 100*float(correct)/total</div><div class="line">        print(&apos;&#123;:d&#125;/&#123;:d&#125;, &#123;:.2f&#125;%, Section: &#123;:s&#125;&apos;.format(correct, total, accuracy, section[&apos;section&apos;]))</div><div class="line">    sem_correct = sum((len(acc[i][&apos;correct&apos;]) for i in range(5)))</div><div class="line">    sem_total = sum((len(acc[i][&apos;correct&apos;]) + len(acc[i][&apos;incorrect&apos;])) for i in range(5))</div><div class="line">    print(&apos;\nSemantic: &#123;:d&#125;/&#123;:d&#125;, Accuracy: &#123;:.2f&#125;%&apos;.format(sem_correct, sem_total, 100*float(sem_correct)/sem_total))</div><div class="line"></div><div class="line">    syn_correct = sum((len(acc[i][&apos;correct&apos;]) for i in range(5, len(acc)-1)))</div><div class="line">    syn_total = sum((len(acc[i][&apos;correct&apos;]) + len(acc[i][&apos;incorrect&apos;])) for i in range(5,len(acc)-1))</div><div class="line">    print(&apos;Syntactic: &#123;:d&#125;/&#123;:d&#125;, Accuracy: &#123;:.2f&#125;%\n&apos;.format(syn_correct, syn_total, 100*float(syn_correct)/syn_total))</div><div class="line"></div><div class="line">MODELS_DIR = &apos;models/&apos;</div><div class="line"></div><div class="line">word_analogies_file = &apos;questions-words.txt&apos;</div><div class="line">print(&apos;\nLoading FastText embeddings&apos;)</div><div class="line">ft_model = Word2Vec.load_word2vec_format(MODELS_DIR + &apos;brown_ft.vec&apos;)</div><div class="line">print(&apos;Accuracy for FastText:&apos;)</div><div class="line">print_accuracy(ft_model, word_analogies_file)</div><div class="line"></div><div class="line">print(&apos;\nLoading Gensim embeddings&apos;)</div><div class="line">gs_model = Word2Vec.load_word2vec_format(MODELS_DIR + &apos;brown_gs.vec&apos;)</div><div class="line">print(&apos;Accuracy for word2vec:&apos;)</div><div class="line">print_accuracy(gs_model, word_analogies_file)</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<blockquote><br>Loading FastText embeddings<br>Accuracy for FastText:<br>Evaluating…<br><br>0/1, 0.00%, Section: capital-common-countries<br>0/1, 0.00%, Section: capital-world<br>0/1, 0.00%, Section: currency<br>0/1, 0.00%, Section: city-in-state<br>36/182, 19.78%, Section: family<br>498/702, 70.94%, Section: gram1-adjective-to-adverb<br>110/132, 83.33%, Section: gram2-opposite<br>675/1056, 63.92%, Section: gram3-comparative<br>140/210, 66.67%, Section: gram4-superlative<br>426/650, 65.54%, Section: gram5-present-participle<br>0/1, 0.00%, Section: gram6-nationality-adjective<br>153/1260, 12.14%, Section: gram7-past-tense<br>318/552, 57.61%, Section: gram8-plural<br>245/342, 71.64%, Section: gram9-plural-verbs<br>2601/5086, 51.14%, Section: total<br><br>Semantic: 36/182, Accuracy: <mark>19.78%</mark><br>Syntactic: 2565/4904, Accuracy: <mark>52.30%</mark><br><br><br>Loading Gensim embeddings<br>Accuracy for word2vec:<br>Evaluating…<br><br>0/1, 0.00%, Section: capital-common-countries<br>0/1, 0.00%, Section: capital-world<br>0/1, 0.00%, Section: currency<br>0/1, 0.00%, Section: city-in-state<br>54/182, 29.67%, Section: family<br>8/702, 1.14%, Section: gram1-adjective-to-adverb<br>0/132, 0.00%, Section: gram2-opposite<br>72/1056, 6.82%, Section: gram3-comparative<br>0/210, 0.00%, Section: gram4-superlative<br>14/650, 2.15%, Section: gram5-present-participle<br>0/1, 0.00%, Section: gram6-nationality-adjective<br>28/1260, 2.22%, Section: gram7-past-tense<br>4/552, 0.72%, Section: gram8-plural<br>8/342, 2.34%, Section: gram9-plural-verbs<br>188/5086, 3.70%, Section: total<br><br>Semantic: 54/182, Accuracy: <mark>29.67%</mark><br>Syntactic: 134/4904, Accuracy: <mark>2.73%</mark><br></blockquote>
+
+<p>从运行结果可以看到，fastText的semantic accuracy比Word2Vec要稍微差一点儿，但是Syntactic accuracy的效果明显优于Word2Vec。这是因为<a href="https://arxiv.org/abs/1607.04606" target="_blank" rel="external">1</a>中提到，fastText中word embeddings是由他们的n-gram embeddings来表示，所以形态上相似的词的embeddings也会比较类似。比如：<br>$$<br>embedding(amazing)-embedding(amazingly) = embedding(calm)-embedding(calmly).<br>$$</p>
+<h4 id="Based-on-text8-Corpus"><a href="#Based-on-text8-Corpus" class="headerlink" title="Based on text8 Corpus"></a>Based on text8 Corpus</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">print(&apos;Loading FastText embeddings&apos;)</div><div class="line">ft_model = Word2Vec.load_word2vec_format(MODELS_DIR + &apos;text8_ft.vec&apos;)</div><div class="line">print(&apos;Accuracy for FastText:&apos;)</div><div class="line">print_accuracy(ft_model, word_analogies_file)</div><div class="line"></div><div class="line">print(&apos;Loading Gensim embeddings&apos;)</div><div class="line">gs_model = Word2Vec.load_word2vec_format(MODELS_DIR + &apos;text8_gs.vec&apos;)</div><div class="line">print(&apos;Accuracy for word2vec:&apos;)</div><div class="line">print_accuracy(gs_model, word_analogies_file)</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<blockquote><br>Loading FastText embeddings<br>Accuracy for FastText:<br>Evaluating…<br><br>322/506, 63.64%, Section: capital-common-countries<br>609/1452, 41.94%, Section: capital-world<br>36/268, 13.43%, Section: currency<br>286/1520, 18.82%, Section: city-in-state<br>134/306, 43.79%, Section: family<br>556/756, 73.54%, Section: gram1-adjective-to-adverb<br>186/306, 60.78%, Section: gram2-opposite<br>838/1260, 66.51%, Section: gram3-comparative<br>270/506, 53.36%, Section: gram4-superlative<br>556/992, 56.05%, Section: gram5-present-participle<br>1293/1371, 94.31%, Section: gram6-nationality-adjective<br>490/1332, 36.79%, Section: gram7-past-tense<br>888/992, 89.52%, Section: gram8-plural<br>365/650, 56.15%, Section: gram9-plural-verbs<br>6829/12217, 55.90%, Section: total<br><br>Semantic: 1387/4052, Accuracy: <mark>34.23%</mark><br>Syntactic: 5442/8165, Accuracy: <mark>66.65%</mark><br><br>Loading Gensim embeddings<br>Accuracy for word2vec:<br>Evaluating…<br><br>153/506, 30.24%, Section: capital-common-countries<br>248/1452, 17.08%, Section: capital-world<br>27/268, 10.07%, Section: currency<br>172/1571, 10.95%, Section: city-in-state<br>218/306, 71.24%, Section: family<br>88/756, 11.64%, Section: gram1-adjective-to-adverb<br>45/306, 14.71%, Section: gram2-opposite<br>716/1260, 56.83%, Section: gram3-comparative<br>179/506, 35.38%, Section: gram4-superlative<br>325/992, 32.76%, Section: gram5-present-participle<br>702/1371, 51.20%, Section: gram6-nationality-adjective<br>343/1332, 25.75%, Section: gram7-past-tense<br>401/992, 40.42%, Section: gram8-plural<br>219/650, 33.69%, Section: gram9-plural-verbs<br>3836/12268, 31.27%, Section: total<br><br>Semantic: 818/4103, Accuracy: <mark>19.94%</mark><br>Syntactic: 3018/8165, Accuracy: <mark>36.96%</mark><br></blockquote>
+
+<p>实验结果可以看出，用在较大的数据集上，fastText的优势表现得更加明显，当然word2vec的Syntactic accuracy提高得也比较明显。所以总的来看，<mark>fastText比word2vec在word embedding上更好，特别是对于syntactic information。</mark></p>
+<h4 id="实验中用到的Hyperparameters"><a href="#实验中用到的Hyperparameters" class="headerlink" title="实验中用到的Hyperparameters"></a>实验中用到的Hyperparameters</h4><p>Gensim word2vec和fastText用了相似的参数，dim_size = 100, window_size = 5, num_epochs = 5。但是它们的模型完全不同，尽管有很多相似性。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1]<a href="https://arxiv.org/abs/1607.04606" target="_blank" rel="external">Enriching Word Vectors with Subword Information</a><br>[2]<a href="https://arxiv.org/pdf/1301.3781v3.pdf" target="_blank" rel="external">Efficient Estimation of Word Representations in Vector Space</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇文章总结了试验fastText跟Word2Vec在embedding上的performance，源于&lt;a href=&quot;http://nbviewer.jupyter.org/github/jayantj/gensim/blob/683720515165a332baed8a2a46b6711cefd2d739/docs/notebooks/Word2Vec_FastText_Comparison.ipynb&quot;&gt;这篇文章&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Word Embedding" scheme="http://cuiyungao.github.io/tags/Word-Embedding/"/>
+    
+      <category term="fastText" scheme="http://cuiyungao.github.io/tags/fastText/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>adclick.md</title>
+    <link href="http://cuiyungao.github.io/2016/08/04/adclick/"/>
+    <id>http://cuiyungao.github.io/2016/08/04/adclick/</id>
+    <published>2016-08-04T05:46:40.000Z</published>
+    <updated>2016-08-04T06:05:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个<a href="http://mp.weixin.qq.com/s?__biz=MzAwNDI4ODcxNA==&amp;mid=2652243946&amp;idx=2&amp;sn=de8bb9a36fe9f2f0c97f30aaec87063f&amp;scene=2&amp;srcid=0727O4JXBdr5NU7sFOD48J69&amp;from=timeline&amp;isappinstalled=0#wechat_redirect" target="_blank" rel="external">演讲</a>以及北大硕士Kintocai的<a href="http://www.52cs.org/?p=1046" target="_blank" rel="external">总结</a>。集中于深度学习在Multi-field Categorical这类数据集上的应用。</p>
+<a id="more"></a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MzAwNDI4ODcxNA==&amp;amp;mid=2652243946&amp;amp;idx=2&amp;amp;sn=de8bb9a36fe9f2f0c97f30aaec87063f&amp;amp;scene=2&amp;amp;srcid=0727O4JXBdr5NU7sFOD48J69&amp;amp;from=timeline&amp;amp;isappinstalled=0#wechat_redirect&quot;&gt;演讲&lt;/a&gt;以及北大硕士Kintocai的&lt;a href=&quot;http://www.52cs.org/?p=1046&quot;&gt;总结&lt;/a&gt;。集中于深度学习在Multi-field Categorical这类数据集上的应用。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="Ad Click" scheme="http://cuiyungao.github.io/tags/Ad-Click/"/>
+    
+  </entry>
   
   <entry>
     <title>Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder</title>
@@ -472,6 +547,33 @@
   </entry>
   
   <entry>
+    <title>LDA Understanding</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
+    <published>2016-06-28T09:17:25.000Z</published>
+    <updated>2016-07-20T06:24:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
+<a id="more"></a>
+<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Useful Source Code for NLP</title>
     <link href="http://cuiyungao.github.io/2016/06/28/code/"/>
     <id>http://cuiyungao.github.io/2016/06/28/code/</id>
@@ -514,33 +616,6 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="code" scheme="http://cuiyungao.github.io/tags/code/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LDA Understanding</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
-    <published>2016-06-28T09:17:25.000Z</published>
-    <updated>2016-07-20T06:24:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
-<a id="more"></a>
-<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
     
   </entry>
   
@@ -742,52 +817,6 @@
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="TensorFlow" scheme="http://cuiyungao.github.io/tags/TensorFlow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SPINN</title>
-    <link href="http://cuiyungao.github.io/2016/06/26/SPINN/"/>
-    <id>http://cuiyungao.github.io/2016/06/26/SPINN/</id>
-    <published>2016-06-26T03:58:46.000Z</published>
-    <updated>2016-06-27T02:59:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Hybrid tree-sequence neural networks with SPINN, published at Stanford</p>
-<a id="more"></a>
-<h2 id="Online-Reading-Summay"><a href="#Online-Reading-Summay" class="headerlink" title=" - Online Reading Summay - "></a><center> - Online Reading Summay - </center></h2><h3 id="SPINN"><a href="#SPINN" class="headerlink" title="SPINN"></a><center><strong>SPINN</strong></center></h3><p><a href="http://www.foldl.me/2016/spinn-hybrid-tree-sequence-models/" target="_blank" rel="external">Stack-augmented Parser-Interpreter Neural Network</a>. This is a hybrid tree-sequence architecture, 融合了recursive 和recurrent neural networks，比当中的任何一个要好。</p>
-<h3 id="GOAL"><a href="#GOAL" class="headerlink" title="GOAL"></a><center><strong>GOAL</strong></center></h3><p>output compact, sufficient representations of natural language. </p>
-<h3 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a><center><strong>IDEA</strong></center></h3><p>Compute representations bottom-up, starting at the leaves and moving to nonterminals. This allows <span style="color:red">linguistic structure</span> to guide computation.</p>
-<h3 id="TECH"><a href="#TECH" class="headerlink" title="TECH"></a><center><strong>TECH</strong></center></h3><p><em>Shift-Reduce Parsing</em>, a method for building parse structures from sequence inputs in linear time. It works by exploiting an auxiliary <span style="color:white">stack</span> structure, which stores partially-parsed subtrees, and a <span style="color:white">buffer</span>, which stores input tokens which have yet to be parsed. This can generate the constituency tree.</p>
-<p>For a sentence with <code>$n$ tokens</code>, we can produce its parse with a <code>shift-reduce parser</code> in exactly $2n-1$ transitions.</p>
-<h4 id="Shift-Phase"><a href="#Shift-Phase" class="headerlink" title="Shift Phase:"></a>Shift Phase:</h4><p>Pulls the <code>next word embeddings</code> from the buffer and pushes it onto the stack;</p>
-<h4 id="Recude-Phase"><a href="#Recude-Phase" class="headerlink" title="Recude Phase:"></a>Recude Phase:</h4><p>Combines top two elements of the stack $\vec{c_1},\vec{c_2}$ into a single element $\vec{p}$ via the standard <code>recursive neural network feedforward</code>: </p>
-<p>$$<br>\vec{p} = \sigma(W[\vec{c_1}, \vec{c_2}]).<br>$$</p>
-<p>Now we have a <code>shift-reduce parser</code>, deep-learning style. The feedforward speed is <code>up to 25x improvement</code> over the recursive neura network, but <code>2~5 times slower</code> than a recurrent neural network.</p>
-<p>Recursive neural networks have often been dissed as <strong>too slow</strong> and “not batchable”, and this development proves both points wrong.</p>
-<h3 id="Hybrid-Tree-Sequence-Networks"><a href="#Hybrid-Tree-Sequence-Networks" class="headerlink" title="Hybrid Tree-Sequence Networks"></a><center><strong>Hybrid Tree-Sequence Networks</strong></center></h3><center><span style="color:white">Visualization of the post-order tree traversal performed by a shift-reduce parser.</span></center><br><center><img src="/img/papers/tree-shift-reduce-with-trace.gif" alt=""></center>
-
-<p>Why not have a <code>recurrent</code> neural network follow along this path of arrows?</p>
-<p><strong>Tracking Memory</strong>: At any given timestep $t$, a new tracking value $\vec{m_t}$ is computed by $\vec{m_t} = Track(\vec{m_t-1}, \vec{c_1}, \vec{c_2}, \vec{b_1})$.</p>
-<p>This tracking memory is then passed noto the <code>recursive composition function</code>, via $\vec{p} = \sigma(W[\vec{c_1};\vec{c_2};\vec{m_t}])$.</p>
-<p><span style="color:red">A recurrent neural network has just been interwovened into a recursive neural network.</span></p>
-<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a><center>Result</center></h3><p>A representation $f(x)$ for an input sentence $x$ is built by a new way. It shows a high-accuracy result on the <a href="http://nlp.stanford.edu/projects/snli/" target="_blank" rel="external">Stanford Natural Language Inference dataset</a>.</p>
-<p><a href="http://www.foldl.me/uploads/papers/acl2016-spinn.pdf" title="Published paper" target="_blank" rel="external">Published paper</a>: A fast unified model for parsing and sentence understanding.<br><a href="https://github.com/stanfordnlp/spinn" target="_blank" rel="external">Code</a>.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Hybrid tree-sequence neural networks with SPINN, published at Stanford&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
-    
-    
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   

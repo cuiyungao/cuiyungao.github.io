@@ -3,23 +3,27 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Archives: 2016/8 | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder.</title>
+  <title>adclick.md | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="undefined">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Cuiyun Gao's Daily Digest">
-<meta property="og:url" content="http://cuiyungao.github.io/archives/2016/08/index.html">
+  <meta name="keywords" content="Deep Learning,Ad Click">
+  <meta name="description" content="本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个演讲以及北大硕士Kintocai的总结。集中于深度学习在Multi-field Categorical这类数据集上的应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="adclick.md">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/08/04/adclick/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
+<meta property="og:description" content="本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个演讲以及北大硕士Kintocai的总结。集中于深度学习在Multi-field Categorical这类数据集上的应用。">
+<meta property="og:updated_time" content="2016-08-04T06:05:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cuiyun Gao's Daily Digest">
+<meta name="twitter:title" content="adclick.md">
+<meta name="twitter:description" content="本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个演讲以及北大硕士Kintocai的总结。集中于深度学习在Multi-field Categorical这类数据集上的应用。">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="null">
+  <meta name="summary" content="&lt;p&gt;本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MzAwNDI4ODcxNA==&amp;amp;mid=2652243946&amp;amp;idx=2&amp;amp;sn=de8bb9a36fe9f2f0c97f30aaec87063f&amp;amp;scene=2&amp;amp;srcid=0727O4JXBdr5NU7sFOD48J69&amp;amp;from=timeline&amp;amp;isappinstalled=0#wechat_redirect&quot;&gt;演讲&lt;/a&gt;以及北大硕士Kintocai的&lt;a href=&quot;http://www.52cs.org/?p=1046&quot;&gt;总结&lt;/a&gt;。集中于深度学习在Multi-field Categorical这类数据集上的应用。&lt;/p&gt;">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -27,7 +31,7 @@
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-  <nav id="menu"  >
+  <nav id="menu" class="hide" >
    <div class="inner flex-row-vertical">
   <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
       <i class="icon icon-lg icon-close"></i>
@@ -97,7 +101,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Cuiyun Gao&#39;s Daily Digest</div>
+        <div class="flex-col header-title ellipsis">adclick.md</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -114,103 +118,105 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Cuiyun Gao&#39;s Daily Digest</h1>
+    <h1 class="author">adclick.md</h1>
     <h5 class="subtitle">
         
-        Work Hard, and Play Harder.
+            <time datetime="2016-08-04T05:46:40.000Z" itemprop="datePublished" class="page-time">
+  2016-08-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
+
         
     </h5>
   </div>
 </header>
 
     <div class="container body-wrap">
-      
-
-
-        <h3 class="archive-separator">August, 2016</h3>
-
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-08-09T01:29:03.000Z" itemprop="datePublished" class="post-time">
-  Aug 9
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/08/09/fastvsword/">fastText与Word2Vec之间的比较</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Word-Embedding/">Word Embedding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fastText/">fastText</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-08-04T05:46:40.000Z" itemprop="datePublished" class="post-time">
-  Aug 4
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/08/04/adclick/">adclick.md</a>
-    </h3>
-  
-
-
-
-    
+      <article id="post-adclick" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meat flex-row">
+        
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ad-Click/">Ad Click</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li></ul>
 
-  </div>
-</article>
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
 
+            
 
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-08-03T12:41:08.000Z" itemprop="datePublished" class="post-time">
-  Aug 3
-</time>
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            
+            </nav>
+            
+        </aside>
 
-  </div>
-  <div class="archive-article-inner">
-    
+        <div class="post-main">
 
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个<a href="http://mp.weixin.qq.com/s?__biz=MzAwNDI4ODcxNA==&amp;mid=2652243946&amp;idx=2&amp;sn=de8bb9a36fe9f2f0c97f30aaec87063f&amp;scene=2&amp;srcid=0727O4JXBdr5NU7sFOD48J69&amp;from=timeline&amp;isappinstalled=0#wechat_redirect" target="_blank" rel="external">演讲</a>以及北大硕士Kintocai的<a href="http://www.52cs.org/?p=1046" target="_blank" rel="external">总结</a>。集中于深度学习在Multi-field Categorical这类数据集上的应用。</p>
+<a id="more"></a>
+
+            <blockquote>
+                <p>
+                Permalink：
+                <a href="http://cuiyungao.github.io/2016/08/04/adclick/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/04/adclick/</a>
+                </p>
+                <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2016/08/09/fastvsword/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">fastText与Word2Vec之间的比较</h4>
+      </a>
+    </div>
+  
 
   
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/08/03/tweet2vec/">Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder</a>
-    </h3>
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/08/03/tweet2vec/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder</h4>
+      </a>
+    </div>
   
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="adclick" data-title="adclick.md" data-url="http://cuiyungao.github.io/2016/08/04/adclick/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cuiyungao"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
 
-  </div>
+
+        </div>
+    </div>
 </article>
-
-
-
-
     </div>
   </main>
 <div class="mask" id="mask"></div>
