@@ -3,7 +3,7 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>adclick.md | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder.</title>
+  <title>adclick.md | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
@@ -16,10 +16,12 @@
 <meta property="og:url" content="http://cuiyungao.github.io/2016/08/04/adclick/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个演讲以及北大硕士Kintocai的总结。集中于深度学习在Multi-field Categorical这类数据集上的应用。">
-<meta property="og:updated_time" content="2016-08-04T06:05:25.000Z">
+<meta property="og:image" content="http://cuiyungao.github.io/img/daily/category.png">
+<meta property="og:updated_time" content="2016-08-09T14:31:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="adclick.md">
 <meta name="twitter:description" content="本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个演讲以及北大硕士Kintocai的总结。集中于深度学习在Multi-field Categorical这类数据集上的应用。">
+<meta name="twitter:image" content="http://cuiyungao.github.io/img/daily/category.png">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
@@ -148,7 +150,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Multi-field-Categorical-Data"><span class="post-toc-text">Multi-field Categorical Data</span></a></li></ol>
             </nav>
             
         </aside>
@@ -158,6 +160,11 @@
             <div class="post-content" id="post-content" itemprop="postContent">
             <p>本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个<a href="http://mp.weixin.qq.com/s?__biz=MzAwNDI4ODcxNA==&amp;mid=2652243946&amp;idx=2&amp;sn=de8bb9a36fe9f2f0c97f30aaec87063f&amp;scene=2&amp;srcid=0727O4JXBdr5NU7sFOD48J69&amp;from=timeline&amp;isappinstalled=0#wechat_redirect" target="_blank" rel="external">演讲</a>以及北大硕士Kintocai的<a href="http://www.52cs.org/?p=1046" target="_blank" rel="external">总结</a>。集中于深度学习在Multi-field Categorical这类数据集上的应用。</p>
 <a id="more"></a>
+<p>总结了FM和FNN算法在处理多值分类数据方面的优势，并把这两种算法与神经网络在特征变量处理方面的差异做了对比，最后通过用户在线广告点击行为预测比较了LR、FM、FNN、CCPM、PNN-I等算法的效果。</p>
+<h3 id="Multi-field-Categorical-Data"><a href="#Multi-field-Categorical-Data" class="headerlink" title="Multi-field Categorical Data"></a><center><strong>Multi-field Categorical Data</strong></center></h3><p>目前深度学习主要用在连续的数据集上，比如视觉、语音识别和自然语言处理上。但是用户点击率预测这种课题是一个离散的数据<code>Multi-field Categorical Data</code>，会有多种不同的字段，比如:[Weekday=Wednesday, Gender=Male, City=Shanghai, …]，我们想要<mark>识别这些特征之间的关系</mark>。传统的做法是应用<code>One-Hot Binary</code>的编码方式去处理这类数据，比如Weekday有7个取值，我们就将其编译为7维的二进制向量，其中只有Wednesday是1，其它都是0，因为它只有一个特征值；Gender只有两维，其中一维是1；如果有一万个城市的话，那City就有一万维，只有Shanghai取值为1，其它是0。</p>
+<center><img src="/img/daily/category.png" width="60%"></center>
+
+<p>最终会得到一个高维稀疏向量。这个数据集不能直接用神经网络训练，因为如果直接用One-Hot Binary进行编码的话，那输入特征至少有一百万，第一层至少需要500个节点，那么第一层我们就需要训练5亿个参数，那就需要20亿或者50亿的数据集，而获得如此大的数据集比较困难。</p>
 
             <blockquote>
                 <p>
