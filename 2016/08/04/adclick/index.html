@@ -23,9 +23,9 @@
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/adclick5.jpg">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/adclick6.jpg">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/adclick7.jpg">
-<meta property="og:image" content="http://cuiyungao.github.io/img/daily/adclick8.jpg">
-<meta property="og:image" content="http://cuiyungao.github.io/img/daily/adclick9.jpg">
-<meta property="og:updated_time" content="2016-08-11T02:26:37.000Z">
+<meta property="og:image" content="http://cuiyungao.github.io/img/daily/adclick8.png">
+<meta property="og:image" content="http://cuiyungao.github.io/img/daily/adclick9.png">
+<meta property="og:updated_time" content="2016-08-11T02:30:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="adclick.md">
 <meta name="twitter:description" content="本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个演讲以及北大硕士Kintocai的总结。集中于深度学习在Multi-field Categorical这类数据集上的应用。">
@@ -177,16 +177,16 @@
 <center><img src="/img/daily/adclick2.jpg" width="60%"></center>
 
 <p>第一部分仍然是Logistic Regression，第二部分是特征之间跟目标变量之间的关系（通过两两向量之间的点积，点积大于0，表示这两个特征的组合跟目标值是正相关的）。这种算法在推荐系统领域应用比较广泛。作者用FM算法对底层输入field的one-hot binary编码进行embedding，把稀疏的二进制特征向量映射到<code>dense real</code>层，之后再把<code>dense real</code>层作为输入变量进行建模，这样就避免了高维二进制输入数据的计算复杂度。模型图如下：</p>
-<center><img src="/img/daily/adclick3.jpg" width="60%"></center>
+<center><img src="/img/daily/adclick3.jpg" width="80%"></center>
 
 <p><mark>FNN跟一般的NN算法的区别是：</mark>大部分神经网络模型对向量之间的处理采用的是<mark>加法</mark>操作，相当于逻辑“或”；而FM则是通过向量之间的<mark>乘法</mark>来衡量两者之间的关系，这就相当于逻辑“且”。显然“且”比“或”更能严格区分目标变量。如下图所示。在第二层对向量的乘积处理中（比如上图蓝色节点直接为两个向量乘积，其连接边上没有参数需要学习），每一个field都只会被映射到一个low-dimensional vector，且field和field之间没有相互影响。</p>
-<center><img src="/img/daily/adclick4.jpg" width="60%"></center>
+<center><img src="/img/daily/adclick4.jpg" width="80%"></center>
 
 <p>乘法关系的建模，可以采用内积或者外积，如下图。外积得到的矩阵中，只有对角线有值，即内积的结果，所以<mark>内积操作可以看做是外积操作的一种特殊情况</mark>。</p>
-<center><img src="/img/daily/adclick5.jpg" width="60%"></center>
+<center><img src="/img/daily/adclick5.jpg" width="80%"></center>
 
 <p>PNN的神经网络图如下所示。进行embedding之后的输入数据有两种处理方法，一种是对该层的任意两个feature进行内积或者外积处理得到上图的蓝色节点，另外一种是把这些feature直接和1相乘复制到上一层的Z中，然后Z和P接在一起作为神经网络的输入层。</p>
-<center><img src="/img/daily/adclick6.jpg" width="60%"></center>
+<center><img src="/img/daily/adclick6.jpg" width="80%"></center>
 
 <p><mark>对特征进行内积或者外积处理会产生一个复杂度的问题</mark>：weight矩阵比较庞大。解决方法：由于weight矩阵是个对称矩阵，可以用factorization来处理这个对称阵，把它转换成矩阵乘矩阵的转置，这样就会减少需要训练的参数，如下图所示。</p>
 <center><img src="/img/daily/adclick7.jpg" width="60%"></center>
@@ -205,10 +205,10 @@
 <li>在广告点击率的预测中，PNN效果优于其他模型。</li>
 </ol>
 <h3 id="Wide-and-Deep-Learning"><a href="#Wide-and-Deep-Learning" class="headerlink" title="Wide and Deep Learning"></a><center><strong>Wide and Deep Learning</strong></center></h3><p>这个<a href="https://arxiv.org/abs/1606.07792" target="_blank" rel="external">模型</a>结合了离散LR以及DNN的方法，category feature进行embedding输入到DNN，其它特征通过LR学习。LR是feature interaction，比较细粒度；而DNN则强调generalization，可以结合这两者的优势。把position bias特征放在最后一个隐层很有意义，可以避免一些不适合结合的features。</p>
-<center><img src="/img/daily/adclick8.jpg" width="60%"></center>
+<center><img src="/img/daily/adclick8.png" width="60%"></center>
 
 <h3 id="DNN-CTR-Prediction"><a href="#DNN-CTR-Prediction" class="headerlink" title="DNN CTR Prediction"></a><center><strong>DNN CTR Prediction</strong></center></h3><p>通过embedding的方式把离散特征转化为Dense Feature， 输入层同时可以增加其他Dense 特征， 比如CTR统计特征、similarity 特征、pv、click等等。每一个隐层都可以增加新的特征输入， 尤其是最后一个隐层。</p>
-<center><img src="/img/daily/adclick9.jpg" width="60%"></center>
+<center><img src="/img/daily/adclick9.png" width="60%"></center>
 
             <blockquote>
                 <p>
