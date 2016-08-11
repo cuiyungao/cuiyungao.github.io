@@ -65,11 +65,11 @@
   </entry>
   
   <entry>
-    <title>adclick.md</title>
+    <title>用户在线广告点击行为的预测</title>
     <link href="http://cuiyungao.github.io/2016/08/04/adclick/"/>
     <id>http://cuiyungao.github.io/2016/08/04/adclick/</id>
     <published>2016-08-04T05:46:40.000Z</published>
-    <updated>2016-08-11T02:31:30.000Z</updated>
+    <updated>2016-08-11T02:32:15.000Z</updated>
     
     <content type="html"><![CDATA[<p>本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个<a href="http://mp.weixin.qq.com/s?__biz=MzAwNDI4ODcxNA==&amp;mid=2652243946&amp;idx=2&amp;sn=de8bb9a36fe9f2f0c97f30aaec87063f&amp;scene=2&amp;srcid=0727O4JXBdr5NU7sFOD48J69&amp;from=timeline&amp;isappinstalled=0#wechat_redirect" target="_blank" rel="external">演讲</a>以及北大硕士Kintocai的<a href="http://www.52cs.org/?p=1046" target="_blank" rel="external">总结</a>。集中于深度学习在Multi-field Categorical这类数据集上的应用。</p>
 <a id="more"></a>
