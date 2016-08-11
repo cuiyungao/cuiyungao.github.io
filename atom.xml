@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-09T02:08:42.000Z</updated>
+  <updated>2016-08-11T14:40:09.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SVM模型小结</title>
+    <link href="http://cuiyungao.github.io/2016/08/11/svmbaidu/"/>
+    <id>http://cuiyungao.github.io/2016/08/11/svmbaidu/</id>
+    <published>2016-08-11T12:06:31.000Z</published>
+    <updated>2016-08-11T14:40:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在百度每周的NLP课程总结，感谢磊磊哥大神。这节课主要讲的是SVM算法，讲到了其中的精髓，感觉受益匪浅，还是记下来以备复习。</p>
+<a id="more"></a>
+<p>SVM (Support Vector Machine)是机器学习的基础，虽然基本，但是当中延伸出来一些很有意义的idea，比如kernel。</p>
+<h3 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a><center>SVM</center></h3><p>如图所示，假定在$x$空间，存在两分类的点集，标记实心的点为$x^+$，空心的点为$x^-$，$w$为与$H_3$垂直的向量，则$H_3$表示为$w^Tx+b$。<mark>注意：$w$是与分界线垂直的向量。</mark>实心和空心区域的点集可以分别表示为：<br>$$<br>w^Tx^++b\geq 1 \\<br>w^Tx^-+b\leq -1.<br>$$<br>这里的1代表不确定常量（常量在不等式左右两边同除，结果为1）。</p>
+<center><img src="/img/daily/svm1.jpg"></center>
+
+<p>现在我们想找到SVM的目标函数。我们的主要目的是maximize两个集合之间的距离，所以取在边界上的两个集合中的点，即$x^+$和$x^-$（<mark>注意：边界上的点即为support vector</mark>），则主要目的转变成maximize这两个点的距离，公式如下：<br>$$<br>\begin{cases}<br>w^Tx^+ + b = 1 \\<br>w^Tx^- + b = -1 \\<br>x^+ - x^- = \lambda.<br>\end{cases}<br>$$<br>在第三个式子左右两边同乘$w^T$，得到$\lambda = \frac{2}{w^Tw}$。所以，$||x^+ - x^-||=\frac{2}{w^Tw}\cdot\sqrt{w^Tw}=\frac{2}{\sqrt{w^Tw}}$，我们想要maximize这个margin值，即minimize这个margin值的倒数。即目标函数为：<br>$$<br>min \; \frac{1}{2}w^Tw \\<br>s.t. \; y_i(w^Tx_i+b) \geq 1, \; \forall i.<br>$$</p>
+<p>其中$i$表示所有样本。这是<mark>primal</mark>的表示形式，我们现在求其<mark>dual</mark>。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在百度每周的NLP课程总结，感谢磊磊哥大神。这节课主要讲的是SVM算法，讲到了其中的精髓，感觉受益匪浅，还是记下来以备复习。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="SVM" scheme="http://cuiyungao.github.io/tags/SVM/"/>
+    
+  </entry>
   
   <entry>
     <title>fastText与Word2Vec之间的比较</title>
@@ -54,9 +84,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="Word Embedding" scheme="http://cuiyungao.github.io/tags/Word-Embedding/"/>
     
@@ -165,9 +195,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -194,9 +224,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -223,9 +253,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -304,9 +334,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="Rating Prediction" scheme="http://cuiyungao.github.io/tags/Rating-Prediction/"/>
     
@@ -335,9 +365,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -460,9 +490,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -549,9 +579,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="Topic Modeling" scheme="http://cuiyungao.github.io/tags/Topic-Modeling/"/>
     
@@ -579,38 +609,11 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="material" scheme="http://cuiyungao.github.io/tags/material/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LDA Understanding</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
-    <published>2016-06-28T09:17:25.000Z</published>
-    <updated>2016-07-20T06:24:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
-<a id="more"></a>
-<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
     
   </entry>
   
@@ -657,6 +660,33 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="code" scheme="http://cuiyungao.github.io/tags/code/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LDA Understanding</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
+    <published>2016-06-28T09:17:25.000Z</published>
+    <updated>2016-07-20T06:24:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
+<a id="more"></a>
+<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
     
   </entry>
   
@@ -708,9 +738,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -768,9 +798,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="character level" scheme="http://cuiyungao.github.io/tags/character-level/"/>
     
@@ -797,72 +827,11 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="Courses" scheme="http://cuiyungao.github.io/tags/Courses/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Dive into TensorFlow</title>
-    <link href="http://cuiyungao.github.io/2016/06/27/diveTensorflow/"/>
-    <id>http://cuiyungao.github.io/2016/06/27/diveTensorflow/</id>
-    <published>2016-06-27T03:37:45.000Z</published>
-    <updated>2016-08-09T06:12:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Get started with TensorFlow.</p>
-<a id="more"></a>
-<h3 id="TensorFlow"><a href="#TensorFlow" class="headerlink" title="TensorFlow"></a><center><strong>TensorFlow</strong></center></h3><p>TensorFlow is an open source software library for <code>numerical computation</code> using <code>data flow graphs</code>. <code>Nodes</code> in the graph represent <code>mathematical operations</code>, while the <code>graph edges</code> represent the <code>multidimensional data arrays</code> (<em>tensors</em>) communicated between them.</p>
-<blockquote><br>    TensorFlow programs use a tensor data structure to represent all data - only tensors are passed between operations in the computation graph.<br></blockquote>
-
-<h3 id="USAGE"><a href="#USAGE" class="headerlink" title="USAGE"></a><center><strong>USAGE</strong></center></h3><p>A scalar, vector, or matrix is a ternsor. A tensor has a rank, a shape, and a static type. Tensor’s dimension can be described by <code>rank, shape, and dimension number</code>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">scalar = tf.constant(100)</div><div class="line">vector = tf.constant([1,2,3,4])</div><div class="line">matrix = tf.constant([[1,2],[3,4]])</div><div class="line">## get shape</div><div class="line">scalar.get_shape()</div></pre></td></tr></table></figure>
-<p>Virables must be initialized by running an <code>init</code> Op after haveing launched the graph.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var = tf.Variable(10)</div><div class="line">ten = tf.constant(10)</div><div class="line">new_var = tf.mul(var, ten)</div><div class="line">upate = tf.assign(var, new_var)</div><div class="line"></div><div class="line">init_op = tf.initialize_all_variables()</div><div class="line">with tf.Session() as sess:</div><div class="line">  sess.run(init_op)</div><div class="line">  print(sess.run(var))</div><div class="line">  for _ in range(5):</div><div class="line">    sess.run(update)</div><div class="line">    print(sess.run(var))</div></pre></td></tr></table></figure>
-<p>Variables are in-memory buffers containing tensors. During model training, variables can be used to hold and update parameters.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">weight = tf.Variable(tf.random_normal([4096,500], stddev=0.25))</div><div class="line">weight_update = tf.Variable(weight.initialized_value())</div></pre></td></tr></table></figure>
-<p>To get the results, we need to execute the graph with a <code>run()</code> call on the <span style="color:white">Session</span> object.</p>
-<p><code>Feed</code> temporarily replaces the output of an update with a tensor value. The most common “feed” operations is created by <code>tf.placeholder()</code>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">plh1 = tf.placeholder(tf.float32)</div><div class="line">plh2 = tf.placeholder(tf.float32)</div><div class="line">result = tf.mul(plh1, plh2)</div><div class="line">with tf.Session as sess:</div><div class="line">  print(sess.run([result], feed_dict=&#123;plh1:[100.], plh2:[200.]&#125;))</div></pre></td></tr></table></figure>
-<p><a href="http://textminingonline.com/dive-into-tensorflow-part-ii-basic-concepts" target="_blank" rel="external">Link</a></p>
-<h3 id="How-Good-is-Your-Fit"><a href="#How-Good-is-Your-Fit" class="headerlink" title="How Good is Your Fit?"></a><center><strong>How Good is Your Fit?</strong></center></h3><p>Through the <a href="https://www.youtube.com/watch?v=cJA5IHIIL30" target="_blank" rel="external">video</a> provided by TensorFlow, here summaries the ways to prevent or reduce overfitting:</p>
-<ul>
-<li>Split up the data into 3 sets: the training set, test set, and cross validation set.</li>
-</ul>
-<p>Along with the parameters averaging, the model is not too dependent on any particular subset of the overall data set.</p>
-<ul>
-<li>For neural networks particularly, <span style="color:white">regularization</span> is a common way.</li>
-</ul>
-<p>There are a few different types, such as L1 and L2, but each follows the same general principle - the model is <code>penalized</code> for having weights and biases that are too large.</p>
-<ul>
-<li>Another method is <span style="color:white">Max Norm constraints</span>.</li>
-</ul>
-<p>It directly adds a size limit to the weights or biases.</p>
-<ul>
-<li>A completely different approach is <span style="color:white">Dropout</span>.</li>
-</ul>
-<p>It randomly switches off ceratin neurons in the network, preventing the model from becoming too dependent on a set of neurons and its associated weights and biases.</p>
-<h3 id="Building-Blocks-and-Algorithms"><a href="#Building-Blocks-and-Algorithms" class="headerlink" title="Building Blocks and Algorithms"></a><center><strong>Building Blocks and Algorithms</strong></center></h3><p>基于<a href="http://terrytangyuan.github.io/2016/08/06/tensorflow-not-just-deep-learning/" target="_blank" rel="external">TensorFlow - Not just for deep learning</a>。TensorFlow提供了很多支持数值计算和机器学习的building blocks，比如<code>tf.contrib</code>模块。</p>
-<h4 id="TF-Learn-Estimators"><a href="#TF-Learn-Estimators" class="headerlink" title="TF.Learn Estimators"></a>TF.Learn Estimators</h4><p><code>TF.Learn</code>是一个high-level的模块，提供了很多机器学习的算法，比如k-means，random forests, SVM, Gaussian Mixture Model Clustering和Linear/logistic regression。</p>
-<h4 id="Statistical-Distributions"><a href="#Statistical-Distributions" class="headerlink" title="Statistical Distributions"></a>Statistical Distributions</h4><p><code>tf.contrib.distributions</code>提供了很多的分布，比如Bernoulli, Beta, Chi2, Dirichlet, Gamma, Uniform等。</p>
-<h4 id="Layer-Components"><a href="#Layer-Components" class="headerlink" title="Layer Components"></a>Layer Components</h4><p><code>tf.contrib.layers</code>里提供了很多生成layer操作和相关权重以及bias variables的函数，比如batch normalization, convolution layer, dropout layer等。当然还有one-hot encoding。<code>tf.contrib.layers.optimizers</code>提供了很多优化算法，比如Adagrad, SGC, Momentum等，经常用于数值分析上的优化问题，包括优化参数空间以找到一个较好的模型。<code>tf.contrib.layers.reguarizers</code>提供了许多的Regularizers，比如L1和L2的正则器，常用于通过惩罚模型中大量的特征，以减少overfitting的风险。许多算法需要计算gradients，在参数空间中寻找最佳参数前通常需要初始化模型参数，<code>tf.contrib.layers.initilizers</code>提供了类似Xavier的初始化方法，用于保证所有层gradients的scale大致保持一致。<code>tf.contrib.layers.feature_column</code>将连续的或者分类的特征用bucketing/binning, crossing/composition和embedding的方法来转化。<code>tf.contrib.layers.embedding</code>讲高维的分类特征转变成低维的dense的实数向量，通常被称为<mark>an embedding vector</mark>。这些低维的紧密的矩阵后面被连接起来，形成一个连续的特征，然后输入到模型中。</p>
-<h4 id="Loss-Functions-and-Metrics"><a href="#Loss-Functions-and-Metrics" class="headerlink" title="Loss Functions and Metrics"></a>Loss Functions and Metrics</h4><p><code>tf.contrib.losses</code>提供了很多loss functions，比如sigmoid, softmax cross entropy, log-loss, hinge loss, sum of squares, sum of pairwise squares等。衡量标准在<code>tf.contrib.metrics</code>，比如precision, recall, accuracy, auc, MSE以及它们演变出来的一些版本。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Get started with TensorFlow.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
-      <category term="TensorFlow" scheme="http://cuiyungao.github.io/tags/TensorFlow/"/>
+      <category term="Courses" scheme="http://cuiyungao.github.io/tags/Courses/"/>
     
   </entry>
   
