@@ -69,7 +69,7 @@
     <link href="http://cuiyungao.github.io/2016/08/04/adclick/"/>
     <id>http://cuiyungao.github.io/2016/08/04/adclick/</id>
     <published>2016-08-04T05:46:40.000Z</published>
-    <updated>2016-08-11T02:30:46.000Z</updated>
+    <updated>2016-08-11T02:31:30.000Z</updated>
     
     <content type="html"><![CDATA[<p>本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个<a href="http://mp.weixin.qq.com/s?__biz=MzAwNDI4ODcxNA==&amp;mid=2652243946&amp;idx=2&amp;sn=de8bb9a36fe9f2f0c97f30aaec87063f&amp;scene=2&amp;srcid=0727O4JXBdr5NU7sFOD48J69&amp;from=timeline&amp;isappinstalled=0#wechat_redirect" target="_blank" rel="external">演讲</a>以及北大硕士Kintocai的<a href="http://www.52cs.org/?p=1046" target="_blank" rel="external">总结</a>。集中于深度学习在Multi-field Categorical这类数据集上的应用。</p>
 <a id="more"></a>
@@ -104,7 +104,7 @@
 <li>Relative Information Gain (RIG)</li>
 </ul>
 <h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>实验比较了dropout、hidden layer的层数、迭代次数、不同层级节点分布形态以及不同的Activation Function的效果。</p>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a><center><strong>Summary</strong></center></h3><ol>
+<h3 id="Summary-of-PNN"><a href="#Summary-of-PNN" class="headerlink" title="Summary of PNN"></a><center><strong>Summary of PNN</strong></center></h3><ol>
 <li>深度学习在Multi-field的数据集上也有显著的应用效果；</li>
 <li>通过外积和内积找到特征之间的相关关系；</li>
 <li>在广告点击率的预测中，PNN效果优于其他模型。</li>
