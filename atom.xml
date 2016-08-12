@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-12T01:55:56.000Z</updated>
+  <updated>2016-08-12T01:58:54.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://cuiyungao.github.io/2016/08/11/svmbaidu/"/>
     <id>http://cuiyungao.github.io/2016/08/11/svmbaidu/</id>
     <published>2016-08-11T12:06:31.000Z</published>
-    <updated>2016-08-12T01:55:56.000Z</updated>
+    <updated>2016-08-12T01:58:54.000Z</updated>
     
     <content type="html"><![CDATA[<p>在百度每周的NLP课程总结，感谢磊磊哥大神。这节课主要讲的是SVM算法，讲到了其中的精髓，感觉受益匪浅，还是记下来以备复习。</p>
 <a id="more"></a>
@@ -29,7 +29,7 @@
 <center><img src="/img/daily/svm1.png"></center>
 
 <p>现在我们想找到SVM的目标函数。我们的主要目的是maximize两个集合之间的距离，所以取在边界上的两个集合中的点，即$x^+$和$x^-$（<mark>注意：边界上的点即为support vector</mark>），则主要目的转变成maximize这两个点的距离，公式如下：<br>$$<br>\begin{cases}<br>w^Tx^+ + b = 1 \\<br>w^Tx^- + b = -1 \\<br>x^+ - x^- = \lambda.<br>\end{cases}<br>$$<br>在第三个式子左右两边同乘$w^T$，得到$\lambda = \frac{2}{w^Tw}$。所以，$||x^+ - x^-||=\frac{2}{w^Tw}\cdot\sqrt{w^Tw}=\frac{2}{\sqrt{w^Tw}}$，我们想要maximize这个margin值，即minimize这个margin值的倒数。即目标函数为：<br>$$<br>min \; \frac{1}{2}w^Tw \\<br>s.t. \; y_i(w^Tx_i+b) \geq 1, \; \forall i.<br>$$</p>
-<p>其中$i$表示所有样本。这是<mark>primal</mark>的表示形式，我们现在用拉格朗日求其<mark>dual</mark>，则有：<br>$$<br>L(w,b,\lambda) = \frac{1}{2}w^Tw+\sum_i \lambda_i [1-y_i(w^Tx_i+b)], \\<br>s.t. \; \sum_i \geq 0.<br>$$<br>所以有，$\frac{\partial L}{\partial w} = w-\sum_i \lambda_iy_ix_i=0$，得到$w=\sum_i\lambda_iy_ix_i$。同理，我们对$b$进行求导，有$\frac{\partial L}{\partial b} = \sum_i\lambda_iy_i=0$。所以化简上面的公式，我们有：<br>$$<br>H({\lambda_i}) = -\frac{1}{2}(\sum_i\lambda_iy_ix_i)^T(\sum_j\lambda_jy_jx_j) + \sum_i\lambda_i, \\<br>s.t. \; \sum_i\lambda_i\geq 0.<br>$$</p>
+<p>其中$i$表示所有样本。这是<mark>primal</mark>的表示形式，我们现在用拉格朗日求其<mark>dual</mark>，则有：<br>$$<br>L(w,b,\lambda) = \frac{1}{2}w^Tw+\sum_i \lambda_i [1-y_i(w^Tx_i+b)], \\<br>s.t. \; \sum_i\lambda_i \geq 0.<br>$$<br>所以有，$\frac{\partial L}{\partial w} = w-\sum_i \lambda_iy_ix_i=0$，得到$w=\sum_i\lambda_iy_ix_i$。同理，我们对$b$进行求导，有$\frac{\partial L}{\partial b} = \sum_i\lambda_iy_i=0$。所以化简上面的公式，我们有：<br>$$<br>H({\lambda_i}) = -\frac{1}{2}(\sum_i\lambda_iy_ix_i)^T(\sum_j\lambda_jy_jx_j) + \sum_i\lambda_i, \\<br>s.t. \; \sum_i\lambda_i\geq 0.<br>$$</p>
 <p>我们把这个式子写成向量形式，即$H=-\frac{1}{2}\overrightarrow{\lambda}^TK\overrightarrow{\lambda}+\overrightarrow{1}\lambda$，其中$K=(x_iy_i)^T(x_jy_j)$。<mark>注意：由定义可以看出，$\lambda$在不是边界上的点是为0，所以只有边界上的点定义了$w$。</mark>这里就引出来一个非常重要的概念<mark>kernel</mark>，什么样的矩阵可以写成kernel形式呢？<mark><a href="https://en.wikipedia.org/wiki/Mercer%27s_theorem" target="_blank" rel="external">Mercer’s theorem</a></mark>对其进行了阐述。简单来说，就是一个对称的半正定的矩阵就可以写成kernel的表示形式，即symetric, PSD matrix $\implies$ kernel ($x\to\phi(x)$)。这里的kernel有三种形式：</p>
 <ul>
 <li>linear</li>
