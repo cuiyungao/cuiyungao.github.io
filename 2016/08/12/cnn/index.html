@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/cnn1.png">
-<meta property="og:updated_time" content="2016-08-12T03:25:16.000Z">
+<meta property="og:updated_time" content="2016-08-12T03:29:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN总结">
 <meta name="twitter:description" content="已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。">
@@ -169,7 +169,7 @@
 <li>Classification (Fully Connected Layer).</li>
 </ul>
 <p>Convolution这一步是一个linear的操作，主要目的是获取输入图片的特征，通过移动<code>filter</code>（也叫<code>kernel</code>，<code>feature detector</code>）保留pixels之间的空间关系。dot product的结果叫做<code>Convolved Feature</code>或者<code>Activation Map</code>或者<code>Feature Map</code>。<code>filter</code>种类的数量表示convolution之后的深度，一种<code>filter</code>得到一种layer。Feature Map的大小由三个参数决定，即Depth, Stride和Zero-Padding。</p>
-<center><img src="/img/daily/cnn1.png" width="60%"></center>
+<center><img src="/img/daily/cnn1.png" width="100%"></center>
 
 <p>ReLU是对Convolution的结果进行非线性变换，是element wise operation，将所有的负值替换成0。因为现实数据通常是非线性的，所以引入ReLU这个非线性函数，也可以采用tanh或者sigmoid，但是ReLU通常情况下性能较好。</p>
 <p>Pooling操作主要目的是减少特征维度，同时保留重要信息，避免overfitting，这使得对输入图片的各种变换、扭曲和移动有效。到这一步，我们可以得到输入图片的high-level的feature。最后通过fully connected layer，我们对这些feature进行分类。比如说我们要使得结果分成$k$类，通过softmax这个activation function，使得这$k$类输出概率的和是1。最后通过back propagation，我们更新迭代参数使分类结果最佳。</p>
