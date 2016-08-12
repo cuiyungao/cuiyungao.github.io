@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-12T02:00:27.000Z</updated>
+  <updated>2016-08-12T03:25:16.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CNN总结</title>
+    <link href="http://cuiyungao.github.io/2016/08/12/cnn/"/>
+    <id>http://cuiyungao.github.io/2016/08/12/cnn/</id>
+    <published>2016-08-12T03:00:57.000Z</published>
+    <updated>2016-08-12T03:25:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。</p>
+<a id="more"></a>
+<p>CNN已经被各种大牛解说得很好了，其中觉得不是很懂的地方主要还是在back propagation。所以这篇文章主要对back propagation方面进行总结，也汇总CNN的一些重要的点。一些很好的资料也在本文进行标注。</p>
+<h3 id="Main-Steps"><a href="#Main-Steps" class="headerlink" title="Main Steps"></a><center><strong>Main Steps</strong></center></h3><p>下面这幅图非常经典，是ConvNet的过程图。在CNN中有4个关键操作：</p>
+<ul>
+<li>Convolution</li>
+<li>Non Linearlity (ReLU)</li>
+<li>Pooling or Sub Sampling</li>
+<li>Classification (Fully Connected Layer).</li>
+</ul>
+<p>Convolution这一步是一个linear的操作，主要目的是获取输入图片的特征，通过移动<code>filter</code>（也叫<code>kernel</code>，<code>feature detector</code>）保留pixels之间的空间关系。dot product的结果叫做<code>Convolved Feature</code>或者<code>Activation Map</code>或者<code>Feature Map</code>。<code>filter</code>种类的数量表示convolution之后的深度，一种<code>filter</code>得到一种layer。Feature Map的大小由三个参数决定，即Depth, Stride和Zero-Padding。</p>
+<center><img src="/img/daily/cnn1.png" width="60%"></center>
+
+<p>ReLU是对Convolution的结果进行非线性变换，是element wise operation，将所有的负值替换成0。因为现实数据通常是非线性的，所以引入ReLU这个非线性函数，也可以采用tanh或者sigmoid，但是ReLU通常情况下性能较好。</p>
+<p>Pooling操作主要目的是减少特征维度，同时保留重要信息，避免overfitting，这使得对输入图片的各种变换、扭曲和移动有效。到这一步，我们可以得到输入图片的high-level的feature。最后通过fully connected layer，我们对这些feature进行分类。比如说我们要使得结果分成$k$类，通过softmax这个activation function，使得这$k$类输出概率的和是1。最后通过back propagation，我们更新迭代参数使分类结果最佳。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a><br>[2] <a href="http://andrew.gibiansky.com/blog/machine-learning/convolutional-neural-networks/" target="_blank" rel="external">Backpropagation</a><br>[3] <a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">CS231n Convolutional Neural Networks Stanford</a><br>[4] <a href="http://blog.algorithmia.com/introduction-natural-language-processing-nlp/" target="_blank" rel="external">Introduction to Natural Language Processing 2016</a>。这里面包含了各种资料的汇总。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
+    
+  </entry>
   
   <entry>
     <title>SVM模型小结</title>
@@ -100,9 +140,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="Word Embedding" scheme="http://cuiyungao.github.io/tags/Word-Embedding/"/>
     
@@ -211,9 +251,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -240,9 +280,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -269,9 +309,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -350,9 +390,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="Rating Prediction" scheme="http://cuiyungao.github.io/tags/Rating-Prediction/"/>
     
@@ -381,9 +421,39 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+  </entry>
+  
+  <entry>
+    <title>Good-Turing Estimation 大数据处理平滑算法</title>
+    <link href="http://cuiyungao.github.io/2016/06/29/goodturing/"/>
+    <id>http://cuiyungao.github.io/2016/06/29/goodturing/</id>
+    <published>2016-06-29T09:22:55.000Z</published>
+    <updated>2016-08-03T04:34:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>参数平滑算法</p>
+<a id="more"></a>
+<p>参数平滑算法，是在训练数据不足时，采用某种方式对统计结果和概率估计进行必要的调整和修补，以降低由于数据稀疏现象带来的统计误差。</p>
+<p>在实际应用中，数据稀疏会产生大量空值，影响后续处理的性能和效果，所以需要平滑算法。</p>
+<p><code>Good-Turing</code>估计经常用在数据平滑方面。基本思想是：将统计参数按出现次数聚类，然后用出现次数加1的类来估计当前类。假定，一个元素在文本$W$中出现$r$次的概率是$\theta(r)$，$N_r$表示元素在$W$中正好出现$r$次的个数，即$N_r=|{x_j: \sharp(x_j)=r}|$，满足：</p>
+<p>$$<br>N = \sum_{r} rN_r.<br>$$</p>
+<p>Good-Turing估计$\theta(r)$为：$\hat{\theta}(r) = \frac{1}{N} (r+1) \frac{N_{r+1}}{N_r}$.</p>
+<p>具体的分析过程可以看<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODIzNDQ3Mw==&amp;mid=2649965669&amp;idx=1&amp;sn=297fa2d2b48c4a46135aeaa73d2d437a&amp;scene=0#wechat_redirect" target="_blank" rel="external">这里</a>。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参数平滑算法&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Data Mining" scheme="http://cuiyungao.github.io/tags/Data-Mining/"/>
     
   </entry>
   
@@ -425,36 +495,6 @@
     
     
       <category term="Recommend System" scheme="http://cuiyungao.github.io/tags/Recommend-System/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Good-Turing Estimation 大数据处理平滑算法</title>
-    <link href="http://cuiyungao.github.io/2016/06/29/goodturing/"/>
-    <id>http://cuiyungao.github.io/2016/06/29/goodturing/</id>
-    <published>2016-06-29T09:22:55.000Z</published>
-    <updated>2016-08-03T04:34:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>参数平滑算法</p>
-<a id="more"></a>
-<p>参数平滑算法，是在训练数据不足时，采用某种方式对统计结果和概率估计进行必要的调整和修补，以降低由于数据稀疏现象带来的统计误差。</p>
-<p>在实际应用中，数据稀疏会产生大量空值，影响后续处理的性能和效果，所以需要平滑算法。</p>
-<p><code>Good-Turing</code>估计经常用在数据平滑方面。基本思想是：将统计参数按出现次数聚类，然后用出现次数加1的类来估计当前类。假定，一个元素在文本$W$中出现$r$次的概率是$\theta(r)$，$N_r$表示元素在$W$中正好出现$r$次的个数，即$N_r=|{x_j: \sharp(x_j)=r}|$，满足：</p>
-<p>$$<br>N = \sum_{r} rN_r.<br>$$</p>
-<p>Good-Turing估计$\theta(r)$为：$\hat{\theta}(r) = \frac{1}{N} (r+1) \frac{N_{r+1}}{N_r}$.</p>
-<p>具体的分析过程可以看<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODIzNDQ3Mw==&amp;mid=2649965669&amp;idx=1&amp;sn=297fa2d2b48c4a46135aeaa73d2d437a&amp;scene=0#wechat_redirect" target="_blank" rel="external">这里</a>。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参数平滑算法&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="Data Mining" scheme="http://cuiyungao.github.io/tags/Data-Mining/"/>
     
   </entry>
   
@@ -506,9 +546,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -595,9 +635,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="Topic Modeling" scheme="http://cuiyungao.github.io/tags/Topic-Modeling/"/>
     
@@ -625,9 +665,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="material" scheme="http://cuiyungao.github.io/tags/material/"/>
     
@@ -754,9 +794,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -814,40 +854,11 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="character level" scheme="http://cuiyungao.github.io/tags/character-level/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Courses for NLP and Deep Learning</title>
-    <link href="http://cuiyungao.github.io/2016/06/27/nlpcourses/"/>
-    <id>http://cuiyungao.github.io/2016/06/27/nlpcourses/</id>
-    <published>2016-06-27T08:01:41.000Z</published>
-    <updated>2016-06-27T08:06:55.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>The website contains the courses related to NLP and deep learning.</p>
-<a id="more"></a>
-<h3 id="1-Deep-learning-for-text-mining-from-scratch"><a href="#1-Deep-learning-for-text-mining-from-scratch" class="headerlink" title="1. Deep learning for text mining from scratch"></a><a href="http://textminingonline.com/deep-learning-for-text-mining-from-scratch" target="_blank" rel="external">1. Deep learning for text mining from scratch</a></h3><p>This website contains links for <code>optimization</code> and <code>statistics</code>, and also very useful tutorials for <code>NLP</code>, such as UFLDL tutorial.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;The website contains the courses related to NLP and deep learning.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="Courses" scheme="http://cuiyungao.github.io/tags/Courses/"/>
     
   </entry>
   
