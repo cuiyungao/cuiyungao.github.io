@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-14T08:22:00.000Z</updated>
+  <updated>2016-08-14T08:22:53.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>query</title>
+    <title>Query Understanding</title>
     <link href="http://cuiyungao.github.io/2016/08/13/query/"/>
     <id>http://cuiyungao.github.io/2016/08/13/query/</id>
     <published>2016-08-13T02:36:37.000Z</published>
-    <updated>2016-08-14T08:22:00.000Z</updated>
+    <updated>2016-08-14T08:22:53.000Z</updated>
     
     <content type="html"><![CDATA[<p>Query understanding是很多AI应用场景的基础，比如机器人对话，车载导航等等。</p>
 <a id="more"></a>
