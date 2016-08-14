@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-12T03:29:50.000Z</updated>
+  <updated>2016-08-14T08:22:00.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>query</title>
+    <link href="http://cuiyungao.github.io/2016/08/13/query/"/>
+    <id>http://cuiyungao.github.io/2016/08/13/query/</id>
+    <published>2016-08-13T02:36:37.000Z</published>
+    <updated>2016-08-14T08:22:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Query understanding是很多AI应用场景的基础，比如机器人对话，车载导航等等。</p>
+<a id="more"></a>
+<p>Query understanding的任务有三个，即纠正用户输入query的错误，精确地引导用户以及准确地理解用户query的目的。Query通常分为两种类型，一种是general query，不需要上下文情境；另外一种是<mark>contextual questions</mark>，比如”Where can I eat cheese cake right now”。第二种query不需要返回一系列的文档，而是需要解析query的目的，用户的地理位置和时间等，提供personal的回答。另外一种分类方法是从答案的角度，一种是<mark>精确需求</mark>，直接给出结果，比如”Who is the president of USA”；第二种则是给出泛泛的回答，让用户自己选择，即<mark>Interactive Question Answering</mark>，如下图所示。</p>
+<center><img src="/img/daily/qu1.png" width="90%"></center><br><center>Fig.1 Interactive Question Answering</center>
+
+<h3 id="General-Characteristics"><a href="#General-Characteristics" class="headerlink" title="General Characteristics"></a><center><strong>General Characteristics</strong></center></h3><p>Query understanding还有一个非常有意思的应用是个人助理（比如微软Cortana，苹果Siri，Google Now，百度度秘），可以为用户提供各种服务，比如搜索，会议安排，闹铃设置，打电话，发短信，播放音乐等等。这个可以被称为<code>Deep Search</code>，即Search with a Deep Understanding，应用NLP和knowledge context (用户之前的搜索和浏览活动，兴趣爱好，地点，询问的时间以及当时的天气等等)，通常有如下特征：</p>
+<ol>
+<li>对query的语义理解。不同语义层次的理解如下图所示，展示了不同level的语义理解。</li>
+</ol>
+<center><img src="/img/daily/qu2.png" width="90%"></center><br><center>Fig.2 Matching at Different Semantic Levels</center>
+
+<ol>
+<li>对上下文和前面任务的理解。这个可以有效地理解有歧义的词汇。Fig.3显示了含有interleaved tasks的一个搜索情景。<code>Reference Query</code>表示的是当前用户的query，<code>On-Task Queries</code>表示跟<code>Reference Query</code>相同任务的query；<code>Off-Task Queries</code>表示的是跟当前query任务不同的query。</li>
+</ol>
+<center><img src="/img/daily/qu3.png" width="90%"></center><br><center>Fig.3 A Search Context with Interleaved Tasks</center>
+
+<ol>
+<li>用户理解和个性化。不同的用户有不同的兴趣爱好等。</li>
+</ol>
+<h3 id="Phases-in-Deep-Query-Understanding"><a href="#Phases-in-Deep-Query-Understanding" class="headerlink" title="Phases in Deep Query Understanding"></a><center><strong>Phases in Deep Query Understanding</strong></center></h3><p>Query understanding主要有三个过程，如Fig.4所示，包括query refinement, query suggestion和query intent detection，最终给query打tag，有了tag之后进入<code>Answer Generation Module</code>。</p>
+<center><img src="/img/daily/qu4.png" width="90%"></center><br><center> Fig.4 Query Understanding Module Broad Components</center>
+
+<p><code>Query refinement</code>主要进行spelling correction, acronym expansion, word splitting, words merger和phrase segmentation。纠正之后的query进入<code>query suggestion</code>来发现和推荐可以得到更好搜索结果的queries。在循环一次或者多次<code>query correction-&gt;query suggestion-&gt;user query</code>这个过程后，完善的query进入到<code>query expansion</code>模块，补充更多近似的queries，以减少由于字符的错误匹配产生的文章结果。这个query set之后输入到<code>query intention detection</code>模块，精确地推测query的意图。<code>Query classification</code>将query粗分类到某一个field里面，比如运动、娱乐、天气等，结果被输入到<code>semantic tagging</code>部分进行意图检测。Fig.5描述了一个例子。</p>
+<center><img src="/img/daily/qu5.png" width="90%"></center><br><center>Fig.5 Example of Task Done at Each Component</center>
+
+<p><mark>Query classification比document text classification更具有挑战性，因为query相对较短，而且很多query有歧义性。</mark>Query classification对精确地判断用户意图非常重要。对于semantic tagging，经常用的features是n-grams, regular regression, POS (Part of Speech), lexicons和transit features,<mark>总的来说，分为两种，syntactic和semantic的features</mark>。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://arxiv.org/pdf/1505.05187.pdf" target="_blank" rel="external">Techniques for deep query understanding.</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Query understanding是很多AI应用场景的基础，比如机器人对话，车载导航等等。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="QU" scheme="http://cuiyungao.github.io/tags/QU/"/>
+    
+  </entry>
   
   <entry>
     <title>CNN总结</title>
@@ -674,6 +725,33 @@
   </entry>
   
   <entry>
+    <title>LDA Understanding</title>
+    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
+    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
+    <published>2016-06-28T09:17:25.000Z</published>
+    <updated>2016-07-20T06:24:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
+<a id="more"></a>
+<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Useful Source Code for NLP</title>
     <link href="http://cuiyungao.github.io/2016/06/28/code/"/>
     <id>http://cuiyungao.github.io/2016/06/28/code/</id>
@@ -716,33 +794,6 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="code" scheme="http://cuiyungao.github.io/tags/code/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LDA Understanding</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/lda/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/lda/</id>
-    <published>2016-06-28T09:17:25.000Z</published>
-    <updated>2016-07-20T06:24:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>LDA introduction and summary.</p>
-<a id="more"></a>
-<h3 id="Topic-Model-Reading-List"><a href="#Topic-Model-Reading-List" class="headerlink" title="Topic Model Reading List"></a>Topic Model Reading List</h3><p><a href="http://bigml.cs.tsinghua.edu.cn/~jianfei/lda-reading.html" target="_blank" rel="external">Link.</a><br>详细解释：</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;LDA introduction and summary.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
     
   </entry>
   
@@ -797,68 +848,6 @@
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How to read:character level deep learning</title>
-    <link href="http://cuiyungao.github.io/2016/06/27/howtoread/"/>
-    <id>http://cuiyungao.github.io/2016/06/27/howtoread/</id>
-    <published>2016-06-27T08:26:48.000Z</published>
-    <updated>2016-06-28T02:37:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>A character level model for sentiment classification is demonstrated with TensorFlow.</p>
-<a id="more"></a>
-<p>Some NLP applications are impressive, such as Gmail’s <a href="http://arxiv.org/abs/1606.04870" target="_blank" rel="external">auto-reply</a> and FB’s <a href="https://code.facebook.com/posts/181565595577955" target="_blank" rel="external">deep-text</a>. The models are built with framework <a href="http://keras.io/" target="_blank" rel="external">Keras</a>, with TensorFlow as back-end.</p>
-<h3 id="Keras"><a href="#Keras" class="headerlink" title="Keras"></a><center><strong>Keras</strong></center></h3><p>The core data structure of Keras is a <code>model</code>, a way to organize layers. The main type of the model is the <code>sequential model</code>, a linear stack of layers.</p>
-<h3 id="Character-Level-Model"><a href="#Character-Level-Model" class="headerlink" title="Character-Level Model"></a><center><strong>Character-Level Model</strong></center></h3><p>The typical problem of sentiment analysis is, given a text $x_i$ (<em>e.g.</em>, a movie review), we need to figure out whether the review is positive(1) or negative(0), denoted as $y_i$. A network $f(x_i)$ is created to predict the lable of the review. Typically, the text is split into <code>a sequence of words</code>, and then learn <code>fixed length embedding</code> of the sequence, which later is used for classification.</p>
-<p>In a <code>recurrent model</code>, each word is encoded as <code>a vector</code> (<span style="color:red">word embeddings</span><a href="http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/" target="_blank" rel="external">Christopher Olah</a>) and also his explanation about <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">LSTMs</a>.</p>
-<p>The neural network tries to learn the specific sequences of letters from words <code>separated by spaces</code> or <code>other punctuation points</code>. The visualization of some internal processes of <code>char-rnn models</code> can be found in this <a href="http://arxiv.org/abs/1506.02078" target="_blank" rel="external">paper</a>.</p>
-<h3 id="Building-a-Sentiment-Model"><a href="#Building-a-Sentiment-Model" class="headerlink" title="Building a Sentiment Model"></a><center><strong>Building a Sentiment Model</strong></center></h3><ol>
-<li><p>Dataset: <a href="https://www.kaggle.com/c/word2vec-nlp-tutorial/data" target="_blank" rel="external">labelled lebeledTrainData.tsv</a>.</p>
-</li>
-<li><p>Split the text into sentences. This <code>bounds the maximum length of a sequence</code>.</p>
-</li>
-<li><p>Encode each sentence from characters to a fixed length encoding.</p>
-</li>
-<li><p>Use a bi-directional LSTM to read sentence by sentence and create a complete document encoding.</p>
-</li>
-</ol>
-<center><span style="color:white">Full Model Architecture</span></center><br><center><img src="/img/daily/fullmodel.jpg" style="width:500px;"></center>
-
-<p>The model uses <span style="color:red">two bi-directional LSTM</span>. It starts from reading characters and forming concepts of “words”, then uses <code>a bi-directional LSTM</code> to read “words” as <code>a sequence</code> and account for their <code>position</code>. Then, a <code>second</code> bi-directional LSTM is used for each sentence for the final document encoding.</p>
-<p><a href="https://github.com/offbit/char-models" target="_blank" rel="external">Code</a></p>
-<h3 id="Advantage-of-Character-Level-Modelling"><a href="#Advantage-of-Character-Level-Modelling" class="headerlink" title="Advantage of Character-Level Modelling"></a><center><strong>Advantage of Character-Level Modelling</strong></center></h3><p>It enables us to deal with common miss-spellings, different permutation of words (think run, runs, running). Texts that contain <code>emojis</code>, <code>signaling chars</code>, <code>hashtags</code>, and all the <code>funky annotations</code> that are being used in social media are very interesting directions.</p>
-<h3 id="Take-Home"><a href="#Take-Home" class="headerlink" title="Take Home"></a><center><strong>Take Home</strong></center></h3><p>Some things might improve the <code>generalisation</code> and <code>reduce overfitting</code>:</p>
-<ol>
-<li><p>Different hidden layer sizes. Smaller layers will reduce the ability of the model to overfit to the training set.</p>
-</li>
-<li><p>Larger dropout rates.</p>
-</li>
-<li><p>$l2/l1$ regularization.</p>
-</li>
-<li><p>A deeper and/or wider architecture of cnn encoder.</p>
-</li>
-<li><p>Different doc encoder, maybe include <code>an attention model</code>.</p>
-</li>
-</ol>
-<p><a href="https://offbit.github.io/how-to-read/" target="_blank" rel="external">link</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;A character level model for sentiment classification is demonstrated with TensorFlow.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="character level" scheme="http://cuiyungao.github.io/tags/character-level/"/>
     
   </entry>
   
