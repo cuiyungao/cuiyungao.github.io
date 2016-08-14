@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-14T08:22:53.000Z</updated>
+  <updated>2016-08-14T08:24:02.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="http://cuiyungao.github.io/2016/08/13/query/"/>
     <id>http://cuiyungao.github.io/2016/08/13/query/</id>
     <published>2016-08-13T02:36:37.000Z</published>
-    <updated>2016-08-14T08:22:53.000Z</updated>
+    <updated>2016-08-14T08:24:02.000Z</updated>
     
     <content type="html"><![CDATA[<p>Query understanding是很多AI应用场景的基础，比如机器人对话，车载导航等等。</p>
 <a id="more"></a>
 <p>Query understanding的任务有三个，即纠正用户输入query的错误，精确地引导用户以及准确地理解用户query的目的。Query通常分为两种类型，一种是general query，不需要上下文情境；另外一种是<mark>contextual questions</mark>，比如”Where can I eat cheese cake right now”。第二种query不需要返回一系列的文档，而是需要解析query的目的，用户的地理位置和时间等，提供personal的回答。另外一种分类方法是从答案的角度，一种是<mark>精确需求</mark>，直接给出结果，比如”Who is the president of USA”；第二种则是给出泛泛的回答，让用户自己选择，即<mark>Interactive Question Answering</mark>，如下图所示。</p>
-<center><img src="/img/daily/qu1.png" width="90%"></center><br><center>Fig.1 Interactive Question Answering</center>
+<center><img src="/img/daily/qu1.png" width="100%"></center><br><center>Fig.1 Interactive Question Answering</center>
 
 <h3 id="General-Characteristics"><a href="#General-Characteristics" class="headerlink" title="General Characteristics"></a><center><strong>General Characteristics</strong></center></h3><p>Query understanding还有一个非常有意思的应用是个人助理（比如微软Cortana，苹果Siri，Google Now，百度度秘），可以为用户提供各种服务，比如搜索，会议安排，闹铃设置，打电话，发短信，播放音乐等等。这个可以被称为<code>Deep Search</code>，即Search with a Deep Understanding，应用NLP和knowledge context (用户之前的搜索和浏览活动，兴趣爱好，地点，询问的时间以及当时的天气等等)，通常有如下特征：</p>
 <ol>
@@ -42,10 +42,10 @@
 <li>用户理解和个性化。不同的用户有不同的兴趣爱好等。</li>
 </ol>
 <h3 id="Phases-in-Deep-Query-Understanding"><a href="#Phases-in-Deep-Query-Understanding" class="headerlink" title="Phases in Deep Query Understanding"></a><center><strong>Phases in Deep Query Understanding</strong></center></h3><p>Query understanding主要有三个过程，如Fig.4所示，包括query refinement, query suggestion和query intent detection，最终给query打tag，有了tag之后进入<code>Answer Generation Module</code>。</p>
-<center><img src="/img/daily/qu4.png" width="90%"></center><br><center> Fig.4 Query Understanding Module Broad Components</center>
+<center><img src="/img/daily/qu4.png" width="100%"></center><br><center> Fig.4 Query Understanding Module Broad Components</center>
 
 <p><code>Query refinement</code>主要进行spelling correction, acronym expansion, word splitting, words merger和phrase segmentation。纠正之后的query进入<code>query suggestion</code>来发现和推荐可以得到更好搜索结果的queries。在循环一次或者多次<code>query correction-&gt;query suggestion-&gt;user query</code>这个过程后，完善的query进入到<code>query expansion</code>模块，补充更多近似的queries，以减少由于字符的错误匹配产生的文章结果。这个query set之后输入到<code>query intention detection</code>模块，精确地推测query的意图。<code>Query classification</code>将query粗分类到某一个field里面，比如运动、娱乐、天气等，结果被输入到<code>semantic tagging</code>部分进行意图检测。Fig.5描述了一个例子。</p>
-<center><img src="/img/daily/qu5.png" width="90%"></center><br><center>Fig.5 Example of Task Done at Each Component</center>
+<center><img src="/img/daily/qu5.png" width="100%"></center><br><center>Fig.5 Example of Task Done at Each Component</center>
 
 <p><mark>Query classification比document text classification更具有挑战性，因为query相对较短，而且很多query有歧义性。</mark>Query classification对精确地判断用户意图非常重要。对于semantic tagging，经常用的features是n-grams, regular regression, POS (Part of Speech), lexicons和transit features,<mark>总的来说，分为两种，syntactic和semantic的features</mark>。</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://arxiv.org/pdf/1505.05187.pdf" target="_blank" rel="external">Techniques for deep query understanding.</a></p>
