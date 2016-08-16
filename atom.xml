@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-14T08:24:02.000Z</updated>
+  <updated>2016-08-16T03:11:33.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Enriching Word Vectors with Subword information</title>
+    <link href="http://cuiyungao.github.io/2016/08/16/enrich/"/>
+    <id>http://cuiyungao.github.io/2016/08/16/enrich/</id>
+    <published>2016-08-16T02:06:02.000Z</published>
+    <updated>2016-08-16T03:11:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.</p>
+<a id="more"></a>
+<p>大神Tomas Mikolov的有一篇作品，借鉴参考当中的trick。</p>
+<h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a><center><strong>Idea</strong></center></h3><p>这篇文章的主要思路是让word之间可以共享信息，即利用subword的特征。这种表示方法同样对rare words以及不同的语言有效。</p>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a><center><strong>Model</strong></center></h3><p>总的框架类似于Skip-Gram Model，给定一组训练词序集$w_1, …, w_T$，目标是最大化基于$w_t$预测出$w_c$的概率，即：<br>$$<br>\sum_{t=1}^T\sum_{c\in\mathcal{C}_t} log p(w_c|w_t),<br>$$<br>其中$\mathcal{C}_t$指$w_t$周围的词的indices。给定一个scoring function $s$，将paris (word, context)映射到$\mathbb{R}$空间，那么一个context word的概率可以定义为：<br>$$<br>p(w_c|w_t)=\frac{e^{s(w_t,w_c)}}{\sum_{j=1}^W e^{s(w_t,j)}}.<br>$$<br>这个scoring function通常定义为$s(w_t,w_c)=\mathbf{u}_{w_t}^T\mathbf{v}_{w_c}$。</p>
+<p>考虑一个word当中的$n$-grams $\mathcal{G}_w\subset{1,…,G}$，每个$n$-gram $g$可以表示成一个向量$z_g$，这个word可以表示成其$n$-grams的和。所以scoring function可以表示成：<br>$$<br>s(w,c)=\sum_{g\in\mathcal{G}_w} \mathbf{z}_g^T\mathbf{v}_c.<br>$$<br>为了限制memory，所有的$n$-grams被映射到1~K的整数，论文中K为2 millions，最终每个word被表示成index和$n$-grams的hash values。词的开头和结果加一个special characters，以便于找到前缀和后缀。为了提高模型效率，<mark>最频繁的$P$个单词不用$n$来表示</mark>。</p>
+<p>实验结果在similarity tasks上的效果不错。测量方法是模型评分和人工判断之间的Spearman’s rank correlation coefficient。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+  </entry>
   
   <entry>
     <title>Query Understanding</title>
@@ -794,60 +825,6 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="code" scheme="http://cuiyungao.github.io/tags/code/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Deep Recursive Neural Networks for Compositionality in Language</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/drnn/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/drnn/</id>
-    <published>2016-06-28T07:04:35.000Z</published>
-    <updated>2016-06-28T09:26:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Irsoy, Ozan, and Claire Cardie. “Deep recursive neural networks for compositionality in language.” Advances in Neural Information Processing Systems. 2014.</p>
-<a id="more"></a>
-<h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a><center><strong>Recursive Neural Network</strong></center></h3><p>Recursive neural networks (RNNs) comprise a class of architecture that can operate on <code>structured input</code>. <span style="color:white">The same set of weights is recursively applied within a structural setting.</span> Given a positional directed acyclic graph, it visits the nodes in topological order, and recursively applies transformations to generate further representations from previously computed representations of children.</p>
-<p>A <code>recurrent neural network</code> is simply a <code>recursive</code> neural network with a particular structure (Figure 1c).<br><br></p>
-<center><img src="/img/papers/drnn.png" width="60%"></center>
-
-<p><span style="color:red">Problem:</span> Even though RNNs are deep in structure, they lack the capacity for hierarchical representation that exists in conventional deep feed-forward networks and recurrent neural networks.</p>
-<h3 id="Recurrent-v-s-Recursive"><a href="#Recurrent-v-s-Recursive" class="headerlink" title="Recurrent v.s. Recursive"></a><center><strong>Recurrent v.s. Recursive</strong></center></h3><p>Recurrent neural networks are deep in time, while recursive neural networks are deep in structure (due to the repeated application of recursive connections). Recently, the notions of depth in time - the result of recurrent connections, and depth in space - the result of stacking multiple layers on top of one another, are distinguished for recurrent neural network. Deep recurrent neural networks were proposed for composing these concepts. They are created by stacking multiple recurrent layers on top of each other. This allows the extra notion of depth to be incorporated into temporal processing. </p>
-<p>Inspired by <code>deep recurrent</code> neural networks, <code>deep recursive</code> neural networks are proposed in this paper.</p>
-<h3 id="Deep-Recursive-Neural-Networks"><a href="#Deep-Recursive-Neural-Networks" class="headerlink" title="Deep Recursive Neural Networks"></a><center><strong>Deep Recursive Neural Networks</strong></center></h3><p>An important benefit of depth is the hierarchy among <code>hidden representations</code>: every hidden layer conceptually lies in a different representation space and potentially is a more abstract representation of the input than the previous layer.</p>
-<p>The DRNN is constructed by <code>stacking</code> multiple layers of individual <code>recursive</code> nets:<br><br></p>
-<center><img src="/img/papers/drnnformula.png" width="50%"></center>
-
-<p>where $i$ means the multiple stacked layers, $W_L^{(i)}$, $W_R^{(i)}$, and $b^{(i)}$ are the weight matrices that connect the left and right children to the parent, and a bias vector, respectively. $V^{(i)}$ is the weight matrix that connects the $(i-1)$th hidden layer to the $i$th hidden layer. For the untying shown in Figure 1b, every node is represented in the same space above the first, regardless of their <code>leafness</code>. Figure 2 shows the weights that are untied or shared.<br><br></p>
-<center><img src="/img/papers/drnnfig2.png" width="60%"></center>
-
-<p>For <code>prediction</code>, we connect the output layer to <span style="color: red">only</span> the <code>final hidden layer</code>.<br><br></p>
-<center><img src="/img/papers/drnnformula2.png" width="20%"></center>
-
-<p>If we connect the output layer to all hidden layers, multiple hidden layers can have <code>synergistic effects</code> on the output and make it more difficult to qualitatively analyze each layer.</p>
-<h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a><center><strong>Results</strong></center></h3><p><span style="color:white">Data:</span> Stanford Sentiment Treebank (SST) <a href="http://nlp.stanford.edu/pubs/SocherEtAl_EMNLP2013.pdf" target="_blank" rel="external">link</a></p>
-<h4 id="Result-1"><a href="#Result-1" class="headerlink" title="Result 1"></a>Result 1</h4><p>Comparing with multiplicative RNN and the more recent Paragraph Vectors, DRNNs outperform their shallow counterparts of the same size. Deep RNN outperforms the baselines, achieving <code>state-of-the-art</code> performance on the task.<br><br></p>
-<center><img src="/img/papers/drnnresult1.png" width="60%"></center>
-
-<p><span style="color: red">Reason:</span> The authors attribute an important contribution of the improvement to <code>dropouts</code>.</p>
-<h4 id="Result-2"><a href="#Result-2" class="headerlink" title="Result 2"></a>Result 2</h4><p>For searching <code>nearest neighbor phrases</code>, different layers capture different aspects. <code>One-nor</code> distance mearsure is used.<br><br></p>
-<center><img src="/img/papers/drnnresult2.png" width="60%"></center>
-
-<p><span style="color: red">Analysis:</span> The first layer is dominated by one of the words that is composed. The seconde layer takes syntactic similarity more into account. The third layer captures the sentiment.</p>
-<p><span style="color: red">Inspiration:</span> Can we apply this into emoji detection?<br><br><br>Paper can be download <a href="https://www.cs.cornell.edu/~oirsoy/files/nips14drsv.pdf" target="_blank" rel="external">here</a>.<br>Code is written in C++, can be found <a href="https://github.com/oir/deep-recursive" target="_blank" rel="external">here</a>.<br>Introduction webpage is <a href="http://www.cs.cornell.edu/~oirsoy/drsv.htm" target="_blank" rel="external">here</a>.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Irsoy, Ozan, and Claire Cardie. “Deep recursive neural networks for compositionality in language.” Advances in Neural Information Processing Systems. 2014.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
-    
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   

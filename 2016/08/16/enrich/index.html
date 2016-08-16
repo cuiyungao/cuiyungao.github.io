@@ -3,23 +3,27 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Category: papers | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
+  <title>Enriching Word Vectors with Subword information | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="undefined">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Cuiyun Gao's Daily Digest">
-<meta property="og:url" content="http://cuiyungao.github.io/categories/papers/index.html">
+  <meta name="keywords" content="Deep Learning,NLP">
+  <meta name="description" content="这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Enriching Word Vectors with Subword information">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/08/16/enrich/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
+<meta property="og:description" content="这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.">
+<meta property="og:updated_time" content="2016-08-16T03:11:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cuiyun Gao's Daily Digest">
+<meta name="twitter:title" content="Enriching Word Vectors with Subword information">
+<meta name="twitter:description" content="这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="null">
+  <meta name="summary" content="&lt;p&gt;这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.&lt;/p&gt;">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -27,7 +31,7 @@
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-  <nav id="menu"  >
+  <nav id="menu" class="hide" >
    <div class="inner flex-row-vertical">
   <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
       <i class="icon icon-lg icon-close"></i>
@@ -97,7 +101,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Cuiyun Gao&#39;s Daily Digest</div>
+        <div class="flex-col header-title ellipsis">Enriching Word Vectors with Subword information</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -114,210 +118,103 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Cuiyun Gao&#39;s Daily Digest</h1>
+    <h1 class="author">Enriching Word Vectors with Subword information</h1>
     <h5 class="subtitle">
         
-        Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！
+            <time datetime="2016-08-16T02:06:02.000Z" itemprop="datePublished" class="page-time">
+  2016-08-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/papers/">papers</a></li></ul>
+
         
     </h5>
   </div>
 </header>
 
     <div class="container body-wrap">
-      
-
-
-        <h3 class="archive-separator">August, 2016</h3>
-
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-08-16T02:06:02.000Z" itemprop="datePublished" class="post-time">
-  Aug 16
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/08/16/enrich/">Enriching Word Vectors with Subword information</a>
-    </h3>
-  
-
-
-
-    
+      <article id="post-enrich" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meat flex-row">
+        
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
 
-  </div>
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Idea"><span class="post-toc-text">Idea</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Model"><span class="post-toc-text">Model</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.</p>
+<a id="more"></a>
+<p>大神Tomas Mikolov的有一篇作品，借鉴参考当中的trick。</p>
+<h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a><center><strong>Idea</strong></center></h3><p>这篇文章的主要思路是让word之间可以共享信息，即利用subword的特征。这种表示方法同样对rare words以及不同的语言有效。</p>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a><center><strong>Model</strong></center></h3><p>总的框架类似于Skip-Gram Model，给定一组训练词序集$w_1, …, w_T$，目标是最大化基于$w_t$预测出$w_c$的概率，即：<br>$$<br>\sum_{t=1}^T\sum_{c\in\mathcal{C}_t} log p(w_c|w_t),<br>$$<br>其中$\mathcal{C}_t$指$w_t$周围的词的indices。给定一个scoring function $s$，将paris (word, context)映射到$\mathbb{R}$空间，那么一个context word的概率可以定义为：<br>$$<br>p(w_c|w_t)=\frac{e^{s(w_t,w_c)}}{\sum_{j=1}^W e^{s(w_t,j)}}.<br>$$<br>这个scoring function通常定义为$s(w_t,w_c)=\mathbf{u}_{w_t}^T\mathbf{v}_{w_c}$。</p>
+<p>考虑一个word当中的$n$-grams $\mathcal{G}_w\subset{1,…,G}$，每个$n$-gram $g$可以表示成一个向量$z_g$，这个word可以表示成其$n$-grams的和。所以scoring function可以表示成：<br>$$<br>s(w,c)=\sum_{g\in\mathcal{G}_w} \mathbf{z}_g^T\mathbf{v}_c.<br>$$<br>为了限制memory，所有的$n$-grams被映射到1~K的整数，论文中K为2 millions，最终每个word被表示成index和$n$-grams的hash values。词的开头和结果加一个special characters，以便于找到前缀和后缀。为了提高模型效率，<mark>最频繁的$P$个单词不用$n$来表示</mark>。</p>
+<p>实验结果在similarity tasks上的效果不错。测量方法是模型评分和人工判断之间的Spearman’s rank correlation coefficient。</p>
+
+            <blockquote>
+                <p>
+                Permalink：
+                <a href="http://cuiyungao.github.io/2016/08/16/enrich/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/16/enrich/</a>
+                </p>
+                <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/08/13/query/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Query Understanding</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="enrich" data-title="Enriching Word Vectors with Subword information" data-url="http://cuiyungao.github.io/2016/08/16/enrich/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cuiyungao"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
 </article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-08-03T12:41:08.000Z" itemprop="datePublished" class="post-time">
-  Aug 3
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/08/03/tweet2vec/">Tweet2Vec:Learning Tweet Embeddings Using Character-Level CNN-LSTM Encoder-Decoder</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
-
-  </div>
-</article>
-
-        <h3 class="archive-separator">June, 2016</h3>
-
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-06-30T09:41:17.000Z" itemprop="datePublished" class="post-time">
-  Jun 30
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/06/30/predictingamazon/">Predicting Amazon Ratings Using Neural Networks</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rating-Prediction/">Rating Prediction</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-06-30T03:38:13.000Z" itemprop="datePublished" class="post-time">
-  Jun 30
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/06/30/usermodeling/">User Modeling with Neural Network for Review Rating Prediction</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Neural-Network/">Neural Network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rating-Prediction/">Rating Prediction</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-06-28T12:30:48.000Z" itemprop="datePublished" class="post-time">
-  Jun 28
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/06/28/acl16/">Generative Topic Embedding:a Continuous Representation of Documents</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Topic-Modeling/">Topic Modeling</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-06-28T07:04:35.000Z" itemprop="datePublished" class="post-time">
-  Jun 28
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/06/28/drnn/">Deep Recursive Neural Networks for Compositionality in Language</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
-
-  </div>
-</article>
-
-
-     <article class="archive-article">
-  <div class="archive-article-date">
-    <time datetime="2016-06-26T03:58:46.000Z" itemprop="datePublished" class="post-time">
-  Jun 26
-</time>
-
-  </div>
-  <div class="archive-article-inner">
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/06/26/SPINN/">SPINN</a>
-    </h3>
-  
-
-
-
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RNN/">RNN</a></li></ul>
-
-  </div>
-</article>
-
-
-
-
     </div>
   </main>
 <div class="mask" id="mask"></div>
