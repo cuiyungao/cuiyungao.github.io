@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-16T12:18:16.000Z</updated>
+  <updated>2016-08-16T12:20:57.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://cuiyungao.github.io/2016/08/16/arxiv0810/"/>
     <id>http://cuiyungao.github.io/2016/08/16/arxiv0810/</id>
     <published>2016-08-16T09:16:51.000Z</published>
-    <updated>2016-08-16T12:18:16.000Z</updated>
+    <updated>2016-08-16T12:20:57.000Z</updated>
     
     <content type="html"><![CDATA[<p>IBM的作品。Nallapati, R., Zhou, B., glar Gulçehre, Ç., &amp; Xiang, B. Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond.</p>
 <a id="more"></a>
@@ -35,10 +35,10 @@
 </ol>
 <p>第一个改进，为encoder的输入增加新的features，比如parts-of-speech tags, named-entity tags (NER tags),和离散后的TF以及IDF数据。</p>
 <p>第二个改进，为decoder增加一个<code>switch</code>，决定用generator还是用一个指针指向文档当中的某一个位置。如果switch打开，则模型还是用以前的方法从目标词库当中生成单词；如果关闭的话，则生成一个指针指向源的某一个位置，这个位置的word就会被添加到summary当中。每一个<code>time step</code>，<code>Switch</code>被定义为基于linear layer的sigmoid函数，如下：<br>$$<br>P(s_i=1)=\sigma(\mathbf{v}^s\cdot(\mathbf{W}_h^sh_i)+\mathbf{W}_e^s\mathbf{E}[o_{i-1}]+\mathbf{W}_c^s\mathbf{c}_i+\mathbf{b}^s)),<br>$$<br>其中$P(s_i=1)$表示在第$i$个time step开关被打开的概率，$\mathbf{c}_i$是attention-weighted context vector，$<br>mathbf{W}_h^s, \mathbf{W}_e^s，\mathbf{W}_c^s, \mathbf{b}^s$和$\mathbf{v}_s$都是开关的参数。<mark>这个是不是就相当于CNN中的<code>filters</code>的概念。</mark>改进后的模型图如下图所示。</p>
-<center><img src="/img/daily/arxiv08101.png" width="100%"></center>
+<center><img src="/img/daily/arxiv08101.png" width="60%"></center>
 
 <p>第三个改进，在encoder采用<mark>两层</mark>概念，即word level和sentence level。Attention mechanism同时作用在这两层上，即<code>word-level</code>的attention被相应的<code>sentence-level</code>的attention重新校正，定义如下：<br>$$<br>P^a(j) = \frac{P_w^a(j)P_s^a(s(j))}{\sum_{k=1}^{N_d}P_w^a(k)P_s^a(s(k))}，<br>$$<br>其中，$P_w^a(j)$是word-level第j个位置的attention weight，$P_s^a(l)$是原文件中第l个位置sentence-level的attention weight。得到的re-scaled attention被用来计算decoder的hidden state的输入（attention-weighted context vector）。而且，将positional embeddings加到sentence-level RNN的hidden state，来表示文档中句子的位置重要性。这个模型因此能够将关键句子跟关键词联系在一起。</p>
-<center><img src="/img/daily/arxiv08102.png" width="100%"></center>
+<center><img src="/img/daily/arxiv08102.png" width="60%"></center>
 
 <h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>分了好几个实验，比较感兴趣的实验是在CNN/Daily Mail上的实验，实验比较了三个模型，实验结果如图所示。最后一个模型”temp”表示<code>Temporal Attention Model</code>，<mark>解决了entity重复出现的问题，这个可以用在tag identification上面</mark>。另外，感觉这个<code>Temporal Attention Model</code>跟LSTM类似，只不过是在attention上的LSTM。</p>
 ]]></content>
