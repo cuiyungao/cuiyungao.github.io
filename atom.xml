@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-16T03:15:45.000Z</updated>
+  <updated>2016-08-16T12:18:16.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -16,18 +16,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond</title>
+    <link href="http://cuiyungao.github.io/2016/08/16/arxiv0810/"/>
+    <id>http://cuiyungao.github.io/2016/08/16/arxiv0810/</id>
+    <published>2016-08-16T09:16:51.000Z</published>
+    <updated>2016-08-16T12:18:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>IBM的作品。Nallapati, R., Zhou, B., glar Gulçehre, Ç., &amp; Xiang, B. Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond.</p>
+<a id="more"></a>
+<p>所谓的<code>abstractive text summarization</code>就是压缩原始的文档，并保留原文档的主要概念。</p>
+<h3 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a><center><strong>Contribution</strong></center></h3><p>文章将在MT (Machine Learning)中的Attentional Encoder-Decoder RNN算法应用到abstractive text summarization，并针对在abstractive text summarization中存在的三个问题（即为<mark>key-words建模，获取sentence-to-word的结构层级，和在training阶段处理少见的或者没有见过的词</mark>）对模型进行改善。</p>
+<p>文章的另外一个贡献是提出了新的包含多句子总结的数据集，建立了后面research的benchmarks。</p>
+<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a><center><strong>Models</strong></center></h3><p>模型包含encoder和decoder，encoder是一个bidirectional GRU-RNN，而decoder是一个跟encoder有着相同大小hidden-state size的uni-directional GRU-RNN；在source-hidden states之间是<code>attention mechanism</code>，最终由一个<code>soft-max layer</code>为目标词汇生成单词。文章的model有如下三个改进的方面：</p>
+<ol>
+<li>Feature-rich encoder;</li>
+<li>Switching generator-pointer model;</li>
+<li>Hierarchical attention model.</li>
+</ol>
+<p>第一个改进，为encoder的输入增加新的features，比如parts-of-speech tags, named-entity tags (NER tags),和离散后的TF以及IDF数据。</p>
+<p>第二个改进，为decoder增加一个<code>switch</code>，决定用generator还是用一个指针指向文档当中的某一个位置。如果switch打开，则模型还是用以前的方法从目标词库当中生成单词；如果关闭的话，则生成一个指针指向源的某一个位置，这个位置的word就会被添加到summary当中。每一个<code>time step</code>，<code>Switch</code>被定义为基于linear layer的sigmoid函数，如下：<br>$$<br>P(s_i=1)=\sigma(\mathbf{v}^s\cdot(\mathbf{W}_h^sh_i)+\mathbf{W}_e^s\mathbf{E}[o_{i-1}]+\mathbf{W}_c^s\mathbf{c}_i+\mathbf{b}^s)),<br>$$<br>其中$P(s_i=1)$表示在第$i$个time step开关被打开的概率，$\mathbf{c}_i$是attention-weighted context vector，$<br>mathbf{W}_h^s, \mathbf{W}_e^s，\mathbf{W}_c^s, \mathbf{b}^s$和$\mathbf{v}_s$都是开关的参数。<mark>这个是不是就相当于CNN中的<code>filters</code>的概念。</mark>改进后的模型图如下图所示。</p>
+<center><img src="/img/daily/arxiv08101.png" width="100%"></center>
+
+<p>第三个改进，在encoder采用<mark>两层</mark>概念，即word level和sentence level。Attention mechanism同时作用在这两层上，即<code>word-level</code>的attention被相应的<code>sentence-level</code>的attention重新校正，定义如下：<br>$$<br>P^a(j) = \frac{P_w^a(j)P_s^a(s(j))}{\sum_{k=1}^{N_d}P_w^a(k)P_s^a(s(k))}，<br>$$<br>其中，$P_w^a(j)$是word-level第j个位置的attention weight，$P_s^a(l)$是原文件中第l个位置sentence-level的attention weight。得到的re-scaled attention被用来计算decoder的hidden state的输入（attention-weighted context vector）。而且，将positional embeddings加到sentence-level RNN的hidden state，来表示文档中句子的位置重要性。这个模型因此能够将关键句子跟关键词联系在一起。</p>
+<center><img src="/img/daily/arxiv08102.png" width="100%"></center>
+
+<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>分了好几个实验，比较感兴趣的实验是在CNN/Daily Mail上的实验，实验比较了三个模型，实验结果如图所示。最后一个模型”temp”表示<code>Temporal Attention Model</code>，<mark>解决了entity重复出现的问题，这个可以用在tag identification上面</mark>。另外，感觉这个<code>Temporal Attention Model</code>跟LSTM类似，只不过是在attention上的LSTM。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;IBM的作品。Nallapati, R., Zhou, B., glar Gulçehre, Ç., &amp;amp; Xiang, B. Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Enriching Word Vectors with Subword information</title>
     <link href="http://cuiyungao.github.io/2016/08/16/enrich/"/>
     <id>http://cuiyungao.github.io/2016/08/16/enrich/</id>
     <published>2016-08-16T02:06:02.000Z</published>
-    <updated>2016-08-16T03:15:45.000Z</updated>
+    <updated>2016-08-16T03:30:25.000Z</updated>
     
     <content type="html"><![CDATA[<p>这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.</p>
 <a id="more"></a>
 <p>大神Tomas Mikolov的有一篇作品，借鉴参考当中的trick。</p>
 <h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a><center><strong>Idea</strong></center></h3><p>这篇文章的主要思路是让word之间可以共享信息，即利用subword的特征。这种表示方法同样对rare words以及不同的语言有效。</p>
 <h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a><center><strong>Model</strong></center></h3><p>总的框架类似于Skip-Gram Model，给定一组训练词序集$w_1, …, w_T$，目标是最大化基于$w_t$预测出$w_c$的概率，即：<br>$$<br>\sum_{t=1}^T\sum_{c\in\mathcal{C}_t} log p(w_c|w_t),<br>$$<br>其中$\mathcal{C}_t$指$w_t$周围的词的indices。给定一个scoring function $s$，将paris (word, context)映射到$\mathbb{R}$空间，那么一个context word的概率可以定义为：<br>$$<br>p(w_c|w_t)=\frac{e^{s(w_t,w_c)}}{\sum_{j=1}^W e^{s(w_t,j)}}.<br>$$<br>这个scoring function通常定义为$s(w_t,w_c)=\mathbf{u}_{w_t}^T\mathbf{v}_{w_c}$。</p>
-<p>考虑一个word当中的$n$-grams $\mathcal{G}_w\subset{1,…,G}$，每个$n$-gram $g$可以表示成一个向量$z_g$，这个word可以表示成其$n$-grams的和。所以scoring function可以表示成：<br>$$<br>s(w,c)=\sum_{g\in\mathcal{G}_w} \mathbf{z}_g^T\mathbf{v}_c.<br>$$<br>为了限制memory，所有的$n$-grams被映射到1~K的整数，论文中K为2 millions，最终每个word被表示成index和$n$-grams的hash values。词的开头和结果加一个special characters，以便于找到前缀和后缀。为了提高模型效率，<mark>最频繁的$P$个单词不用$n$来表示</mark>。</p>
+<p>考虑一个word当中的$n$-grams $\mathcal{G}_w\subset{1,…,G}$，每个$n$-gram $g$可以表示成一个向量$z_g$，这个word可以表示成其$n$-grams的和。所以scoring function可以表示成：<br>$$<br>s(w,c)=\sum_{g\in\mathcal{G}_w} \mathbf{z}_g^T\mathbf{v}_c.<br>$$<br>为了限制memory，所有的$n$-grams被映射到1~K的整数，论文中K为2 millions，最终每个word被表示成index和$n$-grams的hash values。词的开头和结果加一个special characters，以便于找到前缀和后缀。为了提高模型效率，<mark>最频繁的$P$个单词不用$n$-grams来表示</mark>。</p>
 <p>实验结果在similarity tasks上的效果不错。测量方法是模型评分和人工判断之间的Spearman’s rank correlation coefficient。实现采用C++，在运行时间上比Skip-Gram baseline慢了1.5倍，比较的方法当中Skip-Gram和CBOW由C<a href="https://code.google.com/archive/p/word2vec/" target="_blank" rel="external">实现</a>。</p>
 ]]></content>
     
@@ -779,52 +824,6 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="LDA" scheme="http://cuiyungao.github.io/tags/LDA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Useful Source Code for NLP</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/code/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/code/</id>
-    <published>2016-06-28T09:17:25.000Z</published>
-    <updated>2016-07-29T03:27:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>This page contains useful code related to NLP.</p>
-<a id="more"></a>
-<h3 id="TensorFlow-v0-9-now-available-with-improved-mobile-support"><a href="#TensorFlow-v0-9-now-available-with-improved-mobile-support" class="headerlink" title="TensorFlow v0.9 now available with improved mobile support."></a>TensorFlow v0.9 now available with improved mobile support.</h3><p><a href="https://developers.googleblog.com/2016/06/tensorflow-v09-now-available-with.html" target="_blank" rel="external">Link</a> TensorFlow now supports mobile invocation.</p>
-<h3 id="Tensorflow-and-theano-CNN-code-for-insurance-QA-question-Answer-matching"><a href="#Tensorflow-and-theano-CNN-code-for-insurance-QA-question-Answer-matching" class="headerlink" title="Tensorflow and theano CNN code for insurance QA(question Answer matching)."></a>Tensorflow and theano CNN code for insurance QA(question Answer matching).</h3><p><a href="https://github.com/white127/insuranceQA-cnn" target="_blank" rel="external">Link.</a> Theano和tensorflow的网络结构都是一致的: word embedings + CNN + max pooling + cosine similarity.目前再insuranceQA的test1数据集上，top-1准确率可以达到62%左右，跟论文上是一致的。这里只提供了CNN的代码，后面测试了LSTM和LSTM+CNN的方法，LSTM+CNN的方法比单纯使用CNN或LSTM效果还要更好一些，在test1上的准确率可以再提示5%-6%.</p>
-<h3 id="LSTM-language-model-with-CNN-over-characters-in-TensorFlow"><a href="#LSTM-language-model-with-CNN-over-characters-in-TensorFlow" class="headerlink" title="LSTM language model with CNN over characters in TensorFlow."></a>LSTM language model with CNN over characters in TensorFlow.</h3><p><a href="https://github.com/carpedm20/lstm-char-cnn-tensorflow" target="_blank" rel="external">Link.</a>Tensorflow implementation of Character-Aware Neural Language Models <a href="http://arxiv.org/abs/1508.06615" target="_blank" rel="external">paper</a>.</p>
-<h3 id="Topic-Augmented-Neural-Response-Generation-with-a-Joint-Attention-Mechanism"><a href="#Topic-Augmented-Neural-Response-Generation-with-a-Joint-Attention-Mechanism" class="headerlink" title="Topic Augmented Neural Response Generation with a Joint Attention Mechanism"></a>Topic Augmented Neural Response Generation with a Joint Attention Mechanism</h3><p><a href="https://github.com/LynetteXing1991/TAJA-Seq2Seq" target="_blank" rel="external">Link.</a> Use attention model.</p>
-<h3 id="Text-input-with-relevant-emoji-sorted-with-deep-learning"><a href="#Text-input-with-relevant-emoji-sorted-with-deep-learning" class="headerlink" title="Text input with relevant emoji sorted with deep learning"></a>Text input with relevant emoji sorted with deep learning</h3><p><a href="http://codepen.io/Idlework/pen/xOgGqM" target="_blank" rel="external">link.</a> After inputing a sentence, the related emojis are shown in the top. I’ve tried the project, and it’s amazing. It uses API from <a href="http://getdango.com/emoji-and-deep-learning.html" target="_blank" rel="external">Dango</a>. The webpage recommends deep learning <a href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="external">material</a>. I need to read them in detail, which maybe helpful for review analysis.</p>
-<h3 id="Information-Extraction-with-Reinforcement-Learning"><a href="#Information-Extraction-with-Reinforcement-Learning" class="headerlink" title="Information Extraction with Reinforcement Learning"></a>Information Extraction with Reinforcement Learning</h3><p><a href="https://github.com/karthikncode/DeepRL-InformationExtraction" target="_blank" rel="external">Link.</a> It’s based on Torch and python.</p>
-<h3 id="Visualization-Toolbox-for-Long-Short-Term-Memory-networks-LSTMs"><a href="#Visualization-Toolbox-for-Long-Short-Term-Memory-networks-LSTMs" class="headerlink" title="Visualization Toolbox for Long Short Term Memory networks (LSTMs)"></a>Visualization Toolbox for Long Short Term Memory networks (LSTMs)</h3><p><a href="https://github.com/HendrikStrobelt/LSTMVis" target="_blank" rel="external">Link.</a> Visual Analysis for State Changes in RNNs. More information about LSTMVis, an introduction video, and the link to the live demo can be found <a href="http://lstm.seas.harvard.edu/" target="_blank" rel="external">here</a>.</p>
-<h3 id="Attention-Sum-Reader"><a href="#Attention-Sum-Reader" class="headerlink" title="Attention Sum Reader"></a>Attention Sum Reader</h3><p><a href="https://github.com/rkadlec/asreader" target="_blank" rel="external">Link.</a> This is a Theano/Blocks implementation of the Attention Sum Reader model as presented in “Text Comprehension with the Attention Sum Reader Network” available at <a href="http://arxiv.org/abs/1603.01547" target="_blank" rel="external">here</a>. </p>
-<h3 id="Wider-amp-deep-learning-better-together-with-TensorFlow"><a href="#Wider-amp-deep-learning-better-together-with-TensorFlow" class="headerlink" title="Wider &amp; deep learning: better together with TensorFlow"></a>Wider &amp; deep learning: better together with TensorFlow</h3><p><a href="https://research.googleblog.com/2016/06/wide-deep-learning-better-together-with.html" target="_blank" rel="external">Link.</a> <span style="color:white">Query的过程就是找出类似的词的过程，这个可以用phrase extraction？是否可以用在rating prediction上面。</span></p>
-<h3 id="Minimal-Character-Level-Language-Model"><a href="#Minimal-Character-Level-Language-Model" class="headerlink" title="Minimal Character-Level Language Model"></a>Minimal Character-Level Language Model</h3><p><span style="color:red">需看~！</span><a href="https://github.com/weixsong/min-char-rnn" target="_blank" rel="external">Link.</a> Minimal character-level language model with a Vanilla Recurrent Neural Network, in Python/numpy.</p>
-<h3 id="LSTM-Parser"><a href="#LSTM-Parser" class="headerlink" title="LSTM-Parser"></a>LSTM-Parser</h3><p><a href="https://github.com/clab/joint-lstm-parser" target="_blank" rel="external">Link.</a> Based on <code>C++</code> language. Transition-based joint syntactic dependency parser and semantic role labeler using stack LSTM RNN architecture. Paper <code>Greedy, joint syntactic-semantic parsing with stack LSTMs</code> can be downloaded <a href="http://www.taln.upf.edu/content/biblio/785" target="_blank" rel="external">here</a>.</p>
-<h3 id="Pre-trained-Word-Embedding-in-Keras"><a href="#Pre-trained-Word-Embedding-in-Keras" class="headerlink" title="Pre-trained Word Embedding in Keras"></a>Pre-trained Word Embedding in Keras</h3><p><a href="http://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html" target="_blank" rel="external">Link.</a> Based on Keras library. In this tutorial, we will walk you through the process of solving a text classification problem using pre-trained word embeddings and a convolutional neural network.</p>
-<h3 id="Building-Machine-Learning-Estimator-in-TensorFlow"><a href="#Building-Machine-Learning-Estimator-in-TensorFlow" class="headerlink" title="Building Machine Learning Estimator in TensorFlow"></a>Building Machine Learning Estimator in TensorFlow</h3><p><a href="http://terrytangyuan.github.io/2016/07/08/understand-and-build-tensorflow-estimator/" target="_blank" rel="external">Link.</a> The purpose of this post is to help you better understand the underlying principles of estimators in TensorFlow Learn and point out some tips and hints if you ever want to build your own estimator that’s suitable for your particular application.</p>
-<h3 id="TensorLayer-Deep-learning-and-Reinforcement-learning-library"><a href="#TensorLayer-Deep-learning-and-Reinforcement-learning-library" class="headerlink" title="TensorLayer: Deep learning and Reinforcement learning library"></a>TensorLayer: Deep learning and Reinforcement learning library</h3><p><a href="https://github.com/zsdonghao/tensorlayer" target="_blank" rel="external">Link.</a> It was designed to provide a higher-level API to TensorFlow in order to speed-up experimentations. </p>
-<h3 id="Neural-Relation-Extraction"><a href="#Neural-Relation-Extraction" class="headerlink" title="Neural Relation Extraction"></a>Neural Relation Extraction</h3><p><a href="https://github.com/thunlp/NRE" target="_blank" rel="external">Link.</a> Neural relation extraction aims to extract relations from plain text with neural models, which has been the state-of-the-art methods for relation extraction. In this project, we provide our implementations of CNN [Zeng et al., 2014] and PCNN [Zeng et al.,2015] and their extended version with sentence-level attention scheme [Lin et al., 2016] </p>
-<h3 id="Make-a-Chatting-Robot"><a href="#Make-a-Chatting-Robot" class="headerlink" title="Make a Chatting Robot"></a>Make a Chatting Robot</h3><p><a href="https://github.com/warmheartli/ChatBotCourse" target="_blank" rel="external">Link.</a> 自己动手做聊天机器人教程.</p>
-<h3 id="Door-to-Machine-Learning"><a href="#Door-to-Machine-Learning" class="headerlink" title="Door to Machine Learning"></a>Door to Machine Learning</h3><p><a href="https://github.com/warmheartli/MachineLearningCourse" target="_blank" rel="external">Link.</a> 机器学习精简入门教程.</p>
-<h3 id="Sequence-Classification-with-LSTM-RNN-with-Keras"><a href="#Sequence-Classification-with-LSTM-RNN-with-Keras" class="headerlink" title="Sequence Classification with LSTM RNN with Keras"></a>Sequence Classification with LSTM RNN with Keras</h3><p><a href="http://machinelearningmastery.com/sequence-classification-lstm-recurrent-neural-networks-python-keras/" target="_blank" rel="external">Link.</a> Python based.实验结果证明加了CNN的效果更好，用dropout避免过拟合，但是实验结果不是那么理想，原因是深度只有3，当层数增加的时候可以实现比不用dropout更好的效果。</p>
-<h3 id="Neural-Conversation-Models"><a href="#Neural-Conversation-Models" class="headerlink" title="Neural Conversation Models"></a>Neural Conversation Models</h3><p><a href="https://github.com/pbhatia243/Neural_Conversation_Models" target="_blank" rel="external">Link.</a> TensorFlow based.支持simple seq2seq models和attention based seq2seq models.</p>
-<h3 id="深度学习主机环境配置"><a href="#深度学习主机环境配置" class="headerlink" title="深度学习主机环境配置"></a>深度学习主机环境配置</h3><p><a href="http://www.52nlp.cn/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%BB%E6%9C%BA%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-ubuntu16-04-geforce-gtx1080-tensorflow" target="_blank" rel="external">Link.</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;This page contains useful code related to NLP.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="code" scheme="http://cuiyungao.github.io/tags/code/"/>
     
   </entry>
   
