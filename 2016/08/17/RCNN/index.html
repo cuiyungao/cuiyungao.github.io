@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/RCNN1.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/RCNN2.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/RCNN3.png">
-<meta property="og:updated_time" content="2016-08-17T12:49:04.000Z">
+<meta property="og:updated_time" content="2016-08-17T12:51:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Learning Text Representation Using Recurrent Convolutional Neural Network with Highway Layers">
 <meta name="twitter:description" content="发表在SIGIR’16上。Wen, Y., Zhang, W., Luo, R., &amp;amp; Wang, J. (2016). Learning text representation using recurrent convolutional neural network with highway layers. arXiv preprint arXiv:1606.06905.">
@@ -171,7 +171,7 @@
 
 <p><code>One-layer</code> highway network是RNN和CNN的中间层，表示如下：<br>$$<br>\mathbf{y}_t=\tau\odot g(\mathbf{W}_H\mathbf{\tilde{x}}_t+\mathbf{b}_H)+(1-\tau)\odot\mathbf{\tilde{x}}_t,<br>$$<br>其中，$g$是非线性函数，$\tau$为<code>&quot;transform gate&quot;</code>，即$\tau=\sigma(\mathbf{W}_{\tau}\mathbf{x}_t+\mathbf{b}_{\tau})$。<mark>这个highway network的设计跟GRU的<code>update gate</code>$\mathbf{z}$非常相似，</mark>其作用是一部分输入信息被不变地传递到输出，其它的信息则需要进行非线性变换。<mark>实验说明这样的设计可以获取重要的信息。</mark></p>
 <p>在CNN阶段，我们将window size设置为1，因为bidirectional RNN和highway layer已经获取了每个单词的上下文信息。</p>
-<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>情感分析实验阶段，比较了六种方法，分别是：Sum-of-Word-Vector (COW), LSTM, Bi-LSTM, CNN, CNN+LSTM,和RCNN，结果如下图。这些网络用来学习文本的表示形式，之后用softmax进行预测。实验没有采用pre-training model (word2vec)或者regularizer (e.g., Dropout)，这些使实验结果更好。情感分类的实验结果表明，CNN的效果要好于RNN，可能是由于RNN很难被训练，并且对超参数和后面的单词比较敏感。RCNN的效果最佳，因为它综合了CNN获取局部信息的优势和RNN获取全局信息的优势。CNN-LSTM是用CNN的局部信息作为RNN的输入，但是局部信息并没有时序关系。</p>
+<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>情感分析实验阶段，比较了六种方法，分别是：Sum-of-Word-Vector (COW), LSTM, Bi-LSTM, CNN, CNN+LSTM,和RCNN，结果如下图。这些网络用来学习文本的表示形式，之后用softmax进行预测。实验没有采用pre-training model (e.g., word2vec)或者regularizer (e.g., Dropout)，这些使实验结果更好。情感分类的实验结果表明，CNN的效果要好于RNN，可能是由于RNN很难被训练，并且对超参数和后面的单词比较敏感。RCNN的效果最佳，因为它综合了CNN获取局部信息的优势和RNN获取全局信息的优势。CNN-LSTM是用CNN的局部信息作为RNN的输入，但是局部信息并没有时序关系。</p>
 <center><img src="/img/papers/RCNN2.png" width="70%"></center>
 
 <p>文章还比较了不同的文本长度对实验结果的影响，发现对于短文本，这几种方法都不是很好；而对于较长的文本，RCNN的优势就体现出来，如下图所示。RCNN不光可以保留较长的文本信息，还可以通过CNN的max-pooling减少噪声；RCNN-HW则通过highway layer进一步减少噪声，进行特征选择，所以在较长输入时效果最好。</p>
@@ -195,7 +195,7 @@
     <div class="waves-block waves-effect next fr">
       <a href="/2016/08/17/adblock/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">adblock</h4>
+        <h4 class="title">What to do about Ad Blocking Impact on Customer Experience?</h4>
       </a>
     </div>
   
