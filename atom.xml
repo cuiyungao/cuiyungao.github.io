@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-17T08:29:05.000Z</updated>
+  <updated>2016-08-17T12:49:04.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,79 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Learning Text Representation Using Recurrent Convolutional Neural Network with Highway Layers</title>
+    <link href="http://cuiyungao.github.io/2016/08/17/RCNN/"/>
+    <id>http://cuiyungao.github.io/2016/08/17/RCNN/</id>
+    <published>2016-08-17T09:50:55.000Z</published>
+    <updated>2016-08-17T12:49:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>发表在SIGIR’16上。Wen, Y., Zhang, W., Luo, R., &amp; Wang, J. (2016). Learning text representation using recurrent convolutional neural network with highway layers. arXiv preprint arXiv:1606.06905.</p>
+<a id="more"></a>
+<p>作者提出了<mark>新的结合RNN和CNN的方式</mark>，即在中间加了一层highway，这层的作用是把RNN的输出进行特征选择，其结果作为CNN的输入。</p>
+<h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a><center><strong>Motivation</strong></center></h3><p>RNN跟CNN在NLP领域非常流行，但是两者各有优劣势。RNN虽然考虑了单词的顺序，但是它的问题在于后面的单词相比于前面单词的表示形式更能影响结果，对于情感分析这样的task，重要的单词预示着正确的情感，但是可能出现在文档的任何位置，所以RNN的结果并不是很好。而CNN可以很自然地解决这个问题，因为它通过max-pooling层平等地看待所有的词；但是CNN也有自己的问题，比如需要确定window的大小以及众多的filter参数。</p>
+<p>RCNN模型旨在结合这两者的优点。模型对整个文档采用bi-directional recurrent neural network，并结合词跟它的上下文来表示这个词，filter用来计算latent semantic vectors。最终，max-pooling用来获取最重要的因素，并形成固定大小的句子表示。</p>
+<p>这篇文章改进已有的RCNN模型，在bi-directional RNN和CNN之间插入了一个<mark>highway network</mark>，形成<mark>RCNN-HW</mark>模型，这个highway layer的作用是作为中间层来单独选择每个词的表示形式中的features。</p>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a><center><strong>Model</strong></center></h3><p>整个模型框图如下所示。RNN能够处理当前的数据实例并且保留历史信息，常用的比如LSTM和GRU，后者比较简洁且<mark>性能较好（really??）</mark>，所以文章采用GRU。表达式如下：<br>$$<br>\mathbf{r}_t = \sigma(\mathbf{W}_r\mathbf{x}_t+\mathbf{U}_r\mathbf{h}_{t-1}+\mathbf{b}_r) \\<br>\mathbf{z}_t = \sigma(\mathbf{W}_z\mathbf{x}_t+\mathbf{U}_z\mathbf{h}_{t-1}+\mathbf{b}_z) \\<br>\mathbf{\tilde{h}}_t = tanh(\mathbf{W}_h\mathbf{x}_t+\mathbf{U}_h(\mathbf{r}_t\odot\mathbf{h}_{t-1})+\mathbf{b}_h) \\<br>\mathbf{h}_t = \mathbf{z}_t\odot\mathbf{h}_{t-1} + (1-\mathbf{z}_t)\odot\mathbf{\tilde{h}}_t,<br>$$<br>其中，$\odot$表示element-wise multiplication，$\mathbf{W,U,b}$表示输入、recurrent的权重和biases。所以，单词的表示形式$\mathbf{\tilde{x}}_t$可以结合上下文得到：<br>$$<br>\mathbf{\tilde{x}}_t = [\overleftarrow{\mathbf{h}_t}||\mathbf{x}_t||\overrightarrow{\mathbf{h}_t}].<br>$$</p>
+<center><img src="/img/papers/RCNN1.png" width="70%"></center>
+
+<p><code>One-layer</code> highway network是RNN和CNN的中间层，表示如下：<br>$$<br>\mathbf{y}_t=\tau\odot g(\mathbf{W}_H\mathbf{\tilde{x}}_t+\mathbf{b}_H)+(1-\tau)\odot\mathbf{\tilde{x}}_t,<br>$$<br>其中，$g$是非线性函数，$\tau$为<code>&quot;transform gate&quot;</code>，即$\tau=\sigma(\mathbf{W}_{\tau}\mathbf{x}_t+\mathbf{b}_{\tau})$。<mark>这个highway network的设计跟GRU的<code>update gate</code>$\mathbf{z}$非常相似，</mark>其作用是一部分输入信息被不变地传递到输出，其它的信息则需要进行非线性变换。<mark>实验说明这样的设计可以获取重要的信息。</mark></p>
+<p>在CNN阶段，我们将window size设置为1，因为bidirectional RNN和highway layer已经获取了每个单词的上下文信息。</p>
+<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>情感分析实验阶段，比较了六种方法，分别是：Sum-of-Word-Vector (COW), LSTM, Bi-LSTM, CNN, CNN+LSTM,和RCNN，结果如下图。这些网络用来学习文本的表示形式，之后用softmax进行预测。实验没有采用pre-training model (word2vec)或者regularizer (e.g., Dropout)，这些使实验结果更好。情感分类的实验结果表明，CNN的效果要好于RNN，可能是由于RNN很难被训练，并且对超参数和后面的单词比较敏感。RCNN的效果最佳，因为它综合了CNN获取局部信息的优势和RNN获取全局信息的优势。CNN-LSTM是用CNN的局部信息作为RNN的输入，但是局部信息并没有时序关系。</p>
+<center><img src="/img/papers/RCNN2.png" width="70%"></center>
+
+<p>文章还比较了不同的文本长度对实验结果的影响，发现对于短文本，这几种方法都不是很好；而对于较长的文本，RCNN的优势就体现出来，如下图所示。RCNN不光可以保留较长的文本信息，还可以通过CNN的max-pooling减少噪声；RCNN-HW则通过highway layer进一步减少噪声，进行特征选择，所以在较长输入时效果最好。</p>
+<center><img src="/img/papers/RCNN3.png" width="70%"></center>
+
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="http://arxiv.org/pdf/1606.06905v2.pdf" target="_blank" rel="external">Learning Text Representation Using Recurrent Convolutional Neural Network with Highway Layers</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;发表在SIGIR’16上。Wen, Y., Zhang, W., Luo, R., &amp;amp; Wang, J. (2016). Learning text representation using recurrent convolutional neural network with highway layers. arXiv preprint arXiv:1606.06905.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
+      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>adblock</title>
+    <link href="http://cuiyungao.github.io/2016/08/17/adblock/"/>
+    <id>http://cuiyungao.github.io/2016/08/17/adblock/</id>
+    <published>2016-08-17T09:02:25.000Z</published>
+    <updated>2016-08-17T09:19:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是一篇总结ad blocking对用户体验影响的<a href="http://apmblog.dynatrace.com/2016/08/09/ad-blocking-impact-customer-experience/" target="_blank" rel="external">报道</a>。用户对ad比较反感的原因，总结有三点：</p>
+<ol>
+<li>Ads是获取网页的速度减慢；</li>
+<li>Ads干扰了用户希望浏览的内容；</li>
+<li>用户担心Ads会泄露个人隐私信息。</li>
+</ol>
+<p>用户使用Ad blocker已经非常普遍，据报道有20%的广告被拦截，从而造成了广告收入的损失。下面分析这三个方面的根本原因。<br>第一点的原因是广告的数量，插件和第三方服务太多。对于如何测量用户体验，作者提出了用response time。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是一篇总结ad blocking对用户体验影响的&lt;a href=&quot;http://apmblog.dynatrace.com/2016/08/09/ad-blocking-impact-customer-experience/&quot; target=&quot;_blank&quot; rel=&quot;e
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Ad" scheme="http://cuiyungao.github.io/tags/Ad/"/>
+    
+  </entry>
   
   <entry>
     <title>Consensus Attention-based Neural Networks for Chinese Reading Comprehension</title>
@@ -58,9 +131,9 @@
     
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
-      <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
     
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
@@ -228,9 +301,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -334,7 +407,7 @@
     <link href="http://cuiyungao.github.io/2016/08/04/adclick/"/>
     <id>http://cuiyungao.github.io/2016/08/04/adclick/</id>
     <published>2016-08-04T05:46:40.000Z</published>
-    <updated>2016-08-11T02:32:15.000Z</updated>
+    <updated>2016-08-17T09:21:40.000Z</updated>
     
     <content type="html"><![CDATA[<p>本篇是对ad点击行为进行预测的总结，包括张伟楠在携程技术中心的一个<a href="http://mp.weixin.qq.com/s?__biz=MzAwNDI4ODcxNA==&amp;mid=2652243946&amp;idx=2&amp;sn=de8bb9a36fe9f2f0c97f30aaec87063f&amp;scene=2&amp;srcid=0727O4JXBdr5NU7sFOD48J69&amp;from=timeline&amp;isappinstalled=0#wechat_redirect" target="_blank" rel="external">演讲</a>以及北大硕士Kintocai的<a href="http://www.52cs.org/?p=1046" target="_blank" rel="external">总结</a>。集中于深度学习在Multi-field Categorical这类数据集上的应用。</p>
 <a id="more"></a>
@@ -392,7 +465,7 @@
     
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
-      <category term="Ad Click" scheme="http://cuiyungao.github.io/tags/Ad-Click/"/>
+      <category term="Ad" scheme="http://cuiyungao.github.io/tags/Ad/"/>
     
   </entry>
   
@@ -766,89 +839,6 @@
       <category term="Data Mining" scheme="http://cuiyungao.github.io/tags/Data-Mining/"/>
     
       <category term="Crawler" scheme="http://cuiyungao.github.io/tags/Crawler/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Generative Topic Embedding:a Continuous Representation of Documents</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/acl16/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/acl16/</id>
-    <published>2016-06-28T12:30:48.000Z</published>
-    <updated>2016-08-03T03:40:38.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>[ACL’16] From 清华<a href="http://bigml.cs.tsinghua.edu.cn/~jun/publications.shtml" target="_blank" rel="external">Zhu Jun</a>‘s Group</p>
-<a id="more"></a>
-<p><a href="http://www.weibo.com/ttarticle/p/show?id=2309403989692323372292" target="_blank" rel="external">Summary</a> from 洪亮劼</p>
-<h3 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a><center><strong>Problem Definition</strong></center></h3><p>Given the hyperparameters $\alpha$, $\gamma$, $\mu$, the learning objective is to find the embeddings $\mathbf{V}$, the topics $\mathbf{T}$, and the word-topic and document-topic distributions $p(\mathbf{Z}_i, \phi_i|d_i, \mathbf{A}, \mathbf{V}, \mathbf{T})$.</p>
-<p>Here, $\mathbf{Z},\mathbf{T},\phi$ denote the collection of the document-specific $\{\mathbf{Z}_i\}_{i=1}^M$, $\{\mathbf{T}_i\}_{i=1}^M$, $\{\phi_i\}_{i=1}^M$. $\mathbf{V}$, $\mathbf{A}$, and $\mathbf{T}_i$ stand for the embeddings, the bigram residuals, and the topics, respectively.</p>
-<p>As a whole, a generative word embedding model <code>PSDVec</code> (Li et al., 2015, <a href="http://www.aclweb.org/anthology/D15-1183" target="_blank" rel="external">ref</a>), by incorporating topics into it. The new model is named <code>TopicVec</code>.</p>
-<h3 id="TopicVec-Model"><a href="#TopicVec-Model" class="headerlink" title="TopicVec Model"></a><center><strong>TopicVec Model</strong></center></h3><p>模型结合了topic modeling和word embeddings。In TopicVec, an embedding link function对一个topic中的word distribution进行建模，而不是LDA中的categorical distribution。这个link function的优势是semantic relatedness在embedding space当中被encoded。其它的过程跟LDA很相似，同样用Dirichlet priors来regularize topic distributions，用variational inference algorithm来进行optimization。这个过程可以得到跟words在同样embedding space的topic embeddings。Topic embeddings的目的是来估计underlying semantic centroids。</p>
-<p>The whole process:</p>
-<ol>
-<li><p>For the $k$-th topic, draw a tpic embedding uniformly from a hyperball of radius $\gamma$, i.e., $t_k\sim Unif(B_{\gamma})$;</p>
-</li>
-<li><p>For each document $d_i$:<br>(a) Draw the mixing proportions $\phi_i$ from the Dirichlet prior Dir($\alpha$);<br>(b) For the $j$-th word:<br> $\;$ i. Draw topic assignment $z_{ij}$ from the categorical distribution Cat($\phi_i$);<br> $\;$ ii. Draw word $w_{ij}$ from $\mathbf{S}$ according to $P(w_{ij}|w_{i,j-c}:w_{i,j-1},z_{ij},d_i)$.</p>
-</li>
-</ol>
-<center><img src="/img/papers/topicvec.png" width="70%"></center><br><center>Fig1. Graphical representation of TopicVec</center>
-
-<p>The notations are listed in the following table:</p>
-<center><img src="/img/papers/topicvec1.png" width="70%"></center>
-
-<h3 id="Word-Embeddings-amp-Topic-Modeling"><a href="#Word-Embeddings-amp-Topic-Modeling" class="headerlink" title="Word Embeddings &amp; Topic Modeling"></a><center><strong>Word Embeddings &amp; Topic Modeling</strong></center></h3><p>Word embedding通过一个小的context window里面的local word collocation patterns,将words映射到一个低维连续的embedding space。而topic modeling通过同一文档里面的global word collocation patterns，将documents映射到一个低维的topic space。这两个可以互补，本文由此得到TopicVec Model。其中，topics由embedding vectors来表示，并在documents之间共享。每个word的probability由local context和topic来决定。Topic embedding由variational inference method产生，同时得到每个document的topic mixing probability。结合topic embedding和topic mixing probability，可以在低维连续空间里面得到每个document的representation。</p>
-<p>Euclidean distance不是衡量两个embeddings之间相似度的最优方法，已有的方法大部分采用exponentiated cosine similarity作为link function，所以cosine similarity可能是较好的估计语义相似度的方法。</p>
-<h3 id="Inspirations"><a href="#Inspirations" class="headerlink" title="Inspirations"></a><center><strong>Inspirations</strong></center></h3><ul>
-<li>从此方法得到的word embeddings，然后再用DRNN等方法来进行classification？</li>
-<li>可以用于DTM上么？</li>
-</ul>
-<p>本文的code可以在这里<a href="https://github.com/askerlee/topicvec" target="_blank" rel="external">下载</a>,Nguyen et al. (2015)的方法与之类似，将word embeddings作为latent features，但是实现速度慢，对large corpus不可行，code可以在<a href="https://github.com/datquocnguyen/LFTM" target="_blank" rel="external">这里</a>找到。 </p>
-<p>The original paper can be found <a href="https://arxiv.org/abs/1606.02979" target="_blank" rel="external">here</a>.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;[ACL’16] From 清华&lt;a href=&quot;http://bigml.cs.tsinghua.edu.cn/~jun/publications.shtml&quot;&gt;Zhu Jun&lt;/a&gt;‘s Group&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="Topic Modeling" scheme="http://cuiyungao.github.io/tags/Topic-Modeling/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Study Material for Deep Learning and NLP</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/material/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/material/</id>
-    <published>2016-06-28T12:21:47.000Z</published>
-    <updated>2016-06-28T12:46:54.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>The website summaries the material for understanding deep learning and NLP.</p>
-<a id="more"></a>
-<h4 id="How-to-Start-Learning-Deep-Learning"><a href="#How-to-Start-Learning-Deep-Learning" class="headerlink" title="How to Start Learning Deep Learning"></a>How to Start Learning Deep Learning</h4><p><a href="http://ofir.io/How-to-Start-Learning-Deep-Learning/" target="_blank" rel="external">Link</a></p>
-<h4 id="Book-First-Contact-with-TensorFlow"><a href="#Book-First-Contact-with-TensorFlow" class="headerlink" title="[Book] First Contact with TensorFlow"></a>[Book] First Contact with TensorFlow</h4><p><a href="http://www.jorditorres.org/first-contact-with-tensorflow/" target="_blank" rel="external">Link</a> The book introduces how to use TensorFlow to implement the basic functions of neural network and also parallelism.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;The website summaries the material for understanding deep learning and NLP.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="material" scheme="http://cuiyungao.github.io/tags/material/"/>
     
   </entry>
   
