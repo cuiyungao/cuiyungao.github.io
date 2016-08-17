@@ -18,7 +18,7 @@
 <meta property="og:description" content="Cui, Y., Liu, T., Chen, Z., Wang, S., &amp;amp; Hu, G. (2016). Consensus Attention-based Neural Networks for Chinese Reading Comprehension. arXiv preprint arXiv:1607.02250.">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/CAS1.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/CAS2.png">
-<meta property="og:updated_time" content="2016-08-17T08:23:29.000Z">
+<meta property="og:updated_time" content="2016-08-17T08:29:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Consensus Attention-based Neural Networks for Chinese Reading Comprehension">
 <meta name="twitter:description" content="Cui, Y., Liu, T., Chen, Z., Wang, S., &amp;amp; Hu, G. (2016). Consensus Attention-based Neural Networks for Chinese Reading Comprehension. arXiv preprint arXiv:1607.02250.">
@@ -172,10 +172,10 @@
 <p>一般形式是，给定一组训练三元组$&lt;\mathcal{D}, \mathcal{Q}, \mathcal{A}&gt;$，首先将文档$\mathcal{D}$和query $\mathcal{Q}$的one-hot表示形式转换成共享embedding matrix $W_e$的连续的表示形式。<mark>由于query通常比文档短，通过共享embedding weights，query的表示形式可以受益于文档的表示形式</mark>，这比分开的embedding matrices有效。</p>
 <p>之后，用两个不同的<code>bi-directional RNNs</code>得到文档和query的上下文表示形式。<mark>这种方法可以获取之前和之后的上下文信息。</mark>文章采用bi-directional Gated Recurrent Unit (GRU)，如下：<br>$$<br>e(x) = W_e\times x, \; where \, x\in\mathcal{D,Q} \\<br>\overrightarrow{h_s} = \overrightarrow{GRU}(e(x)) \\<br>\overleftarrow{h_s} = \overleftarrow{GRU}(e(x)) \\<br>h_s = [\overrightarrow{h_s};\overleftarrow{h_s}].<br>$$</p>
 <p>文档的<code>attention</code>即一个概率分布，这里用$h_{doc}$和$h_{query}$分别表示文档和query的上下文表示形式，都是三维的张量。这两个张量的内积表示每个文档单词在时间$t$对query单词的重要性。概率分布用softmax来获得，即：<br>$$<br>\alpha(t) = softmax(h_{doc}\odot h_{query}(t)).<br>$$</p>
-<p>$\alpha(t)$即文档的<code>attention</code>，且$\alpha(t)=[\alpha(t)_1,\alpha(t)_2, …, \alpha(t)_n]$，$\alpha(t)_i$指的是文档第$i$个词在时间$t$的attention值。<code>Consensus attention</code>由merging function $f$得到，即：<br>$$<br>s=f(\alpha(1), …,\alpha(m)),<br>$$<br>其中，$s$是query最终的attention，$m$是query的长度。Merging function有以下几种heuristics，即：<br>$$<br>[<br>   s\propto<br>   \begin{cases}<br>    softmax(\sum_{t=1}^m \alpha(t)),\; if \, mode=sum; \\<br>    softmax(\frac{1}{m}\sum_{t=1}^m \alpha(t)), \; if \, mode=avg; \\<br>    softmax({max}_{t=1,…,m} \alpha(t)_i), \; if \, mode=max.<br>   \end{cases}<br>]<br>$$</p>
+<p>$\alpha(t)$即文档的<code>attention</code>，且$\alpha(t)=[\alpha(t)_1,\alpha(t)_2, …, \alpha(t)_n]$，$\alpha(t)_i$指的是文档第$i$个词在时间$t$的attention值。<code>Consensus attention</code>由merging function $f$得到，即：<br>$$<br>s=f(\alpha(1), …,\alpha(m)),<br>$$<br>其中，$s$是query最终的attention，$m$是query的长度。Merging function有以下几种heuristics，即：<br>$$<br>   s\propto<br>   \begin{cases}<br>    softmax(\sum_{t=1}^m \alpha(t)),\; if \, mode=sum; \\<br>    softmax(\frac{1}{m}\sum_{t=1}^m \alpha(t)), \; if \, mode=avg; \\<br>    softmax({max}_{t=1,…,m} \alpha(t)_i), \; if \, mode=max.<br>   \end{cases}<br>$$</p>
 <p>最终，将结果$s$映射到vocabulary space $V$，并将在文档中同一个词出现在不同位置的attention value相加，如下式所示。（<mark>思考：这个方式跟直接从vocabulary中选取某个词有啥区别？因为文章的一个亮点是从文档当中选取，而不是从vocabularies当中选取。</mark>）</p>
-<p>$$<br>P(w|\mathcal{D,Q})=\sum_{i\in I(w,\mathcal{D}) s_i, \, w\in V.<br>$$<br>其中，$I(w,\mathcal{D})$为单词$w$出现在文档$\mathcal{D}$中的位置。整个框架图由下图所示。</p>
-<center><img src="/img/daily/CAS1.png" width="80%"></center><br><center>Fig.1 Architecture of the Proposed Consensus Attention Sum Reader (CAS Reader).</center>
+<p>$$<br>P(w|\mathcal{D,Q})=\sum_{i\in I(w,\mathcal{D})} s_i, \, w\in V.<br>$$<br>其中，$I(w,\mathcal{D})$为单词$w$出现在文档$\mathcal{D}$中的位置。整个框架图由下图所示。</p>
+<center><img src="/img/daily/CAS1.png" width="100%"></center><br><center>Fig.1 Architecture of the Proposed Consensus Attention Sum Reader (CAS Reader).</center>
 
 <h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>框架实现采用Theano和Keras，在Tesla K40 GPU上训练。实验结果在某些数据集上要优于传统的不用Consensus的模型，结果不好的原因是以前的模型只是从entity当中挑选答案，而改进之后的模型是从文档当中选取。在中文分词上的结果表明，有Consensus的Model要优于传统的attention model，结果如下图所示。</p>
 <center><img src="/img/daily/CAS2.png" width="80%"></center>
