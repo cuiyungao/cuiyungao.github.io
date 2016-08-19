@@ -18,7 +18,7 @@
 <meta property="og:description" content="fastText是Facebook AI Research (FAIR) lab设计的library，主要用来创建text representation和进行文本分类（详见论文）。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/fasttext1.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/fasttext2.png">
-<meta property="og:updated_time" content="2016-08-19T14:33:27.000Z">
+<meta property="og:updated_time" content="2016-08-19T14:38:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FAIR Open-Sources fastText">
 <meta name="twitter:description" content="fastText是Facebook AI Research (FAIR) lab设计的library，主要用来创建text representation和进行文本分类（详见论文）。">
@@ -163,10 +163,10 @@
 <a id="more"></a>
 <p>fastText结合了几个在NLP和machine learning中最成功的概念，包括<code>bag of n-grams</code>, <code>using subword information</code>,以及<code>sharing information across classes with a hidden representation</code>。为了加速计算速度，fastText采用<code>hierarchical softmax</code>来平衡类的分布。</p>
 <p>fastText为了有效地处理有大量种类的数据集，采用了hierarchical classifier，而不是flat structure，使得training和testing的复杂度降到linear或者与类的数目成对数关系。为了解决类的分布不均衡的问题，fastText采用了<code>Huffman algorithm</code>建立tree的方法；结果是比较频繁的种类的树的深度较浅。基于fastText，training的时间可以从几天降低到几秒钟，并且在性能上与state-of-the-art的方法接近，如下表所示。</p>
-<center><img src="/img/papers/fasttext1.png" width="70%"></center>
+<center><img src="/img/papers/fasttext1.png" width="100%"></center>
 
 <p>在语言的表示形式上，fastText的表现优于word2vec，结果如下表所示。<mark>那么中文的结果怎样？</mark></p>
-<center><img src="/img/papers/fasttext2.png" width="70%"></center>
+<center><img src="/img/papers/fasttext2.png" width="100%"></center>
 
 
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://code.facebook.com/posts/1438652669495149/fair-open-sources-fasttext" target="_blank" rel="external">FAIR open-sources fastText</a></p>
