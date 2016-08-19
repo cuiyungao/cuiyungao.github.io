@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-19T06:48:29.000Z</updated>
+  <updated>2016-08-19T06:50:13.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://cuiyungao.github.io/2016/08/19/sequence/"/>
     <id>http://cuiyungao.github.io/2016/08/19/sequence/</id>
     <published>2016-08-19T03:01:09.000Z</published>
-    <updated>2016-08-19T06:48:29.000Z</updated>
+    <updated>2016-08-19T06:50:13.000Z</updated>
     
     <content type="html"><![CDATA[<p>总结了UIUC CS498JH: Introduction to NLP (Fall 2012)关于sequence labeling的<a href="https://courses.engr.illinois.edu/cs498jh/Slides/Lecture08HO.pdf" target="_blank" rel="external">课件</a>。</p>
 <a id="more"></a>
@@ -34,7 +34,7 @@
 <h3 id="Graphical-Models"><a href="#Graphical-Models" class="headerlink" title="Graphical Models"></a><center><strong>Graphical Models</strong></center></h3><p>Graphical models是概率模型的表示形式，<code>Nodes</code>表示任意变量的分布$P(X)$,<code>Arrows</code>表示依赖关系$P(Y)P(X|Y)$,<code>shaded nodes</code>表示观察到的变量，<code>white nodes</code>表示隐含变量。HMMs可以看做是对输入$\mathbf{w}$的generative models，即$P(\mathbf{w})=\prod_i P(t_i|t_{i-1})P(w_i|t_i)$，如图Fig.4所示。</p>
 <center><img src="/img/daily/sequence4.png" width="70%"></center><br><center>Fig.4 HMMs as Generative Models</center>
 
-<p>Sequence Labeling的<mark>定义</mark>是给定输入序列$\mathbf{w}=w_1, …, w_n$，预测其最佳的label sequence $\mathbf{t}=t_1, …, t_n$，即：<br>$$<br>{argmax}_{\substack{t}}P(\mathbf{t}|\mathbf{w}).<br>$$<br>我们用<code>conditional maximum likelihood estimation</code> (conditional MLE)来估计$w$，<br>$$<br>\begin{split}<br>\hat{\mathbf{w}}={argmax}_{\substack{\mathbf{w}}}\prod_i P(c_i|\mathbf{x}_i,\mathbf{w})\\<br>  = {argmax}_{\substack{\mathbf{w}}}\sum_i log(P(c_i|\mathbf{x}_i,\mathbf{w})) \\<br>  = {argmax}_{\substack{\mathbf{w}}}\sum_i log(\frac{e^{\sum_j w_j f_j(x_i,c)}}{\sum_{c^{\prime}e^{\sum_j w_j f_j(x_i,c^{\prime})}}}) \\<br>  = {argmax}_{\substack{\mathbf{w}}}(L_{\mathbf{w}})<br> \end{split}<br>$$<br>对其进行求导，我们可以得到下式。</p>
+<p>Sequence Labeling的<mark>定义</mark>是给定输入序列$\mathbf{w}=w_1, …, w_n$，预测其最佳的label sequence $\mathbf{t}=t_1, …, t_n$，即：<br>$$<br>{argmax}_{\substack{t}}P(\mathbf{t}|\mathbf{w}).<br>$$<br>我们用<code>conditional maximum likelihood estimation</code> (conditional MLE)来估计$w$，<br>$$<br>\begin{aligned}<br>\hat{\mathbf{w}}&amp;={argmax}_{\substack{\mathbf{w}}}\prod_i P(c_i|\mathbf{x}_i,\mathbf{w})\\<br>  &amp;= {argmax}_{\substack{\mathbf{w}}}\sum_i log(P(c_i|\mathbf{x}_i,\mathbf{w})) \\<br>  &amp;= {argmax}_{\substack{\mathbf{w}}}\sum_i log(\frac{e^{\sum_j w_j f_j(x_i,c)}}{\sum_{c^{\prime}e^{\sum_j w_j f_j(x_i,c^{\prime})}}}) \\<br>  &amp;= {argmax}_{\substack{\mathbf{w}}}(L_{\mathbf{w}})<br> \end{aligned}<br>$$<br>对其进行求导，我们可以得到下式。</p>
 <center><img src="/img/daily/sequence5.png" width="70%"></center>
 
 <p>假设对$P(\mathbf{w})$建模，假定是高斯（正态）分布，我们可以得到下式。</p>
