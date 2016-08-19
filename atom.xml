@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-18T09:47:47.000Z</updated>
+  <updated>2016-08-19T06:25:28.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sequence Labeling with Discriminative Models</title>
+    <link href="http://cuiyungao.github.io/2016/08/19/sequence/"/>
+    <id>http://cuiyungao.github.io/2016/08/19/sequence/</id>
+    <published>2016-08-19T03:01:09.000Z</published>
+    <updated>2016-08-19T06:25:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>总结了UIUC CS498JH: Introduction to NLP (Fall 2012)关于sequence labeling的<a href="https://courses.engr.illinois.edu/cs498jh/Slides/Lecture08HO.pdf" target="_blank" rel="external">课件</a>。</p>
+<a id="more"></a>
+<p>Sequence labeling包含4个基本任务，即<code>POS tagging</code>，<code>NP chunking</code>，<code>shallow parsing</code>和<code>named entity recognition</code>。这里的<code>discriminative model</code>可以理解为<code>generative model</code>，也就是根据当前word生成其种类，主要用到了<code>maximum entropy classifiers</code>和<code>MEMMs</code>。</p>
+<h3 id="Tasks-in-Sequence-Labeling"><a href="#Tasks-in-Sequence-Labeling" class="headerlink" title="Tasks in Sequence Labeling"></a><center><strong>Tasks in Sequence Labeling</strong></center></h3><p>POS tagging是给每个词定义词性，如Fig.1所示。NP chunking是识别所有的名词词组，如Fig.2所示。</p>
+<center><img src="/img/daily/sequence1.png" width="70%"></center><br><center>Fig.1 POS Tagging</center>
+
+<center><img src="/img/daily/sequence2.png" width="70%"></center><br><center>Fig.2 NP Chunking</center><br>更具体地，我们定义三种新的tag，如图Fig.3：<br>- B-NP:名词词组的开头；<br>- I-NP:名词词组的中间；<br>- O:名词词组的外面。<br><br><center><img src="/img/daily/sequence3.png" width="70%"></center><br><center>Fig.3 BIO Encoding</center>
+
+<p>Shallow parsing识别所有的non-resursive的名词词组，包括动词词组(“VP”)和介词词组(“PP”)。Named entity recognition则找到所有提到的entities，比如people, organizations, locations和dates。这两种tasks都有BIO encoding的表示形式。</p>
+<h3 id="Graphical-Models"><a href="#Graphical-Models" class="headerlink" title="Graphical Models"></a><center><strong>Graphical Models</strong></center></h3><p>Graphical models是概率模型的表示形式，<code>Nodes</code>表示任意变量的分布$P(X)$,<code>Arrows</code>表示依赖关系$P(Y)P(X|Y)$,<code>shaded nodes</code>表示观察到的变量，<code>white nodes</code>表示隐含变量。HMMs可以看做是对输入$\mathbf{w}$的generative models，即$P(\mathbf{w})=\prod_i P(t_i|t_{i-1})P(w_i|t_i)$，如图Fig.4所示。</p>
+<center><img src="/img/daily/sequence4.png" width="70%"></center><br><center>Fig.4 HMMs as Generative Models</center>
+
+<p>Sequence Labeling的<mark>定义</mark>是给定输入序列$\mathbf{w}=w_1, …, w_n$，预测其最佳的label sequence $\mathbf{t}=t_1, …, t_n$，即：<br>$$<br>{argmax}_{\substack{t}}P(\mathbf{t}|\mathbf{w}).<br>$$<br>我们用<code>conditional maximum likelihood estimation</code> (conditional MLE)来估计$w$，<br>$$<br>\hat{\mathbf{w}}={argmax}_{\substack{\mathbf{w}}}\prod_i P(c_i|\mathbf{x}_i,\mathbf{w})\\<br> = {argmax}_{\substack{\mathbf{w}}}\sum_i log(P(c_i|\mathbf{x}_i,\mathbf{w})) \\<br> = {argmax}_{\substack{\mathbf{w}}}\sum_i log(\frac{e^{\sum_j w_j f_j(x_i,c)}}{\sum_{c^{\prime}e^{\sum_j w_j f_j(x_i,c^{\prime})}}}) \\<br> = {argmax}_{\substack{\mathbf{w}}}(L_{\mathbf{w}})，<br>$$<br>对其进行求导，我们可以得到下式。</p>
+<center><img src="/img/daily/sequence5.png" width="70%"></center>
+
+<p>假设对$P(\mathbf{w})$建模，假定是高斯（正态）分布，我们可以得到下式。</p>
+<center><img src="/img/daily/sequence6.png" width="70%"></center>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;总结了UIUC CS498JH: Introduction to NLP (Fall 2012)关于sequence labeling的&lt;a href=&quot;https://courses.engr.illinois.edu/cs498jh/Slides/Lecture08HO.pdf&quot;&gt;课件&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="CRF" scheme="http://cuiyungao.github.io/tags/CRF/"/>
+    
+      <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
+    
+  </entry>
   
   <entry>
     <title>The Unreasonable Confusion of Variational Autoencoders</title>
@@ -98,9 +141,9 @@
     
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
-      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
     
   </entry>
   
@@ -178,9 +221,9 @@
     
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
@@ -348,9 +391,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
     
   </entry>
   
@@ -794,60 +837,6 @@
     
     
       <category term="Data Mining" scheme="http://cuiyungao.github.io/tags/Data-Mining/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Memorization and Exploration in Recurrent Neural Language Models</title>
-    <link href="http://cuiyungao.github.io/2016/06/28/memorization/"/>
-    <id>http://cuiyungao.github.io/2016/06/28/memorization/</id>
-    <published>2016-06-28T14:27:33.000Z</published>
-    <updated>2016-06-28T14:38:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Deep Learning | Los Angeles Meetup</p>
-<a id="more"></a>
-<p>The speaker explains <code>recurrent memory networks</code>.<a href="https://www.youtube.com/watch?v=nPUW0akp5s0" target="_blank" rel="external">Link</a></p>
-<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><ul>
-<li>LSTM is a powerful sequential model.</li>
-<li>It has complicated design of input gate, forget gate, update gate and cell.</li>
-<li>LSTM achieves SOTA in many NLP tasks: sentence completion, sentiment analysis, parsing….</li>
-</ul>
-<h3 id="Recurrent-Memory-Networks"><a href="#Recurrent-Memory-Networks" class="headerlink" title="Recurrent Memory Networks"></a>Recurrent Memory Networks</h3><ol>
-<li><p>amplify the power of RNN</p>
-</li>
-<li><p>offer a way to interpret and discover <code>dependencies</code> in data</p>
-</li>
-<li><p>outperform TreeLSTM models that explicitly use syntactic information in Sentence Completion Challenge</p>
-</li>
-</ol>
-<h3 id="First-Attempt"><a href="#First-Attempt" class="headerlink" title="First Attempt"></a>First Attempt</h3><p>Combine linearly source context vector, target context (Memory block) and target hidden state LSTM</p>
-<ol>
-<li><p>Did not see any gain in BLEU</p>
-</li>
-<li><p>Potentially bias toward target LM</p>
-</li>
-<li><p><code>Gating combination</code> might be essential for the model</p>
-</li>
-</ol>
-<h3 id="Better-Memorization"><a href="#Better-Memorization" class="headerlink" title="Better Memorization"></a>Better Memorization</h3><p>Better memorization leads to better translation</p>
-<ol>
-<li>LSTM does not offer any representation advantage compared to vanilla RNN</li>
-<li>Gradient in LSTM just flows nicer</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Deep Learning | Los Angeles Meetup&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
