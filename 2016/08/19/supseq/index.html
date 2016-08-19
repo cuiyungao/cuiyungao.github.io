@@ -3,34 +3,30 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Sequence Labeling with Discriminative Models | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
+  <title>Supervised Sequence Labeling with Recurrent Neural Networks | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="NLP,CRF,Sequence Labeling">
-  <meta name="description" content="总结了UIUC CS498JH: Introduction to NLP (Fall 2012)关于sequence labeling的课件。">
+  <meta name="keywords" content="RNN,NLP,Sequence Labeling">
+  <meta name="description" content="与传统的supervised pattern recognition不同的是，sequence labeling的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。Sequence labeling的目的是确定输出labels的位置和类型。
+RNN对sequence labeling比较有效，因为对上下文信息比较灵活（决定forget和remember什么样的信息）；可以">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sequence Labeling with Discriminative Models">
-<meta property="og:url" content="http://cuiyungao.github.io/2016/08/19/sequence/index.html">
+<meta property="og:title" content="Supervised Sequence Labeling with Recurrent Neural Networks">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/08/19/supseq/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
-<meta property="og:description" content="总结了UIUC CS498JH: Introduction to NLP (Fall 2012)关于sequence labeling的课件。">
-<meta property="og:image" content="http://cuiyungao.github.io/img/daily/sequence1.png">
-<meta property="og:image" content="http://cuiyungao.github.io/img/daily/sequence2.png">
-<meta property="og:image" content="http://cuiyungao.github.io/img/daily/sequence3.png">
-<meta property="og:image" content="http://cuiyungao.github.io/img/daily/sequence4.png">
-<meta property="og:image" content="http://cuiyungao.github.io/img/daily/sequence5.png">
-<meta property="og:image" content="http://cuiyungao.github.io/img/daily/sequence6.png">
-<meta property="og:updated_time" content="2016-08-19T06:50:13.000Z">
+<meta property="og:description" content="与传统的supervised pattern recognition不同的是，sequence labeling的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。Sequence labeling的目的是确定输出labels的位置和类型。
+RNN对sequence labeling比较有效，因为对上下文信息比较灵活（决定forget和remember什么样的信息）；可以">
+<meta property="og:updated_time" content="2016-08-19T09:40:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sequence Labeling with Discriminative Models">
-<meta name="twitter:description" content="总结了UIUC CS498JH: Introduction to NLP (Fall 2012)关于sequence labeling的课件。">
-<meta name="twitter:image" content="http://cuiyungao.github.io/img/daily/sequence1.png">
+<meta name="twitter:title" content="Supervised Sequence Labeling with Recurrent Neural Networks">
+<meta name="twitter:description" content="与传统的supervised pattern recognition不同的是，sequence labeling的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。Sequence labeling的目的是确定输出labels的位置和类型。
+RNN对sequence labeling比较有效，因为对上下文信息比较灵活（决定forget和remember什么样的信息）；可以">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;总结了UIUC CS498JH: Introduction to NLP (Fall 2012)关于sequence labeling的&lt;a href=&quot;https://courses.engr.illinois.edu/cs498jh/Slides/Lecture08HO.pdf&quot;&gt;课件&lt;/a&gt;。&lt;/p&gt;">
+  <meta name="summary" content="null">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -108,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Sequence Labeling with Discriminative Models</div>
+        <div class="flex-col header-title ellipsis">Supervised Sequence Labeling with Recurrent Neural Networks</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -125,15 +121,15 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Sequence Labeling with Discriminative Models</h1>
+    <h1 class="author">Supervised Sequence Labeling with Recurrent Neural Networks</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-08-19T03:01:09.000Z" itemprop="datePublished" class="page-time">
+            <time datetime="2016-08-19T07:00:56.000Z" itemprop="datePublished" class="page-time">
   2016-08-19
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/papers/">papers</a></li></ul>
 
         
     </h5>
@@ -141,11 +137,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-sequence" 
+      <article id="post-supseq" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CRF/">CRF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sequence-Labeling/">Sequence Labeling</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RNN/">RNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sequence-Labeling/">Sequence Labeling</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -155,7 +151,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Tasks-in-Sequence-Labeling"><span class="post-toc-text">Tasks in Sequence Labeling</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Graphical-Models"><span class="post-toc-text">Graphical Models</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generative-and-Discriminative-Methods"><span class="post-toc-text">Generative and Discriminative Methods</span></a></li></ol>
             </nav>
             
         </aside>
@@ -163,28 +159,16 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>总结了UIUC CS498JH: Introduction to NLP (Fall 2012)关于sequence labeling的<a href="https://courses.engr.illinois.edu/cs498jh/Slides/Lecture08HO.pdf" target="_blank" rel="external">课件</a>。</p>
-<a id="more"></a>
-<p>Sequence labeling包含4个基本任务，即<code>POS tagging</code>，<code>NP chunking</code>，<code>shallow parsing</code>和<code>named entity recognition</code>。这里的<code>discriminative model</code>可以理解为<code>generative model</code>，也就是根据当前word生成其种类，主要用到了<code>maximum entropy classifiers</code>和<code>MEMMs</code>。</p>
-<h3 id="Tasks-in-Sequence-Labeling"><a href="#Tasks-in-Sequence-Labeling" class="headerlink" title="Tasks in Sequence Labeling"></a><center><strong>Tasks in Sequence Labeling</strong></center></h3><p>POS tagging是给每个词定义词性，如Fig.1所示。NP chunking是识别所有的名词词组，如Fig.2所示。</p>
-<center><img src="/img/daily/sequence1.png" width="70%"></center><br><center>Fig.1 POS Tagging</center>
-
-<center><img src="/img/daily/sequence2.png" width="70%"></center><br><center>Fig.2 NP Chunking</center><br>更具体地，我们定义三种新的tag，如图Fig.3：<br>- B-NP:名词词组的开头；<br>- I-NP:名词词组的中间；<br>- O:名词词组的外面。<br><br><center><img src="/img/daily/sequence3.png" width="70%"></center><br><center>Fig.3 BIO Encoding</center>
-
-<p>Shallow parsing识别所有的non-resursive的名词词组，包括动词词组(“VP”)和介词词组(“PP”)。Named entity recognition则找到所有提到的entities，比如people, organizations, locations和dates。这两种tasks都有BIO encoding的表示形式。</p>
-<h3 id="Graphical-Models"><a href="#Graphical-Models" class="headerlink" title="Graphical Models"></a><center><strong>Graphical Models</strong></center></h3><p>Graphical models是概率模型的表示形式，<code>Nodes</code>表示任意变量的分布$P(X)$,<code>Arrows</code>表示依赖关系$P(Y)P(X|Y)$,<code>shaded nodes</code>表示观察到的变量，<code>white nodes</code>表示隐含变量。HMMs可以看做是对输入$\mathbf{w}$的generative models，即$P(\mathbf{w})=\prod_i P(t_i|t_{i-1})P(w_i|t_i)$，如图Fig.4所示。</p>
-<center><img src="/img/daily/sequence4.png" width="70%"></center><br><center>Fig.4 HMMs as Generative Models</center>
-
-<p>Sequence Labeling的<mark>定义</mark>是给定输入序列$\mathbf{w}=w_1, …, w_n$，预测其最佳的label sequence $\mathbf{t}=t_1, …, t_n$，即：<br>$$<br>{argmax}_{\substack{t}}P(\mathbf{t}|\mathbf{w}).<br>$$<br>我们用<code>conditional maximum likelihood estimation</code> (conditional MLE)来估计$w$，<br>$$<br>\begin{aligned}<br>\hat{\mathbf{w}}&amp;={argmax}_{\substack{\mathbf{w}}}\prod_i P(c_i|\mathbf{x}_i,\mathbf{w})\\<br>  &amp;= {argmax}_{\substack{\mathbf{w}}}\sum_i log(P(c_i|\mathbf{x}_i,\mathbf{w})) \\<br>  &amp;= {argmax}_{\substack{\mathbf{w}}}\sum_i log(\frac{e^{\sum_j w_j f_j(x_i,c)}}{\sum_{c^{\prime}e^{\sum_j w_j f_j(x_i,c^{\prime})}}}) \\<br>  &amp;= {argmax}_{\substack{\mathbf{w}}}(L_{\mathbf{w}})<br> \end{aligned}<br>$$<br>对其进行求导，我们可以得到下式。</p>
-<center><img src="/img/daily/sequence5.png" width="70%"></center>
-
-<p>假设对$P(\mathbf{w})$建模，假定是高斯（正态）分布，我们可以得到下式。</p>
-<center><img src="/img/daily/sequence6.png" width="70%"></center>
+            <p>与传统的<code>supervised pattern recognition</code>不同的是，<code>sequence labeling</code>的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。<code>Sequence labeling</code>的目的是确定输出labels的位置和类型。</p>
+<p>RNN对sequence labeling比较有效，因为对上下文信息比较灵活（决定forget和remember什么样的信息）；可以接受不同类型的数据和数据的表示形式；可以在序列扭曲中发现sequential patterns。本文主要介绍LSTM和bi-directional RNN。</p>
+<h3 id="Generative-and-Discriminative-Methods"><a href="#Generative-and-Discriminative-Methods" class="headerlink" title="Generative and Discriminative Methods"></a><center><strong>Generative and Discriminative Methods</strong></center></h3><p>直接计算类的概率$p(C_k|x)$的方法被认为是discriminative methods；有些情况下，需要先计算类的条件密度$p(x|C_k)$，基于Bayes’ rule来计算，即$p(C_k|x)=\frac{p(x|C_k)p(C_k)}{p(x)}$，其中$p(x)=\sum_k p(x|C_k)p(C_k)$，这样的方法被认为是<code>generative</code>的方法。<code>Generative methods</code>的好处是每一个类都可以独立于其它的类来进行训练，而<code>discriminative methods</code>在每一次新的类加入时都要被重新训练。但是，后者的分类结果较好，因为它的目标是找到类的边界。文章集中在<code>discriminative sequence labeling</code>。</p>
+<p>Sequence classification通常分为三类，越来越细地分为temporal classification, segment classification和sequence classification。Temporal classification中的数据是<code>weakly labelled</code>在target sequences之外；segment classification则是temporal classification的一个特殊例子，数据必须用target sequences来进行<code>strongly labelled</code>；sequence classification则指的是每个输入序列只能对应一个类，比如识别单个的手写字母。</p>
+<p>Neural networks当中的activation functions都是可求导的，e.g.，<br>$$<br>\frac{\partial tanh(x)}{\partial x} = 1-tanh(x)^2 \\<br>\frac{\partial \sigma (x)}{\partial x} = \sigma(x)(1-\sigma(x)),<br>$$<br>由于activation functions是将无限的输入域映射到有限的输出域，所以通常也被称为<code>squashing functions</code>。</p>
 
             <blockquote>
                 <p>
                 Permalink：
-                <a href="http://cuiyungao.github.io/2016/08/19/sequence/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/19/sequence/</a>
+                <a href="http://cuiyungao.github.io/2016/08/19/supseq/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/19/supseq/</a>
                 </p>
                 <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
             </blockquote>
@@ -193,18 +177,18 @@
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2016/08/19/supseq/" id="post-prev" class="post-nav-link">
+      <a href="/2016/08/19/fasttext/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Supervised Sequence Labeling with Recurrent Neural Networks</h4>
+        <h4 class="title">FAIR Open-Sources fastText</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/08/18/vae/" id="post-next" class="post-nav-link">
+      <a href="/2016/08/19/sequence/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">The Unreasonable Confusion of Variational Autoencoders</h4>
+        <h4 class="title">Sequence Labeling with Discriminative Models</h4>
       </a>
     </div>
   
@@ -215,7 +199,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="sequence" data-title="Sequence Labeling with Discriminative Models" data-url="http://cuiyungao.github.io/2016/08/19/sequence/index.html"></div>
+	<div class="ds-thread" data-thread-key="supseq" data-title="Supervised Sequence Labeling with Recurrent Neural Networks" data-url="http://cuiyungao.github.io/2016/08/19/supseq/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

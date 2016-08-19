@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-19T06:50:13.000Z</updated>
+  <updated>2016-08-19T14:33:27.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FAIR Open-Sources fastText</title>
+    <link href="http://cuiyungao.github.io/2016/08/19/fasttext/"/>
+    <id>http://cuiyungao.github.io/2016/08/19/fasttext/</id>
+    <published>2016-08-19T09:57:42.000Z</published>
+    <updated>2016-08-19T14:33:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>fastText是Facebook AI Research (FAIR) lab设计的library，主要用来创建text representation和进行文本分类（详见<a href="http://arxiv.org/abs/1607.04606" target="_blank" rel="external">论文</a>）。</p>
+<a id="more"></a>
+<p>fastText结合了几个在NLP和machine learning中最成功的概念，包括<code>bag of n-grams</code>, <code>using subword information</code>,以及<code>sharing information across classes with a hidden representation</code>。为了加速计算速度，fastText采用<code>hierarchical softmax</code>来平衡类的分布。</p>
+<p>fastText为了有效地处理有大量种类的数据集，采用了hierarchical classifier，而不是flat structure，使得training和testing的复杂度降到linear或者与类的数目成对数关系。为了解决类的分布不均衡的问题，fastText采用了<code>Huffman algorithm</code>建立tree的方法；结果是比较频繁的种类的树的深度较浅。基于fastText，training的时间可以从几天降低到几秒钟，并且在性能上与state-of-the-art的方法接近，如下表所示。</p>
+<center><img src="/img/papers/fasttext1.png" width="70%"></center>
+
+<p>在语言的表示形式上，fastText的表现优于word2vec，结果如下表所示。<mark>那么中文的结果怎样？</mark></p>
+<center><img src="/img/papers/fasttext2.png" width="70%"></center>
+
+
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://code.facebook.com/posts/1438652669495149/fair-open-sources-fasttext" target="_blank" rel="external">FAIR open-sources fastText</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;fastText是Facebook AI Research (FAIR) lab设计的library，主要用来创建text representation和进行文本分类（详见&lt;a href=&quot;http://arxiv.org/abs/1607.04606&quot;&gt;论文&lt;/a&gt;）。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Supervised Sequence Labeling with Recurrent Neural Networks</title>
+    <link href="http://cuiyungao.github.io/2016/08/19/supseq/"/>
+    <id>http://cuiyungao.github.io/2016/08/19/supseq/</id>
+    <published>2016-08-19T07:00:56.000Z</published>
+    <updated>2016-08-19T09:40:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>与传统的<code>supervised pattern recognition</code>不同的是，<code>sequence labeling</code>的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。<code>Sequence labeling</code>的目的是确定输出labels的位置和类型。</p>
+<p>RNN对sequence labeling比较有效，因为对上下文信息比较灵活（决定forget和remember什么样的信息）；可以接受不同类型的数据和数据的表示形式；可以在序列扭曲中发现sequential patterns。本文主要介绍LSTM和bi-directional RNN。</p>
+<h3 id="Generative-and-Discriminative-Methods"><a href="#Generative-and-Discriminative-Methods" class="headerlink" title="Generative and Discriminative Methods"></a><center><strong>Generative and Discriminative Methods</strong></center></h3><p>直接计算类的概率$p(C_k|x)$的方法被认为是discriminative methods；有些情况下，需要先计算类的条件密度$p(x|C_k)$，基于Bayes’ rule来计算，即$p(C_k|x)=\frac{p(x|C_k)p(C_k)}{p(x)}$，其中$p(x)=\sum_k p(x|C_k)p(C_k)$，这样的方法被认为是<code>generative</code>的方法。<code>Generative methods</code>的好处是每一个类都可以独立于其它的类来进行训练，而<code>discriminative methods</code>在每一次新的类加入时都要被重新训练。但是，后者的分类结果较好，因为它的目标是找到类的边界。文章集中在<code>discriminative sequence labeling</code>。</p>
+<p>Sequence classification通常分为三类，越来越细地分为temporal classification, segment classification和sequence classification。Temporal classification中的数据是<code>weakly labelled</code>在target sequences之外；segment classification则是temporal classification的一个特殊例子，数据必须用target sequences来进行<code>strongly labelled</code>；sequence classification则指的是每个输入序列只能对应一个类，比如识别单个的手写字母。</p>
+<p>Neural networks当中的activation functions都是可求导的，e.g.，<br>$$<br>\frac{\partial tanh(x)}{\partial x} = 1-tanh(x)^2 \\<br>\frac{\partial \sigma (x)}{\partial x} = \sigma(x)(1-\sigma(x)),<br>$$<br>由于activation functions是将无限的输入域映射到有限的输出域，所以通常也被称为<code>squashing functions</code>。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;与传统的&lt;code&gt;supervised pattern recognition&lt;/code&gt;不同的是，&lt;code&gt;sequence labeling&lt;/code&gt;的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。&lt;code&gt;Sequence l
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
+    
+  </entry>
   
   <entry>
     <title>Sequence Labeling with Discriminative Models</title>
@@ -766,77 +830,6 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Collaborative Filtering (CF)</title>
-    <link href="http://cuiyungao.github.io/2016/06/29/cf/"/>
-    <id>http://cuiyungao.github.io/2016/06/29/cf/</id>
-    <published>2016-06-29T09:22:55.000Z</published>
-    <updated>2016-07-19T02:31:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>This webpage contains information and implementation related to collaborative filtering.</p>
-<a id="more"></a>
-<p>对于recommender system，最常用的两个方法是<code>Content-Based</code>和<code>Collaborative Filtering (CF)</code>。CF基于users对items的态度来推荐items，即<code>&quot;wisdom of the crows&quot;</code>。相反，CB关注items的属性，用items之间的相似度来进行推荐。</p>
-<p>CF分为<code>Memory-based CF</code>和<code>Model-based CF</code>。</p>
-<h3 id="Implementation-Steps"><a href="#Implementation-Steps" class="headerlink" title="Implementation Steps"></a><center><strong>Implementation Steps</strong></center></h3><p>We use <code>scikit-learn</code> library将数据分成testing set和training set。For example,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import pandas as pd</div><div class="line">from sklearn import cross_validation as cv</div><div class="line">header = [&apos;user_id&apos;,&apos;item_id&apos;,&apos;rating&apos;,&apos;timestamp&apos;]</div><div class="line">data = pd.read_csv(&apos;ml-100k/u.data&apos;, sep=&apos;\t&apos;, names=header)</div><div class="line">train_data, test_data = cv.train_test_split(data, test_size=0.25)</div></pre></td></tr></table></figure>
-<p>基于<code>cosine similarity</code>，我们得到<code>user_similarity</code>和<code>item_similarity</code>，对于<code>user-based CF</code>,我们用下面的公式：</p>
-<p>$$<br>\hat{x}_{k,m} = \bar{x}_k + \frac{\sum_{u_a} sim_u(u_k, u_a)(x_{a,m}-\bar{x}_{u_a})}{\sum_{u_a} \|sim_u(u_k, u_a)\|}<br>$$</p>
-<p>Users $k$ and $a$可以被当做是weights。Normalize确保评分在1~5之间。由于有相似taste的两个users可能在评分上一个偏高，一个偏低，所以前面需要加上user的平均rating作为bias。对于<code>item-based CF</code>,公式如下：</p>
-<p>$$<br>\hat{x}_{k,m} = \frac{\sum_{i_b} sim_i(i_m,i_b)(x_{k,b})}{\sum_{i_b} \|sim_i(i_m,i_b)\|}<br>$$</p>
-<h3 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a><center><strong>Evaluation</strong></center></h3><p>Metric采用<code>Root Mean Squared Error (RMSE)</code>,公式如下：</p>
-<p>$$<br>RMSE = \sqrt{\frac{1}{N}\sum (x_i-\hat{x}_i)^2}<br>$$</p>
-<p>实现采用<code>sklearn</code>提供的<code>mean_square_error</code> (MSE), RMSE是MSE的平方根。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from sklearn.metrics import mean_squared_error</div><div class="line">from math import sqrt</div><div class="line">def rmse(prediction, ground_truth):</div><div class="line">  # find nonzeros places in groundtruth and extract from the prediction accordingly</div><div class="line">  prediction = prediction[ground_truth.nonzero()].flatten() </div><div class="line">  ground_truth = ground_truth[ground_truth.nonzero()].flatten()</div><div class="line">  return sqrt(mean_squared_error(prediction, ground_truth))</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">print &apos;User-based CF RMSE: &apos; + str(rmse(user_prediction, test_data_matrix))</div><div class="line">print &apos;Item-based CF RMSE: &apos; + str(rmse(item_prediction, test_data_matrix))</div></pre></td></tr></table></figure>
-<p><span style="color:red">Drawback:</span> Memory-based CF doesn’t scale to real-world scenarios and cannot solve cold-start problem well. <code>Model-based</code> CF methods are scalabel and can deal with higher sparsity level than memory-based, but also suffers from cold-start problem.</p>
-<p>Original <a href="http://online.cambridgecoding.com/notebooks/eWReNYcAfB/implementing-your-own-recommender-systems-in-python-2" target="_blank" rel="external">Link</a>. Also implemented locally.</p>
-<h3 id="Recosystem"><a href="#Recosystem" class="headerlink" title="Recosystem"></a>Recosystem</h3><p>Recommender system using parallel matrix factorization <a href="https://cran.r-project.org/web/packages/recosystem/index.html" target="_blank" rel="external">Link.</a>. The author’s <a href="http://statr.me/2016/07/recommender-system-using-parallel-matrix-factorization/" target="_blank" rel="external">intro</a>.</p>
-<h3 id="Fast-Recommendation-for-Activity-Stream"><a href="#Fast-Recommendation-for-Activity-Stream" class="headerlink" title="Fast Recommendation for Activity Stream"></a>Fast Recommendation for Activity Stream</h3><p>Fast Recommendations for Activity Streams Using Vowpal Wabbit <a href="http://blog.getstream.io/fast-recommendations-for-activity-streams-using-vowpal-wabbit" target="_blank" rel="external">Link</a>.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;This webpage contains information and implementation related to collaborative filtering.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="Recommend System" scheme="http://cuiyungao.github.io/tags/Recommend-System/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Good-Turing Estimation 大数据处理平滑算法</title>
-    <link href="http://cuiyungao.github.io/2016/06/29/goodturing/"/>
-    <id>http://cuiyungao.github.io/2016/06/29/goodturing/</id>
-    <published>2016-06-29T09:22:55.000Z</published>
-    <updated>2016-08-03T04:34:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>参数平滑算法</p>
-<a id="more"></a>
-<p>参数平滑算法，是在训练数据不足时，采用某种方式对统计结果和概率估计进行必要的调整和修补，以降低由于数据稀疏现象带来的统计误差。</p>
-<p>在实际应用中，数据稀疏会产生大量空值，影响后续处理的性能和效果，所以需要平滑算法。</p>
-<p><code>Good-Turing</code>估计经常用在数据平滑方面。基本思想是：将统计参数按出现次数聚类，然后用出现次数加1的类来估计当前类。假定，一个元素在文本$W$中出现$r$次的概率是$\theta(r)$，$N_r$表示元素在$W$中正好出现$r$次的个数，即$N_r=|{x_j: \sharp(x_j)=r}|$，满足：</p>
-<p>$$<br>N = \sum_{r} rN_r.<br>$$</p>
-<p>Good-Turing估计$\theta(r)$为：$\hat{\theta}(r) = \frac{1}{N} (r+1) \frac{N_{r+1}}{N_r}$.</p>
-<p>具体的分析过程可以看<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODIzNDQ3Mw==&amp;mid=2649965669&amp;idx=1&amp;sn=297fa2d2b48c4a46135aeaa73d2d437a&amp;scene=0#wechat_redirect" target="_blank" rel="external">这里</a>。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;参数平滑算法&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="Data Mining" scheme="http://cuiyungao.github.io/tags/Data-Mining/"/>
     
   </entry>
   

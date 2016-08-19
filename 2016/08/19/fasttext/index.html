@@ -3,23 +3,30 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
+  <title>FAIR Open-Sources fastText | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="undefined">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Cuiyun Gao's Daily Digest">
-<meta property="og:url" content="http://cuiyungao.github.io/page/4/index.html">
+  <meta name="keywords" content="NLP">
+  <meta name="description" content="fastText是Facebook AI Research (FAIR) lab设计的library，主要用来创建text representation和进行文本分类（详见论文）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FAIR Open-Sources fastText">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/08/19/fasttext/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
+<meta property="og:description" content="fastText是Facebook AI Research (FAIR) lab设计的library，主要用来创建text representation和进行文本分类（详见论文）。">
+<meta property="og:image" content="http://cuiyungao.github.io/img/papers/fasttext1.png">
+<meta property="og:image" content="http://cuiyungao.github.io/img/papers/fasttext2.png">
+<meta property="og:updated_time" content="2016-08-19T14:33:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cuiyun Gao's Daily Digest">
+<meta name="twitter:title" content="FAIR Open-Sources fastText">
+<meta name="twitter:description" content="fastText是Facebook AI Research (FAIR) lab设计的library，主要用来创建text representation和进行文本分类（详见论文）。">
+<meta name="twitter:image" content="http://cuiyungao.github.io/img/papers/fasttext1.png">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="null">
+  <meta name="summary" content="&lt;p&gt;fastText是Facebook AI Research (FAIR) lab设计的library，主要用来创建text representation和进行文本分类（详见&lt;a href=&quot;http://arxiv.org/abs/1607.04606&quot;&gt;论文&lt;/a&gt;）。&lt;/p&gt;">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -27,7 +34,7 @@
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-  <nav id="menu"  >
+  <nav id="menu" class="hide" >
    <div class="inner flex-row-vertical">
   <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
       <i class="icon icon-lg icon-close"></i>
@@ -97,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Cuiyun Gao&#39;s Daily Digest</div>
+        <div class="flex-col header-title ellipsis">FAIR Open-Sources fastText</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -114,137 +121,107 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Cuiyun Gao&#39;s Daily Digest</h1>
+    <h1 class="author">FAIR Open-Sources fastText</h1>
     <h5 class="subtitle">
         
-        Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！
+            <time datetime="2016-08-19T09:57:42.000Z" itemprop="datePublished" class="page-time">
+  2016-08-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/papers/">papers</a></li></ul>
+
         
     </h5>
   </div>
 </header>
 
     <div class="container body-wrap">
-      <ul class="post-list">
-  
-    <li class="post-list-item">
-        <article id="post-nlpcourses" 
+      <article id="post-fasttext" 
   class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/06/27/nlpcourses/">Courses for NLP and Deep Learning</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-06-27T08:01:41.000Z" itemprop="datePublished" class="post-time">
-  2016-06-27
-</time>
-
+    <div class="post-meat flex-row">
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
 
-
- 
     </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>The website contains the courses related to NLP and deep learning.</p>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Courses/">Courses</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
 
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-diveTensorflow" 
-  class="article article-type-post" itemprop="blogPost">
-     
+            
 
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Reference"><span class="post-toc-text">Reference</span></a></li></ol>
+            </nav>
+            
+        </aside>
 
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/06/27/diveTensorflow/">Dive into TensorFlow</a>
-    </h3>
-  
+        <div class="post-main">
 
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>fastText是Facebook AI Research (FAIR) lab设计的library，主要用来创建text representation和进行文本分类（详见<a href="http://arxiv.org/abs/1607.04606" target="_blank" rel="external">论文</a>）。</p>
+<a id="more"></a>
+<p>fastText结合了几个在NLP和machine learning中最成功的概念，包括<code>bag of n-grams</code>, <code>using subword information</code>,以及<code>sharing information across classes with a hidden representation</code>。为了加速计算速度，fastText采用<code>hierarchical softmax</code>来平衡类的分布。</p>
+<p>fastText为了有效地处理有大量种类的数据集，采用了hierarchical classifier，而不是flat structure，使得training和testing的复杂度降到linear或者与类的数目成对数关系。为了解决类的分布不均衡的问题，fastText采用了<code>Huffman algorithm</code>建立tree的方法；结果是比较频繁的种类的树的深度较浅。基于fastText，training的时间可以从几天降低到几秒钟，并且在性能上与state-of-the-art的方法接近，如下表所示。</p>
+<center><img src="/img/papers/fasttext1.png" width="70%"></center>
 
-
-    <div class="post-meta">
-        <time datetime="2016-06-27T03:37:45.000Z" itemprop="datePublished" class="post-time">
-  2016-06-27
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
+<p>在语言的表示形式上，fastText的表现优于word2vec，结果如下表所示。<mark>那么中文的结果怎样？</mark></p>
+<center><img src="/img/papers/fasttext2.png" width="70%"></center>
 
 
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>Get started with TensorFlow.</p>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TensorFlow/">TensorFlow</a></li></ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://code.facebook.com/posts/1438652669495149/fair-open-sources-fasttext" target="_blank" rel="external">FAIR open-sources fastText</a></p>
 
-</article>
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-SPINN" 
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/06/26/SPINN/">SPINN</a>
-    </h3>
+            <blockquote>
+                <p>
+                Permalink：
+                <a href="http://cuiyungao.github.io/2016/08/19/fasttext/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/19/fasttext/</a>
+                </p>
+                <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
   
 
-
-
-    <div class="post-meta">
-        <time datetime="2016-06-26T03:58:46.000Z" itemprop="datePublished" class="post-time">
-  2016-06-26
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/papers/">papers</a></li></ul>
-
-
- 
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent" >
-    
-        <p>Hybrid tree-sequence neural networks with SPINN, published at Stanford</p>
-    
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RNN/">RNN</a></li></ul>
-
-</article>
-    </li>
   
-</ul>
-
-<nav id="page-nav">
-    <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/3/">Last Page</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/08/19/supseq/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Supervised Sequence Labeling with Recurrent Neural Networks</h4>
+      </a>
     </div>
+  
 </nav>
 
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="fasttext" data-title="FAIR Open-Sources fastText" data-url="http://cuiyungao.github.io/2016/08/19/fasttext/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"cuiyungao"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
     </div>
   </main>
 <div class="mask" id="mask"></div>
