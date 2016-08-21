@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-21T09:20:12.000Z</updated>
+  <updated>2016-08-21T10:06:59.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>A Derivation of Backpropagation in Matrix Form</title>
+    <link href="http://cuiyungao.github.io/2016/08/21/backpro/"/>
+    <id>http://cuiyungao.github.io/2016/08/21/backpro/</id>
+    <published>2016-08-21T09:53:32.000Z</published>
+    <updated>2016-08-21T10:06:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇罗列了back propagation的general functions。</p>
+<a id="more"></a>
+<p>在神经网络中，更新权重经常用<code>batch gradient descent</code>或者<code>stochastic gradient descent</code>。后者是对单个的数据点更新权重，即$E=\frac{1}{2}||z-t||_2^2$；前者是批量地处理数据，即$E=\frac{1}{2}\sum_{i\in Batch}||z_i-t_i||_2^2$，其中，$t$是ground truth。这里就举例stochastic的方法，batch的方法类似。</p>
+<p>为了减少误差函数，我们应该按照loss function梯度的逆方向来改变权重，即$w=w-\alpha_w\frac{\partial E}{\partial w}$，其中，$\alpha_w$是learning rate。假设神经网络有$L$层，$x_0$是输入向量，$x_L$为输出向量，$t$为truth vector，weight matrices为$W_1, W_2, .., W_L$，activation functions为$f_1, f_2, …, f_L$。</p>
+<p>Forward Pass:<br>$$<br>x_i = f_i(W_ix_{i-1}) \\<br>E= ||x_L - t||_2^2<br>$$</p>
+<p>Backward Pass:<br>$$<br>\delta_L = (x_L-t)\circ f_L^{\prime}(W_Lx_{L-1}) \\<br>\delta_i = W_{t+1}^T\delta_{i+1}\circ f_i^{\prime}(W_ix_{i-1})<br>$$</p>
+<p>Weight Update:<br>$$<br>\frac{\partial E}{\partial W_i} = \delta_ix_{i-1}^T \\<br>W_i = W_i - \alpha W_i \circ\frac{\partial E}{\partial W_i}<br>$$</p>
+<p>用矩阵表示变量，可以方便代码实现，并利用GPU来加速。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://sudeepraja.github.io/Neural/" target="_blank" rel="external">A Derivation of Backpropagation in Matrix Form</a>。原文有更详细的过程。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇罗列了back propagation的general functions。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Softmax Approximations for Learning Word Embeddings and Language Modeling</title>
@@ -114,9 +145,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
       <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
     
@@ -246,11 +277,11 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
       <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -326,11 +357,11 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
       <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
     
@@ -374,11 +405,11 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
   </entry>
   
@@ -407,9 +438,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -469,7 +500,7 @@
     <link href="http://cuiyungao.github.io/2016/08/12/cnn/"/>
     <id>http://cuiyungao.github.io/2016/08/12/cnn/</id>
     <published>2016-08-12T03:00:57.000Z</published>
-    <updated>2016-08-21T09:17:41.000Z</updated>
+    <updated>2016-08-21T09:25:41.000Z</updated>
     
     <content type="html"><![CDATA[<p>已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。</p>
 <a id="more"></a>
@@ -486,7 +517,7 @@
 
 <p>ReLU是对Convolution的结果进行非线性变换，是element wise operation，将所有的负值替换成0。因为现实数据通常是非线性的，所以引入ReLU这个非线性函数，也可以采用tanh或者sigmoid，但是ReLU通常情况下性能较好。</p>
 <p>Pooling操作主要目的是减少特征维度，同时保留重要信息，避免overfitting，这使得对输入图片的各种变换、扭曲和移动有效。到这一步，我们可以得到输入图片的high-level的feature。最后通过fully connected layer，我们对这些feature进行分类。比如说我们要使得结果分成$k$类，通过softmax这个activation function，使得这$k$类输出概率的和是1。最后通过back propagation，我们更新迭代参数使分类结果最佳。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a><br>[2] <a href="http://andrew.gibiansky.com/blog/machine-learning/convolutional-neural-networks/" target="_blank" rel="external">Backpropagation</a><br>[3] <a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">CS231n Convolutional Neural Networks Stanford</a><br>[4] <a href="http://blog.algorithmia.com/introduction-natural-language-processing-nlp/" target="_blank" rel="external">Introduction to Natural Language Processing 2016</a>。这里面包含了各种资料的汇总。<br>[5] <a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">Understanding Convolutions</a>。从概率的角度来理解CNN.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a><br>[2] <a href="http://andrew.gibiansky.com/blog/machine-learning/convolutional-neural-networks/" target="_blank" rel="external">Backpropagation</a><br>[3] <a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">CS231n Convolutional Neural Networks Stanford</a><br>[4] <a href="http://blog.algorithmia.com/introduction-natural-language-processing-nlp/" target="_blank" rel="external">Introduction to Natural Language Processing 2016</a>。这里面包含了各种资料的汇总。<br>[5] <a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">Understanding Convolutions</a>。从概率的角度来理解CNN.<br>[6] <a href="http://arxiv.org/pdf/1512.07108v3.pdf" target="_blank" rel="external">Recent Advances in Convolutional Neural Networks</a></p>
 ]]></content>
     
     <summary type="html">
@@ -498,9 +529,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
     
   </entry>
   
@@ -589,9 +620,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="Word Embedding" scheme="http://cuiyungao.github.io/tags/Word-Embedding/"/>
     
@@ -700,9 +731,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -729,9 +760,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -758,9 +789,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -790,62 +821,6 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="Rating Prediction" scheme="http://cuiyungao.github.io/tags/Rating-Prediction/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>User Modeling with Neural Network for Review Rating Prediction</title>
-    <link href="http://cuiyungao.github.io/2016/06/30/usermodeling/"/>
-    <id>http://cuiyungao.github.io/2016/06/30/usermodeling/</id>
-    <published>2016-06-30T03:38:13.000Z</published>
-    <updated>2016-06-30T09:41:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>[IJCAI’15] User Modeling with Neural Network for Review Rating Prediction. <a href="http://ir.hit.edu.cn/~dytang/" target="_blank" rel="external">Duyu Tang</a>, Bing Qin, Ting Liu<br>Proceeding of The 24th International Joint Conference on Artificial Intelligence.</p>
-<a id="more"></a>
-<p>作者Duyu Tang的分析集中于sentiment analysis，一年发了很多NLP的顶会文章（EMNLP, ACL, IJCAI, etc.）。</p>
-<p>本文通过考虑user information来改善review rating prediction。启发源于lexical composition model，将<code>compositional modifier</code>作为一个matrix, 用<code>matrix-vector mulplication</code>作为compositon function。本文延伸lexical semantic compositio models，建立了<code>user-word composition vector model</code> (UWCVM)，并将结果作为feature用supervised learning framework来进行review rating prediction。</p>
-<h3 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a><center><strong>Problem Definition</strong></center></h3><p>Review rating prediction可以看做是a classificaiton/regression problem，由Pang and Lee <a href="http://www.cs.cornell.edu/home/llee/papers/pang-lee-stars.pdf" target="_blank" rel="external">2005</a>最开始做，采用<code>metric labeling</code> framework。Rating的performance很大程度上依赖于<code>feature representation</code>的选择。</p>
-<p>Problem: Given a review $r_{k_j}$ comprised of $n$ words $\{w_1,w_2,…,w_n\}$ written by user $u_k$ as input, review rating prediction aims at infering the numeric rating (1~4 or 1~5 stars) of $r_{k_j}$. The problem can be regarded as a multi-class classification problem by inferring a discrete rating score.</p>
-<h3 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a><center><strong>Methodology</strong></center></h3><p>The method includes two <code>composition models</code>, the user-word composition vector model (<strong>DWCVM</strong>) and the document composition vector model (<strong>DCVM</strong>). The former model将原始的word vectors加入user information，the latter model则将modified word vectors转化成review representation，并用其作为feature来进行rating prediction。Training的过程采用Pang and Lee提出的<code>supervised metric labeling</code>的方法。整个过程如下图表示：<br><br></p>
-<center><img src="/img/papers/usermodeling.png" width="50%"></center>
-
-<h4 id="User-Word-Composition-Vector-Model"><a href="#User-Word-Composition-Vector-Model" class="headerlink" title="User-Word Composition Vector Model"></a>User-Word Composition Vector Model</h4><p>整个model将original word vectors融入user information。融入的方法有两种：<code>additive</code>和<code>multiplicative</code>。给定两个向量$v_1$和$v_2$，<strong>Additive</strong>的结合方式认为输出向量$p$是a linear function of Cartesian product of $v_1$ and $v_2$，如下：</p>
-<p>$$<br>p = \mathbf{A}\times v_1 + \mathbf{B}\times v_2<br>$$<br>其中$\mathbf{A}$和$\mathbf{B}$是matrices parameters，用来encode $v_1$, $v_2$对$p$的贡献。<strong>Multiplicative</strong>的结合方式认为输出向量$p$是a linear function of the tensor product of $v_1$ and $v_2$，如下：</p>
-<p>$$<br>p = \mathbf{T}\times v_1 \times v_2 = \mathbf{U}_1 \times v_2<br>$$<br>其中$\mathbf{T}$是一个rank为3的tensor，将$v_1,v_2$的tensor product映射到$p$上。$\mathbf{T}$和$\v_1$的Partial product可以被看做生成新的矩阵$\mathbf{U}_1$，这个矩阵可以modify原始的word vectors。这两种结合方式可以用下图表示：<br><br></p>
-<center><img src="/img/papers/usermodeling2.png" width="50%"></center>
-
-<p>文章选用<code>multiplicative composition</code>，因为这种结合方式符合最初的用user information来改善word vectors的想法。后面的实验也验证了multiplicative composition的结合方式准确率要高于additive composition。</p>
-<p>为了减少parameter size，user representation被用low-rank plus diagonal approximation来表示：$\mathbf{U}_k=\mathbf{U}_{k1} \times \mathbf{U}_{k2} + diag(u^{\prime})$，其中$\mathbf{U}_{k1}\in \mathbb{R}^{d\times r}$, $\mathbf{U}_{k2}\in \mathbb{R}^{r\times d}$, $u^{\prime}\in \mathbb{R}^d$。$u^{\prime}$是每个user共享的background representation，以应对某些在test set中有而在training set中没有的users，即<code>Out-Of-Vocabulary</code> situation。最终modified word vectors $p_i$：</p>
-<p>$$<br>p_i = tanh(\mathbf{e}_{ik}) = tanh(\mathbf{U}_k\times \mathbf{e}_i)<br>\; = tanh((\mathbf{U}_{k1}\times \mathbf{U}_{k2} + diag(u^{\prime})) \times \mathbf{e}_i)<br>$$</p>
-<h4 id="Document-Composition-Vector-Model"><a href="#Document-Composition-Vector-Model" class="headerlink" title="Document Composition Vector Model"></a>Document Composition Vector Model</h4><p>文中采用一个简单而有效的方法<a href="http://anthology.aclweb.org/P/P14/P14-1006.pdf" target="_blank" rel="external">paper</a>, recursivley uses <code>biTanh</code> function来生成document representation:</p>
-<p>$$<br>biTanh(p) = \sum_{i=1}^n tanh(p_{i-1} + p_i)<br>$$<br>Each sentence将user-modified word vectors作为输入，得到sentence vectors；然后再将sentence vectors输入到<code>biTanh</code>得到最终的document vector $vec(doc)$。<code>biTanh</code>的Recursive use可以看做是two pairs of bag-of-word convolutional neural network，其中window size是2，parameters通过<code>addition</code>和<code>tanh</code>来定义。</p>
-<h4 id="Rating-Prediction-with-Metric-Labeling"><a href="#Rating-Prediction-with-Metric-Labeling" class="headerlink" title="Rating Prediction with Metric Labeling"></a>Rating Prediction with Metric Labeling</h4><p>Review representation被用来进行review rating prediction，方法是<code>metric labeling</code> framework。</p>
-<h4 id="Model-Training"><a href="#Model-Training" class="headerlink" title="Model Training"></a>Model Training</h4><p>获取back-propagation中对于whole set of parameters的derivative of the loss, 然后用stochastic gradient descent with mini-batch来更新这些parameters。文中用<code>dropout</code>来避免neural network being over-fitting。</p>
-<p><strong>Note:</strong> Cases that rating does not match with review texts is not considered. [Zhang et al., SIGIR’14]  <a href="http://dl.acm.org/citation.cfm?id=2609501" target="_blank" rel="external">Paper</a></p>
-<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center><strong>Experiment</strong></center></h3><p>实验数据集有两个：<code>Yelp13</code>和<code>RT05</code>。实验结果说明:</p>
-<ul>
-<li>Semantic composition可以提高预测的准确度，并且结合<span style="color:white">metric labeling</span>可以改善结果，因为它基于”similar items, similar labels”的idea。</li>
-<li>一个用户有越多的reviews，则这个用户的rating可以被很好地估计。</li>
-<li>SSPE [Tang et al., 2014a]  <a href="http://anthology.aclweb.org/C/C14/C14-1018.pdf" target="_blank" rel="external">paper</a>更适用于short review.</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;[IJCAI’15] User Modeling with Neural Network for Review Rating Prediction. &lt;a href=&quot;http://ir.hit.edu.cn/~dytang/&quot;&gt;Duyu Tang&lt;/a&gt;, Bing Qin, Ting Liu&lt;br&gt;Proceeding of The 24th International Joint Conference on Artificial Intelligence.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="Rating Prediction" scheme="http://cuiyungao.github.io/tags/Rating-Prediction/"/>
-    
-      <category term="Neural Network" scheme="http://cuiyungao.github.io/tags/Neural-Network/"/>
     
   </entry>
   

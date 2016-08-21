@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="NLP,Deep Learning">
+  <meta name="keywords" content="Deep Learning,NLP">
   <meta name="description" content="Irsoy, Ozan, and Claire Cardie. “Deep recursive neural networks for compositionality in language.” Advances in Neural Information Processing Systems. 2014.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Deep Recursive Neural Networks for Compositionality in Language">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/drnnformula2.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/drnnresult1.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/drnnresult2.png">
-<meta property="og:updated_time" content="2016-06-28T09:26:20.000Z">
+<meta property="og:updated_time" content="2016-08-21T09:23:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deep Recursive Neural Networks for Compositionality in Language">
 <meta name="twitter:description" content="Irsoy, Ozan, and Claire Cardie. “Deep recursive neural networks for compositionality in language.” Advances in Neural Information Processing Systems. 2014.">
@@ -155,7 +155,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Recursive-Neural-Network"><span class="post-toc-text">Recursive Neural Network</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Recurrent-v-s-Recursive"><span class="post-toc-text">Recurrent v.s. Recursive</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deep-Recursive-Neural-Networks"><span class="post-toc-text">Deep Recursive Neural Networks</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Results"><span class="post-toc-text">Results</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Result-1"><span class="post-toc-text">Result 1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Result-2"><span class="post-toc-text">Result 2</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Recursive-Neural-Network"><span class="post-toc-text">Recursive Neural Network</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Recurrent-v-s-Recursive"><span class="post-toc-text">Recurrent v.s. Recursive</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deep-Recursive-Neural-Networks"><span class="post-toc-text">Deep Recursive Neural Networks</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Results"><span class="post-toc-text">Results</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Result-1"><span class="post-toc-text">Result 1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Result-2"><span class="post-toc-text">Result 2</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Reference"><span class="post-toc-text">Reference</span></a></li></ol>
             </nav>
             
         </aside>
@@ -170,7 +170,7 @@
 <center><img src="/img/papers/drnn.png" width="60%"></center>
 
 <p><span style="color:red">Problem:</span> Even though RNNs are deep in structure, they lack the capacity for hierarchical representation that exists in conventional deep feed-forward networks and recurrent neural networks.</p>
-<h3 id="Recurrent-v-s-Recursive"><a href="#Recurrent-v-s-Recursive" class="headerlink" title="Recurrent v.s. Recursive"></a><center><strong>Recurrent v.s. Recursive</strong></center></h3><p>Recurrent neural networks are deep in time, while recursive neural networks are deep in structure (due to the repeated application of recursive connections). Recently, the notions of depth in time - the result of recurrent connections, and depth in space - the result of stacking multiple layers on top of one another, are distinguished for recurrent neural network. Deep recurrent neural networks were proposed for composing these concepts. They are created by stacking multiple recurrent layers on top of each other. This allows the extra notion of depth to be incorporated into temporal processing. </p>
+<h3 id="Recurrent-v-s-Recursive"><a href="#Recurrent-v-s-Recursive" class="headerlink" title="Recurrent v.s. Recursive"></a><center><strong>Recurrent v.s. Recursive</strong></center></h3><p>Recurrent neural networks are deep in time, while recursive neural networks are deep in structure (due to the repeated application of recursive connections). Recently, the notions of depth in time - the result of recurrent connections, and depth in space - the result of stacking multiple layers on top of one another, are distinguished for recurrent neural network. Deep recurrent neural networks were proposed for composing these concepts. They are created by stacking multiple recurrent layers on top of each other. This allows the extra notion of depth to be incorporated into temporal processing.</p>
 <p>Inspired by <code>deep recurrent</code> neural networks, <code>deep recursive</code> neural networks are proposed in this paper.</p>
 <h3 id="Deep-Recursive-Neural-Networks"><a href="#Deep-Recursive-Neural-Networks" class="headerlink" title="Deep Recursive Neural Networks"></a><center><strong>Deep Recursive Neural Networks</strong></center></h3><p>An important benefit of depth is the hierarchy among <code>hidden representations</code>: every hidden layer conceptually lies in a different representation space and potentially is a more abstract representation of the input than the previous layer.</p>
 <p>The DRNN is constructed by <code>stacking</code> multiple layers of individual <code>recursive</code> nets:<br><br></p>
@@ -193,6 +193,7 @@
 
 <p><span style="color: red">Analysis:</span> The first layer is dominated by one of the words that is composed. The seconde layer takes syntactic similarity more into account. The third layer captures the sentiment.</p>
 <p><span style="color: red">Inspiration:</span> Can we apply this into emoji detection?<br><br><br>Paper can be download <a href="https://www.cs.cornell.edu/~oirsoy/files/nips14drsv.pdf" target="_blank" rel="external">here</a>.<br>Code is written in C++, can be found <a href="https://github.com/oir/deep-recursive" target="_blank" rel="external">here</a>.<br>Introduction webpage is <a href="http://www.cs.cornell.edu/~oirsoy/drsv.htm" target="_blank" rel="external">here</a>.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="http://mp.weixin.qq.com/s?__biz=MzI1NTE4NTUwOQ==&amp;mid=2650325311&amp;idx=1&amp;sn=fa4cedfffe6cd0ecd0158fd60ad5d95d#rd" target="_blank" rel="external">递归神经网络(Recurrent Neural Network)学习</a>.里面介绍了RNN的最新论文以及常用的一些比较成功的tricks。</p>
 
             <blockquote>
                 <p>
@@ -206,9 +207,9 @@
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2016/06/28/code/" id="post-prev" class="post-nav-link">
+      <a href="/2016/06/28/lda/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Useful Source Code for NLP</h4>
+        <h4 class="title">LDA Understanding</h4>
       </a>
     </div>
   

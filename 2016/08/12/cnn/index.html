@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="CNN,Deep Learning">
+  <meta name="keywords" content="Deep Learning,CNN">
   <meta name="description" content="已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CNN总结">
@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/cnn1.png">
-<meta property="og:updated_time" content="2016-08-21T09:17:41.000Z">
+<meta property="og:updated_time" content="2016-08-21T09:25:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN总结">
 <meta name="twitter:description" content="已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。">
@@ -173,7 +173,7 @@
 
 <p>ReLU是对Convolution的结果进行非线性变换，是element wise operation，将所有的负值替换成0。因为现实数据通常是非线性的，所以引入ReLU这个非线性函数，也可以采用tanh或者sigmoid，但是ReLU通常情况下性能较好。</p>
 <p>Pooling操作主要目的是减少特征维度，同时保留重要信息，避免overfitting，这使得对输入图片的各种变换、扭曲和移动有效。到这一步，我们可以得到输入图片的high-level的feature。最后通过fully connected layer，我们对这些feature进行分类。比如说我们要使得结果分成$k$类，通过softmax这个activation function，使得这$k$类输出概率的和是1。最后通过back propagation，我们更新迭代参数使分类结果最佳。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a><br>[2] <a href="http://andrew.gibiansky.com/blog/machine-learning/convolutional-neural-networks/" target="_blank" rel="external">Backpropagation</a><br>[3] <a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">CS231n Convolutional Neural Networks Stanford</a><br>[4] <a href="http://blog.algorithmia.com/introduction-natural-language-processing-nlp/" target="_blank" rel="external">Introduction to Natural Language Processing 2016</a>。这里面包含了各种资料的汇总。<br>[5] <a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">Understanding Convolutions</a>。从概率的角度来理解CNN.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a><br>[2] <a href="http://andrew.gibiansky.com/blog/machine-learning/convolutional-neural-networks/" target="_blank" rel="external">Backpropagation</a><br>[3] <a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">CS231n Convolutional Neural Networks Stanford</a><br>[4] <a href="http://blog.algorithmia.com/introduction-natural-language-processing-nlp/" target="_blank" rel="external">Introduction to Natural Language Processing 2016</a>。这里面包含了各种资料的汇总。<br>[5] <a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">Understanding Convolutions</a>。从概率的角度来理解CNN.<br>[6] <a href="http://arxiv.org/pdf/1512.07108v3.pdf" target="_blank" rel="external">Recent Advances in Convolutional Neural Networks</a></p>
 
             <blockquote>
                 <p>
