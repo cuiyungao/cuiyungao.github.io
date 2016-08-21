@@ -18,9 +18,10 @@
 <meta property="og:description" content="本文主要介绍了softmax在word embedding方面的应用，资料来源于这里。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax1.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax2.png">
+<meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax3.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax4.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax5.png">
-<meta property="og:updated_time" content="2016-08-21T09:18:51.000Z">
+<meta property="og:updated_time" content="2016-08-21T09:20:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Softmax Approximations for Learning Word Embeddings and Language Modeling">
 <meta name="twitter:description" content="本文主要介绍了softmax在word embedding方面的应用，资料来源于这里。">
@@ -174,7 +175,7 @@
 <center><img src="/img/daily/softmax1.png" width="80%"></center><br><center>Fig.1 Hierarchical Softmax</center><br><center><img src="/img/daily/softmax2.png" width="80%"></center><br><center>Fig.2 Hierarchical Softmax [Mnih and Hinton, 2008]</center>
 
 <p><code>Differentiated Softmax</code>的出发点是我们对于经常出现的词获取的知识较多，但是对于很少出现的词信息较少，这就导致前者可以学习较多的参数，而后者较少，最终导致每个输出单词的embedding的大小不同。频繁出现的词的embedding较大，而很少出现的词的embedding较小。框架图如图Fig.3所示。</p>
-<center>&lt;img src=”/img/daily/softmax3.png” width=50%” /&gt;</center><br><center>Fig.3 Differentiated Softmax [Chen et al., 2015]</center>
+<center><img src="/img/daily/softmax3.png" width="50%"></center><br><center>Fig.3 Differentiated Softmax [Chen et al., 2015]</center>
 
 <p><code>CNN-Softmax</code>学习产生word embedding的函数，而不是单独学习所有输出单词的embedding，如图Fig.4所示。</p>
 <center><img src="/img/daily/softmax4.png" width="40%"></center><br><center>Fig.3 CNN-Softmax [Jozefowicz et al., 2016]</center>
