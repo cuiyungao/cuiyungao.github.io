@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-21T08:53:20.000Z</updated>
+  <updated>2016-08-21T09:18:51.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://cuiyungao.github.io/2016/08/19/softmax/"/>
     <id>http://cuiyungao.github.io/2016/08/19/softmax/</id>
     <published>2016-08-19T14:39:25.000Z</published>
-    <updated>2016-08-21T08:53:20.000Z</updated>
+    <updated>2016-08-21T09:18:51.000Z</updated>
     
     <content type="html"><![CDATA[<p>本文主要介绍了softmax在word embedding方面的应用，资料来源于<a href="http://www.slideshare.net/SebastianRuder/softmax-approximations-for-learning-word-embeddings-and-language-modeling-sebastian-ruder" target="_blank" rel="external">这里</a>。</p>
 <a id="more"></a>
-<h3 id="Language-Modeling-Objective"><a href="#Language-Modeling-Objective" class="headerlink" title="Language Modeling Objective"></a><center><strong>Language Modeling Objective</strong></center></h3><p>语言模型的目标是最大化给定词$w_t$的前$n$个单词预测当前词的概率，即$p(w_t|w_{t-1},…,w_{t-n+1})$。对于n-gram models，即:<br>$$<br>p(w_t|w_{t-1},…,w_{t-n+1})=\frac{count(w_{t-n+1},…,w_{t-1},w_t)}{count(w_{t-n+1},..,w_{t-1})},<br>$$<br>对于神经网络，即：<br>$$<br>p(w_t|w_{t-1},…,w_{t-n+1})=\frac{exp(h^Tv_w)}{\sum_{w_i\inV}exp(h^Tv_{w_i})}.<br>$$</p>
+<h3 id="Language-Modeling-Objective"><a href="#Language-Modeling-Objective" class="headerlink" title="Language Modeling Objective"></a><center><strong>Language Modeling Objective</strong></center></h3><p>语言模型的目标是最大化给定词$w_t$的前$n$个单词预测当前词的概率，即$p(w_t|w_{t-1},…,w_{t-n+1})$。对于n-gram models，即:<br>$$<br>p(w_t|w_{t-1},…,w_{t-n+1})=\frac{count(w_{t-n+1},…,w_{t-1},w_t)}{count(w_{t-n+1},..,w_{t-1})},<br>$$<br>对于神经网络，即：<br>$$<br>p(w_t|w_{t-1},…,w_{t-n+1})=\frac{exp(h^Tv_w)}{\sum_{w_i\in V}exp(h^Tv_{w_i})}.<br>$$</p>
 <p>Maximum entropy models最小化同一个概率分布，即$P_h(y|x)=\frac{exp(h\cdot f(x,y))}{\sum_{y^{\prime}\in y}exp(h\cdot f(x,y^{\prime}))}$,其中$h$是一个<code>weight vector</code>，$f(x,y)$是一个feature vector。在神经网络中经常用于：</p>
 <ul>
 <li>Multi-class分类；</li>
@@ -35,12 +35,12 @@
 <center><img src="/img/daily/softmax1.png" width="80%"></center><br><center>Fig.1 Hierarchical Softmax</center><br><center><img src="/img/daily/softmax2.png" width="80%"></center><br><center>Fig.2 Hierarchical Softmax [Mnih and Hinton, 2008]</center>
 
 <p><code>Differentiated Softmax</code>的出发点是我们对于经常出现的词获取的知识较多，但是对于很少出现的词信息较少，这就导致前者可以学习较多的参数，而后者较少，最终导致每个输出单词的embedding的大小不同。频繁出现的词的embedding较大，而很少出现的词的embedding较小。框架图如图Fig.3所示。</p>
-<center><img src="/img/daily/softmax3.png" width="80%"></center><br><center>Fig.3 Differentiated Softmax [Chen et al., 2015]</center>
+<center>&lt;img src=”/img/daily/softmax3.png” width=50%” /&gt;</center><br><center>Fig.3 Differentiated Softmax [Chen et al., 2015]</center>
 
 <p><code>CNN-Softmax</code>学习产生word embedding的函数，而不是单独学习所有输出单词的embedding，如图Fig.4所示。</p>
-<center><img src="/img/daily/softmax4.png" width="80%"></center><br><center>Fig.3 CNN-Softmax [Jozefowicz et al., 2016]</center>
+<center><img src="/img/daily/softmax4.png" width="40%"></center><br><center>Fig.3 CNN-Softmax [Jozefowicz et al., 2016]</center>
 
-<h3 id="sampling-based-Approaches"><a href="#sampling-based-Approaches" class="headerlink" title="sampling-based Approaches"></a><center><strong>sampling-based Approaches</strong></center></h3><p><code>Margin-based Hinge Loss</code>的出发点是只学习两种分类，一种是正确的词，一种是不正确的词。正确的词的得分较高，不正确的词的得分较低，即最大化：<br>$$<br>\sum_{x\in X}\sum_{w\in V}max{0,1-f(x)+f(x^{(w)})},<br>$$<br>其中，$x^{(w)}$是一个<code>corrupted</code> window (目标词由任意的词来代替)，$f(x)$是模型输出的分数。</p>
+<h3 id="sampling-based-Approaches"><a href="#sampling-based-Approaches" class="headerlink" title="sampling-based Approaches"></a><center><strong>sampling-based Approaches</strong></center></h3><p><code>Margin-based Hinge Loss</code>的出发点是只学习两种分类，一种是正确的词，一种是不正确的词。正确的词的得分较高，不正确的词的得分较低，即最大化：<br>$$<br>\sum_{x\in X}\sum_{w\in V}max{(0,1-f(x)+f(x^{(w)})},<br>$$<br>其中，$x^{(w)}$是一个<code>corrupted</code> window (目标词由任意的词来代替)，$f(x)$是模型输出的分数。</p>
 <p><code>Noise Contrastive Estimation</code>的目的是将target word跟noise区分开，如图Fig.5所示。这样语言模型被转化为二分类模型，对于每个词按照一定的噪声分布（比如，unigram）获取$k$个噪声采样点，用logistic regression loss最小化cross-entropy函数。随着$k$数目的增长估计softmax。</p>
 <center><img src="/img/daily/softmax5.png" width="80%"></center><br><center>Fig.5 Noise Contrastive Estimation (NCE) [Mnih and Teh, 2012]</center>
 ]]></content>
@@ -96,9 +96,9 @@
     <link href="http://cuiyungao.github.io/2016/08/19/supseq/"/>
     <id>http://cuiyungao.github.io/2016/08/19/supseq/</id>
     <published>2016-08-19T07:00:56.000Z</published>
-    <updated>2016-08-19T09:40:03.000Z</updated>
+    <updated>2016-08-21T08:57:01.000Z</updated>
     
-    <content type="html"><![CDATA[<p>与传统的<code>supervised pattern recognition</code>不同的是，<code>sequence labeling</code>的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。<code>Sequence labeling</code>的目的是确定输出labels的位置和类型。</p>
+    <content type="html"><![CDATA[<p>与传统的<code>supervised pattern recognition</code>不同的是，<code>sequence labeling</code>的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。<code>Sequence labeling</code>的目的是确定输出labels的位置和类型。<br><a id="more"></a></p>
 <p>RNN对sequence labeling比较有效，因为对上下文信息比较灵活（决定forget和remember什么样的信息）；可以接受不同类型的数据和数据的表示形式；可以在序列扭曲中发现sequential patterns。本文主要介绍LSTM和bi-directional RNN。</p>
 <h3 id="Generative-and-Discriminative-Methods"><a href="#Generative-and-Discriminative-Methods" class="headerlink" title="Generative and Discriminative Methods"></a><center><strong>Generative and Discriminative Methods</strong></center></h3><p>直接计算类的概率$p(C_k|x)$的方法被认为是discriminative methods；有些情况下，需要先计算类的条件密度$p(x|C_k)$，基于Bayes’ rule来计算，即$p(C_k|x)=\frac{p(x|C_k)p(C_k)}{p(x)}$，其中$p(x)=\sum_k p(x|C_k)p(C_k)$，这样的方法被认为是<code>generative</code>的方法。<code>Generative methods</code>的好处是每一个类都可以独立于其它的类来进行训练，而<code>discriminative methods</code>在每一次新的类加入时都要被重新训练。但是，后者的分类结果较好，因为它的目标是找到类的边界。文章集中在<code>discriminative sequence labeling</code>。</p>
 <p>Sequence classification通常分为三类，越来越细地分为temporal classification, segment classification和sequence classification。Temporal classification中的数据是<code>weakly labelled</code>在target sequences之外；segment classification则是temporal classification的一个特殊例子，数据必须用target sequences来进行<code>strongly labelled</code>；sequence classification则指的是每个输入序列只能对应一个类，比如识别单个的手写字母。</p>
@@ -107,7 +107,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;与传统的&lt;code&gt;supervised pattern recognition&lt;/code&gt;不同的是，&lt;code&gt;sequence labeling&lt;/code&gt;的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。&lt;code&gt;Sequence l
+      &lt;p&gt;与传统的&lt;code&gt;supervised pattern recognition&lt;/code&gt;不同的是，&lt;code&gt;sequence labeling&lt;/code&gt;的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。&lt;code&gt;Sequence labeling&lt;/code&gt;的目的是确定输出labels的位置和类型。&lt;br&gt;
     
     </summary>
     
@@ -469,7 +469,7 @@
     <link href="http://cuiyungao.github.io/2016/08/12/cnn/"/>
     <id>http://cuiyungao.github.io/2016/08/12/cnn/</id>
     <published>2016-08-12T03:00:57.000Z</published>
-    <updated>2016-08-12T03:29:50.000Z</updated>
+    <updated>2016-08-21T09:17:41.000Z</updated>
     
     <content type="html"><![CDATA[<p>已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。</p>
 <a id="more"></a>
@@ -486,7 +486,7 @@
 
 <p>ReLU是对Convolution的结果进行非线性变换，是element wise operation，将所有的负值替换成0。因为现实数据通常是非线性的，所以引入ReLU这个非线性函数，也可以采用tanh或者sigmoid，但是ReLU通常情况下性能较好。</p>
 <p>Pooling操作主要目的是减少特征维度，同时保留重要信息，避免overfitting，这使得对输入图片的各种变换、扭曲和移动有效。到这一步，我们可以得到输入图片的high-level的feature。最后通过fully connected layer，我们对这些feature进行分类。比如说我们要使得结果分成$k$类，通过softmax这个activation function，使得这$k$类输出概率的和是1。最后通过back propagation，我们更新迭代参数使分类结果最佳。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a><br>[2] <a href="http://andrew.gibiansky.com/blog/machine-learning/convolutional-neural-networks/" target="_blank" rel="external">Backpropagation</a><br>[3] <a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">CS231n Convolutional Neural Networks Stanford</a><br>[4] <a href="http://blog.algorithmia.com/introduction-natural-language-processing-nlp/" target="_blank" rel="external">Introduction to Natural Language Processing 2016</a>。这里面包含了各种资料的汇总。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a><br>[2] <a href="http://andrew.gibiansky.com/blog/machine-learning/convolutional-neural-networks/" target="_blank" rel="external">Backpropagation</a><br>[3] <a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">CS231n Convolutional Neural Networks Stanford</a><br>[4] <a href="http://blog.algorithmia.com/introduction-natural-language-processing-nlp/" target="_blank" rel="external">Introduction to Natural Language Processing 2016</a>。这里面包含了各种资料的汇总。<br>[5] <a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">Understanding Convolutions</a>。从概率的角度来理解CNN.</p>
 ]]></content>
     
     <summary type="html">

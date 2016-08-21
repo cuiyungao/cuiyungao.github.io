@@ -228,12 +228,7 @@
     
     <div class="post-content" id="post-content" itemprop="postContent" >
     
-        <p>与传统的<code>supervised pattern recognition</code>不同的是，<code>sequence labeling</code>的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。<code>Sequence labeling</code>的目的是确定输出labels的位置和类型。</p>
-<p>RNN对sequence labeling比较有效，因为对上下文信息比较灵活（决定forget和remember什么样的信息）；可以接受不同类型的数据和数据的表示形式；可以在序列扭曲中发现sequential patterns。本文主要介绍LSTM和bi-directional RNN。</p>
-<h3 id="Generative-and-Discriminative-Methods"><a href="#Generative-and-Discriminative-Methods" class="headerlink" title="Generative and Discriminative Methods"></a><center><strong>Generative and Discriminative Methods</strong></center></h3><p>直接计算类的概率$p(C_k|x)$的方法被认为是discriminative methods；有些情况下，需要先计算类的条件密度$p(x|C_k)$，基于Bayes’ rule来计算，即$p(C_k|x)=\frac{p(x|C_k)p(C_k)}{p(x)}$，其中$p(x)=\sum_k p(x|C_k)p(C_k)$，这样的方法被认为是<code>generative</code>的方法。<code>Generative methods</code>的好处是每一个类都可以独立于其它的类来进行训练，而<code>discriminative methods</code>在每一次新的类加入时都要被重新训练。但是，后者的分类结果较好，因为它的目标是找到类的边界。文章集中在<code>discriminative sequence labeling</code>。</p>
-<p>Sequence classification通常分为三类，越来越细地分为temporal classification, segment classification和sequence classification。Temporal classification中的数据是<code>weakly labelled</code>在target sequences之外；segment classification则是temporal classification的一个特殊例子，数据必须用target sequences来进行<code>strongly labelled</code>；sequence classification则指的是每个输入序列只能对应一个类，比如识别单个的手写字母。</p>
-<p>Neural networks当中的activation functions都是可求导的，e.g.，<br>$$<br>\frac{\partial tanh(x)}{\partial x} = 1-tanh(x)^2 \\<br>\frac{\partial \sigma (x)}{\partial x} = \sigma(x)(1-\sigma(x)),<br>$$<br>由于activation functions是将无限的输入域映射到有限的输出域，所以通常也被称为<code>squashing functions</code>。</p>
-
+        <p>与传统的<code>supervised pattern recognition</code>不同的是，<code>sequence labeling</code>的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。<code>Sequence labeling</code>的目的是确定输出labels的位置和类型。<br>
     
     </div>
     

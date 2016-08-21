@@ -18,10 +18,9 @@
 <meta property="og:description" content="本文主要介绍了softmax在word embedding方面的应用，资料来源于这里。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax1.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax2.png">
-<meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax3.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax4.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/softmax5.png">
-<meta property="og:updated_time" content="2016-08-21T08:53:20.000Z">
+<meta property="og:updated_time" content="2016-08-21T09:18:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Softmax Approximations for Learning Word Embeddings and Language Modeling">
 <meta name="twitter:description" content="本文主要介绍了softmax在word embedding方面的应用，资料来源于这里。">
@@ -164,7 +163,7 @@
             <div class="post-content" id="post-content" itemprop="postContent">
             <p>本文主要介绍了softmax在word embedding方面的应用，资料来源于<a href="http://www.slideshare.net/SebastianRuder/softmax-approximations-for-learning-word-embeddings-and-language-modeling-sebastian-ruder" target="_blank" rel="external">这里</a>。</p>
 <a id="more"></a>
-<h3 id="Language-Modeling-Objective"><a href="#Language-Modeling-Objective" class="headerlink" title="Language Modeling Objective"></a><center><strong>Language Modeling Objective</strong></center></h3><p>语言模型的目标是最大化给定词$w_t$的前$n$个单词预测当前词的概率，即$p(w_t|w_{t-1},…,w_{t-n+1})$。对于n-gram models，即:<br>$$<br>p(w_t|w_{t-1},…,w_{t-n+1})=\frac{count(w_{t-n+1},…,w_{t-1},w_t)}{count(w_{t-n+1},..,w_{t-1})},<br>$$<br>对于神经网络，即：<br>$$<br>p(w_t|w_{t-1},…,w_{t-n+1})=\frac{exp(h^Tv_w)}{\sum_{w_i\inV}exp(h^Tv_{w_i})}.<br>$$</p>
+<h3 id="Language-Modeling-Objective"><a href="#Language-Modeling-Objective" class="headerlink" title="Language Modeling Objective"></a><center><strong>Language Modeling Objective</strong></center></h3><p>语言模型的目标是最大化给定词$w_t$的前$n$个单词预测当前词的概率，即$p(w_t|w_{t-1},…,w_{t-n+1})$。对于n-gram models，即:<br>$$<br>p(w_t|w_{t-1},…,w_{t-n+1})=\frac{count(w_{t-n+1},…,w_{t-1},w_t)}{count(w_{t-n+1},..,w_{t-1})},<br>$$<br>对于神经网络，即：<br>$$<br>p(w_t|w_{t-1},…,w_{t-n+1})=\frac{exp(h^Tv_w)}{\sum_{w_i\in V}exp(h^Tv_{w_i})}.<br>$$</p>
 <p>Maximum entropy models最小化同一个概率分布，即$P_h(y|x)=\frac{exp(h\cdot f(x,y))}{\sum_{y^{\prime}\in y}exp(h\cdot f(x,y^{\prime}))}$,其中$h$是一个<code>weight vector</code>，$f(x,y)$是一个feature vector。在神经网络中经常用于：</p>
 <ul>
 <li>Multi-class分类；</li>
@@ -175,12 +174,12 @@
 <center><img src="/img/daily/softmax1.png" width="80%"></center><br><center>Fig.1 Hierarchical Softmax</center><br><center><img src="/img/daily/softmax2.png" width="80%"></center><br><center>Fig.2 Hierarchical Softmax [Mnih and Hinton, 2008]</center>
 
 <p><code>Differentiated Softmax</code>的出发点是我们对于经常出现的词获取的知识较多，但是对于很少出现的词信息较少，这就导致前者可以学习较多的参数，而后者较少，最终导致每个输出单词的embedding的大小不同。频繁出现的词的embedding较大，而很少出现的词的embedding较小。框架图如图Fig.3所示。</p>
-<center><img src="/img/daily/softmax3.png" width="80%"></center><br><center>Fig.3 Differentiated Softmax [Chen et al., 2015]</center>
+<center>&lt;img src=”/img/daily/softmax3.png” width=50%” /&gt;</center><br><center>Fig.3 Differentiated Softmax [Chen et al., 2015]</center>
 
 <p><code>CNN-Softmax</code>学习产生word embedding的函数，而不是单独学习所有输出单词的embedding，如图Fig.4所示。</p>
-<center><img src="/img/daily/softmax4.png" width="80%"></center><br><center>Fig.3 CNN-Softmax [Jozefowicz et al., 2016]</center>
+<center><img src="/img/daily/softmax4.png" width="40%"></center><br><center>Fig.3 CNN-Softmax [Jozefowicz et al., 2016]</center>
 
-<h3 id="sampling-based-Approaches"><a href="#sampling-based-Approaches" class="headerlink" title="sampling-based Approaches"></a><center><strong>sampling-based Approaches</strong></center></h3><p><code>Margin-based Hinge Loss</code>的出发点是只学习两种分类，一种是正确的词，一种是不正确的词。正确的词的得分较高，不正确的词的得分较低，即最大化：<br>$$<br>\sum_{x\in X}\sum_{w\in V}max{0,1-f(x)+f(x^{(w)})},<br>$$<br>其中，$x^{(w)}$是一个<code>corrupted</code> window (目标词由任意的词来代替)，$f(x)$是模型输出的分数。</p>
+<h3 id="sampling-based-Approaches"><a href="#sampling-based-Approaches" class="headerlink" title="sampling-based Approaches"></a><center><strong>sampling-based Approaches</strong></center></h3><p><code>Margin-based Hinge Loss</code>的出发点是只学习两种分类，一种是正确的词，一种是不正确的词。正确的词的得分较高，不正确的词的得分较低，即最大化：<br>$$<br>\sum_{x\in X}\sum_{w\in V}max{(0,1-f(x)+f(x^{(w)})},<br>$$<br>其中，$x^{(w)}$是一个<code>corrupted</code> window (目标词由任意的词来代替)，$f(x)$是模型输出的分数。</p>
 <p><code>Noise Contrastive Estimation</code>的目的是将target word跟noise区分开，如图Fig.5所示。这样语言模型被转化为二分类模型，对于每个词按照一定的噪声分布（比如，unigram）获取$k$个噪声采样点，用logistic regression loss最小化cross-entropy函数。随着$k$数目的增长估计softmax。</p>
 <center><img src="/img/daily/softmax5.png" width="80%"></center><br><center>Fig.5 Noise Contrastive Estimation (NCE) [Mnih and Teh, 2012]</center>
 
