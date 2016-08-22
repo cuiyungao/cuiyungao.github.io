@@ -3,27 +3,23 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>A Derivation of Backpropagation in Matrix Form | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
+  <title>Tag: Classification | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="Deep Learning">
-  <meta name="description" content="本篇罗列了back propagation的general functions。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="A Derivation of Backpropagation in Matrix Form">
-<meta property="og:url" content="http://cuiyungao.github.io/2016/08/21/backpro/index.html">
+  <meta name="keywords" content="undefined">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Cuiyun Gao's Daily Digest">
+<meta property="og:url" content="http://cuiyungao.github.io/tags/Classification/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
-<meta property="og:description" content="本篇罗列了back propagation的general functions。">
-<meta property="og:updated_time" content="2016-08-21T10:07:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Derivation of Backpropagation in Matrix Form">
-<meta name="twitter:description" content="本篇罗列了back propagation的general functions。">
+<meta name="twitter:title" content="Cuiyun Gao's Daily Digest">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;本篇罗列了back propagation的general functions。&lt;/p&gt;">
+  <meta name="summary" content="null">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -31,7 +27,7 @@
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
+  <nav id="menu"  >
    <div class="inner flex-row-vertical">
   <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
       <i class="icon icon-lg icon-close"></i>
@@ -101,7 +97,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">A Derivation of Backpropagation in Matrix Form</div>
+        <div class="flex-col header-title ellipsis">Cuiyun Gao&#39;s Daily Digest</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -118,112 +114,51 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">A Derivation of Backpropagation in Matrix Form</h1>
+    <h1 class="author">Cuiyun Gao&#39;s Daily Digest</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-08-21T09:53:32.000Z" itemprop="datePublished" class="page-time">
-  2016-08-21
-</time>
-
-
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
-
+        Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！
         
     </h5>
   </div>
 </header>
 
     <div class="container body-wrap">
-      <article id="post-backpro" 
-  class="article article-type-post" itemprop="blogPost">
-    <div class="post-meat flex-row">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li></ul>
+      
 
-    </div>
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
 
-            
+        <h3 class="archive-separator">August, 2016</h3>
 
-            
-            <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Reference"><span class="post-toc-text">Reference</span></a></li></ol>
-            </nav>
-            
-        </aside>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
-            <p>本篇罗列了back propagation的general functions。</p>
-<a id="more"></a>
-<p>在神经网络中，更新权重经常用<code>batch gradient descent</code>或者<code>stochastic gradient descent</code>。后者是对单个的数据点更新权重，即$E=\frac{1}{2}||z-t||_2^2$；前者是批量地处理数据，即$E=\frac{1}{2}\sum_{i\in Batch}||z_i-t_i||_2^2$，其中，$t$是ground truth。这里就举例stochastic的方法，batch的方法类似。</p>
-<p>为了减少误差函数，我们应该按照loss function梯度的逆方向来改变权重，即$w=w-\alpha_w\frac{\partial E}{\partial w}$，其中，$\alpha_w$是learning rate。假设神经网络有$L$层，$x_0$是输入向量，$x_L$为输出向量，$t$为truth vector，weight matrices为$W_1, W_2, .., W_L$，activation functions为$f_1, f_2, …, f_L$。</p>
-<p>Forward Pass:<br>$$<br>x_i = f_i(W_ix_{i-1}) \\<br>E= ||x_L - t||_2^2<br>$$</p>
-<p>Backward Pass:<br>$$<br>\delta_L = (x_L-t)\circ f_L^{\prime}(W_Lx_{L-1}) \\<br>\delta_i = W_{t+1}^T\delta_{i+1}\circ f_i^{\prime}(W_ix_{i-1})<br>$$</p>
-<p>Weight Update:<br>$$<br>\frac{\partial E}{\partial W_i} = \delta_ix_{i-1}^T \\<br>W_i = W_i - \alpha W_i \circ\frac{\partial E}{\partial W_i}<br>$$</p>
-<p>用矩阵表示变量，可以方便代码实现，并利用GPU来加速。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://sudeepraja.github.io/Neural/" target="_blank" rel="external">A Derivation of Backpropagation in Matrix Form</a>。原文有更详细的过程。</p>
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2016-08-22T03:41:00.000Z" itemprop="datePublished" class="post-time">
+  Aug 22
+</time>
 
-            <blockquote>
-                <p>
-                Permalink：
-                <a href="http://cuiyungao.github.io/2016/08/21/backpro/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/21/backpro/</a>
-                </p>
-                <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
-            </blockquote>
-            </div>
-            
-<nav class="post-nav">
-  
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/08/22/classifier/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Why Should I Trust You? Explaining the Predictions of Any Classifier</h4>
-      </a>
-    </div>
-  
+  </div>
+  <div class="archive-article-inner">
+    
+
 
   
-    <div class="waves-block waves-effect next fr">
-      <a href="/2016/08/19/softmax/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Softmax Approximations for Learning Word Embeddings and Language Modeling</h4>
-      </a>
-    </div>
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2016/08/22/classifier/">Why Should I Trust You? Explaining the Predictions of Any Classifier</a>
+    </h3>
   
-</nav>
-
-
-            
-            
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="backpro" data-title="A Derivation of Backpropagation in Matrix Form" data-url="http://cuiyungao.github.io/2016/08/21/backpro/index.html"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"cuiyungao"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
 
 
 
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Classification/">Classification</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
 
-
-        </div>
-    </div>
+  </div>
 </article>
+
+
+
+
     </div>
   </main>
 <div class="mask" id="mask"></div>

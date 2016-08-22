@@ -3,27 +3,31 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>A Derivation of Backpropagation in Matrix Form | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
+  <title>Why Should I Trust You? Explaining the Predictions of Any Classifier | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="Deep Learning">
-  <meta name="description" content="本篇罗列了back propagation的general functions。">
+  <meta name="keywords" content="Machine Learning,Classification">
+  <meta name="description" content="KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A Derivation of Backpropagation in Matrix Form">
-<meta property="og:url" content="http://cuiyungao.github.io/2016/08/21/backpro/index.html">
+<meta property="og:title" content="Why Should I Trust You? Explaining the Predictions of Any Classifier">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/08/22/classifier/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
-<meta property="og:description" content="本篇罗列了back propagation的general functions。">
-<meta property="og:updated_time" content="2016-08-21T10:07:56.000Z">
+<meta property="og:description" content="KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.">
+<meta property="og:image" content="http://cuiyungao.github.io/img/papers/classifier1.png">
+<meta property="og:image" content="http://cuiyungao.github.io/img/papers/classifier2.png">
+<meta property="og:image" content="http://cuiyungao.github.io/img/papers/classifier3.png">
+<meta property="og:updated_time" content="2016-08-22T06:20:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Derivation of Backpropagation in Matrix Form">
-<meta name="twitter:description" content="本篇罗列了back propagation的general functions。">
+<meta name="twitter:title" content="Why Should I Trust You? Explaining the Predictions of Any Classifier">
+<meta name="twitter:description" content="KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.">
+<meta name="twitter:image" content="http://cuiyungao.github.io/img/papers/classifier1.png">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;本篇罗列了back propagation的general functions。&lt;/p&gt;">
+  <meta name="summary" content="&lt;p&gt;KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.&lt;/p&gt;">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -101,7 +105,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">A Derivation of Backpropagation in Matrix Form</div>
+        <div class="flex-col header-title ellipsis">Why Should I Trust You? Explaining the Predictions of Any Classifier</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -118,15 +122,15 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">A Derivation of Backpropagation in Matrix Form</h1>
+    <h1 class="author">Why Should I Trust You? Explaining the Predictions of Any Classifier</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-08-21T09:53:32.000Z" itemprop="datePublished" class="page-time">
-  2016-08-21
+            <time datetime="2016-08-22T03:41:00.000Z" itemprop="datePublished" class="page-time">
+  2016-08-22
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/papers/">papers</a></li></ul>
 
         
     </h5>
@@ -134,11 +138,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-backpro" 
+      <article id="post-classifier" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Classification/">Classification</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -148,7 +152,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Reference"><span class="post-toc-text">Reference</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LIME"><span class="post-toc-text">LIME</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SP-LIME"><span class="post-toc-text">SP-LIME</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Reference"><span class="post-toc-text">Reference</span></a></li></ol>
             </nav>
             
         </aside>
@@ -156,20 +160,30 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>本篇罗列了back propagation的general functions。</p>
+            <p>KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.</p>
 <a id="more"></a>
-<p>在神经网络中，更新权重经常用<code>batch gradient descent</code>或者<code>stochastic gradient descent</code>。后者是对单个的数据点更新权重，即$E=\frac{1}{2}||z-t||_2^2$；前者是批量地处理数据，即$E=\frac{1}{2}\sum_{i\in Batch}||z_i-t_i||_2^2$，其中，$t$是ground truth。这里就举例stochastic的方法，batch的方法类似。</p>
-<p>为了减少误差函数，我们应该按照loss function梯度的逆方向来改变权重，即$w=w-\alpha_w\frac{\partial E}{\partial w}$，其中，$\alpha_w$是learning rate。假设神经网络有$L$层，$x_0$是输入向量，$x_L$为输出向量，$t$为truth vector，weight matrices为$W_1, W_2, .., W_L$，activation functions为$f_1, f_2, …, f_L$。</p>
-<p>Forward Pass:<br>$$<br>x_i = f_i(W_ix_{i-1}) \\<br>E= ||x_L - t||_2^2<br>$$</p>
-<p>Backward Pass:<br>$$<br>\delta_L = (x_L-t)\circ f_L^{\prime}(W_Lx_{L-1}) \\<br>\delta_i = W_{t+1}^T\delta_{i+1}\circ f_i^{\prime}(W_ix_{i-1})<br>$$</p>
-<p>Weight Update:<br>$$<br>\frac{\partial E}{\partial W_i} = \delta_ix_{i-1}^T \\<br>W_i = W_i - \alpha W_i \circ\frac{\partial E}{\partial W_i}<br>$$</p>
-<p>用矩阵表示变量，可以方便代码实现，并利用GPU来加速。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://sudeepraja.github.io/Neural/" target="_blank" rel="external">A Derivation of Backpropagation in Matrix Form</a>。原文有更详细的过程。</p>
+<p>文章的主要贡献在于如何评判一个classifier的可靠性，提出了LIME算法。解决的问题是尽管有的分类器的准确率较高，但是分类基于的原因并不可信，所以这种分类器不应该被相信。文章的主要目的是，帮助人来决定是否要相信一个预测，在models之间选择，并改善不可信的分类器，识别其为什么不可信。</p>
+<center><img src="/img/papers/classifier1.png" width="80%"></center>
+
+<p><mark>据证明，为电影推荐或者其它一些自动化系统提供解释能够提高接受率。这个能够用在review analysis上面？</mark>Model和估计错误的原因通常有以下几种：</p>
+<ol>
+<li>Data leakage.无意的信号泄露到训练集和validation集中，但是真正使用的时候并不会使用这个信号。<mark>不太懂这个….</mark></li>
+<li>Dataset shift.训练集跟测试集不同。</li>
+<li>计算跟优化的标准不同。</li>
+</ol>
+<p>这种数据可靠性的explainers应该有哪些标准呢？一是<code>可解释性</code>，需要考虑到用户限制，有时候这些features并不一定被model所用，所以说explaination中的输入变量跟features可以不同；二是<code>local fidelity</code>，对一个实例的近邻的预测需要有意义。文章提出了<code>LIME</code> (Local Interpretable Model-agnostic Explanations)来对模型的可靠性进行解释。</p>
+<h3 id="LIME"><a href="#LIME" class="headerlink" title="LIME"></a><center><strong>LIME</strong></center></h3><p>假设模型$g\in G$，$G$是一类potentially interpretable的模型，比如线性模型和决策树等。$\Omega(g)$为复杂度的衡量，$f(x)$表示$x$属于某个类的概率，$\pi_x(z)$定义$x$的近邻，$\mathcal{L}(f,g,\pi_x)$为在$\pi_x(z)$范围用$g$预测$f$的不可靠程度，由LIME生成的解释为：<br>$$<br>\xi(x) = {argmin}_{g\in G} \mathcal{L}(f,g,\pi_x) + \Omega(g)。<br>$$<br>算法过程如下：</p>
+<center><img src="/img/papers/classifier2.png" width="80%"></center>
+
+<h3 id="SP-LIME"><a href="#SP-LIME" class="headerlink" title="SP-LIME"></a><center><strong>SP-LIME</strong></center></h3><p>上面的LIME仅仅是针对单个实例，我们应该从整体上来评估一个模型，所以加进去了<code>pick step</code>来选择$B$个实例。如下图所示，特征$f_2$的得分较高。但是我们选择第2个和第5个文档来进行explaination预测。</p>
+<center><img src="/img/papers/classifier3.png" width="80%"></center>
+
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://arxiv.org/pdf/1602.04938v3.pdf" target="_blank" rel="external">“Why Should I Trust You?” Explaining the Predictions of Any Classifier</a><br>[2] <a href="https://github.com/marcotcr/lime-experiments" target="_blank" rel="external">Code</a>.可以重复试验（含数据）。</p>
 
             <blockquote>
                 <p>
                 Permalink：
-                <a href="http://cuiyungao.github.io/2016/08/21/backpro/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/21/backpro/</a>
+                <a href="http://cuiyungao.github.io/2016/08/22/classifier/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/22/classifier/</a>
                 </p>
                 <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
             </blockquote>
@@ -177,19 +191,12 @@
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/08/22/classifier/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Why Should I Trust You? Explaining the Predictions of Any Classifier</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/08/19/softmax/" id="post-next" class="post-nav-link">
+      <a href="/2016/08/21/backpro/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Softmax Approximations for Learning Word Embeddings and Language Modeling</h4>
+        <h4 class="title">A Derivation of Backpropagation in Matrix Form</h4>
       </a>
     </div>
   
@@ -200,7 +207,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="backpro" data-title="A Derivation of Backpropagation in Matrix Form" data-url="http://cuiyungao.github.io/2016/08/21/backpro/index.html"></div>
+	<div class="ds-thread" data-thread-key="classifier" data-title="Why Should I Trust You? Explaining the Predictions of Any Classifier" data-url="http://cuiyungao.github.io/2016/08/22/classifier/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
