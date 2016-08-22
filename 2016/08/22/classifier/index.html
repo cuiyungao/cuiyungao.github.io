@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/classifier1.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/classifier2.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/classifier3.png">
-<meta property="og:updated_time" content="2016-08-22T06:20:05.000Z">
+<meta property="og:updated_time" content="2016-08-22T06:37:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Why Should I Trust You? Explaining the Predictions of Any Classifier">
 <meta name="twitter:description" content="KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.">
@@ -163,7 +163,7 @@
             <p>KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.</p>
 <a id="more"></a>
 <p>文章的主要贡献在于如何评判一个classifier的可靠性，提出了LIME算法。解决的问题是尽管有的分类器的准确率较高，但是分类基于的原因并不可信，所以这种分类器不应该被相信。文章的主要目的是，帮助人来决定是否要相信一个预测，在models之间选择，并改善不可信的分类器，识别其为什么不可信。</p>
-<center><img src="/img/papers/classifier1.png" width="80%"></center>
+<center><img src="/img/papers/classifier1.png" width="100%"></center>
 
 <p><mark>据证明，为电影推荐或者其它一些自动化系统提供解释能够提高接受率。这个能够用在review analysis上面？</mark>Model和估计错误的原因通常有以下几种：</p>
 <ol>
@@ -173,10 +173,10 @@
 </ol>
 <p>这种数据可靠性的explainers应该有哪些标准呢？一是<code>可解释性</code>，需要考虑到用户限制，有时候这些features并不一定被model所用，所以说explaination中的输入变量跟features可以不同；二是<code>local fidelity</code>，对一个实例的近邻的预测需要有意义。文章提出了<code>LIME</code> (Local Interpretable Model-agnostic Explanations)来对模型的可靠性进行解释。</p>
 <h3 id="LIME"><a href="#LIME" class="headerlink" title="LIME"></a><center><strong>LIME</strong></center></h3><p>假设模型$g\in G$，$G$是一类potentially interpretable的模型，比如线性模型和决策树等。$\Omega(g)$为复杂度的衡量，$f(x)$表示$x$属于某个类的概率，$\pi_x(z)$定义$x$的近邻，$\mathcal{L}(f,g,\pi_x)$为在$\pi_x(z)$范围用$g$预测$f$的不可靠程度，由LIME生成的解释为：<br>$$<br>\xi(x) = {argmin}_{g\in G} \mathcal{L}(f,g,\pi_x) + \Omega(g)。<br>$$<br>算法过程如下：</p>
-<center><img src="/img/papers/classifier2.png" width="80%"></center>
+<center><img src="/img/papers/classifier2.png" width="70%"></center>
 
 <h3 id="SP-LIME"><a href="#SP-LIME" class="headerlink" title="SP-LIME"></a><center><strong>SP-LIME</strong></center></h3><p>上面的LIME仅仅是针对单个实例，我们应该从整体上来评估一个模型，所以加进去了<code>pick step</code>来选择$B$个实例。如下图所示，特征$f_2$的得分较高。但是我们选择第2个和第5个文档来进行explaination预测。</p>
-<center><img src="/img/papers/classifier3.png" width="80%"></center>
+<center><img src="/img/papers/classifier3.png" width="70%"></center>
 
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://arxiv.org/pdf/1602.04938v3.pdf" target="_blank" rel="external">“Why Should I Trust You?” Explaining the Predictions of Any Classifier</a><br>[2] <a href="https://github.com/marcotcr/lime-experiments" target="_blank" rel="external">Code</a>.可以重复试验（含数据）。</p>
 
