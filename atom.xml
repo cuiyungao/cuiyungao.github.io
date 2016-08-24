@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-08-22T06:37:48.000Z</updated>
+  <updated>2016-08-24T10:07:09.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MF, FM, 与NMF</title>
+    <link href="http://cuiyungao.github.io/2016/08/24/fm/"/>
+    <id>http://cuiyungao.github.io/2016/08/24/fm/</id>
+    <published>2016-08-24T08:53:46.000Z</published>
+    <updated>2016-08-24T10:07:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>百度周讲，这次主要讲的是MF, FM, NMF。</p>
+<a id="more"></a>
+<p>假设存在一个集合$S={x_i, y_i}_N$，我们的目标是由$x_0$推测出$y_0$，即$x_0-&gt;y_0$。如果$y_0=\sum_i f(x_0, x_i, S)y_i$，即权重参数是由样本集本身决定的，那么我们称其为<code>non-parametric</code>的模型，比如KNN, one-shot都是<code>non-parametric</code>的模型。</p>
+<p>在线性空间中看到<code>x\_i^Tx\_j</code>，我们可以通过<code>kernel</code>将其转换到非线性空间。</p>
+<p>在解决问题的时候，我们需要考虑三个方面，即<code>模型</code>，<code>目标</code>，跟<code>算法</code>。</p>
+<h3 id="MF"><a href="#MF" class="headerlink" title="MF"></a><center><strong>MF</strong></center></h3><p>MF (matrix factorization)，即矩阵分解。假设$X\in R^{m\times n}, U\in R^{d\times m}, V\in R^{d\times n}$，则有：</p>
+<ul>
+<li>模型： $U, V$</li>
+<li>目标： {min}_{U,V} ||X-U^TV||_F^2 + \lambda(||U||_F^2 + ||V||_F^2)，后面为<code>正则项</code>，<mark>一定要有，不能扔掉！</mark></li>
+<li>算法： 解决这个问题的算法有很多，比如GD, SDG等。</li>
+</ul>
+<p>对于目标函数，在$X$中会存在missing value，这时候我们将目标函数修改为：<br>$$<br>{min}_{U,V} \sum_{i,j \\ x_{ij}可见} ||x_{ij}-u_i^Tv_j||_2^2 + \lambda(||u_i||_2^2 + ||v_j||_2^2).<br>$$</p>
+<p>我们从<mark>概率的角度</mark>来理解MF，有<code>Probabilistic MF</code> (PMF)或者叫<code>Bayes MF</code>,则有：<br>$$<br>p(u)=\prod_i p(u_i), p(u_i) = G(u_i|0, I_d) \\<br>p(v)=\prod_i p(v_i), p(v_i) = G(v_i|0, I_d) \\<br>p(x_{ij}|u,v) = G(x_{ij}|u_i^Tv_j, \xi^2),<br>$$<br>我们的目标函数是$max \prod_{ij \\ x_{ij}可见} p(x_{ij})$。这种不可积的情况，可用Bayes或者sampling的方法来解决。</p>
+<h3 id="FM"><a href="#FM" class="headerlink" title="FM"></a><center><strong>FM</strong></center></h3><p>FM (Factorization Machine)，应用在很多领域，比如推荐系统等等。以二阶为例，<br>$$<br>\begin{align}<br>&amp; \sum_i\sum_{j&gt;i} v_i^Tv_jx_ix_j + \sum_i w_ix_i + b \\<br>= &amp; \frac{1}{2}\sum_i\sum_j v_i^Tv_jx_ix_j - \frac{1}{2}\sum_iv_i^Tv_ix_i^2 + b \\<br>= &amp; \frac{1}{2}(\sum_i v_ix_i)^T(\sum_i v_ix_i).<br>\end{align}<br>$$</p>
+<h3 id="NMF"><a href="#NMF" class="headerlink" title="NMF"></a><center><strong>NMF</strong></center></h3><p>NMF (Non-negative matrix factorization)，目标函数为：<br>$$<br>L = {min}_{u\geq 0 \\ v\geq 0} ||X-U^TV||_F^2.<br>$$<br>解法有很多：</p>
+<ol>
+<li>正常解，后面truncate；</li>
+<li>log barrier  增加$-\sum_{ij}log u_{ij}$等regularizers；</li>
+<li>U = \tilde{U}\odot\tilde{U}，解$\tilde{U}$；</li>
+<li>multiplicative rule.<br>$$<br>\frac{\partial L}{\partial U} = -V(X-U^TU)^T = VV^TU - VX<br>$$<br>我们得到$U = U-\eta(VV^TU-VX)$，由于$\eta$后面的两项均为正，则可以写成$U=U\odot\frac{VX}{VV^TU}$(哪一个是分子、哪一个是分母，通过考虑增减性来判断)。<mark>这样我们就把相减的形式转换成了相乘的形式。</mark></li>
+</ol>
+<p><mark>物理解释：</mark>考虑隐含变量，比如PLSI跟LSI等都会用到这些概念。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;百度周讲，这次主要讲的是MF, FM, NMF。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://cuiyungao.github.io/tags/Machine-Learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pixel Recurrent Neural Networks</title>
+    <link href="http://cuiyungao.github.io/2016/08/22/pixelcnn/"/>
+    <id>http://cuiyungao.github.io/2016/08/22/pixelcnn/</id>
+    <published>2016-08-22T09:48:44.000Z</published>
+    <updated>2016-08-22T09:53:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>ICML’16 best paper. Google DeepMind的作品。 van den Oord A, Kalchbrenner N, Kavukcuoglu K. Pixel Recurrent Neural Networks[J]. arXiv preprint arXiv:1601.06759, 2016.</p>
+<a id="more"></a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ICML’16 best paper. Google DeepMind的作品。 van den Oord A, Kalchbrenner N, Kavukcuoglu K. Pixel Recurrent Neural Networks[J]. arXiv preprint arXiv:1601.06759, 2016.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
+      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
+    
+  </entry>
   
   <entry>
     <title>Why Should I Trust You? Explaining the Predictions of Any Classifier</title>
@@ -170,13 +240,15 @@
     <link href="http://cuiyungao.github.io/2016/08/19/supseq/"/>
     <id>http://cuiyungao.github.io/2016/08/19/supseq/</id>
     <published>2016-08-19T07:00:56.000Z</published>
-    <updated>2016-08-21T08:57:01.000Z</updated>
+    <updated>2016-08-22T07:59:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>与传统的<code>supervised pattern recognition</code>不同的是，<code>sequence labeling</code>的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。<code>Sequence labeling</code>的目的是确定输出labels的位置和类型。<br><a id="more"></a></p>
 <p>RNN对sequence labeling比较有效，因为对上下文信息比较灵活（决定forget和remember什么样的信息）；可以接受不同类型的数据和数据的表示形式；可以在序列扭曲中发现sequential patterns。本文主要介绍LSTM和bi-directional RNN。</p>
 <h3 id="Generative-and-Discriminative-Methods"><a href="#Generative-and-Discriminative-Methods" class="headerlink" title="Generative and Discriminative Methods"></a><center><strong>Generative and Discriminative Methods</strong></center></h3><p>直接计算类的概率$p(C_k|x)$的方法被认为是discriminative methods；有些情况下，需要先计算类的条件密度$p(x|C_k)$，基于Bayes’ rule来计算，即$p(C_k|x)=\frac{p(x|C_k)p(C_k)}{p(x)}$，其中$p(x)=\sum_k p(x|C_k)p(C_k)$，这样的方法被认为是<code>generative</code>的方法。<code>Generative methods</code>的好处是每一个类都可以独立于其它的类来进行训练，而<code>discriminative methods</code>在每一次新的类加入时都要被重新训练。但是，后者的分类结果较好，因为它的目标是找到类的边界。文章集中在<code>discriminative sequence labeling</code>。</p>
 <p>Sequence classification通常分为三类，越来越细地分为temporal classification, segment classification和sequence classification。Temporal classification中的数据是<code>weakly labelled</code>在target sequences之外；segment classification则是temporal classification的一个特殊例子，数据必须用target sequences来进行<code>strongly labelled</code>；sequence classification则指的是每个输入序列只能对应一个类，比如识别单个的手写字母。</p>
 <p>Neural networks当中的activation functions都是可求导的，e.g.，<br>$$<br>\frac{\partial tanh(x)}{\partial x} = 1-tanh(x)^2 \\<br>\frac{\partial \sigma (x)}{\partial x} = \sigma(x)(1-\sigma(x)),<br>$$<br>由于activation functions是将无限的输入域映射到有限的输出域，所以通常也被称为<code>squashing functions</code>。</p>
+<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a><center><strong>RNN</strong></center></h3><p>RNN跟Neural Network的不同之处在于NN只能从输入映射到输入，而RNN可以将历史输入映射到输出，也就是说RNN可以将历史的输入保存在网络的中间状态，并影响到网络的输出。<br>Forward Pass:假设时间$t$输入$i$的值为$x_i^t$，$a_j^t$和$b_j^t$分别是时间$t$对单元$j$的输入和激活函数。对于隐含单元，有：<br>$$<br>a_h^t = \sum_{i=1}^I w_{ih}x_i^t + \sum_{h^{\prime}=1}^H w_{h^{\prime}h}b_{h^{\prime}}^{t-1},<br>$$<br>其中，$b_h^t=\theta_h(a_h^t)$，研究发现$b_i^0$初始化成非零的值效果会更好一些。从隐含层到输出层可以由下式得到：<br>$$<br>a_k^t = \sum_{h=1}^H w_{hk}b_h^t。<br>$$</p>
+<p>Backward Pass:权重的更新通常有两种方法，<code>real time recurrent learning</code> (RTRL)和<code>backpropagation through time</code> (BPTT)。文章主要关注后者，因为后者概念上更简单，而且在计算时间上更高效（虽然memory上不是很高效）。</p>
 ]]></content>
     
     <summary type="html">
@@ -233,9 +305,9 @@
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
-    
       <category term="CRF" scheme="http://cuiyungao.github.io/tags/CRF/"/>
+    
+      <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
     
   </entry>
   
@@ -772,64 +844,6 @@
     </summary>
     
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Impactful ML Topics at ICML&#39;16</title>
-    <link href="http://cuiyungao.github.io/2016/07/04/memory-network/"/>
-    <id>http://cuiyungao.github.io/2016/07/04/memory-network/</id>
-    <published>2016-07-04T07:32:54.000Z</published>
-    <updated>2016-08-03T03:44:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Summary from a talk on ICML’16.</p>
-<a id="more"></a>
-<h3 id="Deep-Residual-Networks"><a href="#Deep-Residual-Networks" class="headerlink" title="Deep Residual Networks"></a><center><strong>Deep Residual Networks</strong></center></h3><p>Residual networks可以在深度增加的同时提高准确率，可以产生许多问题的representations。适当的weight initialization和batch normalization使得网络可以。</p>
-<h3 id="Memory-Networks-for-Language-Understanding"><a href="#Memory-Networks-for-Language-Understanding" class="headerlink" title="Memory Networks for Language Understanding"></a><center><strong>Memory Networks for Language Understanding</strong></center></h3><p><code>Memory Networks</code>是结合large memory跟可读可写的learning component的一类模型。结合了<code>Reasoning</code> with <code>attention</code> over <code>memory</code> (RAM)。大部分ML有limited memory，针对”low level” tasks，比如object detection。</p>
-<p>得到word Embedding的过程是一个<code>encoding</code>的过程。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Summary from a talk on ICML’16.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Find Researchers Here</title>
-    <link href="http://cuiyungao.github.io/2016/07/04/researcher/"/>
-    <id>http://cuiyungao.github.io/2016/07/04/researcher/</id>
-    <published>2016-07-04T07:27:10.000Z</published>
-    <updated>2016-07-04T07:32:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>With researchers in some fields related to NLP and deep learning contained.</p>
-<a id="more"></a>
-<h3 id="Natural-Language-Processing"><a href="#Natural-Language-Processing" class="headerlink" title="Natural Language Processing"></a><center><strong>Natural Language Processing</strong></center></h3><ul>
-<li>Jason Weston<br><a href="http://www.thespermwhale.com/jaseweston/" target="_blank" rel="external">Link.</a> Research Scientist at Facebook.</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;With researchers in some fields related to NLP and deep learning contained.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>

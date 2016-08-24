@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://cuiyungao.github.io/2016/08/19/supseq/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="与传统的supervised pattern recognition不同的是，sequence labeling的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。Sequence labeling的目的是确定输出labels的位置和类型。">
-<meta property="og:updated_time" content="2016-08-21T08:57:01.000Z">
+<meta property="og:updated_time" content="2016-08-22T07:59:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Supervised Sequence Labeling with Recurrent Neural Networks">
 <meta name="twitter:description" content="与传统的supervised pattern recognition不同的是，sequence labeling的单独数据点之间并不是相互独立的，后者的输入和labels都是互相关联的序列。Sequence labeling的目的是确定输出labels的位置和类型。">
@@ -148,7 +148,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generative-and-Discriminative-Methods"><span class="post-toc-text">Generative and Discriminative Methods</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generative-and-Discriminative-Methods"><span class="post-toc-text">Generative and Discriminative Methods</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RNN"><span class="post-toc-text">RNN</span></a></li></ol>
             </nav>
             
         </aside>
@@ -161,6 +161,8 @@
 <h3 id="Generative-and-Discriminative-Methods"><a href="#Generative-and-Discriminative-Methods" class="headerlink" title="Generative and Discriminative Methods"></a><center><strong>Generative and Discriminative Methods</strong></center></h3><p>直接计算类的概率$p(C_k|x)$的方法被认为是discriminative methods；有些情况下，需要先计算类的条件密度$p(x|C_k)$，基于Bayes’ rule来计算，即$p(C_k|x)=\frac{p(x|C_k)p(C_k)}{p(x)}$，其中$p(x)=\sum_k p(x|C_k)p(C_k)$，这样的方法被认为是<code>generative</code>的方法。<code>Generative methods</code>的好处是每一个类都可以独立于其它的类来进行训练，而<code>discriminative methods</code>在每一次新的类加入时都要被重新训练。但是，后者的分类结果较好，因为它的目标是找到类的边界。文章集中在<code>discriminative sequence labeling</code>。</p>
 <p>Sequence classification通常分为三类，越来越细地分为temporal classification, segment classification和sequence classification。Temporal classification中的数据是<code>weakly labelled</code>在target sequences之外；segment classification则是temporal classification的一个特殊例子，数据必须用target sequences来进行<code>strongly labelled</code>；sequence classification则指的是每个输入序列只能对应一个类，比如识别单个的手写字母。</p>
 <p>Neural networks当中的activation functions都是可求导的，e.g.，<br>$$<br>\frac{\partial tanh(x)}{\partial x} = 1-tanh(x)^2 \\<br>\frac{\partial \sigma (x)}{\partial x} = \sigma(x)(1-\sigma(x)),<br>$$<br>由于activation functions是将无限的输入域映射到有限的输出域，所以通常也被称为<code>squashing functions</code>。</p>
+<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a><center><strong>RNN</strong></center></h3><p>RNN跟Neural Network的不同之处在于NN只能从输入映射到输入，而RNN可以将历史输入映射到输出，也就是说RNN可以将历史的输入保存在网络的中间状态，并影响到网络的输出。<br>Forward Pass:假设时间$t$输入$i$的值为$x_i^t$，$a_j^t$和$b_j^t$分别是时间$t$对单元$j$的输入和激活函数。对于隐含单元，有：<br>$$<br>a_h^t = \sum_{i=1}^I w_{ih}x_i^t + \sum_{h^{\prime}=1}^H w_{h^{\prime}h}b_{h^{\prime}}^{t-1},<br>$$<br>其中，$b_h^t=\theta_h(a_h^t)$，研究发现$b_i^0$初始化成非零的值效果会更好一些。从隐含层到输出层可以由下式得到：<br>$$<br>a_k^t = \sum_{h=1}^H w_{hk}b_h^t。<br>$$</p>
+<p>Backward Pass:权重的更新通常有两种方法，<code>real time recurrent learning</code> (RTRL)和<code>backpropagation through time</code> (BPTT)。文章主要关注后者，因为后者概念上更简单，而且在计算时间上更高效（虽然memory上不是很高效）。</p>
 
             <blockquote>
                 <p>

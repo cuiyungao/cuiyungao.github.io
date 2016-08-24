@@ -3,31 +3,27 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Why Should I Trust You? Explaining the Predictions of Any Classifier | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
+  <title>MF, FM, 与NMF | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="Machine Learning,Classification">
-  <meta name="description" content="KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.">
+  <meta name="keywords" content="Machine Learning">
+  <meta name="description" content="百度周讲，这次主要讲的是MF, FM, NMF。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Why Should I Trust You? Explaining the Predictions of Any Classifier">
-<meta property="og:url" content="http://cuiyungao.github.io/2016/08/22/classifier/index.html">
+<meta property="og:title" content="MF, FM, 与NMF">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/08/24/fm/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
-<meta property="og:description" content="KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.">
-<meta property="og:image" content="http://cuiyungao.github.io/img/papers/classifier1.png">
-<meta property="og:image" content="http://cuiyungao.github.io/img/papers/classifier2.png">
-<meta property="og:image" content="http://cuiyungao.github.io/img/papers/classifier3.png">
-<meta property="og:updated_time" content="2016-08-22T06:37:48.000Z">
+<meta property="og:description" content="百度周讲，这次主要讲的是MF, FM, NMF。">
+<meta property="og:updated_time" content="2016-08-24T10:07:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Why Should I Trust You? Explaining the Predictions of Any Classifier">
-<meta name="twitter:description" content="KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.">
-<meta name="twitter:image" content="http://cuiyungao.github.io/img/papers/classifier1.png">
+<meta name="twitter:title" content="MF, FM, 与NMF">
+<meta name="twitter:description" content="百度周讲，这次主要讲的是MF, FM, NMF。">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.&lt;/p&gt;">
+  <meta name="summary" content="&lt;p&gt;百度周讲，这次主要讲的是MF, FM, NMF。&lt;/p&gt;">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -105,7 +101,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Why Should I Trust You? Explaining the Predictions of Any Classifier</div>
+        <div class="flex-col header-title ellipsis">MF, FM, 与NMF</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -122,15 +118,15 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Why Should I Trust You? Explaining the Predictions of Any Classifier</h1>
+    <h1 class="author">MF, FM, 与NMF</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-08-22T03:41:00.000Z" itemprop="datePublished" class="page-time">
-  2016-08-22
+            <time datetime="2016-08-24T08:53:46.000Z" itemprop="datePublished" class="page-time">
+  2016-08-24
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/papers/">papers</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
 
         
     </h5>
@@ -138,11 +134,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-classifier" 
+      <article id="post-fm" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Classification/">Classification</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -152,7 +148,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LIME"><span class="post-toc-text">LIME</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SP-LIME"><span class="post-toc-text">SP-LIME</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Reference"><span class="post-toc-text">Reference</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MF"><span class="post-toc-text">MF</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FM"><span class="post-toc-text">FM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#NMF"><span class="post-toc-text">NMF</span></a></li></ol>
             </nav>
             
         </aside>
@@ -160,30 +156,33 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>KDD’16。Ribeiro M T, Singh S, Guestrin C. “ Why Should I Trust You?”: Explaining the Predictions of Any Classifier[J]. arXiv preprint arXiv:1602.04938, 2016.</p>
+            <p>百度周讲，这次主要讲的是MF, FM, NMF。</p>
 <a id="more"></a>
-<p>文章的主要贡献在于如何评判一个classifier的可靠性，提出了LIME算法。解决的问题是尽管有的分类器的准确率较高，但是分类基于的原因并不可信，所以这种分类器不应该被相信。文章的主要目的是，帮助人来决定是否要相信一个预测，在models之间选择，并改善不可信的分类器，识别其为什么不可信。</p>
-<center><img src="/img/papers/classifier1.png" width="100%"></center>
-
-<p><mark>据证明，为电影推荐或者其它一些自动化系统提供解释能够提高接受率。这个能够用在review analysis上面？</mark>Model和估计错误的原因通常有以下几种：</p>
+<p>假设存在一个集合$S={x_i, y_i}_N$，我们的目标是由$x_0$推测出$y_0$，即$x_0-&gt;y_0$。如果$y_0=\sum_i f(x_0, x_i, S)y_i$，即权重参数是由样本集本身决定的，那么我们称其为<code>non-parametric</code>的模型，比如KNN, one-shot都是<code>non-parametric</code>的模型。</p>
+<p>在线性空间中看到<code>x\_i^Tx\_j</code>，我们可以通过<code>kernel</code>将其转换到非线性空间。</p>
+<p>在解决问题的时候，我们需要考虑三个方面，即<code>模型</code>，<code>目标</code>，跟<code>算法</code>。</p>
+<h3 id="MF"><a href="#MF" class="headerlink" title="MF"></a><center><strong>MF</strong></center></h3><p>MF (matrix factorization)，即矩阵分解。假设$X\in R^{m\times n}, U\in R^{d\times m}, V\in R^{d\times n}$，则有：</p>
+<ul>
+<li>模型： $U, V$</li>
+<li>目标： {min}_{U,V} ||X-U^TV||_F^2 + \lambda(||U||_F^2 + ||V||_F^2)，后面为<code>正则项</code>，<mark>一定要有，不能扔掉！</mark></li>
+<li>算法： 解决这个问题的算法有很多，比如GD, SDG等。</li>
+</ul>
+<p>对于目标函数，在$X$中会存在missing value，这时候我们将目标函数修改为：<br>$$<br>{min}_{U,V} \sum_{i,j \\ x_{ij}可见} ||x_{ij}-u_i^Tv_j||_2^2 + \lambda(||u_i||_2^2 + ||v_j||_2^2).<br>$$</p>
+<p>我们从<mark>概率的角度</mark>来理解MF，有<code>Probabilistic MF</code> (PMF)或者叫<code>Bayes MF</code>,则有：<br>$$<br>p(u)=\prod_i p(u_i), p(u_i) = G(u_i|0, I_d) \\<br>p(v)=\prod_i p(v_i), p(v_i) = G(v_i|0, I_d) \\<br>p(x_{ij}|u,v) = G(x_{ij}|u_i^Tv_j, \xi^2),<br>$$<br>我们的目标函数是$max \prod_{ij \\ x_{ij}可见} p(x_{ij})$。这种不可积的情况，可用Bayes或者sampling的方法来解决。</p>
+<h3 id="FM"><a href="#FM" class="headerlink" title="FM"></a><center><strong>FM</strong></center></h3><p>FM (Factorization Machine)，应用在很多领域，比如推荐系统等等。以二阶为例，<br>$$<br>\begin{align}<br>&amp; \sum_i\sum_{j&gt;i} v_i^Tv_jx_ix_j + \sum_i w_ix_i + b \\<br>= &amp; \frac{1}{2}\sum_i\sum_j v_i^Tv_jx_ix_j - \frac{1}{2}\sum_iv_i^Tv_ix_i^2 + b \\<br>= &amp; \frac{1}{2}(\sum_i v_ix_i)^T(\sum_i v_ix_i).<br>\end{align}<br>$$</p>
+<h3 id="NMF"><a href="#NMF" class="headerlink" title="NMF"></a><center><strong>NMF</strong></center></h3><p>NMF (Non-negative matrix factorization)，目标函数为：<br>$$<br>L = {min}_{u\geq 0 \\ v\geq 0} ||X-U^TV||_F^2.<br>$$<br>解法有很多：</p>
 <ol>
-<li>Data leakage.无意的信号泄露到训练集和validation集中，但是真正使用的时候并不会使用这个信号。<mark>不太懂这个….</mark></li>
-<li>Dataset shift.训练集跟测试集不同。</li>
-<li>计算跟优化的标准不同。</li>
+<li>正常解，后面truncate；</li>
+<li>log barrier  增加$-\sum_{ij}log u_{ij}$等regularizers；</li>
+<li>U = \tilde{U}\odot\tilde{U}，解$\tilde{U}$；</li>
+<li>multiplicative rule.<br>$$<br>\frac{\partial L}{\partial U} = -V(X-U^TU)^T = VV^TU - VX<br>$$<br>我们得到$U = U-\eta(VV^TU-VX)$，由于$\eta$后面的两项均为正，则可以写成$U=U\odot\frac{VX}{VV^TU}$(哪一个是分子、哪一个是分母，通过考虑增减性来判断)。<mark>这样我们就把相减的形式转换成了相乘的形式。</mark></li>
 </ol>
-<p>这种数据可靠性的explainers应该有哪些标准呢？一是<code>可解释性</code>，需要考虑到用户限制，有时候这些features并不一定被model所用，所以说explaination中的输入变量跟features可以不同；二是<code>local fidelity</code>，对一个实例的近邻的预测需要有意义。文章提出了<code>LIME</code> (Local Interpretable Model-agnostic Explanations)来对模型的可靠性进行解释。</p>
-<h3 id="LIME"><a href="#LIME" class="headerlink" title="LIME"></a><center><strong>LIME</strong></center></h3><p>假设模型$g\in G$，$G$是一类potentially interpretable的模型，比如线性模型和决策树等。$\Omega(g)$为复杂度的衡量，$f(x)$表示$x$属于某个类的概率，$\pi_x(z)$定义$x$的近邻，$\mathcal{L}(f,g,\pi_x)$为在$\pi_x(z)$范围用$g$预测$f$的不可靠程度，由LIME生成的解释为：<br>$$<br>\xi(x) = {argmin}_{g\in G} \mathcal{L}(f,g,\pi_x) + \Omega(g)。<br>$$<br>算法过程如下：</p>
-<center><img src="/img/papers/classifier2.png" width="70%"></center>
-
-<h3 id="SP-LIME"><a href="#SP-LIME" class="headerlink" title="SP-LIME"></a><center><strong>SP-LIME</strong></center></h3><p>上面的LIME仅仅是针对单个实例，我们应该从整体上来评估一个模型，所以加进去了<code>pick step</code>来选择$B$个实例。如下图所示，特征$f_2$的得分较高。但是我们选择第2个和第5个文档来进行explaination预测。</p>
-<center><img src="/img/papers/classifier3.png" width="70%"></center>
-
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://arxiv.org/pdf/1602.04938v3.pdf" target="_blank" rel="external">“Why Should I Trust You?” Explaining the Predictions of Any Classifier</a><br>[2] <a href="https://github.com/marcotcr/lime-experiments" target="_blank" rel="external">Code</a>.可以重复试验（含数据）。</p>
+<p><mark>物理解释：</mark>考虑隐含变量，比如PLSI跟LSI等都会用到这些概念。</p>
 
             <blockquote>
                 <p>
                 Permalink：
-                <a href="http://cuiyungao.github.io/2016/08/22/classifier/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/22/classifier/</a>
+                <a href="http://cuiyungao.github.io/2016/08/24/fm/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/24/fm/</a>
                 </p>
                 <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
             </blockquote>
@@ -191,19 +190,12 @@
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/08/22/pixelcnn/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Pixel Recurrent Neural Networks</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/08/21/backpro/" id="post-next" class="post-nav-link">
+      <a href="/2016/08/22/pixelcnn/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">A Derivation of Backpropagation in Matrix Form</h4>
+        <h4 class="title">Pixel Recurrent Neural Networks</h4>
       </a>
     </div>
   
@@ -214,7 +206,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="classifier" data-title="Why Should I Trust You? Explaining the Predictions of Any Classifier" data-url="http://cuiyungao.github.io/2016/08/22/classifier/index.html"></div>
+	<div class="ds-thread" data-thread-key="fm" data-title="MF, FM, 与NMF" data-url="http://cuiyungao.github.io/2016/08/24/fm/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
