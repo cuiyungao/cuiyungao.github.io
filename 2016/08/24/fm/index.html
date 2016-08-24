@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://cuiyungao.github.io/2016/08/24/fm/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="百度周讲，这次主要讲的是MF, FM, NMF。">
-<meta property="og:updated_time" content="2016-08-24T10:07:09.000Z">
+<meta property="og:updated_time" content="2016-08-24T13:57:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MF, FM, 与NMF">
 <meta name="twitter:description" content="百度周讲，这次主要讲的是MF, FM, NMF。">
@@ -159,22 +159,22 @@
             <p>百度周讲，这次主要讲的是MF, FM, NMF。</p>
 <a id="more"></a>
 <p>假设存在一个集合$S={x_i, y_i}_N$，我们的目标是由$x_0$推测出$y_0$，即$x_0-&gt;y_0$。如果$y_0=\sum_i f(x_0, x_i, S)y_i$，即权重参数是由样本集本身决定的，那么我们称其为<code>non-parametric</code>的模型，比如KNN, one-shot都是<code>non-parametric</code>的模型。</p>
-<p>在线性空间中看到<code>x\_i^Tx\_j</code>，我们可以通过<code>kernel</code>将其转换到非线性空间。</p>
+<p>在线性空间中看到<code>$x\_i^Tx\_j$</code>，我们可以通过<code>kernel</code>将其转换到非线性空间。</p>
 <p>在解决问题的时候，我们需要考虑三个方面，即<code>模型</code>，<code>目标</code>，跟<code>算法</code>。</p>
 <h3 id="MF"><a href="#MF" class="headerlink" title="MF"></a><center><strong>MF</strong></center></h3><p>MF (matrix factorization)，即矩阵分解。假设$X\in R^{m\times n}, U\in R^{d\times m}, V\in R^{d\times n}$，则有：</p>
 <ul>
 <li>模型： $U, V$</li>
-<li>目标： {min}_{U,V} ||X-U^TV||_F^2 + \lambda(||U||_F^2 + ||V||_F^2)，后面为<code>正则项</code>，<mark>一定要有，不能扔掉！</mark></li>
+<li>目标： ${min}_{U,V} ||X-U^TV||_F^2 + \lambda(||U||_F^2 + ||V||_F^2)$，后面为<code>正则项</code>，<mark>一定要有，不能扔掉！</mark></li>
 <li>算法： 解决这个问题的算法有很多，比如GD, SDG等。</li>
 </ul>
 <p>对于目标函数，在$X$中会存在missing value，这时候我们将目标函数修改为：<br>$$<br>{min}_{U,V} \sum_{i,j \\ x_{ij}可见} ||x_{ij}-u_i^Tv_j||_2^2 + \lambda(||u_i||_2^2 + ||v_j||_2^2).<br>$$</p>
 <p>我们从<mark>概率的角度</mark>来理解MF，有<code>Probabilistic MF</code> (PMF)或者叫<code>Bayes MF</code>,则有：<br>$$<br>p(u)=\prod_i p(u_i), p(u_i) = G(u_i|0, I_d) \\<br>p(v)=\prod_i p(v_i), p(v_i) = G(v_i|0, I_d) \\<br>p(x_{ij}|u,v) = G(x_{ij}|u_i^Tv_j, \xi^2),<br>$$<br>我们的目标函数是$max \prod_{ij \\ x_{ij}可见} p(x_{ij})$。这种不可积的情况，可用Bayes或者sampling的方法来解决。</p>
-<h3 id="FM"><a href="#FM" class="headerlink" title="FM"></a><center><strong>FM</strong></center></h3><p>FM (Factorization Machine)，应用在很多领域，比如推荐系统等等。以二阶为例，<br>$$<br>\begin{align}<br>&amp; \sum_i\sum_{j&gt;i} v_i^Tv_jx_ix_j + \sum_i w_ix_i + b \\<br>= &amp; \frac{1}{2}\sum_i\sum_j v_i^Tv_jx_ix_j - \frac{1}{2}\sum_iv_i^Tv_ix_i^2 + b \\<br>= &amp; \frac{1}{2}(\sum_i v_ix_i)^T(\sum_i v_ix_i).<br>\end{align}<br>$$</p>
+<h3 id="FM"><a href="#FM" class="headerlink" title="FM"></a><center><strong>FM</strong></center></h3><p>FM (Factorization Machine)，应用在很多领域，比如推荐系统等等。以二阶为例，<br>$$<br>\begin{align}<br>&amp; \sum_i\sum_{j&gt;i} v_i^Tv_jx_ix_j + \sum_i w_ix_i + b \\<br>= &amp; \frac{1}{2}\sum_i\sum_j v_i^Tv_jx_ix_j - \frac{1}{2}\sum_iv_i^Tv_ix_i^2+ \sum_i w_ix_i + b \\<br>= &amp; \frac{1}{2}(\sum_i v_ix_i)^T(\sum_i v_ix_i)- \frac{1}{2}\sum_iv_i^Tv_ix_i^2 + \sum_i w_ix_i+ b.<br>\end{align}<br>$$</p>
 <h3 id="NMF"><a href="#NMF" class="headerlink" title="NMF"></a><center><strong>NMF</strong></center></h3><p>NMF (Non-negative matrix factorization)，目标函数为：<br>$$<br>L = {min}_{u\geq 0 \\ v\geq 0} ||X-U^TV||_F^2.<br>$$<br>解法有很多：</p>
 <ol>
 <li>正常解，后面truncate；</li>
 <li>log barrier  增加$-\sum_{ij}log u_{ij}$等regularizers；</li>
-<li>U = \tilde{U}\odot\tilde{U}，解$\tilde{U}$；</li>
+<li>$U = \tilde{U}\odot\tilde{U}$，解$\tilde{U}$；</li>
 <li>multiplicative rule.<br>$$<br>\frac{\partial L}{\partial U} = -V(X-U^TU)^T = VV^TU - VX<br>$$<br>我们得到$U = U-\eta(VV^TU-VX)$，由于$\eta$后面的两项均为正，则可以写成$U=U\odot\frac{VX}{VV^TU}$(哪一个是分子、哪一个是分母，通过考虑增减性来判断)。<mark>这样我们就把相减的形式转换成了相乘的形式。</mark></li>
 </ol>
 <p><mark>物理解释：</mark>考虑隐含变量，比如PLSI跟LSI等都会用到这些概念。</p>
