@@ -16,7 +16,7 @@
 <meta property="og:url" content="http://cuiyungao.github.io/2016/08/24/fm/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="百度周讲，这次主要讲的是MF, FM, NMF。">
-<meta property="og:updated_time" content="2016-08-24T13:57:18.000Z">
+<meta property="og:updated_time" content="2016-08-24T13:59:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MF, FM, 与NMF">
 <meta name="twitter:description" content="百度周讲，这次主要讲的是MF, FM, NMF。">
@@ -159,7 +159,7 @@
             <p>百度周讲，这次主要讲的是MF, FM, NMF。</p>
 <a id="more"></a>
 <p>假设存在一个集合$S={x_i, y_i}_N$，我们的目标是由$x_0$推测出$y_0$，即$x_0-&gt;y_0$。如果$y_0=\sum_i f(x_0, x_i, S)y_i$，即权重参数是由样本集本身决定的，那么我们称其为<code>non-parametric</code>的模型，比如KNN, one-shot都是<code>non-parametric</code>的模型。</p>
-<p>在线性空间中看到<code>$x\_i^Tx\_j$</code>，我们可以通过<code>kernel</code>将其转换到非线性空间。</p>
+<p>在线性空间中看到$x_i^Tx_j$，我们可以通过<code>kernel</code>将其转换到非线性空间。</p>
 <p>在解决问题的时候，我们需要考虑三个方面，即<code>模型</code>，<code>目标</code>，跟<code>算法</code>。</p>
 <h3 id="MF"><a href="#MF" class="headerlink" title="MF"></a><center><strong>MF</strong></center></h3><p>MF (matrix factorization)，即矩阵分解。假设$X\in R^{m\times n}, U\in R^{d\times m}, V\in R^{d\times n}$，则有：</p>
 <ul>
