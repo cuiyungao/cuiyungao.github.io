@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="这篇文章主要总结RNN，主要出处。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/rnn1.png">
-<meta property="og:updated_time" content="2016-08-25T06:14:21.000Z">
+<meta property="og:updated_time" content="2016-08-25T06:50:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding RNN">
 <meta name="twitter:description" content="这篇文章主要总结RNN，主要出处。">
@@ -171,7 +171,8 @@
 
 <p>RNN的延伸还有BRNN (Bidirectional RNN)和Deep (Bidriectioanl) RNN。前者的主要想法是时间$t$的输出不仅依赖于当前element，还有future element有关系；它的输出建立在双向的hidden state的基础之上。后者是每一个time step有很多层，这种情况通常有更高的学习能力，但通常也需要大量的训练数据。详细解释可以参考[2]。对于backpropagation，可以参考[3,4]。</p>
 <p>Vanilla Neural Network的主要限制是API受限，只接受固定大小的输入和固定大小的输出，以及固定数量的计算步骤。引用原文[5]的话，<mark>If training vanilla neural nets is optimization over functions, training recurrent nets is optimization over programs.</mark></p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">Understanding LSTM Networks</a><br>[2] <a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">Recurrent Neural Networks Tutorial</a><br>[3] <a href="http://colah.github.io/posts/2015-08-Backprop/" target="_blank" rel="external">Calculus on Computational Graphs: Backpropagation</a><br>[4] <a href="http://cs231n.github.io/optimization-2/" target="_blank" rel="external">CS231n Convolutional Neural Networks for Visual Recognition</a><br>[5] <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="external">The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
+<p>总结了RNN的衍生算法，比如DRAW, GAN, Pixel RNN等，可以看[6]。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">Understanding LSTM Networks</a><br>[2] <a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">Recurrent Neural Networks Tutorial</a><br>[3] <a href="http://colah.github.io/posts/2015-08-Backprop/" target="_blank" rel="external">Calculus on Computational Graphs: Backpropagation</a><br>[4] <a href="http://cs231n.github.io/optimization-2/" target="_blank" rel="external">CS231n Convolutional Neural Networks for Visual Recognition</a><br>[5] <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="external">The Unreasonable Effectiveness of Recurrent Neural Networks</a><br>[6] <a href="https://github.com/tensorflow/magenta/tree/master/magenta/reviews" target="_blank" rel="external">Reviews of research papers</a></p>
 
             <blockquote>
                 <p>
