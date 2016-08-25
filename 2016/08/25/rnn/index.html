@@ -3,27 +3,29 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Enriching Word Vectors with Subword information | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
+  <title>Understanding RNN | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="Deep Learning,NLP">
-  <meta name="description" content="这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.">
+  <meta name="keywords" content="RNN,Deep Learning">
+  <meta name="description" content="这篇文章主要总结RNN，主要出处。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Enriching Word Vectors with Subword information">
-<meta property="og:url" content="http://cuiyungao.github.io/2016/08/16/enrich/index.html">
+<meta property="og:title" content="Understanding RNN">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/08/25/rnn/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
-<meta property="og:description" content="这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.">
-<meta property="og:updated_time" content="2016-08-16T03:30:25.000Z">
+<meta property="og:description" content="这篇文章主要总结RNN，主要出处。">
+<meta property="og:image" content="http://cuiyungao.github.io/img/daily/rnn1.png">
+<meta property="og:updated_time" content="2016-08-25T06:14:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Enriching Word Vectors with Subword information">
-<meta name="twitter:description" content="这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.">
+<meta name="twitter:title" content="Understanding RNN">
+<meta name="twitter:description" content="这篇文章主要总结RNN，主要出处。">
+<meta name="twitter:image" content="http://cuiyungao.github.io/img/daily/rnn1.png">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.&lt;/p&gt;">
+  <meta name="summary" content="&lt;p&gt;这篇文章主要总结RNN，主要&lt;a href=&quot;http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/&quot;&gt;出处&lt;/a&gt;。&lt;/p&gt;">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -101,7 +103,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Enriching Word Vectors with Subword information</div>
+        <div class="flex-col header-title ellipsis">Understanding RNN</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -118,15 +120,15 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Enriching Word Vectors with Subword information</h1>
+    <h1 class="author">Understanding RNN</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-08-16T02:06:02.000Z" itemprop="datePublished" class="page-time">
-  2016-08-16
+            <time datetime="2016-08-25T02:49:14.000Z" itemprop="datePublished" class="page-time">
+  2016-08-25
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/papers/">papers</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
 
         
     </h5>
@@ -134,11 +136,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-enrich" 
+      <article id="post-rnn" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RNN/">RNN</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -148,7 +150,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Idea"><span class="post-toc-text">Idea</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Model"><span class="post-toc-text">Model</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Reference"><span class="post-toc-text">Reference</span></a></li></ol>
             </nav>
             
         </aside>
@@ -156,18 +158,25 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.</p>
+            <p>这篇文章主要总结RNN，主要<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">出处</a>。</p>
 <a id="more"></a>
-<p>大神Tomas Mikolov的有一篇作品，借鉴参考当中的trick。</p>
-<h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a><center><strong>Idea</strong></center></h3><p>这篇文章的主要思路是让word之间可以共享信息，即利用subword的特征。这种表示方法同样对rare words以及不同的语言有效。</p>
-<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a><center><strong>Model</strong></center></h3><p>总的框架类似于Skip-Gram Model，给定一组训练词序集$w_1, …, w_T$，目标是最大化基于$w_t$预测出$w_c$的概率，即：<br>$$<br>\sum_{t=1}^T\sum_{c\in\mathcal{C}_t} log p(w_c|w_t),<br>$$<br>其中$\mathcal{C}_t$指$w_t$周围的词的indices。给定一个scoring function $s$，将paris (word, context)映射到$\mathbb{R}$空间，那么一个context word的概率可以定义为：<br>$$<br>p(w_c|w_t)=\frac{e^{s(w_t,w_c)}}{\sum_{j=1}^W e^{s(w_t,j)}}.<br>$$<br>这个scoring function通常定义为$s(w_t,w_c)=\mathbf{u}_{w_t}^T\mathbf{v}_{w_c}$。</p>
-<p>考虑一个word当中的$n$-grams $\mathcal{G}_w\subset{1,…,G}$，每个$n$-gram $g$可以表示成一个向量$z_g$，这个word可以表示成其$n$-grams的和。所以scoring function可以表示成：<br>$$<br>s(w,c)=\sum_{g\in\mathcal{G}_w} \mathbf{z}_g^T\mathbf{v}_c.<br>$$<br>为了限制memory，所有的$n$-grams被映射到1~K的整数，论文中K为2 millions，最终每个word被表示成index和$n$-grams的hash values。词的开头和结果加一个special characters，以便于找到前缀和后缀。为了提高模型效率，<mark>最频繁的$P$个单词不用$n$-grams来表示</mark>。</p>
-<p>实验结果在similarity tasks上的效果不错。测量方法是模型评分和人工判断之间的Spearman’s rank correlation coefficient。实现采用C++，在运行时间上比Skip-Gram baseline慢了1.5倍，比较的方法当中Skip-Gram和CBOW由C<a href="https://code.google.com/archive/p/word2vec/" target="_blank" rel="external">实现</a>。</p>
+<p>RNN在NLP的应用主要是两方面，一方面是可以判断两个句子的相似度；另外一方面则是可以生成新的文本。RNN的主要想法是<mark>使用sequential information</mark>。在传统的神经网络中，输入被认为是相互独立的，而RNN可以学习历史的信息，对sequence中的每一个element都进行相同的任务。另外一个想法是<mark>RNN有历史计算的<code>memory</code></mark>。这个<code>memory</code>就是网络的hidden state，所以<center>hidden state是RNN的关键</center>。较大的hidden layer size可以学到更复杂的patterns，但是会增加计算力。需要注意一下几点：</p>
+<ol>
+<li>Hidden state就是网络的memory，它获取历史信息，但是不能获取很长步骤之前的信息；</li>
+<li>RNN在所有步骤之间共享参数，而传统的神经网络是每一层学习不同的参数。这能大大地减少需要学习的参数；</li>
+<li>每一步不一定要有输出，这是由任务决定的；同理，每一步也不一定要有输入。</li>
+</ol>
+<p>因为参数在所有步骤之间共享，每一步的gradient不仅仅依赖于当前步的计算，还有之前很多步的计算，即<code>Backpropagation Through Time</code> (BPTT)。理论上，RNN绝对能处理<code>long-term dependencies</code>的情况，但是在实际应用中，RNN并不能有效地学习历史信息 (因为存在vanishing/exploding gradient problems)。LSTM是用来解决这种问题。所有的recurrent neural networks都有神经网络的重复module链的形式。在传统的RNN当中，重复的module有着非常简单的结构，比如单个的tanh层。LSTM结构也呈链状，但是在每一个单独的网络中，它有四层，而不是简单的一层。如图所示。LSTM的关键是cell state，即在图表中的上层，LSTM能够移除或者增加cell state。门(gate)的作用是选择性地让信息通过。有很多完善LSTM的方法，比如增加<code>peephole connections</code>，使用coupled forget gate和input gate来决定要forget和add的信息，以及GRU (Gated Recurrent Unit,将cell state和hidden state结合到<code>update gate</code>中)。具体的过程可以参见[1]。</p>
+<center><img src="/img/daily/rnn1.png" width="100%"></center>
+
+<p>RNN的延伸还有BRNN (Bidirectional RNN)和Deep (Bidriectioanl) RNN。前者的主要想法是时间$t$的输出不仅依赖于当前element，还有future element有关系；它的输出建立在双向的hidden state的基础之上。后者是每一个time step有很多层，这种情况通常有更高的学习能力，但通常也需要大量的训练数据。详细解释可以参考[2]。对于backpropagation，可以参考[3,4]。</p>
+<p>Vanilla Neural Network的主要限制是API受限，只接受固定大小的输入和固定大小的输出，以及固定数量的计算步骤。引用原文[5]的话，<mark>If training vanilla neural nets is optimization over functions, training recurrent nets is optimization over programs.</mark></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">Understanding LSTM Networks</a><br>[2] <a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">Recurrent Neural Networks Tutorial</a><br>[3] <a href="http://colah.github.io/posts/2015-08-Backprop/" target="_blank" rel="external">Calculus on Computational Graphs: Backpropagation</a><br>[4] <a href="http://cs231n.github.io/optimization-2/" target="_blank" rel="external">CS231n Convolutional Neural Networks for Visual Recognition</a><br>[5] <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="external">The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
 
             <blockquote>
                 <p>
                 Permalink：
-                <a href="http://cuiyungao.github.io/2016/08/16/enrich/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/16/enrich/</a>
+                <a href="http://cuiyungao.github.io/2016/08/25/rnn/" target="_blank" rel="external">http://cuiyungao.github.io/2016/08/25/rnn/</a>
                 </p>
                 <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
             </blockquote>
@@ -175,19 +184,12 @@
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/08/16/arxiv0810/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/08/13/query/" id="post-next" class="post-nav-link">
+      <a href="/2016/08/24/fm/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Query Understanding</h4>
+        <h4 class="title">MF, FM, 与NMF</h4>
       </a>
     </div>
   
@@ -198,7 +200,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="enrich" data-title="Enriching Word Vectors with Subword information" data-url="http://cuiyungao.github.io/2016/08/16/enrich/index.html"></div>
+	<div class="ds-thread" data-thread-key="rnn" data-title="Understanding RNN" data-url="http://cuiyungao.github.io/2016/08/25/rnn/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
