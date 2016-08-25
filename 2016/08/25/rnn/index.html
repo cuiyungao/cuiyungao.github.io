@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="这篇文章主要总结RNN，主要出处。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/rnn1.png">
-<meta property="og:updated_time" content="2016-08-25T06:50:48.000Z">
+<meta property="og:updated_time" content="2016-08-25T06:55:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding RNN">
 <meta name="twitter:description" content="这篇文章主要总结RNN，主要出处。">
@@ -160,7 +160,7 @@
             <div class="post-content" id="post-content" itemprop="postContent">
             <p>这篇文章主要总结RNN，主要<a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">出处</a>。</p>
 <a id="more"></a>
-<p>RNN在NLP的应用主要是两方面，一方面是可以判断两个句子的相似度；另外一方面则是可以生成新的文本。RNN的主要想法是<mark>使用sequential information</mark>。在传统的神经网络中，输入被认为是相互独立的，而RNN可以学习历史的信息，对sequence中的每一个element都进行相同的任务。另外一个想法是<mark>RNN有历史计算的<code>memory</code></mark>。这个<code>memory</code>就是网络的hidden state，所以<center>hidden state是RNN的关键</center>。较大的hidden layer size可以学到更复杂的patterns，但是会增加计算力。需要注意一下几点：</p>
+<p>RNN在NLP的应用主要是两方面，一方面是可以判断两个句子的相似度；另外一方面则是可以生成新的文本。RNN的主要想法是<mark>使用sequential information</mark>。在传统的神经网络中，输入被认为是相互独立的，而RNN可以学习历史的信息，对sequence中的每一个element都进行相同的任务。另外一个想法是<mark>RNN有历史计算的<code>memory</code></mark>。这个<code>memory</code>就是网络的hidden state，所以<mark>hidden state是RNN的关键</mark>。较大的hidden layer size可以学到更复杂的patterns，但是会增加计算力。需要注意一下几点：</p>
 <ol>
 <li>Hidden state就是网络的memory，它获取历史信息，但是不能获取很长步骤之前的信息；</li>
 <li>RNN在所有步骤之间共享参数，而传统的神经网络是每一层学习不同的参数。这能大大地减少需要学习的参数；</li>
