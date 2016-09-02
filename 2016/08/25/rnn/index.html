@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="这篇文章主要总结RNN，主要出处。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/daily/rnn1.png">
-<meta property="og:updated_time" content="2016-08-25T06:55:45.000Z">
+<meta property="og:updated_time" content="2016-08-26T07:00:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding RNN">
 <meta name="twitter:description" content="这篇文章主要总结RNN，主要出处。">
@@ -171,8 +171,10 @@
 
 <p>RNN的延伸还有BRNN (Bidirectional RNN)和Deep (Bidriectioanl) RNN。前者的主要想法是时间$t$的输出不仅依赖于当前element，还有future element有关系；它的输出建立在双向的hidden state的基础之上。后者是每一个time step有很多层，这种情况通常有更高的学习能力，但通常也需要大量的训练数据。详细解释可以参考[2]。对于backpropagation，可以参考[3,4]。</p>
 <p>Vanilla Neural Network的主要限制是API受限，只接受固定大小的输入和固定大小的输出，以及固定数量的计算步骤。引用原文[5]的话，<mark>If training vanilla neural nets is optimization over functions, training recurrent nets is optimization over programs.</mark></p>
-<p>总结了RNN的衍生算法，比如DRAW, GAN, Pixel RNN等，可以看[6]。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">Understanding LSTM Networks</a><br>[2] <a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">Recurrent Neural Networks Tutorial</a><br>[3] <a href="http://colah.github.io/posts/2015-08-Backprop/" target="_blank" rel="external">Calculus on Computational Graphs: Backpropagation</a><br>[4] <a href="http://cs231n.github.io/optimization-2/" target="_blank" rel="external">CS231n Convolutional Neural Networks for Visual Recognition</a><br>[5] <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="external">The Unreasonable Effectiveness of Recurrent Neural Networks</a><br>[6] <a href="https://github.com/tensorflow/magenta/tree/master/magenta/reviews" target="_blank" rel="external">Reviews of research papers</a></p>
+<p>总结了RNN的衍生算法，比如DRAW, GAN, Pixel RNN等，可以看[6]。详细的GRU与LSTM之间的区别，可以见[8]。</p>
+<p>关于初始化过程，RNN当中一般不能单纯地初始化为0，这样会导致对称计算。我们必须<mark>随机地初始化</mark>，适当地初始化会对训练结果又影响。最好的初始化依赖于<code>activation function</code>，并且<code>recommend</code>的方法是将权重随机地初始化在$[-\frac{1}{\sqrt{n}}, \frac{1}{\sqrt{n}}]$这个范围内，其中$n$是前面层的输入链接数。为了降低计算的复杂度，可以用<code>hierarchical softmax</code>或者增加<code>projection layers</code>来避免大的矩阵相乘。</p>
+<p>关于<mark>vanishing/exploding gradients</mark>，主要考虑到求导部分，比如$\frac{\partial E_3}{\partial W} = \sum_{k=0}^3\frac{\partial E_3}{\partial y_3}\frac{\partial \hat{y}_3}{\partial s_3}(\prod_{j=k+1}^3\frac{\partial s_j}{\partial s_{j-1})\frac{\partial s_k}{\partial W}$。可以看到向量对向量进行求导，结果是一个矩阵，即<code>Jacobian matrix</code>。当中间连乘的值趋近于0或者较大的时候，就会出现<code>vanishing gradients</code>或者<code>exploding gradients</code>的情况。对于exploding的情况，可以简单地通过定义一个threshold来解决，而且比较容易发现，当gradients为NaN时，程序会崩溃，所以vanishing的情况更值得关注。有很多解决vanishing的方法，比如将activation function换成<code>ReLU</code>，而不是<code>tanh/sigmoid</code>，更常用的解决方法是用LSTM或者GRU (LSTM的简化版本)，这两种方法都是用来解决vanishing gradients和long-range dependencies的学习问题。具体分析可见[7]。关于parameter update，可以参见[9]，后面关于使用这些gradients的summary非常有用。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">Understanding LSTM Networks</a><br>[2] <a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="external">Recurrent Neural Networks Tutorial</a><br>[3] <a href="http://colah.github.io/posts/2015-08-Backprop/" target="_blank" rel="external">Calculus on Computational Graphs: Backpropagation</a><br>[4] <a href="http://cs231n.github.io/optimization-2/" target="_blank" rel="external">CS231n Convolutional Neural Networks for Visual Recognition</a><br>[5] <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="external">The Unreasonable Effectiveness of Recurrent Neural Networks</a><br>[6] <a href="https://github.com/tensorflow/magenta/tree/master/magenta/reviews" target="_blank" rel="external">Reviews of research papers</a><br>[7] <a href="http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/" target="_blank" rel="external">Backpropagation through time and vanishing gradients</a><br>[8] <a href="http://www.wildml.com/2015/10/recurrent-neural-network-tutorial-part-4-implementing-a-grulstm-rnn-with-python-and-theano/" target="_blank" rel="external">Implementing a GRU/LSTM RNN with python and theano</a><br>[9] <a href="http://cs231n.github.io/neural-networks-3/#update" target="_blank" rel="external">Parameter updates</a></p>
 
             <blockquote>
                 <p>
@@ -184,6 +186,13 @@
             </div>
             
 <nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2016/09/01/machine/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Machine Comprehension Using Match-LSTM and Answer Pointer</h4>
+      </a>
+    </div>
   
 
   
