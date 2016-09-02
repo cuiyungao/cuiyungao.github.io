@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-09-02T01:46:57.000Z</updated>
+  <updated>2016-09-02T07:00:54.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -16,11 +16,52 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Leveraging Sentence-Level Information with Encoder LSTM for Semantic Slot Filling</title>
+    <link href="http://cuiyungao.github.io/2016/09/02/leveraging/"/>
+    <id>http://cuiyungao.github.io/2016/09/02/leveraging/</id>
+    <published>2016-09-02T05:44:53.000Z</published>
+    <updated>2016-09-02T07:00:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是在Arxiv 23, Aug, 2016的文章，作者Gakuto Kurata (IBM research),和Bing Xiang, Bowen Zhou, Mo Yu (IBM Watson)。<br><a id="more"></a><br>文章将slot filling结合sentence-level的信息，提出了<code>encoder-labeler LSTM</code>，即分为encoder和labeler两部分。<code>Encoder</code>基于LSTM将输入的句子编码成固定长度的向量，这个向量被用来作为<code>labeler</code> hidden layer的初始状态。这样，就可以预测label sequence了。</p>
+<h3 id="LSTM-for-Slot-Filling"><a href="#LSTM-for-Slot-Filling" class="headerlink" title="LSTM for Slot Filling"></a><center><strong>LSTM for Slot Filling</strong></center></h3><p>用于slot filling的传统LSTM方法，即<code>labeler LSTM(W)</code>，将每个word$x_t$表示成$V$维的one-hot向量，这个向量转换成embedding的形式$Ex_t$，其中$E\in \mathbb{R}^{d_e\times V}$为word embedding matrix。<code>Context Window</code>用来取$k$个前面和后面的词$Ex_{t-k}^{t+k}\in \mathbb{R}^{d_e(2k+1)}$作为LSTM的输入，而不是单单输入一个词。紧接着softmax预测输出label，BPTT用来更新迭代parameters。如下图(a)。</p>
+<p>这是比较传统的方法，<mark>它不能考虑label之间的依赖关系</mark>。为了弥补这个问题，文章提出了<code>labeler LSTM(W+L)</code>,即前一个time step输出的label作为当前time step的hidden state，并与当前词相结合。在training的过程中，<mark>label用one-hot-vector的形式表示</mark>，用<code>left-to-right beam search</code>做evaluation。如下图(b)。</p>
+<p><code>Encoder-labeler LSTM(W)</code>和<code>encoder-labeler LSTM(W+L)</code>如图(d)和(e)所示。训练部分跟传统的<code>labeler LSTM</code>类似，但是labeler LSTM当中的error通过BPTT的方法更新encoder LSTM。跟以往的方法不同，输入序列被使用了两次，但是embedding matrix都是相同的。</p>
+<p>其它考虑sentence-level信息的方法还有bi-directional LSTM以及attention-based methods。前者只是在一个特定的词的周围建模，没有考虑整个句子的信息，文章中的方法用<code>encoder-labeler LSTM</code>来编码整个句子的信息，并基于编码的信息来预测槽位；而后者更适用于输入跟输出长度不对等的情况，而且对于slot filling，输入的词跟输出的词有着很强的关联性，文章用<code>context window</code>的方法来对应attention。</p>
+<center><img src="/img/papers/leverating1.png" width="100%"></center>
+
+<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center><strong>Experiment</strong></center></h3><p>实验分为两部分，一部分是基于已有的数据集ATIS corpus (training data是4,978个句子，evaluation是893个句子)，第二部分是融合了MIT restaurant corpus和MIT movie corpus。Evaluation采用F1-score，用<code>ADAM</code>来控制learning rate，设置<code>dropout</code>为0.5。实验中<mark>句子的结尾没有加终止符</mark>，因为输入跟输出的sequence长度是一样的。结果如下表所示，encoder-labeler LSTM(W+L)的效果不如encoder-labeler LSTM(W)的原因是中间的label预测错误导致。</p>
+<center><img src="/img/papers/leverating2.png" width="100%"></center>
+
+<p>与其它方法的如下图，更说明了方法的有效性。</p>
+<center><img src="/img/papers/leverating3.png" width="100%"></center>
+
+<p><mark>结合slot filling的training过程跟intent分类的结果可能会更完善已有的方法。</mark></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://arxiv.org/pdf/1601.01530v4.pdf" target="_blank" rel="external">Leveraging Sentence-Level Information with Encoder LSTM for Semantic Slot Filling</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是在Arxiv 23, Aug, 2016的文章，作者Gakuto Kurata (IBM research),和Bing Xiang, Bowen Zhou, Mo Yu (IBM Watson)。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="LSTM" scheme="http://cuiyungao.github.io/tags/LSTM/"/>
+    
+      <category term="Slot Filling" scheme="http://cuiyungao.github.io/tags/Slot-Filling/"/>
+    
+      <category term="Seq2Seq" scheme="http://cuiyungao.github.io/tags/Seq2Seq/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Machine Comprehension Using Match-LSTM and Answer Pointer</title>
     <link href="http://cuiyungao.github.io/2016/09/01/machine/"/>
     <id>http://cuiyungao.github.io/2016/09/01/machine/</id>
     <published>2016-09-01T09:48:16.000Z</published>
-    <updated>2016-09-02T01:46:57.000Z</updated>
+    <updated>2016-09-02T01:49:55.000Z</updated>
     
     <content type="html"><![CDATA[<p>这是发在Arxiv 29, Aug, 2016的文章，作者Shuohang Wang和Jing Jiang (SMU).<br><a id="more"></a><br>文章的目的是机器理解(machine comprehension)，利用最新发布的数据集Stanford Question Answering Dataset (SQuAD，提供了大量的真实问题和人工创建的答案)。这个数据集的挑战有两个方面，首先答案不是取自于一个小的候选集，而是<mark>从原文来进行抽取</mark>；其次是答案的<mark>长度不同</mark>。本文基于两个LSTM的模型，<code>match-LSTM</code>和<code>Pointer Net</code>，前者为了提取上下文需要(textual entailment)，后者为了限制输出的tokens来自输入序列。</p>
 <p>这个新的数据集的特殊之处在于<mark>许多问题是原文的解释</mark>。文章利用了这个特殊之处来进行机器理解。文章贡献在于提出了<code>new end-to-end neural network models for machine comprehension</code>。文章的一些模型跟思路可以用在以后的research中，所以这里做简单记录。</p>
@@ -32,7 +73,7 @@
 <h4 id="LSTM-Preprocessing-Layer"><a href="#LSTM-Preprocessing-Layer" class="headerlink" title="LSTM Preprocessing Layer"></a><strong>LSTM Preprocessing Layer</strong></h4><p>这层的作用是将token的representation结合上下文信息，LSTM的hidden layer即为passage和question的表示形式。<br>$$<br>\mathbf{H}^p = \overrightarrow{LSTM}(\mathbf{P}), \mathbf{H}^q = \overrightarrow{LSTM}(\mathbf{Q}),<br>$$<br>其中，$\mathbf{H}^p\in \mathbb{R}^{l\times P}$, $\mathbf{H}^q\in \mathbb{R}^{l\times Q}$即表示形式，$\mathbf{h}_i^p$和$\mathbf{h}_i^q$分别表示passage和question中的第$i$个token。</p>
 <h4 id="Match-LSTM-Layer"><a href="#Match-LSTM-Layer" class="headerlink" title="Match-LSTM Layer"></a><strong>Match-LSTM Layer</strong></h4><p>这层的作用是引入attention，基于<code>word-by-word attention mechanism</code>得到attention weight vector $\overrightarrow{\alpha}_i\in \mathbb{R}^Q$，<br>$$<br>\overrightarrow{\mathbf{G}}_i = tanh(\mathbf{W}^q\mathbf{h}_i^q+(\mathbf{W}^p\mathbf{h}_i^p+\mathbf{W}^r\overrightarrow{\mathbf{h}}_{i-1}^r+\mathbf{b}^p)\otimes\mathbf{e}_Q), \\<br>\overrightarrow{\alpha}_i = softmax(\mathbf{w}^T\overrightarrow{\mathbf{G}}_i + \mathbf{b}\otimes\mathbf{e}_Q),<br>$$<br>得到的$\overrightarrow{\alpha}_{i,j}$表示passage中第$i$个token和question中第$j$个token中间的匹配程度。Question的weighted version的表示形式为：<br>$$<br>\overrightarrow{\mathbf{z}}_i = \begin{bmatrix}<br>\mathbf{h}_i^p \\<br>\mathbf{H}^q\overrightarrow{\alpha}_i^T<br>\end{bmatrix}.<br>$$<br>得到的向量$\overrightarrow{\mathbf{z}}_i$输入到经典的LSTM模型中即为<code>match-LSTM</code>：<br>$$<br>\overrightarrow{\mathbf{h}}_i^r = \overrightarrow{LSTM}(\overrightarrow{\mathbf{z}}_i, \overrightarrow{\mathbf{h}}_{i-1}^r).<br>$$</p>
 <h4 id="Answer-Pointer-Layer"><a href="#Answer-Pointer-Layer" class="headerlink" title="Answer Pointer Layer"></a><strong>Answer Pointer Layer</strong></h4><p>用得到的$\overrightarrow{\mathbf{H}}^r$作为输入，预测输出序列。前面提到的两种模型的不同就体现在这一步，<code>sequence model</code>是生成answer sequence直到句尾，即$p(\mathbf{a}|\mathbf{H}^r)=\prod_k p(a_k|a_1, a_2, …, a_{k-1}, \mathbf{H}^r)$；而<code>boundary model</code>仅仅是找到answer的开头跟结尾，即$p(\mathbf{a}|\mathbf{H}^r)=p(a_s|\mathbf{H}^r)p(a_e|a_s, \mathbf{H}^r)$。</p>
-<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center>Experiment</center></h3><p>结果如下表所示。hidden layer维度定义为150，发现boundary model结果最好。作者还对各种类型的问题和答案的长度进行了比较分析，发现问题答案越长的结果比较差，”when”类型的问题结果较好。</p>
+<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center>Experiment</center></h3><p>结果如下表所示。hidden layer维度定义为150，发现boundary model结果最好。作者还对各种类型的问题和答案的长度进行了比较分析，发现问题答案越长的结果比较差，”when”类型的问题结果较好。<mark>文章还对现有的数据集进行了总结。</mark></p>
 <center><img src="/img/papers/machine2.png" width="100%"></center>
 
 <h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h4><p>[1] <a href="http://128.84.21.199/pdf/1608.07905v1.pdf" target="_blank" rel="external">Machine Comprehension Using Match-LSTM and Answer Pointer</a></p>
@@ -553,11 +594,11 @@
     
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
-      <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+      <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
     
   </entry>
   
@@ -601,9 +642,9 @@
     
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -632,9 +673,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -772,55 +813,6 @@
     
     
       <category term="SVM" scheme="http://cuiyungao.github.io/tags/SVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>fastText与Word2Vec之间的比较</title>
-    <link href="http://cuiyungao.github.io/2016/08/09/fastvsword/"/>
-    <id>http://cuiyungao.github.io/2016/08/09/fastvsword/</id>
-    <published>2016-08-09T01:29:03.000Z</published>
-    <updated>2016-08-09T02:08:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>本篇文章总结了试验fastText跟Word2Vec在embedding上的performance，源于<a href="http://nbviewer.jupyter.org/github/jayantj/gensim/blob/683720515165a332baed8a2a46b6711cefd2d739/docs/notebooks/Word2Vec_FastText_Comparison.ipynb" target="_blank" rel="external">这篇文章</a>。</p>
-<a id="more"></a>
-<h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a><center><strong>Dataset</strong></center></h3><p>训练embedding的数据集有两个，一个是<code>text8</code> corpus，一个是nltk自带的<code>brown</code> corpus。Groundtruth是<code>questtions-words</code>文本，可以从<a href="https://raw.githubusercontent.com/arfon/word2vec/master/questions-words.txt" target="_blank" rel="external">这里</a>下载。</p>
-<h4 id="text8-Corpus-Download"><a href="#text8-Corpus-Download" class="headerlink" title="text8 Corpus Download"></a>text8 Corpus Download</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://mattmahoney.net/dc/text8.zip</div></pre></td></tr></table></figure>
-<h4 id="brown-Corpus-Download"><a href="#brown-Corpus-Download" class="headerlink" title="brown Corpus Download"></a>brown Corpus Download</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">import nltk</div><div class="line"># 从当中选择brown corpus进行下载</div><div class="line">nltk.download()</div><div class="line"></div><div class="line"># Generate brown corpus text file</div><div class="line">with open(&apos;brown_corp.txt&apos;, &apos;w+&apos;) as f:</div><div class="line">    for word in nltk.corpus.brown.words():</div><div class="line">        f.write(&apos;&#123;word&#125; &apos;.format(word=word))</div></pre></td></tr></table></figure>
-<h3 id="Model-Training"><a href="#Model-Training" class="headerlink" title="Model Training"></a><center><strong>Model Training</strong></center></h3><p>用fastText和Word2Vec分别对上述两个数据集进行训练，得到word embeddings。</p>
-<h4 id="fastText-Training"><a href="#fastText-Training" class="headerlink" title="fastText Training"></a>fastText Training</h4><p>下载<a href="https://github.com/facebookresearch/fastText" target="_blank" rel="external">fastText</a>源码，对上述两个数据集进行训练。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./fasttext skipgram -input brown_corp.txt -output brown_ft</div><div class="line">./fasttext skipgram -input text8 -output text8_ft</div></pre></td></tr></table></figure></p>
-<h4 id="Word2Vec-Training"><a href="#Word2Vec-Training" class="headerlink" title="Word2Vec Training"></a>Word2Vec Training</h4><p>Word2Vec的训练基于gensim，采用<code>logging</code>来对过程进行输出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">from nltk.corpus import brown</div><div class="line">from gensim.models import Word2Vec</div><div class="line">from gensim.models.word2vec import Text8Corpus</div><div class="line">import logging</div><div class="line"></div><div class="line">logging.basicConfig(format=&apos;%(asctime)s : %(levelname)s : %(message)s&apos;)</div><div class="line">logging.root.setLevel(level=logging.INFO)</div><div class="line"></div><div class="line">MODELS_DIR = &apos;models/&apos;</div><div class="line"></div><div class="line">brown_gs = Word2Vec(brown.sents())</div><div class="line">brown_gs.save_word2vec_format(MODELS_DIR + &apos;brown_gs.vec&apos;)</div><div class="line"></div><div class="line">text8_gs = Word2Vec(Text8Corpus(&apos;text8&apos;))</div><div class="line">text8_gs.save_word2vec_format(MODELS_DIR + &apos;text8_gs.vec&apos;)</div></pre></td></tr></table></figure></p>
-<h3 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a><center><strong>Comparison</strong></center></h3><p>用<code>questions-words.txt</code>提供的数据作为Groundtruth，从<code>semantic</code>和<code>syntactic</code>两方面来对两种embedding的方法进行比较。</p>
-<h4 id="Based-on-Brown-Corpus"><a href="#Based-on-Brown-Corpus" class="headerlink" title="Based on Brown Corpus"></a>Based on Brown Corpus</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">from gensim.models import Word2Vec</div><div class="line"></div><div class="line">def print_accuracy(model, questions_file):</div><div class="line">    print(&apos;Evaluating...\n&apos;)</div><div class="line">    acc = model.accuracy(questions_file)</div><div class="line">    for section in acc:</div><div class="line">        correct = len(section[&apos;correct&apos;])</div><div class="line">        total = len(section[&apos;correct&apos;]) + len(section[&apos;incorrect&apos;])</div><div class="line">        total = total if total else 1</div><div class="line">        accuracy = 100*float(correct)/total</div><div class="line">        print(&apos;&#123;:d&#125;/&#123;:d&#125;, &#123;:.2f&#125;%, Section: &#123;:s&#125;&apos;.format(correct, total, accuracy, section[&apos;section&apos;]))</div><div class="line">    sem_correct = sum((len(acc[i][&apos;correct&apos;]) for i in range(5)))</div><div class="line">    sem_total = sum((len(acc[i][&apos;correct&apos;]) + len(acc[i][&apos;incorrect&apos;])) for i in range(5))</div><div class="line">    print(&apos;\nSemantic: &#123;:d&#125;/&#123;:d&#125;, Accuracy: &#123;:.2f&#125;%&apos;.format(sem_correct, sem_total, 100*float(sem_correct)/sem_total))</div><div class="line"></div><div class="line">    syn_correct = sum((len(acc[i][&apos;correct&apos;]) for i in range(5, len(acc)-1)))</div><div class="line">    syn_total = sum((len(acc[i][&apos;correct&apos;]) + len(acc[i][&apos;incorrect&apos;])) for i in range(5,len(acc)-1))</div><div class="line">    print(&apos;Syntactic: &#123;:d&#125;/&#123;:d&#125;, Accuracy: &#123;:.2f&#125;%\n&apos;.format(syn_correct, syn_total, 100*float(syn_correct)/syn_total))</div><div class="line"></div><div class="line">MODELS_DIR = &apos;models/&apos;</div><div class="line"></div><div class="line">word_analogies_file = &apos;questions-words.txt&apos;</div><div class="line">print(&apos;\nLoading FastText embeddings&apos;)</div><div class="line">ft_model = Word2Vec.load_word2vec_format(MODELS_DIR + &apos;brown_ft.vec&apos;)</div><div class="line">print(&apos;Accuracy for FastText:&apos;)</div><div class="line">print_accuracy(ft_model, word_analogies_file)</div><div class="line"></div><div class="line">print(&apos;\nLoading Gensim embeddings&apos;)</div><div class="line">gs_model = Word2Vec.load_word2vec_format(MODELS_DIR + &apos;brown_gs.vec&apos;)</div><div class="line">print(&apos;Accuracy for word2vec:&apos;)</div><div class="line">print_accuracy(gs_model, word_analogies_file)</div></pre></td></tr></table></figure>
-<p>结果如下：</p>
-<blockquote><br>Loading FastText embeddings<br>Accuracy for FastText:<br>Evaluating…<br><br>0/1, 0.00%, Section: capital-common-countries<br>0/1, 0.00%, Section: capital-world<br>0/1, 0.00%, Section: currency<br>0/1, 0.00%, Section: city-in-state<br>36/182, 19.78%, Section: family<br>498/702, 70.94%, Section: gram1-adjective-to-adverb<br>110/132, 83.33%, Section: gram2-opposite<br>675/1056, 63.92%, Section: gram3-comparative<br>140/210, 66.67%, Section: gram4-superlative<br>426/650, 65.54%, Section: gram5-present-participle<br>0/1, 0.00%, Section: gram6-nationality-adjective<br>153/1260, 12.14%, Section: gram7-past-tense<br>318/552, 57.61%, Section: gram8-plural<br>245/342, 71.64%, Section: gram9-plural-verbs<br>2601/5086, 51.14%, Section: total<br><br>Semantic: 36/182, Accuracy: <mark>19.78%</mark><br>Syntactic: 2565/4904, Accuracy: <mark>52.30%</mark><br><br><br>Loading Gensim embeddings<br>Accuracy for word2vec:<br>Evaluating…<br><br>0/1, 0.00%, Section: capital-common-countries<br>0/1, 0.00%, Section: capital-world<br>0/1, 0.00%, Section: currency<br>0/1, 0.00%, Section: city-in-state<br>54/182, 29.67%, Section: family<br>8/702, 1.14%, Section: gram1-adjective-to-adverb<br>0/132, 0.00%, Section: gram2-opposite<br>72/1056, 6.82%, Section: gram3-comparative<br>0/210, 0.00%, Section: gram4-superlative<br>14/650, 2.15%, Section: gram5-present-participle<br>0/1, 0.00%, Section: gram6-nationality-adjective<br>28/1260, 2.22%, Section: gram7-past-tense<br>4/552, 0.72%, Section: gram8-plural<br>8/342, 2.34%, Section: gram9-plural-verbs<br>188/5086, 3.70%, Section: total<br><br>Semantic: 54/182, Accuracy: <mark>29.67%</mark><br>Syntactic: 134/4904, Accuracy: <mark>2.73%</mark><br></blockquote>
-
-<p>从运行结果可以看到，fastText的semantic accuracy比Word2Vec要稍微差一点儿，但是Syntactic accuracy的效果明显优于Word2Vec。这是因为<a href="https://arxiv.org/abs/1607.04606" target="_blank" rel="external">1</a>中提到，fastText中word embeddings是由他们的n-gram embeddings来表示，所以形态上相似的词的embeddings也会比较类似。比如：<br>$$<br>embedding(amazing)-embedding(amazingly) = embedding(calm)-embedding(calmly).<br>$$</p>
-<h4 id="Based-on-text8-Corpus"><a href="#Based-on-text8-Corpus" class="headerlink" title="Based on text8 Corpus"></a>Based on text8 Corpus</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">print(&apos;Loading FastText embeddings&apos;)</div><div class="line">ft_model = Word2Vec.load_word2vec_format(MODELS_DIR + &apos;text8_ft.vec&apos;)</div><div class="line">print(&apos;Accuracy for FastText:&apos;)</div><div class="line">print_accuracy(ft_model, word_analogies_file)</div><div class="line"></div><div class="line">print(&apos;Loading Gensim embeddings&apos;)</div><div class="line">gs_model = Word2Vec.load_word2vec_format(MODELS_DIR + &apos;text8_gs.vec&apos;)</div><div class="line">print(&apos;Accuracy for word2vec:&apos;)</div><div class="line">print_accuracy(gs_model, word_analogies_file)</div></pre></td></tr></table></figure>
-<p>结果如下：</p>
-<blockquote><br>Loading FastText embeddings<br>Accuracy for FastText:<br>Evaluating…<br><br>322/506, 63.64%, Section: capital-common-countries<br>609/1452, 41.94%, Section: capital-world<br>36/268, 13.43%, Section: currency<br>286/1520, 18.82%, Section: city-in-state<br>134/306, 43.79%, Section: family<br>556/756, 73.54%, Section: gram1-adjective-to-adverb<br>186/306, 60.78%, Section: gram2-opposite<br>838/1260, 66.51%, Section: gram3-comparative<br>270/506, 53.36%, Section: gram4-superlative<br>556/992, 56.05%, Section: gram5-present-participle<br>1293/1371, 94.31%, Section: gram6-nationality-adjective<br>490/1332, 36.79%, Section: gram7-past-tense<br>888/992, 89.52%, Section: gram8-plural<br>365/650, 56.15%, Section: gram9-plural-verbs<br>6829/12217, 55.90%, Section: total<br><br>Semantic: 1387/4052, Accuracy: <mark>34.23%</mark><br>Syntactic: 5442/8165, Accuracy: <mark>66.65%</mark><br><br>Loading Gensim embeddings<br>Accuracy for word2vec:<br>Evaluating…<br><br>153/506, 30.24%, Section: capital-common-countries<br>248/1452, 17.08%, Section: capital-world<br>27/268, 10.07%, Section: currency<br>172/1571, 10.95%, Section: city-in-state<br>218/306, 71.24%, Section: family<br>88/756, 11.64%, Section: gram1-adjective-to-adverb<br>45/306, 14.71%, Section: gram2-opposite<br>716/1260, 56.83%, Section: gram3-comparative<br>179/506, 35.38%, Section: gram4-superlative<br>325/992, 32.76%, Section: gram5-present-participle<br>702/1371, 51.20%, Section: gram6-nationality-adjective<br>343/1332, 25.75%, Section: gram7-past-tense<br>401/992, 40.42%, Section: gram8-plural<br>219/650, 33.69%, Section: gram9-plural-verbs<br>3836/12268, 31.27%, Section: total<br><br>Semantic: 818/4103, Accuracy: <mark>19.94%</mark><br>Syntactic: 3018/8165, Accuracy: <mark>36.96%</mark><br></blockquote>
-
-<p>实验结果可以看出，用在较大的数据集上，fastText的优势表现得更加明显，当然word2vec的Syntactic accuracy提高得也比较明显。所以总的来看，<mark>fastText比word2vec在word embedding上更好，特别是对于syntactic information。</mark></p>
-<h4 id="实验中用到的Hyperparameters"><a href="#实验中用到的Hyperparameters" class="headerlink" title="实验中用到的Hyperparameters"></a>实验中用到的Hyperparameters</h4><p>Gensim word2vec和fastText用了相似的参数，dim_size = 100, window_size = 5, num_epochs = 5。但是它们的模型完全不同，尽管有很多相似性。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1]<a href="https://arxiv.org/abs/1607.04606" target="_blank" rel="external">Enriching Word Vectors with Subword Information</a><br>[2]<a href="https://arxiv.org/pdf/1301.3781v3.pdf" target="_blank" rel="external">Efficient Estimation of Word Representations in Vector Space</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本篇文章总结了试验fastText跟Word2Vec在embedding上的performance，源于&lt;a href=&quot;http://nbviewer.jupyter.org/github/jayantj/gensim/blob/683720515165a332baed8a2a46b6711cefd2d739/docs/notebooks/Word2Vec_FastText_Comparison.ipynb&quot;&gt;这篇文章&lt;/a&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="Word Embedding" scheme="http://cuiyungao.github.io/tags/Word-Embedding/"/>
-    
-      <category term="fastText" scheme="http://cuiyungao.github.io/tags/fastText/"/>
     
   </entry>
   

@@ -18,7 +18,7 @@
 <meta property="og:description" content="这是发在Arxiv 29, Aug, 2016的文章，作者Shuohang Wang和Jing Jiang (SMU).">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/machine1.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/machine2.png">
-<meta property="og:updated_time" content="2016-09-02T01:46:57.000Z">
+<meta property="og:updated_time" content="2016-09-02T01:49:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Comprehension Using Match-LSTM and Answer Pointer">
 <meta name="twitter:description" content="这是发在Arxiv 29, Aug, 2016的文章，作者Shuohang Wang和Jing Jiang (SMU).">
@@ -169,7 +169,7 @@
 <h4 id="LSTM-Preprocessing-Layer"><a href="#LSTM-Preprocessing-Layer" class="headerlink" title="LSTM Preprocessing Layer"></a><strong>LSTM Preprocessing Layer</strong></h4><p>这层的作用是将token的representation结合上下文信息，LSTM的hidden layer即为passage和question的表示形式。<br>$$<br>\mathbf{H}^p = \overrightarrow{LSTM}(\mathbf{P}), \mathbf{H}^q = \overrightarrow{LSTM}(\mathbf{Q}),<br>$$<br>其中，$\mathbf{H}^p\in \mathbb{R}^{l\times P}$, $\mathbf{H}^q\in \mathbb{R}^{l\times Q}$即表示形式，$\mathbf{h}_i^p$和$\mathbf{h}_i^q$分别表示passage和question中的第$i$个token。</p>
 <h4 id="Match-LSTM-Layer"><a href="#Match-LSTM-Layer" class="headerlink" title="Match-LSTM Layer"></a><strong>Match-LSTM Layer</strong></h4><p>这层的作用是引入attention，基于<code>word-by-word attention mechanism</code>得到attention weight vector $\overrightarrow{\alpha}_i\in \mathbb{R}^Q$，<br>$$<br>\overrightarrow{\mathbf{G}}_i = tanh(\mathbf{W}^q\mathbf{h}_i^q+(\mathbf{W}^p\mathbf{h}_i^p+\mathbf{W}^r\overrightarrow{\mathbf{h}}_{i-1}^r+\mathbf{b}^p)\otimes\mathbf{e}_Q), \\<br>\overrightarrow{\alpha}_i = softmax(\mathbf{w}^T\overrightarrow{\mathbf{G}}_i + \mathbf{b}\otimes\mathbf{e}_Q),<br>$$<br>得到的$\overrightarrow{\alpha}_{i,j}$表示passage中第$i$个token和question中第$j$个token中间的匹配程度。Question的weighted version的表示形式为：<br>$$<br>\overrightarrow{\mathbf{z}}_i = \begin{bmatrix}<br>\mathbf{h}_i^p \\<br>\mathbf{H}^q\overrightarrow{\alpha}_i^T<br>\end{bmatrix}.<br>$$<br>得到的向量$\overrightarrow{\mathbf{z}}_i$输入到经典的LSTM模型中即为<code>match-LSTM</code>：<br>$$<br>\overrightarrow{\mathbf{h}}_i^r = \overrightarrow{LSTM}(\overrightarrow{\mathbf{z}}_i, \overrightarrow{\mathbf{h}}_{i-1}^r).<br>$$</p>
 <h4 id="Answer-Pointer-Layer"><a href="#Answer-Pointer-Layer" class="headerlink" title="Answer Pointer Layer"></a><strong>Answer Pointer Layer</strong></h4><p>用得到的$\overrightarrow{\mathbf{H}}^r$作为输入，预测输出序列。前面提到的两种模型的不同就体现在这一步，<code>sequence model</code>是生成answer sequence直到句尾，即$p(\mathbf{a}|\mathbf{H}^r)=\prod_k p(a_k|a_1, a_2, …, a_{k-1}, \mathbf{H}^r)$；而<code>boundary model</code>仅仅是找到answer的开头跟结尾，即$p(\mathbf{a}|\mathbf{H}^r)=p(a_s|\mathbf{H}^r)p(a_e|a_s, \mathbf{H}^r)$。</p>
-<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center>Experiment</center></h3><p>结果如下表所示。hidden layer维度定义为150，发现boundary model结果最好。作者还对各种类型的问题和答案的长度进行了比较分析，发现问题答案越长的结果比较差，”when”类型的问题结果较好。</p>
+<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center>Experiment</center></h3><p>结果如下表所示。hidden layer维度定义为150，发现boundary model结果最好。作者还对各种类型的问题和答案的长度进行了比较分析，发现问题答案越长的结果比较差，”when”类型的问题结果较好。<mark>文章还对现有的数据集进行了总结。</mark></p>
 <center><img src="/img/papers/machine2.png" width="100%"></center>
 
 <h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h4><p>[1] <a href="http://128.84.21.199/pdf/1608.07905v1.pdf" target="_blank" rel="external">Machine Comprehension Using Match-LSTM and Answer Pointer</a></p>
@@ -184,6 +184,13 @@
             </div>
             
 <nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2016/09/02/leveraging/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Leveraging Sentence-Level Information with Encoder LSTM for Semantic Slot Filling</h4>
+      </a>
+    </div>
   
 
   
