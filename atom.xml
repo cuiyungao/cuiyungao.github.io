@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-09-02T07:00:54.000Z</updated>
+  <updated>2016-09-02T07:01:50.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -20,20 +20,20 @@
     <link href="http://cuiyungao.github.io/2016/09/02/leveraging/"/>
     <id>http://cuiyungao.github.io/2016/09/02/leveraging/</id>
     <published>2016-09-02T05:44:53.000Z</published>
-    <updated>2016-09-02T07:00:54.000Z</updated>
+    <updated>2016-09-02T07:01:50.000Z</updated>
     
     <content type="html"><![CDATA[<p>这是在Arxiv 23, Aug, 2016的文章，作者Gakuto Kurata (IBM research),和Bing Xiang, Bowen Zhou, Mo Yu (IBM Watson)。<br><a id="more"></a><br>文章将slot filling结合sentence-level的信息，提出了<code>encoder-labeler LSTM</code>，即分为encoder和labeler两部分。<code>Encoder</code>基于LSTM将输入的句子编码成固定长度的向量，这个向量被用来作为<code>labeler</code> hidden layer的初始状态。这样，就可以预测label sequence了。</p>
 <h3 id="LSTM-for-Slot-Filling"><a href="#LSTM-for-Slot-Filling" class="headerlink" title="LSTM for Slot Filling"></a><center><strong>LSTM for Slot Filling</strong></center></h3><p>用于slot filling的传统LSTM方法，即<code>labeler LSTM(W)</code>，将每个word$x_t$表示成$V$维的one-hot向量，这个向量转换成embedding的形式$Ex_t$，其中$E\in \mathbb{R}^{d_e\times V}$为word embedding matrix。<code>Context Window</code>用来取$k$个前面和后面的词$Ex_{t-k}^{t+k}\in \mathbb{R}^{d_e(2k+1)}$作为LSTM的输入，而不是单单输入一个词。紧接着softmax预测输出label，BPTT用来更新迭代parameters。如下图(a)。</p>
 <p>这是比较传统的方法，<mark>它不能考虑label之间的依赖关系</mark>。为了弥补这个问题，文章提出了<code>labeler LSTM(W+L)</code>,即前一个time step输出的label作为当前time step的hidden state，并与当前词相结合。在training的过程中，<mark>label用one-hot-vector的形式表示</mark>，用<code>left-to-right beam search</code>做evaluation。如下图(b)。</p>
 <p><code>Encoder-labeler LSTM(W)</code>和<code>encoder-labeler LSTM(W+L)</code>如图(d)和(e)所示。训练部分跟传统的<code>labeler LSTM</code>类似，但是labeler LSTM当中的error通过BPTT的方法更新encoder LSTM。跟以往的方法不同，输入序列被使用了两次，但是embedding matrix都是相同的。</p>
 <p>其它考虑sentence-level信息的方法还有bi-directional LSTM以及attention-based methods。前者只是在一个特定的词的周围建模，没有考虑整个句子的信息，文章中的方法用<code>encoder-labeler LSTM</code>来编码整个句子的信息，并基于编码的信息来预测槽位；而后者更适用于输入跟输出长度不对等的情况，而且对于slot filling，输入的词跟输出的词有着很强的关联性，文章用<code>context window</code>的方法来对应attention。</p>
-<center><img src="/img/papers/leverating1.png" width="100%"></center>
+<center><img src="/img/papers/leveraging1.png" width="100%"></center>
 
 <h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center><strong>Experiment</strong></center></h3><p>实验分为两部分，一部分是基于已有的数据集ATIS corpus (training data是4,978个句子，evaluation是893个句子)，第二部分是融合了MIT restaurant corpus和MIT movie corpus。Evaluation采用F1-score，用<code>ADAM</code>来控制learning rate，设置<code>dropout</code>为0.5。实验中<mark>句子的结尾没有加终止符</mark>，因为输入跟输出的sequence长度是一样的。结果如下表所示，encoder-labeler LSTM(W+L)的效果不如encoder-labeler LSTM(W)的原因是中间的label预测错误导致。</p>
-<center><img src="/img/papers/leverating2.png" width="100%"></center>
+<center><img src="/img/papers/leveraging2.png" width="100%"></center>
 
 <p>与其它方法的如下图，更说明了方法的有效性。</p>
-<center><img src="/img/papers/leverating3.png" width="100%"></center>
+<center><img src="/img/papers/leveraging3.png" width="100%"></center>
 
 <p><mark>结合slot filling的training过程跟intent分类的结果可能会更完善已有的方法。</mark></p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://arxiv.org/pdf/1601.01530v4.pdf" target="_blank" rel="external">Leveraging Sentence-Level Information with Encoder LSTM for Semantic Slot Filling</a></p>
