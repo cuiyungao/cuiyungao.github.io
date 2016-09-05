@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-09-02T07:02:42.000Z</updated>
+  <updated>2016-09-05T10:13:19.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -16,11 +16,80 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>StarrySky A Practical System to Track Millions of High-Precision Query Intents</title>
+    <link href="http://cuiyungao.github.io/2016/09/05/starry/"/>
+    <id>http://cuiyungao.github.io/2016/09/05/starry/</id>
+    <published>2016-09-05T09:44:44.000Z</published>
+    <updated>2016-09-05T10:13:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>WWW’16的文章。Ye, Qi, Feng Wang, and Bo Li. “Starrysky: A practical system to track millions of high-precision query intents.” Proceedings of the 25th International Conference Companion on World Wide Web. International World Wide Web Conferences Steering Committee, 2016.<br><a id="more"></a><br>这篇文章用来解决广告搜索的问题。搜索广告的现状是主要基于关键字匹配的搜索模式。存在的问题有用户query比较短、特征稀疏、歧义性强；字面上匹配<mark>缺乏意图相关特征</mark>；广告缺乏相关性数据。这就会导致返回不恰当的广告，降低用户体验。</p>
+<h3 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a><center><strong>Goal</strong></center></h3><p>建立用户query与intention之间的映射关系，处理高频与长尾查询，平衡precision和coverage。(长尾关键词[long tail keyword]指的是网站上非目标关键词但也可以带来搜索流量的关键词。)</p>
+<p>现有的intention recognition主要有三种方法：短文本聚类，topic modeling，查询分类（yahoo采用）。特点是可发现细粒度意图，但是难覆盖长尾查询；不同数据集topic难以对应，短文本分析精确度不够；类有几十到上千类，粒度较粗。</p>
+<p>本文用到的是第三种，即<mark>查询分类</mark>。基本假设是点击相同网页的查询意图相似，所以需要对网络进行分类。由于查询的意图会有细微差别，所以需要分类的算法具有一定的抗噪性，文中采用社团发现算法(MMO, Multi-resolution Modularity Optimization)。识别结构如下图所示。在concept之间建立联系，对聚类纯度和类间的相关性进行计算。</p>
+<center><img src="/img/papers/starry2.png" width="100%"></center>
+
+<h3 id="Framework"><a href="#Framework" class="headerlink" title="Framework"></a><center><strong>Framework</strong></center></h3><p>整体框架如图所示。抽取query-url关系有1300万，有1650万url，如果两个query之间存在一个同点击，则在两个query之间连接一条边，设定阈值进行过滤，最终得到包含1300万查询节点，8亿条边的查询点击网络。在inference阶段，用贝叶斯的方法发现候选概念，同时对候选集推出的概念按照出现的概念进行rejection，文中提到了两种rejection的方式。</p>
+<center><img src="/img/papers/starry1.png" width="100%"></center>
+
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="http://dl.acm.org/citation.cfm?id=2890588" target="_blank" rel="external">StarrySky: A Practical System to Track Millions of High-Precision Query Intents</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;WWW’16的文章。Ye, Qi, Feng Wang, and Bo Li. “Starrysky: A practical system to track millions of high-precision query intents.” Proceedings of the 25th International Conference Companion on World Wide Web. International World Wide Web Conferences Steering Committee, 2016.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="Graph" scheme="http://cuiyungao.github.io/tags/Graph/"/>
+    
+      <category term="Clustering" scheme="http://cuiyungao.github.io/tags/Clustering/"/>
+    
+      <category term="Query Intention" scheme="http://cuiyungao.github.io/tags/Query-Intention/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Topic Modeling</title>
+    <link href="http://cuiyungao.github.io/2016/09/02/baidu1/"/>
+    <id>http://cuiyungao.github.io/2016/09/02/baidu1/</id>
+    <published>2016-09-02T09:29:02.000Z</published>
+    <updated>2016-09-02T10:08:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>百度周讲总结，这次主要讲了topic model的基础知识。<br><a id="more"></a><br>首先是各种分布基础。</p>
+<h3 id="二次分布vs多项分布"><a href="#二次分布vs多项分布" class="headerlink" title="二次分布vs多项分布"></a><center><strong>二次分布vs多项分布</strong></center></h3><ol>
+<li>Binomial vs. Bernolli，两者表示形式相同，都为p(x), x\in{0,1}，区别在于前者是多次试验，后者为一次试验；</li>
+<li>Multinomial vs. Categorical/Discrete，假定参数为$\overrightarrow{\alpha}\in simplex(k)$，则有前者$p(n_1,…,n_k)=\frac{N!}{\prod_in_i!}\alpha_i^{n_i}$，其中$i\in[1,k]$，$\sum_in_i=N, \sum_i\alpha_i=1$；后者有$p(x=i)=\alpha_i$,$p(n_1,..,n_k)=\prod_i\alpha_i^{n_i}$。</li>
+</ol>
+<p>最大似然multinomial之后，我们有:<br>$$<br>{max}_{\alpha_i}\sum_in_i log\alpha_i + \lambda(1-\sum_i\alpha_i)，<br>$$<br>解得$\alpha_i=\frac{n_i}{\sum_i n_i}$。</p>
+<p>通常我们会在分子跟分母上加上先验，服从$\alpha\sim Dir([\beta,\beta,…,\beta])$，主要目的是smooth，即$\alpha_i=\frac{n_i+\beta}{\sum_i n_i+\beta}$。</p>
+<h3 id="Gamma-Distribution"><a href="#Gamma-Distribution" class="headerlink" title="Gamma Distribution"></a><center><strong>Gamma Distribution</strong></center></h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;百度周讲总结，这次主要讲了topic model的基础知识。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Baidu" scheme="http://cuiyungao.github.io/tags/Baidu/"/>
+    
+      <category term="Topic Model" scheme="http://cuiyungao.github.io/tags/Topic-Model/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Leveraging Sentence-Level Information with Encoder LSTM for Semantic Slot Filling</title>
     <link href="http://cuiyungao.github.io/2016/09/02/leveraging/"/>
     <id>http://cuiyungao.github.io/2016/09/02/leveraging/</id>
     <published>2016-09-02T05:44:53.000Z</published>
-    <updated>2016-09-02T07:02:42.000Z</updated>
+    <updated>2016-09-02T07:03:36.000Z</updated>
     
     <content type="html"><![CDATA[<p>这是在Arxiv 23, Aug, 2016的文章，作者Gakuto Kurata (IBM research),和Bing Xiang, Bowen Zhou, Mo Yu (IBM Watson)。<br><a id="more"></a><br>文章将slot filling结合sentence-level的信息，提出了<code>encoder-labeler LSTM</code>，即分为encoder和labeler两部分。<code>Encoder</code>基于LSTM将输入的句子编码成固定长度的向量，这个向量被用来作为<code>labeler</code> hidden layer的初始状态。这样，就可以预测label sequence了。</p>
 <h3 id="LSTM-for-Slot-Filling"><a href="#LSTM-for-Slot-Filling" class="headerlink" title="LSTM for Slot Filling"></a><center><strong>LSTM for Slot Filling</strong></center></h3><p>用于slot filling的传统LSTM方法，即<code>labeler LSTM(W)</code>，将每个word$x_t$表示成$V$维的one-hot向量，这个向量转换成embedding的形式$Ex_t$，其中$E\in \mathbb{R}^{d_e\times V}$为word embedding matrix。<code>Context Window</code>用来取$k$个前面和后面的词$Ex_{t-k}^{t+k}\in \mathbb{R}^{d_e(2k+1)}$作为LSTM的输入，而不是单单输入一个词。紧接着softmax预测输出label，BPTT用来更新迭代parameters。如下图(a)。</p>
@@ -389,11 +458,11 @@
   </entry>
   
   <entry>
-    <title>Sequence Labeling with Discriminative Models</title>
+    <title>Sequence Labeling</title>
     <link href="http://cuiyungao.github.io/2016/08/19/sequence/"/>
     <id>http://cuiyungao.github.io/2016/08/19/sequence/</id>
     <published>2016-08-19T03:01:09.000Z</published>
-    <updated>2016-08-19T06:50:13.000Z</updated>
+    <updated>2016-09-02T08:32:59.000Z</updated>
     
     <content type="html"><![CDATA[<p>总结了UIUC CS498JH: Introduction to NLP (Fall 2012)关于sequence labeling的<a href="https://courses.engr.illinois.edu/cs498jh/Slides/Lecture08HO.pdf" target="_blank" rel="external">课件</a>。</p>
 <a id="more"></a>
@@ -412,6 +481,8 @@
 
 <p>假设对$P(\mathbf{w})$建模，假定是高斯（正态）分布，我们可以得到下式。</p>
 <center><img src="/img/daily/sequence6.png" width="70%"></center>
+
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://www.zhihu.com/question/46688107" target="_blank" rel="external">CRF和LSTM模型在序列标注上的优劣？</a>总结得很好，当中还提供了源代码，强烈推荐。</p>
 ]]></content>
     
     <summary type="html">
@@ -425,9 +496,9 @@
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="CRF" scheme="http://cuiyungao.github.io/tags/CRF/"/>
-    
       <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
+    
+      <category term="CRF" scheme="http://cuiyungao.github.io/tags/CRF/"/>
     
   </entry>
   
@@ -594,11 +665,11 @@
     
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+      <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -642,9 +713,9 @@
     
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -673,9 +744,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -727,92 +798,6 @@
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="QU" scheme="http://cuiyungao.github.io/tags/QU/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CNN总结</title>
-    <link href="http://cuiyungao.github.io/2016/08/12/cnn/"/>
-    <id>http://cuiyungao.github.io/2016/08/12/cnn/</id>
-    <published>2016-08-12T03:00:57.000Z</published>
-    <updated>2016-08-21T09:25:41.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。</p>
-<a id="more"></a>
-<p>CNN已经被各种大牛解说得很好了，其中觉得不是很懂的地方主要还是在back propagation。所以这篇文章主要对back propagation方面进行总结，也汇总CNN的一些重要的点。一些很好的资料也在本文进行标注。</p>
-<h3 id="Main-Steps"><a href="#Main-Steps" class="headerlink" title="Main Steps"></a><center><strong>Main Steps</strong></center></h3><p>下面这幅图非常经典，是ConvNet的过程图。在CNN中有4个关键操作：</p>
-<ul>
-<li>Convolution</li>
-<li>Non Linearlity (ReLU)</li>
-<li>Pooling or Sub Sampling</li>
-<li>Classification (Fully Connected Layer).</li>
-</ul>
-<p>Convolution这一步是一个linear的操作，主要目的是获取输入图片的特征，通过移动<code>filter</code>（也叫<code>kernel</code>，<code>feature detector</code>）保留pixels之间的空间关系。dot product的结果叫做<code>Convolved Feature</code>或者<code>Activation Map</code>或者<code>Feature Map</code>。<code>filter</code>种类的数量表示convolution之后的深度，一种<code>filter</code>得到一种layer。Feature Map的大小由三个参数决定，即Depth, Stride和Zero-Padding。</p>
-<center><img src="/img/daily/cnn1.png" width="100%"></center>
-
-<p>ReLU是对Convolution的结果进行非线性变换，是element wise operation，将所有的负值替换成0。因为现实数据通常是非线性的，所以引入ReLU这个非线性函数，也可以采用tanh或者sigmoid，但是ReLU通常情况下性能较好。</p>
-<p>Pooling操作主要目的是减少特征维度，同时保留重要信息，避免overfitting，这使得对输入图片的各种变换、扭曲和移动有效。到这一步，我们可以得到输入图片的high-level的feature。最后通过fully connected layer，我们对这些feature进行分类。比如说我们要使得结果分成$k$类，通过softmax这个activation function，使得这$k$类输出概率的和是1。最后通过back propagation，我们更新迭代参数使分类结果最佳。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a><br>[2] <a href="http://andrew.gibiansky.com/blog/machine-learning/convolutional-neural-networks/" target="_blank" rel="external">Backpropagation</a><br>[3] <a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="external">CS231n Convolutional Neural Networks Stanford</a><br>[4] <a href="http://blog.algorithmia.com/introduction-natural-language-processing-nlp/" target="_blank" rel="external">Introduction to Natural Language Processing 2016</a>。这里面包含了各种资料的汇总。<br>[5] <a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">Understanding Convolutions</a>。从概率的角度来理解CNN.<br>[6] <a href="http://arxiv.org/pdf/1512.07108v3.pdf" target="_blank" rel="external">Recent Advances in Convolutional Neural Networks</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;已经有很多大牛对CNN的算法进行了总结，这里就对这些资料进行汇总。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SVM模型小结</title>
-    <link href="http://cuiyungao.github.io/2016/08/11/svmbaidu/"/>
-    <id>http://cuiyungao.github.io/2016/08/11/svmbaidu/</id>
-    <published>2016-08-11T12:06:31.000Z</published>
-    <updated>2016-08-12T02:00:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在百度每周的NLP课程总结，感谢磊磊哥大神。这节课主要讲的是SVM算法，讲到了其中的精髓，感觉受益匪浅，还是记下来以备复习。</p>
-<a id="more"></a>
-<p>SVM (Support Vector Machine)是机器学习的基础，虽然基本，但是当中延伸出来一些很有意义的idea，比如kernel。</p>
-<h3 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a><center><strong>SVM</strong></center></h3><p>如图所示，假定在$x$空间，存在两分类的点集，标记实心的点为$x^+$，空心的点为$x^-$，$w$为与$H_3$垂直的向量，则$H_3$表示为$w^Tx+b$。<mark>注意：$w$是与分界线垂直的向量。</mark>实心和空心区域的点集可以分别表示为：<br>$$<br>w^Tx^++b\geq 1 \\<br>w^Tx^-+b\leq -1.<br>$$<br>这里的1代表不确定常量（常量在不等式左右两边同除，结果为1）。</p>
-<center><img src="/img/daily/svm1.png" width="60%"></center>
-
-<p>现在我们想找到SVM的目标函数。我们的主要目的是maximize两个集合之间的距离，所以取在边界上的两个集合中的点，即$x^+$和$x^-$（<mark>注意：边界上的点即为support vector</mark>），则主要目的转变成maximize这两个点的距离，公式如下：<br>$$<br>\begin{cases}<br>w^Tx^+ + b = 1 \\<br>w^Tx^- + b = -1 \\<br>x^+ - x^- = \lambda.<br>\end{cases}<br>$$<br>在第三个式子左右两边同乘$w^T$，得到$\lambda = \frac{2}{w^Tw}$。所以，$||x^+ - x^-||=\frac{2}{w^Tw}\cdot\sqrt{w^Tw}=\frac{2}{\sqrt{w^Tw}}$，我们想要maximize这个margin值，即minimize这个margin值的倒数。即目标函数为：<br>$$<br>min \; \frac{1}{2}w^Tw \\<br>s.t. \; y_i(w^Tx_i+b) \geq 1, \; \forall i.<br>$$</p>
-<p>其中$i$表示所有样本。这是<mark>primal</mark>的表示形式，我们现在用拉格朗日求其<mark>dual</mark>，则有：<br>$$<br>L(w,b,\lambda) = \frac{1}{2}w^Tw+\sum_i \lambda_i [1-y_i(w^Tx_i+b)], \\<br>s.t. \; \sum_i\lambda_i \geq 0.<br>$$<br>所以有，$\frac{\partial L}{\partial w} = w-\sum_i \lambda_iy_ix_i=0$，得到$w=\sum_i\lambda_iy_ix_i$。同理，我们对$b$进行求导，有$\frac{\partial L}{\partial b} = \sum_i\lambda_iy_i=0$。所以化简上面的公式，我们有：<br>$$<br>H({\lambda_i}) = -\frac{1}{2}(\sum_i\lambda_iy_ix_i)^T(\sum_j\lambda_jy_jx_j) + \sum_i\lambda_i, \\<br>s.t. \; \sum_i\lambda_i\geq 0.<br>$$</p>
-<p>我们把这个式子写成向量形式，即$H=-\frac{1}{2}\overrightarrow{\lambda}^TK\overrightarrow{\lambda}+\overrightarrow{1}\lambda$，其中$K=(x_iy_i)^T(x_jy_j)$。<mark>注意：由定义可以看出，$\lambda$在不是边界上的点是为0，所以只有边界上的点定义了$w$。</mark>这里就引出来一个非常重要的概念<mark>kernel</mark>，什么样的矩阵可以写成kernel形式呢？<mark><a href="https://en.wikipedia.org/wiki/Mercer%27s_theorem" target="_blank" rel="external">Mercer’s theorem</a></mark>对其进行了阐述。简单来说，就是一个对称的半正定的矩阵就可以写成kernel的表示形式，即symetric, PSD matrix $\implies$ kernel ($x\to\phi(x)$)。这里的kernel有三种形式：</p>
-<ul>
-<li>linear</li>
-<li>polynomial</li>
-<li>RBF (类似Gaussian).</li>
-</ul>
-<p>最后一个RBF相当于映射到无穷维的空间$\phi(x)$，表示形式是$K(x_i, x_j)=\lambda exp(-\frac{||x_i-x_j||_2^2}{\sigma^2})$。总的kernel形式可以表示为$K(i,j)=\phi(x_i)^T\phi(x_j)$。</p>
-<p>对于SVM，我们可以将目标函数引入一个slack variable $\zeta_i$，则目标函数为：<br>$$<br>min \; \frac{1}{2}w^Tw+c\sum_i\zeta_i \\<br>s.t. \; y_i(w^Tx_i+b)\geq 1-\zeta_i, \; \forall_i \zeta_i\geq 0.<br>$$</p>
-<h3 id="SVR"><a href="#SVR" class="headerlink" title="SVR"></a><center><strong>SVR</strong></center></h3><p>SVR即support vector regression，目的跟regression一样，即用一条线拟合一堆点。其目标函数为：<br>$$<br>min \; \frac{1}{2}w^Tw \\<br>s.t. \; w^Tx_i + b -y \leq \epsilon, \; w^Tx_i+b-y\geq -\epsilon.<br>$$<br>推导过程同SVM。</p>
-<h3 id="SVC"><a href="#SVC" class="headerlink" title="SVC"></a><center><strong>SVC</strong></center></h3><p>SVC即support vector clustering，目的是将点集聚类。它将点的类想象成不同的小山谷，分类即找出山谷的分布$P(x)$，投影到高维空间后，点集分布在一个半径为$R$的球内，球外的点即outliers，点集这时可以用一个高斯分布来描述。</p>
-<p><center><img src="/img/daily/svm2.png"></center></p>
-<p><center><img src="/img/daily/svm3.png"></center><br>目标函数为：<br>$$<br>min \; R^2 \\<br>s.t. \; ||\phi(x_i)-\mu||_2^2 \leq R^2.<br>$$<br>其中，$\mu=\frac{1}{N}\sum_i\phi(x_i)$。要注意两点：</p>
-<ol>
-<li>$dist(\hat{x}, \mu)$可以写成kernel的形式，即$\phi(x_i)^T\phi(x_i)$;</li>
-<li>$R$的设置可以进行分类。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在百度每周的NLP课程总结，感谢磊磊哥大神。这节课主要讲的是SVM算法，讲到了其中的精髓，感觉受益匪浅，还是记下来以备复习。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="SVM" scheme="http://cuiyungao.github.io/tags/SVM/"/>
     
   </entry>
   

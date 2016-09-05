@@ -3,27 +3,27 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Courses for NLP and Deep Learning | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
+  <title>Topic Modeling | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="NLP,Deep Learning,Courses">
-  <meta name="description" content="The website contains the courses related to NLP and deep learning.">
+  <meta name="keywords" content="NLP,Baidu,Topic Model">
+  <meta name="description" content="百度周讲总结，这次主要讲了topic model的基础知识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Courses for NLP and Deep Learning">
-<meta property="og:url" content="http://cuiyungao.github.io/2016/06/27/nlpcourses/index.html">
+<meta property="og:title" content="Topic Modeling">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/09/02/baidu1/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
-<meta property="og:description" content="The website contains the courses related to NLP and deep learning.">
-<meta property="og:updated_time" content="2016-06-27T08:06:55.000Z">
+<meta property="og:description" content="百度周讲总结，这次主要讲了topic model的基础知识。">
+<meta property="og:updated_time" content="2016-09-02T10:08:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Courses for NLP and Deep Learning">
-<meta name="twitter:description" content="The website contains the courses related to NLP and deep learning.">
+<meta name="twitter:title" content="Topic Modeling">
+<meta name="twitter:description" content="百度周讲总结，这次主要讲了topic model的基础知识。">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;The website contains the courses related to NLP and deep learning.&lt;/p&gt;">
+  <meta name="summary" content="&lt;p&gt;百度周讲总结，这次主要讲了topic model的基础知识。&lt;br&gt;">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -101,7 +101,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Courses for NLP and Deep Learning</div>
+        <div class="flex-col header-title ellipsis">Topic Modeling</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -118,11 +118,11 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Courses for NLP and Deep Learning</h1>
+    <h1 class="author">Topic Modeling</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-06-27T08:01:41.000Z" itemprop="datePublished" class="page-time">
-  2016-06-27
+            <time datetime="2016-09-02T09:29:02.000Z" itemprop="datePublished" class="page-time">
+  2016-09-02
 </time>
 
 
@@ -134,11 +134,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-nlpcourses" 
+      <article id="post-baidu1" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Courses/">Courses</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Baidu/">Baidu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Topic-Model/">Topic Model</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -148,7 +148,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-Deep-learning-for-text-mining-from-scratch"><span class="post-toc-text">1. Deep learning for text mining from scratch</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二次分布vs多项分布"><span class="post-toc-text">二次分布vs多项分布</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Gamma-Distribution"><span class="post-toc-text">Gamma Distribution</span></a></li></ol>
             </nav>
             
         </aside>
@@ -156,14 +156,18 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>The website contains the courses related to NLP and deep learning.</p>
-<a id="more"></a>
-<h3 id="1-Deep-learning-for-text-mining-from-scratch"><a href="#1-Deep-learning-for-text-mining-from-scratch" class="headerlink" title="1. Deep learning for text mining from scratch"></a><a href="http://textminingonline.com/deep-learning-for-text-mining-from-scratch" target="_blank" rel="external">1. Deep learning for text mining from scratch</a></h3><p>This website contains links for <code>optimization</code> and <code>statistics</code>, and also very useful tutorials for <code>NLP</code>, such as UFLDL tutorial.</p>
-
+            <p>百度周讲总结，这次主要讲了topic model的基础知识。<br><a id="more"></a><br>首先是各种分布基础。</p>
+<h3 id="二次分布vs多项分布"><a href="#二次分布vs多项分布" class="headerlink" title="二次分布vs多项分布"></a><center><strong>二次分布vs多项分布</strong></center></h3><ol>
+<li>Binomial vs. Bernolli，两者表示形式相同，都为p(x), x\in{0,1}，区别在于前者是多次试验，后者为一次试验；</li>
+<li>Multinomial vs. Categorical/Discrete，假定参数为$\overrightarrow{\alpha}\in simplex(k)$，则有前者$p(n_1,…,n_k)=\frac{N!}{\prod_in_i!}\alpha_i^{n_i}$，其中$i\in[1,k]$，$\sum_in_i=N, \sum_i\alpha_i=1$；后者有$p(x=i)=\alpha_i$,$p(n_1,..,n_k)=\prod_i\alpha_i^{n_i}$。</li>
+</ol>
+<p>最大似然multinomial之后，我们有:<br>$$<br>{max}_{\alpha_i}\sum_in_i log\alpha_i + \lambda(1-\sum_i\alpha_i)，<br>$$<br>解得$\alpha_i=\frac{n_i}{\sum_i n_i}$。</p>
+<p>通常我们会在分子跟分母上加上先验，服从$\alpha\sim Dir([\beta,\beta,…,\beta])$，主要目的是smooth，即$\alpha_i=\frac{n_i+\beta}{\sum_i n_i+\beta}$。</p>
+<h3 id="Gamma-Distribution"><a href="#Gamma-Distribution" class="headerlink" title="Gamma Distribution"></a><center><strong>Gamma Distribution</strong></center></h3>
             <blockquote>
                 <p>
                 Permalink：
-                <a href="http://cuiyungao.github.io/2016/06/27/nlpcourses/" target="_blank" rel="external">http://cuiyungao.github.io/2016/06/27/nlpcourses/</a>
+                <a href="http://cuiyungao.github.io/2016/09/02/baidu1/" target="_blank" rel="external">http://cuiyungao.github.io/2016/09/02/baidu1/</a>
                 </p>
                 <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
             </blockquote>
@@ -172,18 +176,18 @@
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2016/06/27/howtoread/" id="post-prev" class="post-nav-link">
+      <a href="/2016/09/05/starry/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">How to read:character level deep learning</h4>
+        <h4 class="title">StarrySky A Practical System to Track Millions of High-Precision Query Intents</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/06/27/diveTensorflow/" id="post-next" class="post-nav-link">
+      <a href="/2016/09/02/leveraging/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Dive into TensorFlow</h4>
+        <h4 class="title">Leveraging Sentence-Level Information with Encoder LSTM for Semantic Slot Filling</h4>
       </a>
     </div>
   
@@ -194,7 +198,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="nlpcourses" data-title="Courses for NLP and Deep Learning" data-url="http://cuiyungao.github.io/2016/06/27/nlpcourses/index.html"></div>
+	<div class="ds-thread" data-thread-key="baidu1" data-title="Topic Modeling" data-url="http://cuiyungao.github.io/2016/09/02/baidu1/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
