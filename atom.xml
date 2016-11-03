@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-11-03T03:42:52.250Z</updated>
+  <updated>2016-11-03T03:45:21.458Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -16,18 +16,18 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>phrasebased</title>
+    <title>Phrase-Based Extraction of User Opinions in Mobile App Reviews</title>
     <link href="http://cuiyungao.github.io/2016/11/01/phrasebased/"/>
     <id>http://cuiyungao.github.io/2016/11/01/phrasebased/</id>
     <published>2016-11-01T08:47:12.000Z</published>
-    <updated>2016-11-03T03:42:52.250Z</updated>
+    <updated>2016-11-03T03:45:21.458Z</updated>
     
     <content type="html"><![CDATA[<p>ASE’16上的short paper，去年ASE中过一篇<a href="https://arxiv.org/pdf/1505.04657.pdf" target="_blank" rel="external">keyword-based extraction</a>。</p>
 <a id="more"></a>
 <h3 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a><center><strong>Goal</strong></center></h3><p>目的是从review中获取phrase，并monitor其趋势。</p>
 <h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a><center><strong>Method</strong></center></h3><p>在对数据进行预处理之后，挖掘phrase templates，即找出有效的phrase对应的PoS序列，同时对phrase的frequency进行过滤，去掉次数少于20次的，长度大于8的phrase；保留功能词(e.g., “and”, “but”)，而不是将它们替换成相应的PoS标签；人工检测每个phrase的有效性。这一步之后将一条review分成几个句子，然后PoS tagger生成PoS序列，如果一个phrase满足提前定义好的phrase template，则保留这个phrase，所有的sub-sequence跟含stop words的phrase都去掉；将助动词”do”, “can”, “will”等词替换成相应的pos tag “MD”，因为它们对最终的phrase语义没有多大贡献；将代词”my”, “yours”, “our”等词也做相同的处理。最后一步为对phrase进行聚类，先用word2vec将词转换成vector，计算相似度用自己定义的如下公式，最后进行soft clustering。</p>
 <p>$$<br>phraseSim(\rho_a, \rho_b)=\frac{\sum_{i=1}^k\delta_i}{n+m-k},<br>$$</p>
-<p>式中，$k$为词对$\delta$的数目，$\rho_a, \rho_b$包含词的数目分别是$n$和$m$，$\delta$为一个词对的相似度(cosine similarity+)。</p>
+<p>式中，$k$为词对$\delta$的数目，$\rho_a, \rho_b$包含词的数目分别是$n$和$m$，$\delta$为一个词对的相似度(cosine similarity)。</p>
 <h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a><center><strong>Comments</strong></center></h3><ol>
 <li>本文采用的数据集为amazon.com上的120个app，于2015.1.01-9.01间收集，有大约20万条高质量的review；作者选用amazon的原因是认为它比一般的review有更少的noise。所以作者的方法在noise比较大的时候是否有效，存在质疑。</li>
 <li>只用了两个case study,没有ground truth，所以用changelog作为ground truth有其局限性，但是也可以作为ground truth。</li>
