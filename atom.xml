@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-09-05T10:13:19.000Z</updated>
+  <updated>2016-11-03T03:42:52.250Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>phrasebased</title>
+    <link href="http://cuiyungao.github.io/2016/11/01/phrasebased/"/>
+    <id>http://cuiyungao.github.io/2016/11/01/phrasebased/</id>
+    <published>2016-11-01T08:47:12.000Z</published>
+    <updated>2016-11-03T03:42:52.250Z</updated>
+    
+    <content type="html"><![CDATA[<p>ASE’16上的short paper，去年ASE中过一篇<a href="https://arxiv.org/pdf/1505.04657.pdf" target="_blank" rel="external">keyword-based extraction</a>。</p>
+<a id="more"></a>
+<h3 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a><center><strong>Goal</strong></center></h3><p>目的是从review中获取phrase，并monitor其趋势。</p>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a><center><strong>Method</strong></center></h3><p>在对数据进行预处理之后，挖掘phrase templates，即找出有效的phrase对应的PoS序列，同时对phrase的frequency进行过滤，去掉次数少于20次的，长度大于8的phrase；保留功能词(e.g., “and”, “but”)，而不是将它们替换成相应的PoS标签；人工检测每个phrase的有效性。这一步之后将一条review分成几个句子，然后PoS tagger生成PoS序列，如果一个phrase满足提前定义好的phrase template，则保留这个phrase，所有的sub-sequence跟含stop words的phrase都去掉；将助动词”do”, “can”, “will”等词替换成相应的pos tag “MD”，因为它们对最终的phrase语义没有多大贡献；将代词”my”, “yours”, “our”等词也做相同的处理。最后一步为对phrase进行聚类，先用word2vec将词转换成vector，计算相似度用自己定义的如下公式，最后进行soft clustering。</p>
+<p>$$<br>phraseSim(\rho_a, \rho_b)=\frac{\sum_{i=1}^k\delta_i}{n+m-k},<br>$$</p>
+<p>式中，$k$为词对$\delta$的数目，$\rho_a, \rho_b$包含词的数目分别是$n$和$m$，$\delta$为一个词对的相似度(cosine similarity+)。</p>
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a><center><strong>Comments</strong></center></h3><ol>
+<li>本文采用的数据集为amazon.com上的120个app，于2015.1.01-9.01间收集，有大约20万条高质量的review；作者选用amazon的原因是认为它比一般的review有更少的noise。所以作者的方法在noise比较大的时候是否有效，存在质疑。</li>
+<li>只用了两个case study,没有ground truth，所以用changelog作为ground truth有其局限性，但是也可以作为ground truth。</li>
+<li>对于没有定义的textual expression无效，即假如有些规则没有定义的话，则不能提取相应的Phrase。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ASE’16上的short paper，去年ASE中过一篇&lt;a href=&quot;https://arxiv.org/pdf/1505.04657.pdf&quot;&gt;keyword-based extraction&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="App Reviews" scheme="http://cuiyungao.github.io/tags/App-Reviews/"/>
+    
+      <category term="ASE&#39;16" scheme="http://cuiyungao.github.io/tags/ASE-16/"/>
+    
+  </entry>
   
   <entry>
     <title>StarrySky A Practical System to Track Millions of High-Precision Query Intents</title>
@@ -322,7 +359,7 @@
     <link href="http://cuiyungao.github.io/2016/08/21/backpro/"/>
     <id>http://cuiyungao.github.io/2016/08/21/backpro/</id>
     <published>2016-08-21T09:53:32.000Z</published>
-    <updated>2016-08-21T10:07:56.000Z</updated>
+    <updated>2016-08-21T10:06:59.000Z</updated>
     
     <content type="html"><![CDATA[<p>本篇罗列了back propagation的general functions。</p>
 <a id="more"></a>
@@ -496,9 +533,9 @@
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
-    
       <category term="CRF" scheme="http://cuiyungao.github.io/tags/CRF/"/>
+    
+      <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
     
   </entry>
   
@@ -747,57 +784,6 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Query Understanding</title>
-    <link href="http://cuiyungao.github.io/2016/08/13/query/"/>
-    <id>http://cuiyungao.github.io/2016/08/13/query/</id>
-    <published>2016-08-13T02:36:37.000Z</published>
-    <updated>2016-08-14T08:24:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Query understanding是很多AI应用场景的基础，比如机器人对话，车载导航等等。</p>
-<a id="more"></a>
-<p>Query understanding的任务有三个，即纠正用户输入query的错误，精确地引导用户以及准确地理解用户query的目的。Query通常分为两种类型，一种是general query，不需要上下文情境；另外一种是<mark>contextual questions</mark>，比如”Where can I eat cheese cake right now”。第二种query不需要返回一系列的文档，而是需要解析query的目的，用户的地理位置和时间等，提供personal的回答。另外一种分类方法是从答案的角度，一种是<mark>精确需求</mark>，直接给出结果，比如”Who is the president of USA”；第二种则是给出泛泛的回答，让用户自己选择，即<mark>Interactive Question Answering</mark>，如下图所示。</p>
-<center><img src="/img/daily/qu1.png" width="100%"></center><br><center>Fig.1 Interactive Question Answering</center>
-
-<h3 id="General-Characteristics"><a href="#General-Characteristics" class="headerlink" title="General Characteristics"></a><center><strong>General Characteristics</strong></center></h3><p>Query understanding还有一个非常有意思的应用是个人助理（比如微软Cortana，苹果Siri，Google Now，百度度秘），可以为用户提供各种服务，比如搜索，会议安排，闹铃设置，打电话，发短信，播放音乐等等。这个可以被称为<code>Deep Search</code>，即Search with a Deep Understanding，应用NLP和knowledge context (用户之前的搜索和浏览活动，兴趣爱好，地点，询问的时间以及当时的天气等等)，通常有如下特征：</p>
-<ol>
-<li>对query的语义理解。不同语义层次的理解如下图所示，展示了不同level的语义理解。</li>
-</ol>
-<center><img src="/img/daily/qu2.png" width="90%"></center><br><center>Fig.2 Matching at Different Semantic Levels</center>
-
-<ol>
-<li>对上下文和前面任务的理解。这个可以有效地理解有歧义的词汇。Fig.3显示了含有interleaved tasks的一个搜索情景。<code>Reference Query</code>表示的是当前用户的query，<code>On-Task Queries</code>表示跟<code>Reference Query</code>相同任务的query；<code>Off-Task Queries</code>表示的是跟当前query任务不同的query。</li>
-</ol>
-<center><img src="/img/daily/qu3.png" width="90%"></center><br><center>Fig.3 A Search Context with Interleaved Tasks</center>
-
-<ol>
-<li>用户理解和个性化。不同的用户有不同的兴趣爱好等。</li>
-</ol>
-<h3 id="Phases-in-Deep-Query-Understanding"><a href="#Phases-in-Deep-Query-Understanding" class="headerlink" title="Phases in Deep Query Understanding"></a><center><strong>Phases in Deep Query Understanding</strong></center></h3><p>Query understanding主要有三个过程，如Fig.4所示，包括query refinement, query suggestion和query intent detection，最终给query打tag，有了tag之后进入<code>Answer Generation Module</code>。</p>
-<center><img src="/img/daily/qu4.png" width="100%"></center><br><center> Fig.4 Query Understanding Module Broad Components</center>
-
-<p><code>Query refinement</code>主要进行spelling correction, acronym expansion, word splitting, words merger和phrase segmentation。纠正之后的query进入<code>query suggestion</code>来发现和推荐可以得到更好搜索结果的queries。在循环一次或者多次<code>query correction-&gt;query suggestion-&gt;user query</code>这个过程后，完善的query进入到<code>query expansion</code>模块，补充更多近似的queries，以减少由于字符的错误匹配产生的文章结果。这个query set之后输入到<code>query intention detection</code>模块，精确地推测query的意图。<code>Query classification</code>将query粗分类到某一个field里面，比如运动、娱乐、天气等，结果被输入到<code>semantic tagging</code>部分进行意图检测。Fig.5描述了一个例子。</p>
-<center><img src="/img/daily/qu5.png" width="100%"></center><br><center>Fig.5 Example of Task Done at Each Component</center>
-
-<p><mark>Query classification比document text classification更具有挑战性，因为query相对较短，而且很多query有歧义性。</mark>Query classification对精确地判断用户意图非常重要。对于semantic tagging，经常用的features是n-grams, regular regression, POS (Part of Speech), lexicons和transit features,<mark>总的来说，分为两种，syntactic和semantic的features</mark>。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://arxiv.org/pdf/1505.05187.pdf" target="_blank" rel="external">Techniques for deep query understanding.</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Query understanding是很多AI应用场景的基础，比如机器人对话，车载导航等等。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="QU" scheme="http://cuiyungao.github.io/tags/QU/"/>
     
   </entry>
   

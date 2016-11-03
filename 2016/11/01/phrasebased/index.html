@@ -3,27 +3,27 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Collaborative Filtering (CF) | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
+  <title>phrasebased | Cuiyun Gao&#39;s Daily Digest | Work Hard, and Play Harder. 如果有一天：你不再寻找爱情，只是去爱；你不再渴望成功，只是去做；你不再追求成长，只是去修行；一切才真正开始~！</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="Recommend System">
-  <meta name="description" content="This webpage contains information and implementation related to collaborative filtering.">
+  <meta name="keywords" content="NLP,App Reviews,ASE&#39;16">
+  <meta name="description" content="ASE’16上的short paper，去年ASE中过一篇keyword-based extraction。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Collaborative Filtering (CF)">
-<meta property="og:url" content="http://cuiyungao.github.io/2016/06/29/cf/index.html">
+<meta property="og:title" content="phrasebased">
+<meta property="og:url" content="http://cuiyungao.github.io/2016/11/01/phrasebased/index.html">
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
-<meta property="og:description" content="This webpage contains information and implementation related to collaborative filtering.">
-<meta property="og:updated_time" content="2016-07-19T02:31:24.000Z">
+<meta property="og:description" content="ASE’16上的short paper，去年ASE中过一篇keyword-based extraction。">
+<meta property="og:updated_time" content="2016-11-03T03:42:52.250Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Collaborative Filtering (CF)">
-<meta name="twitter:description" content="This webpage contains information and implementation related to collaborative filtering.">
+<meta name="twitter:title" content="phrasebased">
+<meta name="twitter:description" content="ASE’16上的short paper，去年ASE中过一篇keyword-based extraction。">
   
     <link rel="alternative" href="/atom.xml" title="Cuiyun Gao&#39;s Daily Digest" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;This webpage contains information and implementation related to collaborative filtering.&lt;/p&gt;">
+  <meta name="summary" content="&lt;p&gt;ASE’16上的short paper，去年ASE中过一篇&lt;a href=&quot;https://arxiv.org/pdf/1505.04657.pdf&quot;&gt;keyword-based extraction&lt;/a&gt;。&lt;/p&gt;">
   <link rel="shortcut icon" href="/img/favicon.png">
   <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
@@ -101,7 +101,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Collaborative Filtering (CF)</div>
+        <div class="flex-col header-title ellipsis">phrasebased</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -118,15 +118,15 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Collaborative Filtering (CF)</h1>
+    <h1 class="author">phrasebased</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-06-29T09:22:55.000Z" itemprop="datePublished" class="page-time">
-  2016-06-29
+            <time datetime="2016-11-01T08:47:12.000Z" itemprop="datePublished" class="page-time">
+  2016-11-01
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/daily/">daily</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/papers/">papers</a></li></ul>
 
         
     </h5>
@@ -134,11 +134,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-cf" 
+      <article id="post-phrasebased" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meat flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Recommend-System/">Recommend System</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ASE-16/">ASE'16</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/App-Reviews/">App Reviews</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -148,7 +148,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Implementation-Steps"><span class="post-toc-text">Implementation Steps</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Evaluation"><span class="post-toc-text">Evaluation</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Recosystem"><span class="post-toc-text">Recosystem</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Fast-Recommendation-for-Activity-Stream"><span class="post-toc-text">Fast Recommendation for Activity Stream</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Goal"><span class="post-toc-text">Goal</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Method"><span class="post-toc-text">Method</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Comments"><span class="post-toc-text">Comments</span></a></li></ol>
             </nav>
             
         </aside>
@@ -156,30 +156,22 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>This webpage contains information and implementation related to collaborative filtering.</p>
+            <p>ASE’16上的short paper，去年ASE中过一篇<a href="https://arxiv.org/pdf/1505.04657.pdf" target="_blank" rel="external">keyword-based extraction</a>。</p>
 <a id="more"></a>
-<p>对于recommender system，最常用的两个方法是<code>Content-Based</code>和<code>Collaborative Filtering (CF)</code>。CF基于users对items的态度来推荐items，即<code>&quot;wisdom of the crows&quot;</code>。相反，CB关注items的属性，用items之间的相似度来进行推荐。</p>
-<p>CF分为<code>Memory-based CF</code>和<code>Model-based CF</code>。</p>
-<h3 id="Implementation-Steps"><a href="#Implementation-Steps" class="headerlink" title="Implementation Steps"></a><center><strong>Implementation Steps</strong></center></h3><p>We use <code>scikit-learn</code> library将数据分成testing set和training set。For example,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import pandas as pd</div><div class="line">from sklearn import cross_validation as cv</div><div class="line">header = [&apos;user_id&apos;,&apos;item_id&apos;,&apos;rating&apos;,&apos;timestamp&apos;]</div><div class="line">data = pd.read_csv(&apos;ml-100k/u.data&apos;, sep=&apos;\t&apos;, names=header)</div><div class="line">train_data, test_data = cv.train_test_split(data, test_size=0.25)</div></pre></td></tr></table></figure>
-<p>基于<code>cosine similarity</code>，我们得到<code>user_similarity</code>和<code>item_similarity</code>，对于<code>user-based CF</code>,我们用下面的公式：</p>
-<p>$$<br>\hat{x}_{k,m} = \bar{x}_k + \frac{\sum_{u_a} sim_u(u_k, u_a)(x_{a,m}-\bar{x}_{u_a})}{\sum_{u_a} \|sim_u(u_k, u_a)\|}<br>$$</p>
-<p>Users $k$ and $a$可以被当做是weights。Normalize确保评分在1~5之间。由于有相似taste的两个users可能在评分上一个偏高，一个偏低，所以前面需要加上user的平均rating作为bias。对于<code>item-based CF</code>,公式如下：</p>
-<p>$$<br>\hat{x}_{k,m} = \frac{\sum_{i_b} sim_i(i_m,i_b)(x_{k,b})}{\sum_{i_b} \|sim_i(i_m,i_b)\|}<br>$$</p>
-<h3 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a><center><strong>Evaluation</strong></center></h3><p>Metric采用<code>Root Mean Squared Error (RMSE)</code>,公式如下：</p>
-<p>$$<br>RMSE = \sqrt{\frac{1}{N}\sum (x_i-\hat{x}_i)^2}<br>$$</p>
-<p>实现采用<code>sklearn</code>提供的<code>mean_square_error</code> (MSE), RMSE是MSE的平方根。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from sklearn.metrics import mean_squared_error</div><div class="line">from math import sqrt</div><div class="line">def rmse(prediction, ground_truth):</div><div class="line">  # find nonzeros places in groundtruth and extract from the prediction accordingly</div><div class="line">  prediction = prediction[ground_truth.nonzero()].flatten() </div><div class="line">  ground_truth = ground_truth[ground_truth.nonzero()].flatten()</div><div class="line">  return sqrt(mean_squared_error(prediction, ground_truth))</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">print &apos;User-based CF RMSE: &apos; + str(rmse(user_prediction, test_data_matrix))</div><div class="line">print &apos;Item-based CF RMSE: &apos; + str(rmse(item_prediction, test_data_matrix))</div></pre></td></tr></table></figure>
-<p><span style="color:red">Drawback:</span> Memory-based CF doesn’t scale to real-world scenarios and cannot solve cold-start problem well. <code>Model-based</code> CF methods are scalabel and can deal with higher sparsity level than memory-based, but also suffers from cold-start problem.</p>
-<p>Original <a href="http://online.cambridgecoding.com/notebooks/eWReNYcAfB/implementing-your-own-recommender-systems-in-python-2" target="_blank" rel="external">Link</a>. Also implemented locally.</p>
-<h3 id="Recosystem"><a href="#Recosystem" class="headerlink" title="Recosystem"></a>Recosystem</h3><p>Recommender system using parallel matrix factorization <a href="https://cran.r-project.org/web/packages/recosystem/index.html" target="_blank" rel="external">Link.</a>. The author’s <a href="http://statr.me/2016/07/recommender-system-using-parallel-matrix-factorization/" target="_blank" rel="external">intro</a>.</p>
-<h3 id="Fast-Recommendation-for-Activity-Stream"><a href="#Fast-Recommendation-for-Activity-Stream" class="headerlink" title="Fast Recommendation for Activity Stream"></a>Fast Recommendation for Activity Stream</h3><p>Fast Recommendations for Activity Streams Using Vowpal Wabbit <a href="http://blog.getstream.io/fast-recommendations-for-activity-streams-using-vowpal-wabbit" target="_blank" rel="external">Link</a>.</p>
+<h3 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a><center><strong>Goal</strong></center></h3><p>目的是从review中获取phrase，并monitor其趋势。</p>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a><center><strong>Method</strong></center></h3><p>在对数据进行预处理之后，挖掘phrase templates，即找出有效的phrase对应的PoS序列，同时对phrase的frequency进行过滤，去掉次数少于20次的，长度大于8的phrase；保留功能词(e.g., “and”, “but”)，而不是将它们替换成相应的PoS标签；人工检测每个phrase的有效性。这一步之后将一条review分成几个句子，然后PoS tagger生成PoS序列，如果一个phrase满足提前定义好的phrase template，则保留这个phrase，所有的sub-sequence跟含stop words的phrase都去掉；将助动词”do”, “can”, “will”等词替换成相应的pos tag “MD”，因为它们对最终的phrase语义没有多大贡献；将代词”my”, “yours”, “our”等词也做相同的处理。最后一步为对phrase进行聚类，先用word2vec将词转换成vector，计算相似度用自己定义的如下公式，最后进行soft clustering。</p>
+<p>$$<br>phraseSim(\rho_a, \rho_b)=\frac{\sum_{i=1}^k\delta_i}{n+m-k},<br>$$</p>
+<p>式中，$k$为词对$\delta$的数目，$\rho_a, \rho_b$包含词的数目分别是$n$和$m$，$\delta$为一个词对的相似度(cosine similarity+)。</p>
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a><center><strong>Comments</strong></center></h3><ol>
+<li>本文采用的数据集为amazon.com上的120个app，于2015.1.01-9.01间收集，有大约20万条高质量的review；作者选用amazon的原因是认为它比一般的review有更少的noise。所以作者的方法在noise比较大的时候是否有效，存在质疑。</li>
+<li>只用了两个case study,没有ground truth，所以用changelog作为ground truth有其局限性，但是也可以作为ground truth。</li>
+<li>对于没有定义的textual expression无效，即假如有些规则没有定义的话，则不能提取相应的Phrase。</li>
+</ol>
 
             <blockquote>
                 <p>
                 Permalink：
-                <a href="http://cuiyungao.github.io/2016/06/29/cf/" target="_blank" rel="external">http://cuiyungao.github.io/2016/06/29/cf/</a>
+                <a href="http://cuiyungao.github.io/2016/11/01/phrasebased/" target="_blank" rel="external">http://cuiyungao.github.io/2016/11/01/phrasebased/</a>
                 </p>
                 <footer><cite><a href="http://cuiyungao.github.io">@Cuiyun Gao's Daily Digest</a></cite></footer>
             </blockquote>
@@ -187,19 +179,12 @@
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/06/29/goodturing/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Good-Turing Estimation 大数据处理平滑算法</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/06/28/memorization/" id="post-next" class="post-nav-link">
+      <a href="/2016/09/05/starry/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Memorization and Exploration in Recurrent Neural Language Models</h4>
+        <h4 class="title">StarrySky A Practical System to Track Millions of High-Precision Query Intents</h4>
       </a>
     </div>
   
@@ -210,7 +195,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="cf" data-title="Collaborative Filtering (CF)" data-url="http://cuiyungao.github.io/2016/06/29/cf/index.html"></div>
+	<div class="ds-thread" data-thread-key="phrasebased" data-title="phrasebased" data-url="http://cuiyungao.github.io/2016/11/01/phrasebased/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
