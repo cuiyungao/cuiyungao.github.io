@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="NIPS’16的论文，作者HKUST Hao Wang, Xingjian Shi, Dit-Yan Yeung。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/collaborative1.png">
-<meta property="og:updated_time" content="2016-11-09T14:20:49.607Z">
+<meta property="og:updated_time" content="2016-11-09T14:21:25.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Collaborative Recurrent Autoencoder Recommend while Learning to Fill in the Blanks">
 <meta name="twitter:description" content="NIPS’16的论文，作者HKUST Hao Wang, Xingjian Shi, Dit-Yan Yeung。">
@@ -161,7 +161,7 @@
             <p>NIPS’16的<a href="https://arxiv.org/abs/1611.00454" target="_blank" rel="external">论文</a>，作者HKUST Hao Wang, Xingjian Shi, <a href="https://arxiv.org/abs/1611.00454" target="_blank" rel="external">Dit-Yan Yeung</a>。</p>
 <a id="more"></a>
 <p>本文的主要贡献是提出collaborative recurrent autoencoder (CRAE)，将CF (collaborative filtering)跟RNN结合在一起，也就是将用户的rating信息跟content结合起来，提高推荐的准确率，并且可以用于sequence generation task。同时，提出了解决overfitting的两种方法，即wildcard denoising和beta-pooling；采用贝叶斯，可以无缝结合其它辅助信息来提高performance。</p>
-<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a><center><strong>Methods</strong></center></h3><p>传统的LSTM模型没有考虑进噪声，对不足的训练数据稳定性不好，文章提出RRN (robust recurrent networks)，为RNN的加噪版本，RNN中的噪声直接在网络中向前或者向后传播，不需要分开的网络来估计latent variables的分布，更容易实现且效率高。CARE的模型如下图所示，其中$e^{\prime (j)}_t$为$e^{(j)}_t$的加噪版本，$K$为最终表示$\gamma_j$的维度，中间层单元为$\theta_j$，$\mathbf{v}_j$和$\mathbf{u}_i$为隐含层向量，输出状态$\mathbf{h}^{(j)}_t$，gate units (比如$\mathbf{h}^{o(j)}_t$),和cell state $\mathbf{s}^{(j)}_t$的维度为$K_W$。序列处理的信息保存在cell state $\mathbf{s}_t$和输出状态$\mathbf{h}_t$中，两个RRN可以组合形成编码译码结构。</p>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a><center><strong>Methods</strong></center></h3><p>传统的LSTM模型没有考虑进噪声，对不足的训练数据稳定性不好，文章提出RRN (robust recurrent networks)，为RNN的加噪版本，RRN中的噪声直接在网络中向前或者向后传播，不需要分开的网络来估计latent variables的分布，更容易实现且效率高。CARE的模型如下图所示，其中$e^{\prime (j)}_t$为$e^{(j)}_t$的加噪版本，$K$为最终表示$\gamma_j$的维度，中间层单元为$\theta_j$，$\mathbf{v}_j$和$\mathbf{u}_i$为隐含层向量，输出状态$\mathbf{h}^{(j)}_t$，gate units (比如$\mathbf{h}^{o(j)}_t$),和cell state $\mathbf{s}^{(j)}_t$的维度为$K_W$。序列处理的信息保存在cell state $\mathbf{s}_t$和输出状态$\mathbf{h}_t$中，两个RRN可以组合形成编码译码结构。</p>
 <center><img src="/img/papers/collaborative1.png" width="90%"></center>
 
 <p><code>Wildcard denoising</code>的目的是缓解overfitting，做法是随机选择一些词，替换成”<wildcard>“，而不是直接扔掉词，实验验证准确率会提成20%左右。<code>Beta-pooling</code>的目的是将向量序列pool成固定长度为$2K_W$的单向量，帮助rating matrix的矩阵分解；因为不同序列可能需要不同大小的权重，所以需要变长的beta向量来帮助pooling，文章采用beta分布。</wildcard></p>
