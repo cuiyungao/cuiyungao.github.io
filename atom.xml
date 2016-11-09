@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-11-03T03:45:21.458Z</updated>
+  <updated>2016-11-09T14:18:36.942Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Collaborative Recurrent Autoencoder Recommend while Learning to Fill in the Blanks</title>
+    <link href="http://cuiyungao.github.io/2016/11/09/collaborative/"/>
+    <id>http://cuiyungao.github.io/2016/11/09/collaborative/</id>
+    <published>2016-11-09T09:26:32.000Z</published>
+    <updated>2016-11-09T14:18:36.942Z</updated>
+    
+    <content type="html"><![CDATA[<p>NIPS’16的<a href="https://arxiv.org/abs/1611.00454" target="_blank" rel="external">论文</a>，作者HKUST Hao Wang, Xingjian Shi, <a href="https://arxiv.org/abs/1611.00454" target="_blank" rel="external">Dit-Yan Yeung</a>。</p>
+<a id="more"></a>
+<p>本文的主要贡献是提出collaborative recurrent autoencoder (CRAE)，将CF (collaborative filtering)跟RNN结合在一起，也就是将用户的rating信息跟content结合起来，提高推荐的准确率，并且可以用于sequence generation task。同时，提出了解决overfitting的两种方法，即wildcard denoising和beta-pooling；采用贝叶斯，可以无缝结合其它辅助信息来提高performance。</p>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a><center><strong>Methods</strong></center></h3><p>传统的LSTM模型没有考虑进噪声，对不足的训练数据稳定性不好，文章提出RRN (robust recurrent networks)，为RNN的加噪版本，RNN中的噪声直接在网络中向前或者向后传播，不需要分开的网络来估计latent variables的分布，更容易实现且效率高。CARE的模型如下图所示，其中$e^{\prime (j)}_t$为$e^{(j)}_t$的加噪版本，$K$为最终表示$\gamma_j$的维度，中间层单元为$\theta_j$，$\mathbf{v}_j$和$\mathbf{u}_i$为隐含层向量，输出状态$\mathbf{h}^{(j)}_t$，gate units (比如$\mathbf{h}^{o(j)}_t$),和cell state $\mathbf{s}^{(j)}_t$的维度为$K_W$。序列处理的信息保存在cell state $\mathbf{s}_t$和输出状态$\mathbf{h}_t$中，两个RRN可以组合形成编码译码结构。</p>
+<center><img src="/img/papers/collaborative1.png" width="70%"></center>
+
+<p><code>Wildcard denoising</code>的目的是缓解overfitting，做法是随机选择一些词，替换成”<wildcard>“，而不是直接扔掉词，实验验证准确率会提成20%左右。<code>Beta-pooling</code>的目的是将向量序列pool成固定长度为$2K_W$的单向量，帮助rating matrix的矩阵分解；因为不同序列可能需要不同大小的权重，所以需要变长的beta向量来帮助pooling，文章采用beta分布。</wildcard></p>
+<p>Learning的过程采用MAP，类似于CDL和DTR。学到$\mathbf{U}$和$\mathbf{V}$之后，我们可以预计评分$\mathbf{R}_{ij}=\mathbf{u}^T_i\mathbf{v}_j$。</p>
+<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>比较的主要方法（总共有5种，选取其中两种解释）：</p>
+<ol>
+<li>CTR (collaborative topic reguression)<br>将topic model和probabilistic matrix factorization (PMF)，但是CTR采用bag-of-words的表示形式，忽略了词序和每个词的局部语境，而这些对文章表示和word embeddings能提供有价值的信息。</li>
+<li>CDL (collaborative deep learning)<br>将CF和probabilistic stacked denoising autoencoder (SDAE)结合起来，是一个以bag-of-words为输入的feedforward模型，并不能解决sequence generation的问题。</li>
+</ol>
+<p>实验为在两个公用的数据集上<a href="http://www.citeulike.org/faq/data.adp" target="_blank" rel="external"><em>CiteULike</em></a>和<a href="http://www.wanghao.in/" target="_blank" rel="external"><em>Netflix</em></a>的推荐和sequence generation。在运行速度上，CRAE表现跟CDL类似。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;NIPS’16的&lt;a href=&quot;https://arxiv.org/abs/1611.00454&quot;&gt;论文&lt;/a&gt;，作者HKUST Hao Wang, Xingjian Shi, &lt;a href=&quot;https://arxiv.org/abs/1611.00454&quot;&gt;Dit-Yan Yeung&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
+      <category term="Recommendation" scheme="http://cuiyungao.github.io/tags/Recommendation/"/>
+    
+      <category term="NIPS" scheme="http://cuiyungao.github.io/tags/NIPS/"/>
+    
+  </entry>
   
   <entry>
     <title>Phrase-Based Extraction of User Opinions in Mobile App Reviews</title>
@@ -235,9 +275,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
-    
       <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
   </entry>
   
@@ -486,9 +526,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
       <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
     
@@ -620,9 +660,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
-    
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
       <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
     
@@ -700,13 +740,13 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
-    
-      <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
+      <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
     
   </entry>
   
@@ -748,42 +788,11 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
+    
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Enriching Word Vectors with Subword information</title>
-    <link href="http://cuiyungao.github.io/2016/08/16/enrich/"/>
-    <id>http://cuiyungao.github.io/2016/08/16/enrich/</id>
-    <published>2016-08-16T02:06:02.000Z</published>
-    <updated>2016-08-16T03:30:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.</p>
-<a id="more"></a>
-<p>大神Tomas Mikolov的有一篇作品，借鉴参考当中的trick。</p>
-<h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a><center><strong>Idea</strong></center></h3><p>这篇文章的主要思路是让word之间可以共享信息，即利用subword的特征。这种表示方法同样对rare words以及不同的语言有效。</p>
-<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a><center><strong>Model</strong></center></h3><p>总的框架类似于Skip-Gram Model，给定一组训练词序集$w_1, …, w_T$，目标是最大化基于$w_t$预测出$w_c$的概率，即：<br>$$<br>\sum_{t=1}^T\sum_{c\in\mathcal{C}_t} log p(w_c|w_t),<br>$$<br>其中$\mathcal{C}_t$指$w_t$周围的词的indices。给定一个scoring function $s$，将paris (word, context)映射到$\mathbb{R}$空间，那么一个context word的概率可以定义为：<br>$$<br>p(w_c|w_t)=\frac{e^{s(w_t,w_c)}}{\sum_{j=1}^W e^{s(w_t,j)}}.<br>$$<br>这个scoring function通常定义为$s(w_t,w_c)=\mathbf{u}_{w_t}^T\mathbf{v}_{w_c}$。</p>
-<p>考虑一个word当中的$n$-grams $\mathcal{G}_w\subset{1,…,G}$，每个$n$-gram $g$可以表示成一个向量$z_g$，这个word可以表示成其$n$-grams的和。所以scoring function可以表示成：<br>$$<br>s(w,c)=\sum_{g\in\mathcal{G}_w} \mathbf{z}_g^T\mathbf{v}_c.<br>$$<br>为了限制memory，所有的$n$-grams被映射到1~K的整数，论文中K为2 millions，最终每个word被表示成index和$n$-grams的hash values。词的开头和结果加一个special characters，以便于找到前缀和后缀。为了提高模型效率，<mark>最频繁的$P$个单词不用$n$-grams来表示</mark>。</p>
-<p>实验结果在similarity tasks上的效果不错。测量方法是模型评分和人工判断之间的Spearman’s rank correlation coefficient。实现采用C++，在运行时间上比Skip-Gram baseline慢了1.5倍，比较的方法当中Skip-Gram和CBOW由C<a href="https://code.google.com/archive/p/word2vec/" target="_blank" rel="external">实现</a>。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这篇文章是facebook AI research作品，是fastText的基础。Bojanowski, P., Grave, E., Joulin, A., &amp;amp; Mikolov, T. (2016). Enriching Word Vectors with Subword Information. arXiv preprint arXiv:1607.04606.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
