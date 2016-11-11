@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-11-09T14:21:25.245Z</updated>
+  <updated>2016-11-11T09:17:43.716Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Release Planning of Mobile Apps Based on User Reviews</title>
+    <link href="http://cuiyungao.github.io/2016/11/11/release/"/>
+    <id>http://cuiyungao.github.io/2016/11/11/release/</id>
+    <published>2016-11-11T07:22:53.000Z</published>
+    <updated>2016-11-11T09:17:43.716Z</updated>
+    
+    <content type="html"><![CDATA[<p>ICSE’16的一篇<a href="http://dl.acm.org/citation.cfm?id=2884818" target="_blank" rel="external">文章</a>，意大利university of Sannio和Free University of Bozen-Bolzano。</p>
+<a id="more"></a>
+<p>这篇文章的亮点在于实现了完整的给developer推荐review的tool——CLAP (Crowd Listener for releAse Planning)，实验验证部分很完善，而且找到了业界的三个公司的project manager来给出好评；虽然方法比较trivial。分类比较粗，仅仅是new feature，bug report和other三种。<mark>感觉最主要的是实验验证很完整，非常有说服力，这也是在我之后的work中需要加强的。</mark></p>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a><center><strong>Methods</strong></center></h3><p>CLAP总共有三步：</p>
+<ol>
+<li>将user reviews分类成new feature, bug report和other三类。<br>分类之前的 <strong>预处理</strong> 包括处理negations (就是有些词虽然在用户review中存在，但是用户是持褒义的态度)，去掉<a href="https://code.google.com/archive/p/stop-words/" target="_blank" rel="external">stop-words</a>和stemming (采用Poter stemmer)，统一近义词 (从1,000条评论中自定义近义词词表，<mark>这个可以用ISSRE’16de work来进行补充</mark>)，和提取n-grams。<br><strong>分类特征</strong> 包括(i)评论评分，(2)从review中提取的n-grams，(3)在预处理之后剩下的词。<strong>分类方法</strong> 为Random Forest machine learnig algorithm，文章解释说选取这个方法是在比较了不同的machine learner package之后。</li>
+<li>分类相关的reviews，对每一类下面的review进行分类排序。<br><strong>分类</strong> DBSCAN来进行排序，距离为review的tf-idf之间的cosine similarity，设置<em>minPts</em>为2 (两个相关的review就可以组成一类)，$\epsilon$为两点之间的最小距离，经实验设置为0.6。<strong>排序</strong> 特征为每一类中的review的数目，每一类的平均评分，类的平均评分与app总评分之间的差距，用户新旧版本评分的平均差异，以及评论中提到device的数目。分成的大的三类中的排序标准都不太一样。这些特征用来建立Random Forest decision tree。</li>
+<li>实现CLAP prototype。<br>结果如图所示，呈现出用户经常提到的5个单词，developer可以与其进行交互，表示是否想fix当前问题，以此来扩充自动排序的训练集。</li>
+</ol>
+<center><img src="/img/papers/release1.png" width="70%"></center>
+
+<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center><strong>Experiment</strong></center></h3><p>实验对象为210个app的1,763条评论，对于我们的数据集来说非常少；但是实验非常完备，主要回答四个问题：</p>
+<ol>
+<li>对review的三种分类是否准确。<br>作者对1,000条review进行人工label，最终有235个bug report，179个new feature，596个其它，用10-fold cross validation来计算平均准确率。</li>
+<li>由CLAP生成的三个类中rank出来的term是否有用。<br>作者人工选取了5个app (Facebook, Twitter, Yahoo mobile client, Viber, 和WhatsApp) 的200条用户评论，每个app的40条评论中bug report和new feature各一半。三个有5年以上经验的app开发者对这些review进行人工归类 (<mark>当中作者的描述值得学习</mark>)。作者用<em>MoJo eFfectiveness Measure (MoJoFM)</em> 比较了人工标注的结果跟DBSCAN的结果，发现DBSCAN的$\epsilon$取0.6时结果最佳，并且分析了结果不好的原因出现在哪些类里面，为什么会有失败的例子。</li>
+<li>由CLAP推荐的new feature或者bug是否有效。<br>这个主要是跟AR-Miner进行对比，感觉这部分的比较很多描述，做的很细致，不知道怎么在自己的work中达到这种效果。DBSCAN结果的中心点为被认为是rank出来的评论，然后跟AR-Miner进行比较，metric为AUC (area under curve)，因为文章中用到的方法跟AR-Miner不一样。文章的准确率很低，但是作者说”However, we still believe that this level of accuracy represents a good starting point for helping app developers duing release planning activities.”, “we did not envision our tool to be used as a black box taking user reviews as input and producing a list of prioritized clusters. We rather look at it as a support for app developers interacting with them”。感觉解释得很屌呀…</li>
+<li>采访了3个公司的project manager，对这个tool的看法。<br>问题分为四个方面，用户评论是否有用，排序阶段的分类考虑到的因素是否全面合理，评论的分类是否有效，还有工具是否有用。对三个人的采访描述的详细到位。<mark>有几点值得关注&lt;/mark。，一个是manager比较关注competitive apps的特征是怎样的，还有大的版本跟小的版本考虑的问题的区别，还有就是最好详细的bug list，而不是简单的high/low quality，最后就是自动生成app的changelog (release note，这个已经在FSE中有<a href="https://www.ifi.uzh.ch/dam/jcr:00000000-14e5-028d-0000-0000307919c8/C23.pdf" target="_blank" rel="external">paper</a>这么做了)。</mark></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ICSE’16的一篇&lt;a href=&quot;http://dl.acm.org/citation.cfm?id=2884818&quot;&gt;文章&lt;/a&gt;，意大利university of Sannio和Free University of Bozen-Bolzano。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="ICSE" scheme="http://cuiyungao.github.io/tags/ICSE/"/>
+    
+      <category term="User Review" scheme="http://cuiyungao.github.io/tags/User-Review/"/>
+    
+  </entry>
   
   <entry>
     <title>Collaborative Recurrent Autoencoder Recommend while Learning to Fill in the Blanks</title>
@@ -275,9 +317,9 @@
       <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -526,9 +568,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
     
@@ -660,11 +702,11 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
       <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
       <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
+    
+      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -740,59 +782,13 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
+      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
+      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
     
       <category term="Attention Model" scheme="http://cuiyungao.github.io/tags/Attention-Model/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond</title>
-    <link href="http://cuiyungao.github.io/2016/08/16/arxiv0810/"/>
-    <id>http://cuiyungao.github.io/2016/08/16/arxiv0810/</id>
-    <published>2016-08-16T09:16:51.000Z</published>
-    <updated>2016-08-17T01:21:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>IBM的作品。Nallapati, R., Zhou, B., glar Gulçehre, Ç., &amp; Xiang, B. Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond.</p>
-<a id="more"></a>
-<p>所谓的<code>abstractive text summarization</code>就是压缩原始的文档，并保留原文档的主要概念。</p>
-<h3 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a><center><strong>Contribution</strong></center></h3><p>文章将在MT (Machine Learning)中的Attentional Encoder-Decoder RNN算法应用到abstractive text summarization，并针对在abstractive text summarization中存在的三个问题（即为<mark>key-words建模，获取sentence-to-word的结构层级，和在training阶段处理少见的或者没有见过的词</mark>）对模型进行改善。</p>
-<p>文章的另外一个贡献是提出了新的包含多句子总结的数据集，建立了后面research的benchmarks。</p>
-<h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a><center><strong>Models</strong></center></h3><p>模型包含encoder和decoder，encoder是一个bidirectional GRU-RNN，而decoder是一个跟encoder有着相同大小hidden-state size的uni-directional GRU-RNN；在source-hidden states之间是<code>attention mechanism</code>，最终由一个<code>soft-max layer</code>为目标词汇生成单词。文章的model有如下三个改进的方面：</p>
-<ol>
-<li>Feature-rich encoder;</li>
-<li>Switching generator-pointer model;</li>
-<li>Hierarchical attention model.</li>
-</ol>
-<p>第一个改进，为encoder的输入增加新的features，比如parts-of-speech tags, named-entity tags (NER tags),和离散后的TF以及IDF数据。</p>
-<p>第二个改进，为decoder增加一个<code>switch</code>，决定用generator还是用一个指针指向文档当中的某一个位置。如果switch打开，则模型还是用以前的方法从目标词库当中生成单词；如果关闭的话，则生成一个指针指向源的某一个位置，这个位置的word就会被添加到summary当中。每一个<code>time step</code>，<code>Switch</code>被定义为基于linear layer的sigmoid函数，如下：<br>$$<br>P(s_i=1)=\sigma(\mathbf{v}^s\cdot(\mathbf{W}_h^sh_i)+\mathbf{W}_e^s\mathbf{E}[o_{i-1}]+\mathbf{W}_c^s\mathbf{c}_i+\mathbf{b}^s)),<br>$$<br>其中$P(s_i=1)$表示在第$i$个time step开关被打开的概率，$\mathbf{c}_i$是attention-weighted context vector，$<br>mathbf{W}_h^s, \mathbf{W}_e^s，\mathbf{W}_c^s, \mathbf{b}^s$和$\mathbf{v}_s$都是开关的参数。<mark>这个是不是就相当于CNN中的<code>filters</code>的概念。</mark>改进后的模型图如下图所示。</p>
-<center><img src="/img/daily/arxiv08101.png" width="70%"></center>
-
-<p>第三个改进，在encoder采用<mark>两层</mark>概念，即word level和sentence level。Attention mechanism同时作用在这两层上，即<code>word-level</code>的attention被相应的<code>sentence-level</code>的attention重新校正，定义如下：<br>$$<br>P^a(j) = \frac{P_w^a(j)P_s^a(s(j))}{\sum_{k=1}^{N_d}P_w^a(k)P_s^a(s(k))}，<br>$$<br>其中，$P_w^a(j)$是word-level第j个位置的attention weight，$P_s^a(l)$是原文件中第l个位置sentence-level的attention weight。得到的re-scaled attention被用来计算decoder的hidden state的输入（attention-weighted context vector）。而且，将positional embeddings加到sentence-level RNN的hidden state，来表示文档中句子的位置重要性。这个模型因此能够将关键句子跟关键词联系在一起。</p>
-<center><img src="/img/daily/arxiv08102.png" width="70%"></center>
-
-<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>分了好几个实验，比较感兴趣的实验是在CNN/Daily Mail上的实验，实验比较了三个模型，实验结果如图所示。最后一个模型”temp”表示<code>Temporal Attention Model</code>，<mark>解决了entity重复出现的问题，这个可以用在tag identification上面</mark>。另外，感觉这个<code>Temporal Attention Model</code>跟LSTM类似，只不过是在attention上的LSTM。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://aclweb.org/anthology/K/K16/K16-1028.pdf" target="_blank" rel="external">Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;IBM的作品。Nallapati, R., Zhou, B., glar Gulçehre, Ç., &amp;amp; Xiang, B. Abstractive Text Summarization using Sequence-to-sequence RNNs and Beyond.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
-    
-    
-      <category term="Deep Learning" scheme="http://cuiyungao.github.io/tags/Deep-Learning/"/>
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
     
   </entry>
   
