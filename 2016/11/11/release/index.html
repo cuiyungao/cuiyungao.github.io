@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="ICSE’16的一篇文章，意大利university of Sannio和Free University of Bozen-Bolzano。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/release1.png">
-<meta property="og:updated_time" content="2016-11-11T09:17:43.716Z">
+<meta property="og:updated_time" content="2016-11-11T09:22:15.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Release Planning of Mobile Apps Based on User Reviews">
 <meta name="twitter:description" content="ICSE’16的一篇文章，意大利university of Sannio和Free University of Bozen-Bolzano。">
@@ -150,7 +150,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Methods"><span class="post-toc-text">Methods</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Experiment"><span class="post-toc-text">Experiment</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Methods"><span class="post-toc-text">Methods</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分类"><span class="post-toc-text">分类</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#排序"><span class="post-toc-text">排序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现"><span class="post-toc-text">实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Experiment"><span class="post-toc-text">Experiment</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题1"><span class="post-toc-text">问题1</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题2"><span class="post-toc-text">问题2</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题3"><span class="post-toc-text">问题3</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题4"><span class="post-toc-text">问题4</span></a>
             </nav>
             
         </aside>
@@ -162,18 +162,16 @@
 <a id="more"></a>
 <p>这篇文章的亮点在于实现了完整的给developer推荐review的tool——CLAP (Crowd Listener for releAse Planning)，实验验证部分很完善，而且找到了业界的三个公司的project manager来给出好评；虽然方法比较trivial。分类比较粗，仅仅是new feature，bug report和other三种。<mark>感觉最主要的是实验验证很完整，非常有说服力，这也是在我之后的work中需要加强的。</mark></p>
 <h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a><center><strong>Methods</strong></center></h3><p>CLAP总共有三步：</p>
-<ol>
-<li>将user reviews分类成new feature, bug report和other三类。<br>分类之前的 <strong>预处理</strong> 包括处理negations (就是有些词虽然在用户review中存在，但是用户是持褒义的态度)，去掉<a href="https://code.google.com/archive/p/stop-words/" target="_blank" rel="external">stop-words</a>和stemming (采用Poter stemmer)，统一近义词 (从1,000条评论中自定义近义词词表，<mark>这个可以用ISSRE’16de work来进行补充</mark>)，和提取n-grams。<br><strong>分类特征</strong> 包括(i)评论评分，(2)从review中提取的n-grams，(3)在预处理之后剩下的词。<strong>分类方法</strong> 为Random Forest machine learnig algorithm，文章解释说选取这个方法是在比较了不同的machine learner package之后。</li>
-<li>分类相关的reviews，对每一类下面的review进行分类排序。<br><strong>分类</strong> DBSCAN来进行排序，距离为review的tf-idf之间的cosine similarity，设置<em>minPts</em>为2 (两个相关的review就可以组成一类)，$\epsilon$为两点之间的最小距离，经实验设置为0.6。<strong>排序</strong> 特征为每一类中的review的数目，每一类的平均评分，类的平均评分与app总评分之间的差距，用户新旧版本评分的平均差异，以及评论中提到device的数目。分成的大的三类中的排序标准都不太一样。这些特征用来建立Random Forest decision tree。</li>
-<li>实现CLAP prototype。<br>结果如图所示，呈现出用户经常提到的5个单词，developer可以与其进行交互，表示是否想fix当前问题，以此来扩充自动排序的训练集。</li>
-</ol>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>将user reviews分类成new feature, bug report和other三类。<br>分类之前的 <strong>预处理</strong> 包括处理negations (就是有些词虽然在用户review中存在，但是用户是持褒义的态度)，去掉<a href="https://code.google.com/archive/p/stop-words/" target="_blank" rel="external">stop-words</a>和stemming (采用Poter stemmer)，统一近义词 (从1,000条评论中自定义近义词词表，<mark>这个可以用ISSRE’16的 work来进行补充</mark>)，和提取n-grams。<br><strong>分类特征</strong> 包括(i)评论评分，(2)从review中提取的n-grams，(3)在预处理之后剩下的词。<strong>分类方法</strong> 为Random Forest machine learnig algorithm，文章解释说选取这个方法是在比较了不同的machine learner package之后。</p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>分类相关的reviews，对每一类下面的review进行分类排序。<br><strong>分类</strong> DBSCAN来进行排序，距离为review的tf-idf之间的cosine similarity，设置<em>minPts</em>为2 (两个相关的review就可以组成一类)，$\epsilon$为两点之间的最小距离，经实验设置为0.6。<strong>排序</strong> 特征为每一类中的review的数目，每一类的平均评分，类的平均评分与app总评分之间的差距，用户新旧版本评分的平均差异，以及评论中提到device的数目。分成的大的三类中的排序标准都不太一样。这些特征用来建立Random Forest decision tree。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>实现CLAP prototype。<br>结果如图所示，呈现出用户经常提到的5个单词，developer可以与其进行交互，表示是否想fix当前问题，以此来扩充自动排序的训练集。</p>
 <center><img src="/img/papers/release1.png" width="70%"></center>
 
 <h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center><strong>Experiment</strong></center></h3><p>实验对象为210个app的1,763条评论，对于我们的数据集来说非常少；但是实验非常完备，主要回答四个问题：</p>
-<ol>
-<li>对review的三种分类是否准确。<br>作者对1,000条review进行人工label，最终有235个bug report，179个new feature，596个其它，用10-fold cross validation来计算平均准确率。</li>
-<li>由CLAP生成的三个类中rank出来的term是否有用。<br>作者人工选取了5个app (Facebook, Twitter, Yahoo mobile client, Viber, 和WhatsApp) 的200条用户评论，每个app的40条评论中bug report和new feature各一半。三个有5年以上经验的app开发者对这些review进行人工归类 (<mark>当中作者的描述值得学习</mark>)。作者用<em>MoJo eFfectiveness Measure (MoJoFM)</em> 比较了人工标注的结果跟DBSCAN的结果，发现DBSCAN的$\epsilon$取0.6时结果最佳，并且分析了结果不好的原因出现在哪些类里面，为什么会有失败的例子。</li>
-<li>由CLAP推荐的new feature或者bug是否有效。<br>这个主要是跟AR-Miner进行对比，感觉这部分的比较很多描述，做的很细致，不知道怎么在自己的work中达到这种效果。DBSCAN结果的中心点为被认为是rank出来的评论，然后跟AR-Miner进行比较，metric为AUC (area under curve)，因为文章中用到的方法跟AR-Miner不一样。文章的准确率很低，但是作者说”However, we still believe that this level of accuracy represents a good starting point for helping app developers duing release planning activities.”, “we did not envision our tool to be used as a black box taking user reviews as input and producing a list of prioritized clusters. We rather look at it as a support for app developers interacting with them”。感觉解释得很屌呀…</li>
+<h2 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h2><ol>
+<li>对review的三种分类是否准确。<br>作者对1,000条review进行人工label，最终有235个bug report，179个new feature，596个其它，用10-fold cross validation来计算平均准确率。<h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h2></li>
+<li>由CLAP生成的三个类中rank出来的term是否有用。<br>作者人工选取了5个app (Facebook, Twitter, Yahoo mobile client, Viber, 和WhatsApp) 的200条用户评论，每个app的40条评论中bug report和new feature各一半。三个有5年以上经验的app开发者对这些review进行人工归类 (<mark>当中作者的描述值得学习</mark>)。作者用<em>MoJo eFfectiveness Measure (MoJoFM)</em> 比较了人工标注的结果跟DBSCAN的结果，发现DBSCAN的$\epsilon$取0.6时结果最佳，并且分析了结果不好的原因出现在哪些类里面，为什么会有失败的例子。<h2 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h2></li>
+<li>由CLAP推荐的new feature或者bug是否有效。<br>这个主要是跟AR-Miner进行对比，感觉这部分的比较很多描述，做的很细致，不知道怎么在自己的work中达到这种效果。DBSCAN结果的中心点为被认为是rank出来的评论，然后跟AR-Miner进行比较，metric为AUC (area under curve)，因为文章中用到的方法跟AR-Miner不一样。文章的准确率很低，但是作者说”However, we still believe that this level of accuracy represents a good starting point for helping app developers duing release planning activities.”, “we did not envision our tool to be used as a black box taking user reviews as input and producing a list of prioritized clusters. We rather look at it as a support for app developers interacting with them”。感觉解释得很屌呀…<h2 id="问题4"><a href="#问题4" class="headerlink" title="问题4"></a>问题4</h2></li>
 <li>采访了3个公司的project manager，对这个tool的看法。<br>问题分为四个方面，用户评论是否有用，排序阶段的分类考虑到的因素是否全面合理，评论的分类是否有效，还有工具是否有用。对三个人的采访描述的详细到位。<mark>有几点值得关注&lt;/mark。，一个是manager比较关注competitive apps的特征是怎样的，还有大的版本跟小的版本考虑的问题的区别，还有就是最好详细的bug list，而不是简单的high/low quality，最后就是自动生成app的changelog (release note，这个已经在FSE中有<a href="https://www.ifi.uzh.ch/dam/jcr:00000000-14e5-028d-0000-0000307919c8/C23.pdf" target="_blank" rel="external">paper</a>这么做了)。</mark></li>
 </ol>
 
