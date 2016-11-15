@@ -18,7 +18,7 @@
 <meta property="og:description" content="FSE’16, University College London的work，作者William Martin, Federica Sarro and Mark Harman。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/causal1.png">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/causal2.png">
-<meta property="og:updated_time" content="2016-11-15T06:22:57.000Z">
+<meta property="og:updated_time" content="2016-11-15T06:26:40.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Causal Impact Analysis for App Releases in Google Play">
 <meta name="twitter:description" content="FSE’16, University College London的work，作者William Martin, Federica Sarro and Mark Harman。">
@@ -163,7 +163,7 @@
 <a id="more"></a>
 <p>文章用CIA (Causal Impact Analysis)的方法来分析哪些因素会影响app的成功，即release如何影响app的评分和用户的评分频率。传统的correlation analysis方法（比如，Pearson方法，要求$p\leq 0.01$）只能说明两个因素之间存在关系，但并不能说明是因果关系，即<code>correlation doesn&#39;t mean causality</code>，所以作者就引用了在economic forcasting当中使用的方法——<code>causal inference</code>，应用在app release方面，提出了<code>Causal Impact Release Analysis</code> (CIRA)。</p>
 <h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a><center><strong>Methods</strong></center></h3><p>文章分析了developer可以控制的因素（三个因素，<code>P</code> price， <code>L</code> descriptoin length，和 <code>RT</code> release text，即changelog）与app的success（三个标准，<code>R</code> rating, <code>N</code> number of ratings, 和<code>NW</code> number of ratings per week）之间是否存在因果关系。Causal inference通过observational data知道post-event的变化，然后决定一个事件原因的重要性，文章给出了为什么用causal impact analysis（CIA独立地对待control set和target set，用整个control set来提供global variance，因为大多数app通常不会接受相同的干预——这是differences-in-differences analysis方法的前提），以及如何使用causal impact analysis，如下图所示。</p>
-<center><img src="/img/papers/causal1.png" width="80%"></center>
+<center><img src="/img/papers/causal1.png" width="70%"></center>
 
 <p>虽然Developer update的外部因素暂时无法得到，但是CIA可以检测这种外部因素，而且作者做了现实调查的补充。</p>
 <h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center><strong>Experiment</strong></center></h3><p>实验基于从Google Play上Feb. 2015到Feb. 2016间收集的38,858个apps。这些apps均是在每一类的free/paid apps的前540当中。Control set（没有更新信息）680个，target set（去掉最前和最后的3个周）包含14,592个apps和26,339个releases。文章致力于解决5个问题 (research questions)：</p>
@@ -171,7 +171,7 @@
 <h4 id="RQ2"><a href="#RQ2" class="headerlink" title="RQ2"></a>RQ2</h4><p>App的release数据（e.g., app的更新速度或者间隔）与app的成功（rating和number of ratings的差异）有关系么？作者通过correlation来计算，前者因素采用中值。</p>
 <p>作者发现success metrics和release数据之间的correlation仅仅是weak significant correlation。</p>
 <h4 id="RQ3"><a href="#RQ3" class="headerlink" title="RQ3"></a>RQ3</h4><p>App的release影响app的成功么？Correlation effect是整体的相关度，对<mark>特定</mark>的个体不是很有效, <mark>correlation is not causation</mark>，所以作者采用CIA方法来分析R, N, NW是否有显著变化。结果发现target releases当中33%显著影响一种sueccess metric，11%影响超过一种的success metric。之后作者分析Control set的大小是否有影响？（因为CIA要采用整个control set）发现control set的大小无影响。</p>
-<h4 id="RQ4"><a href="#RQ4" class="headerlink" title="RQ4"></a>RQ4</h4><p>什么是impactful的releases?作者分析了在releases当中最常出现的terms （LDA参数设置成100个topics，并且解释，这样既能保证多样性，又能防止过分多样），这些top的terms出现频率是怎样的，以及candidate causes的影响是什么（用<mark>Wilcoxon test and Vargha and Delaney’s $A_12$ effect size comparison</mark>来分析significant release和non-significant release之间的显著差异性）。</p>
+<h4 id="RQ4"><a href="#RQ4" class="headerlink" title="RQ4"></a>RQ4</h4><p>什么是impactful的releases?作者分析了在releases当中最常出现的terms （LDA参数设置成100个topics，并且解释，这样既能保证多样性，又能防止过分多样），这些top的terms出现频率是怎样的，以及candidate causes的影响是什么（用<mark>Wilcoxon test and Vargha and Delaney’s $\hat{A}_{12}$ effect size comparison</mark>来分析significant release和non-significant release之间的显著差异性）。</p>
 <p>显著影响下一个版本的apps有较高的价格或者较多的文本描述，releases积极影响rating的多出现在free apps和有价格高的paid apps中，并且发现top的terms中，bug fix比new feature多。</p>
 <h4 id="RQ5"><a href="#RQ5" class="headerlink" title="RQ5"></a>RQ5</h4><p>CIA对developer有用么？通过给developer发邮件的方法来获悉developer对CIA的看法，包括四个方面，是否同意检测到的显著性，变化的外部因素（比如广告），会因为我们的发现改变release的策略么，是否接受进一步的报告，以及进一步学习影响release的因素。</p>
 <p>作者给4,302个developer发邮件，仅仅有138个给反馈。39/55个developer认可CIRA。<mark>学习文章作者解释数字的形式，没有采用百分比的形式</mark>。</p>
