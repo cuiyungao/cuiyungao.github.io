@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-11-15T06:26:40.229Z</updated>
+  <updated>2016-11-15T13:48:45.413Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Adversarial Training Methods for Semi-Supervised Text Classification</title>
+    <link href="http://cuiyungao.github.io/2016/11/15/adversarial/"/>
+    <id>http://cuiyungao.github.io/2016/11/15/adversarial/</id>
+    <published>2016-11-15T09:41:30.000Z</published>
+    <updated>2016-11-15T13:48:45.413Z</updated>
+    
+    <content type="html"><![CDATA[<p>Submitted to ICLR’17, Google Brain, Kyoto University和OpenAI的合作，作者Takeru Miyato, Andrew M. Dai, Ian Goodfellow。</p>
+<a id="more"></a>
+<p>Adversarial training和virtual adversarial training都需要对输入的数字形式做小的perturbation，不适用于高维稀疏输入，比如one-hot word representations。文章扩展图像领域流行的这两种方法到文本领域，对word embedding进行perturbation来作为LSTM的输入，而不是原本的输入向量。可以把这两种方法看做是正则化的方法，为输入加入噪声，可以实现semi-supervised的任务。</p>
+<p>优势在于，传统的word embedding被语法结构影响，即使两个完全相反的词（比如”good”和”bad”）在表示形式上也是相近的，没有表示出词本身的意思。Adversarial training能够保证小的改变不能使句子的意思相反，所以有着相近语法结构但是不同意义的词能够被分开，可以用来做情感分类和sequence model等。</p>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a><center><strong>Methods</strong></center></h3><p>Perturbation是有界的，大的norm很容易使perturbations不明显，所以model的输入（word embeddings）首先被normalized，如下所示：</p>
+<p>$$<br>\bar{\mathbf{v}}_k = \frac{\mathbf{v}_k-E(\mathbf{v})}{\sqrt{Var(\mathbf{v})}}，<br>$$<br>其中，$E(\mathbf{v})=\sum^{K}_{j=1} f_j\mathbf{v}_j$，$Var(\mathbf{v}) = \sum^K_{j=1} f_j(\mathbf{v}_j-E(\mathbf{v}))^2$，$f_i$是第$i$个词在所有训练集中出现的频率。</p>
+<p>以adversarial training为例，文章对word embeddings进行adversarial perturbation，而不是直接应用在输入上。假设normalized之后的输入序列为$\mathbf{s}$，即$[\bar{\mathbf{v}}^{(1)}, \bar{\mathbf{v}}^{(2)}, \ldots, \bar{\mathbf{v}}^{(T)}]$，给定$\mathbf{s}$，$y$的条件概率为$p(y|\mathbf{s;\theta})$，其中$\mathbf{\theta}$为模型参数，则$\mathbf{s}$上的adversarial perturbation $\mathbf{r}_{adv}$为：</p>
+<p>$$<br>\mathbf{r} = -\epsilon \mathbf{g}/||\mathbf{g}||_2, where \mathbf{g}=\bigtriangledown_s log p(y|\mathbf{s;\hat{\theta}}).<br>$$</p>
+<p>应用在LSTM上，如下图(b)所示。定义其adversarial loss如下：</p>
+<center><img src="/img/papers/adversarial1.png" width="80%"></center>
+
+<p>$$<br>L_{adv}(\mathbf{\theta})=-\frac{1}{N}\sum^N_{n=1} log p(y_n | \mathbf{s}_n + \mathbf{r}_{adv,n}; \mathbf{\theta})，<br>$$<br>其中$N$为labeled的例子的数目。通过随机梯度下降来进行training。</p>
+<p>文章也提供了virtual adversarial training的方法。</p>
+<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a><center><strong>Experiment</strong></center></h3><p>文本预处理：去掉仅在一个doc中出现的words，并且去掉了stop words。Word embedding为rnn pretraining的结果。Baseline为仅仅pretraining和embedding dropout的方法。实验数据集有5个，<a href="http://ai.stanford.edu/~amaas/data/sentiment/" target="_blank" rel="external">IMDB</a>，<a href="http://riejohnson.com/cnn_data.html" target="_blank" rel="external">Elec</a>，<a href="http://snap.stanford.edu/data/web-Amazon.html" target="_blank" rel="external">Rotten Tomatoes</a>，DBpedia和RCV1。实验结果发现virtual adversarial training和adversarial training相比对输入随意增加噪声和已有的state-of-the-art的方法(e.g., SA-LSTM, one-hot bi-LSTM, 以及paragraph vectors)有较低的negative log-likelihood；word embedding的效果好，考虑到词的语法结构和词义；在词的分类效果上也优于已有的最佳方法。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p><a href="https://arxiv.org/abs/1605.07725" target="_blank" rel="external">Adversarial Training Methods for Semi-Supervised Text Classification</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Submitted to ICLR’17, Google Brain, Kyoto University和OpenAI的合作，作者Takeru Miyato, Andrew M. Dai, Ian Goodfellow。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
+    
+    
+      <category term="ICLR" scheme="http://cuiyungao.github.io/tags/ICLR/"/>
+    
+      <category term="Text Classification" scheme="http://cuiyungao.github.io/tags/Text-Classification/"/>
+    
+      <category term="Adversarial Training" scheme="http://cuiyungao.github.io/tags/Adversarial-Training/"/>
+    
+  </entry>
   
   <entry>
     <title>Causal Impact Analysis for App Releases in Google Play</title>
@@ -53,9 +94,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="FSE" scheme="http://cuiyungao.github.io/tags/FSE/"/>
-    
       <category term="Mobile Apps" scheme="http://cuiyungao.github.io/tags/Mobile-Apps/"/>
+    
+      <category term="FSE" scheme="http://cuiyungao.github.io/tags/FSE/"/>
     
   </entry>
   
@@ -94,9 +135,9 @@
       <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
     
     
-      <category term="Mobile Apps" scheme="http://cuiyungao.github.io/tags/Mobile-Apps/"/>
-    
       <category term="ICSE" scheme="http://cuiyungao.github.io/tags/ICSE/"/>
+    
+      <category term="Mobile Apps" scheme="http://cuiyungao.github.io/tags/Mobile-Apps/"/>
     
   </entry>
   
@@ -744,50 +785,6 @@
       <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
     
       <category term="VAE" scheme="http://cuiyungao.github.io/tags/VAE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Learning Text Representation Using Recurrent Convolutional Neural Network with Highway Layers</title>
-    <link href="http://cuiyungao.github.io/2016/08/17/RCNN/"/>
-    <id>http://cuiyungao.github.io/2016/08/17/RCNN/</id>
-    <published>2016-08-17T09:50:55.000Z</published>
-    <updated>2016-08-17T12:58:23.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>发表在SIGIR’16上。Wen, Y., Zhang, W., Luo, R., &amp; Wang, J. (2016). Learning text representation using recurrent convolutional neural network with highway layers. arXiv preprint arXiv:1606.06905.</p>
-<a id="more"></a>
-<p>作者提出了<mark>新的结合RNN和CNN的方式</mark>，即在中间加了一层highway，这层的作用是把RNN的输出进行特征选择，其结果作为CNN的输入。</p>
-<h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a><center><strong>Motivation</strong></center></h3><p>RNN跟CNN在NLP领域非常流行，但是两者各有优劣势。RNN虽然考虑了单词的顺序，但是它的问题在于后面的单词相比于前面单词的表示形式更能影响结果，对于情感分析这样的task，重要的单词预示着正确的情感，但是可能出现在文档的任何位置，所以RNN的结果并不是很好。而CNN可以很自然地解决这个问题，因为它通过max-pooling层平等地看待所有的词；但是CNN也有自己的问题，比如需要确定window的大小以及众多的filter参数。</p>
-<p>RCNN模型旨在结合这两者的优点。模型对整个文档采用bi-directional recurrent neural network，并结合词跟它的上下文来表示这个词，filter用来计算latent semantic vectors。最终，max-pooling用来获取最重要的因素，并形成固定大小的句子表示。</p>
-<p>这篇文章改进已有的RCNN模型，在bi-directional RNN和CNN之间插入了一个<mark>highway network</mark>，形成<mark>RCNN-HW</mark>模型，这个highway layer的作用是作为中间层来单独选择每个词的表示形式中的features。</p>
-<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a><center><strong>Model</strong></center></h3><p>整个模型框图如下所示。RNN能够处理当前的数据实例并且保留历史信息，常用的比如LSTM和GRU，后者比较简洁且<mark>性能较好（really??）</mark>，所以文章采用GRU。表达式如下：<br>$$<br>\mathbf{r}_t = \sigma(\mathbf{W}_r\mathbf{x}_t+\mathbf{U}_r\mathbf{h}_{t-1}+\mathbf{b}_r) \\<br>\mathbf{z}_t = \sigma(\mathbf{W}_z\mathbf{x}_t+\mathbf{U}_z\mathbf{h}_{t-1}+\mathbf{b}_z) \\<br>\mathbf{\tilde{h}}_t = tanh(\mathbf{W}_h\mathbf{x}_t+\mathbf{U}_h(\mathbf{r}_t\odot\mathbf{h}_{t-1})+\mathbf{b}_h) \\<br>\mathbf{h}_t = \mathbf{z}_t\odot\mathbf{h}_{t-1} + (1-\mathbf{z}_t)\odot\mathbf{\tilde{h}}_t,<br>$$<br>其中，$\odot$表示element-wise multiplication，$\mathbf{W,U,b}$表示输入、recurrent的权重和biases。所以，单词的表示形式$\mathbf{\tilde{x}}_t$可以结合上下文得到：<br>$$<br>\mathbf{\tilde{x}}_t = [\overleftarrow{\mathbf{h}_t}||\mathbf{x}_t||\overrightarrow{\mathbf{h}_t}].<br>$$</p>
-<center><img src="/img/papers/RCNN1.png" width="70%"></center>
-
-<p><code>One-layer</code> highway network是RNN和CNN的中间层，表示如下：<br>$$<br>\mathbf{y}_t=\tau\odot g(\mathbf{W}_H\mathbf{\tilde{x}}_t+\mathbf{b}_H)+(1-\tau)\odot\mathbf{\tilde{x}}_t,<br>$$<br>其中，$g$是非线性函数，$\tau$为<code>&quot;transform gate&quot;</code>，即$\tau=\sigma(\mathbf{W}_{\tau}\mathbf{x}_t+\mathbf{b}_{\tau})$。<mark>这个highway network的设计跟GRU的<code>update gate</code>$\mathbf{z}$非常相似，</mark>其作用是一部分输入信息被不变地传递到输出，其它的信息则需要进行非线性变换。<mark>实验说明这样的设计可以获取重要的信息。</mark></p>
-<p>在CNN阶段，我们将window size设置为1，因为bidirectional RNN和highway layer已经获取了每个单词的上下文信息。</p>
-<h3 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><center><strong>Experiments</strong></center></h3><p>文章提供了<a href="https://github.com/wenying45/deep_learning_tutorial" target="_blank" rel="external">源代码</a>。情感分析实验阶段，比较了六种方法，分别是：Sum-of-Word-Vector (COW), LSTM, Bi-LSTM, CNN, CNN+LSTM,和RCNN，结果如下图。这些网络用来学习文本的表示形式，之后用softmax进行预测。实验没有采用pre-training model (e.g., word2vec)或者regularizer (e.g., Dropout)，这些使实验结果更好。情感分类的实验结果表明，CNN的效果要好于RNN，可能是由于RNN很难被训练，并且对超参数和后面的单词比较敏感。RCNN的效果最佳，因为它综合了CNN获取局部信息的优势和RNN获取全局信息的优势。CNN-LSTM是用CNN的局部信息作为RNN的输入，但是局部信息并没有时序关系。</p>
-<center><img src="/img/papers/RCNN2.png" width="70%"></center>
-
-<p>文章还比较了不同的文本长度对实验结果的影响，发现对于短文本，这几种方法都不是很好；而对于较长的文本，RCNN的优势就体现出来，如下图所示。RCNN不光可以保留较长的文本信息，还可以通过CNN的max-pooling减少噪声；RCNN-HW则通过highway layer进一步减少噪声，进行特征选择，所以在较长输入时效果最好。</p>
-<center><img src="/img/papers/RCNN3.png" width="70%"></center>
-
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="http://arxiv.org/pdf/1606.06905v2.pdf" target="_blank" rel="external">Learning Text Representation Using Recurrent Convolutional Neural Network with Highway Layers</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;发表在SIGIR’16上。Wen, Y., Zhang, W., Luo, R., &amp;amp; Wang, J. (2016). Learning text representation using recurrent convolutional neural network with highway layers. arXiv preprint arXiv:1606.06905.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="papers" scheme="http://cuiyungao.github.io/categories/papers/"/>
-    
-    
-      <category term="RNN" scheme="http://cuiyungao.github.io/tags/RNN/"/>
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="CNN" scheme="http://cuiyungao.github.io/tags/CNN/"/>
     
   </entry>
   
