@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="ICSE,Mobile Apps">
+  <meta name="keywords" content="Mobile Apps,ICSE">
   <meta name="description" content="ICSE’16,北大高性能软件技术实验室，UIUC (Tao Xie), 密歇根大学和豌豆荚实验室 (CTO和co-founder, Feng Feng) 的合作。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PRADA Proritizing Android Devices for Apps by Mining Large-Scale Usage Data">
@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="ICSE’16,北大高性能软件技术实验室，UIUC (Tao Xie), 密歇根大学和豌豆荚实验室 (CTO和co-founder, Feng Feng) 的合作。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/PRADA1.png">
-<meta property="og:updated_time" content="2016-11-15T03:19:24.590Z">
+<meta property="og:updated_time" content="2016-11-15T03:22:12.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PRADA Proritizing Android Devices for Apps by Mining Large-Scale Usage Data">
 <meta name="twitter:description" content="ICSE’16,北大高性能软件技术实验室，UIUC (Tao Xie), 密歇根大学和豌豆荚实验室 (CTO和co-founder, Feng Feng) 的合作。">
@@ -167,7 +167,7 @@
 <p>接下来作者总结了自己的两点motivation，为什么根据market share来决定测试手机不好（market share是根据买卖手机的数量而不是用户如何使用），以及每个app在device上的使用情况是不一样的。然后作者说明本文章的方法<code>PRADA</code>，基于每个用户在手机上如何使用的情况，利用<code>operational profile</code>（system如何被使用的表示形式）的概念，来对每个app（包括新的app）来推荐测试手机。</p>
 <p>之后作者踪迹了实验，包括实验数据和metric，以及baseline。最后作者总结了自己的contribution。</p>
 <h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a><center><strong>Methods</strong></center></h3><p><code>PRADA</code>的<code>key idea</code>是用户活动越多的device需要被排在前面，解释了数据是怎么收集的，以及其具备的特征（Chinese version of Wandoujia），强调用户是匿名的。<code>PRADA</code>的workflow如下图所示，首先是数据收集，相同app的提取（选用已有的分类效果足够好），然后是设备模型的排序。文章解释设备模型的排序是基于两个基本原理，很有意思，第一个是<code>Pareto distribution</code>，即大部分的效果来源于一小部分原因；第二个是<code>Collective intelligence</code>，借鉴众人的智慧，相同的app可能在设备模型上共享类似的分布。作者在实验部分也验证了这两个基本原理。</p>
-<center><img src="/img/papers/PRADA1.png" width="70%"></center>
+<center><img src="/img/papers/PRADA1.png" width="80%"></center>
 
 <h4 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h4><p>作者定义了三个metrics，<code>device model hit</code>（模型设备rank在前面的有几个被点击，没有考虑次序），<code>average precision</code>（考虑次序，与NDCG类似），以及<code>usage data coverage</code>（rank在前面的设备的使用时间与真实的使用时间之间的比值）。后面解释什么是基于time-share的排序，app在设备上的time share是通过比值来计算的，如下，其中$Time(D_j)$为在某个具体device model上的时间，$\sum Time(D_k)$是在所有device model上的总的时间。<br>$$<br>Time\; Share(D_j\rightarrow A) = \frac{Time(D_j\rightarrow A)}{\sum Time(D_k\rightarrow A)}.<br>$$</p>
 <h4 id="Collaborative-Filtering"><a href="#Collaborative-Filtering" class="headerlink" title="Collaborative Filtering"></a>Collaborative Filtering</h4><p>也就是workflow当中的<code>device model prioritization</code>部分，采用的是<code>Leave-One-Out Cross Validation</code> (LOOCV)的方法，假定一个app为新的app，然后用同类型的app来rank当前的app的测试设备。<mark>作者用了代码片段来表示算法，用一个app来举例算法的流程，感觉是不是太啰嗦了…</mark></p>
@@ -186,6 +186,13 @@
             </div>
             
 <nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2016/11/15/causal/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Causal Impact Analysis for App Releases in Google Play</h4>
+      </a>
+    </div>
   
 
   
