@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Cuiyun Gao's Daily Digest">
 <meta property="og:description" content="Submitted to ICLR’17, Google Brain, Kyoto University和OpenAI的合作，作者Takeru Miyato, Andrew M. Dai, Ian Goodfellow。">
 <meta property="og:image" content="http://cuiyungao.github.io/img/papers/adversarial1.png">
-<meta property="og:updated_time" content="2016-11-15T13:48:45.413Z">
+<meta property="og:updated_time" content="2016-11-15T13:51:57.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Adversarial Training Methods for Semi-Supervised Text Classification">
 <meta name="twitter:description" content="Submitted to ICLR’17, Google Brain, Kyoto University和OpenAI的合作，作者Takeru Miyato, Andrew M. Dai, Ian Goodfellow。">
@@ -165,9 +165,9 @@
 <h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a><center><strong>Methods</strong></center></h3><p>Perturbation是有界的，大的norm很容易使perturbations不明显，所以model的输入（word embeddings）首先被normalized，如下所示：</p>
 <p>$$<br>\bar{\mathbf{v}}_k = \frac{\mathbf{v}_k-E(\mathbf{v})}{\sqrt{Var(\mathbf{v})}}，<br>$$<br>其中，$E(\mathbf{v})=\sum^{K}_{j=1} f_j\mathbf{v}_j$，$Var(\mathbf{v}) = \sum^K_{j=1} f_j(\mathbf{v}_j-E(\mathbf{v}))^2$，$f_i$是第$i$个词在所有训练集中出现的频率。</p>
 <p>以adversarial training为例，文章对word embeddings进行adversarial perturbation，而不是直接应用在输入上。假设normalized之后的输入序列为$\mathbf{s}$，即$[\bar{\mathbf{v}}^{(1)}, \bar{\mathbf{v}}^{(2)}, \ldots, \bar{\mathbf{v}}^{(T)}]$，给定$\mathbf{s}$，$y$的条件概率为$p(y|\mathbf{s;\theta})$，其中$\mathbf{\theta}$为模型参数，则$\mathbf{s}$上的adversarial perturbation $\mathbf{r}_{adv}$为：</p>
-<p>$$<br>\mathbf{r} = -\epsilon \mathbf{g}/||\mathbf{g}||_2, where \mathbf{g}=\bigtriangledown_s log p(y|\mathbf{s;\hat{\theta}}).<br>$$</p>
+<p>$$<br>\mathbf{r} = -\epsilon \mathbf{g}/||\mathbf{g}||_2, where\; \mathbf{g}=\bigtriangledown_s log p(y|\mathbf{s;\hat{\theta}}).<br>$$</p>
 <p>应用在LSTM上，如下图(b)所示。定义其adversarial loss如下：</p>
-<center><img src="/img/papers/adversarial1.png" width="80%"></center>
+<center><img src="/img/papers/adversarial1.png" width="100%"></center>
 
 <p>$$<br>L_{adv}(\mathbf{\theta})=-\frac{1}{N}\sum^N_{n=1} log p(y_n | \mathbf{s}_n + \mathbf{r}_{adv,n}; \mathbf{\theta})，<br>$$<br>其中$N$为labeled的例子的数目。通过随机梯度下降来进行training。</p>
 <p>文章也提供了virtual adversarial training的方法。</p>
