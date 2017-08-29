@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cuiyungao.github.io/"/>
-  <updated>2016-11-15T13:51:57.652Z</updated>
+  <updated>2016-12-05T14:28:27.000Z</updated>
   <id>http://cuiyungao.github.io/</id>
   
   <author>
@@ -16,11 +16,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>topic2vec</title>
+    <link href="http://cuiyungao.github.io/2016/12/05/topic2vec/"/>
+    <id>http://cuiyungao.github.io/2016/12/05/topic2vec/</id>
+    <published>2016-12-05T14:28:27.000Z</published>
+    <updated>2016-12-05T14:28:27.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Adversarial Training Methods for Semi-Supervised Text Classification</title>
     <link href="http://cuiyungao.github.io/2016/11/15/adversarial/"/>
     <id>http://cuiyungao.github.io/2016/11/15/adversarial/</id>
     <published>2016-11-15T09:41:30.000Z</published>
-    <updated>2016-11-15T13:51:57.652Z</updated>
+    <updated>2016-11-15T13:51:57.000Z</updated>
     
     <content type="html"><![CDATA[<p>Submitted to ICLR’17, Google Brain, Kyoto University和OpenAI的合作，作者Takeru Miyato, Andrew M. Dai, Ian Goodfellow。</p>
 <a id="more"></a>
@@ -61,7 +75,7 @@
     <link href="http://cuiyungao.github.io/2016/11/15/causal/"/>
     <id>http://cuiyungao.github.io/2016/11/15/causal/</id>
     <published>2016-11-15T03:22:33.000Z</published>
-    <updated>2016-11-15T06:26:40.229Z</updated>
+    <updated>2016-11-15T06:26:40.000Z</updated>
     
     <content type="html"><![CDATA[<p>FSE’16, University College London的work，作者William Martin, Federica Sarro and Mark Harman。</p>
 <a id="more"></a>
@@ -105,7 +119,7 @@
     <link href="http://cuiyungao.github.io/2016/11/14/PRADA/"/>
     <id>http://cuiyungao.github.io/2016/11/14/PRADA/</id>
     <published>2016-11-14T14:26:52.000Z</published>
-    <updated>2016-11-15T03:22:12.791Z</updated>
+    <updated>2016-11-15T03:22:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>ICSE’16,北大高性能软件技术实验室，UIUC (Tao Xie), 密歇根大学和豌豆荚实验室 (CTO和co-founder, Feng Feng) 的合作。</p>
 <a id="more"></a>
@@ -146,7 +160,7 @@
     <link href="http://cuiyungao.github.io/2016/11/11/release/"/>
     <id>http://cuiyungao.github.io/2016/11/11/release/</id>
     <published>2016-11-11T07:22:53.000Z</published>
-    <updated>2016-11-11T09:28:12.452Z</updated>
+    <updated>2016-11-11T09:28:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>ICSE’16的一篇<a href="http://dl.acm.org/citation.cfm?id=2884818" target="_blank" rel="external">文章</a>，意大利university of Sannio和Free University of Bozen-Bolzano。</p>
 <a id="more"></a>
@@ -184,7 +198,7 @@
     <link href="http://cuiyungao.github.io/2016/11/09/collaborative/"/>
     <id>http://cuiyungao.github.io/2016/11/09/collaborative/</id>
     <published>2016-11-09T09:26:32.000Z</published>
-    <updated>2016-11-09T14:21:25.245Z</updated>
+    <updated>2016-11-09T14:21:25.000Z</updated>
     
     <content type="html"><![CDATA[<p>NIPS’16的<a href="https://arxiv.org/abs/1611.00454" target="_blank" rel="external">论文</a>，作者HKUST Hao Wang, Xingjian Shi, <a href="https://arxiv.org/abs/1611.00454" target="_blank" rel="external">Dit-Yan Yeung</a>。</p>
 <a id="more"></a>
@@ -224,7 +238,7 @@
     <link href="http://cuiyungao.github.io/2016/11/01/phrasebased/"/>
     <id>http://cuiyungao.github.io/2016/11/01/phrasebased/</id>
     <published>2016-11-01T08:47:12.000Z</published>
-    <updated>2016-11-03T03:45:21.458Z</updated>
+    <updated>2016-11-03T03:45:21.000Z</updated>
     
     <content type="html"><![CDATA[<p>ASE’16上的short paper，去年ASE中过一篇<a href="https://arxiv.org/pdf/1505.04657.pdf" target="_blank" rel="external">keyword-based extraction</a>。</p>
 <a id="more"></a>
@@ -740,51 +754,6 @@
       <category term="CRF" scheme="http://cuiyungao.github.io/tags/CRF/"/>
     
       <category term="Sequence Labeling" scheme="http://cuiyungao.github.io/tags/Sequence-Labeling/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The Unreasonable Confusion of Variational Autoencoders</title>
-    <link href="http://cuiyungao.github.io/2016/08/18/vae/"/>
-    <id>http://cuiyungao.github.io/2016/08/18/vae/</id>
-    <published>2016-08-18T08:03:40.000Z</published>
-    <updated>2016-08-18T09:47:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>将deep learning和graphical model结合起来理解<a href="https://jaan.io/unreasonable-confusion/" target="_blank" rel="external">VAE</a>。</p>
-<a id="more"></a>
-<p>VAE即variational autoencoders，作用是设计复杂的数据的generative models，并fit到大数据集上。下面从两个角度来理解VAE，第一个是neural networks，第二个是概率模型中的variational inference。</p>
-<h3 id="Neural-Network-Perspective"><a href="#Neural-Network-Perspective" class="headerlink" title="Neural Network Perspective"></a><center><strong>Neural Network Perspective</strong></center></h3><p>在神经网络语言中，一个VAE包含<code>encoder</code>, <code>decoder</code>和<code>loss function</code>，如下图所示。<code>Encoder</code>是一个神经网络，输入是一个数据点$x$，输出是其hidden representation $z$，这个过程中包含权重和biases $\theta$。<mark><code>Encoder</code>必须有效地压缩数据，并映射到低维空间。</mark>由于低维空间是随机的，encoder输出参数为高斯概率密度$q_{\theta}(z|x)$，我们可以从这个分布采样，得到$z$的噪声值。</p>
-<center><img src="/img/daily/VAE1.png" width="90%"></center>
-
-<p><code>Decoder</code>是另外一个神经网络，输入是hidden representation $z$，输出参数为数据的概率分布$p_{\phi}(x|z)$，这个过程中包含权重和biases $\phi$。<mark>由于从较小的维度得到较大的维度，所以信息会丢失。</mark>我们的目标是让信息尽可能丢失得比较少，即<code>encoder</code>要根据hidden representation有效地重建输入$x$。我们定义<code>loss function</code>是带regularizer的negative log-likelihood。因为没有所有点的全局表示形式，我们可以分解这个loss function到仅依赖于单独点$l_i$的项，这样对$N$个点的总的loss为$\sum_{i=1}^N l_i$，其中：<br>$$<br>l_i(\theta, \phi)=-E_{z\sim q_{\theta}(z|x_i)}[log p_{\phi}(x_i|z)] + KL(q_{\theta}(z|x_i)||p(z)),<br>$$<br>第一项是重建损失，或者是对第i个点的expected negative log-likelihood。这个预期是针对encoder在$z$上的分布，目的是尽量地重建数据。第二项是一个regularizer，作用是衡量encoder的分布$q_{\theta}(z|x)$和$p(z)$之间的距离，即在用$q$表示$p$的过程中损失了多少信息。</p>
-<p>在VAE中，$p$被认为是正态分布，即$p(z)=Normal(0,1)$, regularizer的作用是<code>保证每个数字的hidden representation $z$足够不同</code>，如果不包含这一项，encoder会给每一个点一个欧式空间中不同的区域，这意味着同一个数字的两个图片也会有不同的表示形式。最后，我们用梯度下降的方法来训练VAE，每个step size $\rho$，参数$\theta$和$\phi$都会被更新，比如$\theta \, \gets \, \theta-\rho\frac{\partial l}{\partial \theta}$。</p>
-<h3 id="Probability-Model-Perspective"><a href="#Probability-Model-Perspective" class="headerlink" title="Probability Model Perspective"></a><center><strong>Probability Model Perspective</strong></center></h3><p>在概率模型中，一个VAE包含数据$x$的<code>概率模型</code>和<code>隐含变量</code>$z$，即对于每个数据点$i$，<code>generative process</code>可以写成如下形式：</p>
-<ul>
-<li>首先计算隐含变量 $z_i \, \sim \, p(z)$；</li>
-<li>然后计算数据点的后验概率 $x_i \, \sim \, p(x|z)$。</li>
-</ul>
-<center><img src="/img/daily/VAE2.png" width="30%"></center><br><center>A Graphical Model</center>
-
-<p>这个模型定义了联合概率$p(x,z)=p(x|z)p(z)$，对于<code>inference</code>，我们的目标是给定观察数据，推测隐含变量的值，即计算后验概率$p(z|x)$，通过Bays，我们得到$p(z|x)=\frac{p(x|z)p(z)}{p(x)}$。分母$p(x)=\int p(x,z)p(z)\mathrm{d}z$的估计需要遍历所有隐含变量，这需要大量的时间，所以我们需要另外想办法来估计这个后验概率。</p>
-<p><code>Variational inference</code>用一组分布$q_{\lambda}(z|x)$来对$p(z|x)$进行估计，$\lambda$表示不同的分布，也就是说，假定$q$是高斯分布，那么对每一个数据点的隐含变量$\lambda_{x_i}=(\mu_{x_i}, \sigma_{x_i}^2)$。我们的目标是使得这个估计$q_{\lambda}(z|x)$与真实的$q(z|x)$尽可能接近，由于都是概率，我们很自然地想到KL divergence，即：<br>$$<br>KL(q_{\lambda}(z|x)||p(z|x))=E_q[log q_{\lambda}(z|x)]-E_q[log p(x,z)] + log p(x).<br>$$</p>
-<p>由之前的分析可知，$p(x)$很难得到。我们的目的是最小化这个KL divergence，将上式改写如下：<br>$$<br>log p(x) = KL(q_{\lambda}(z|x)||p(z|x))+ELBO(\lambda),<br>$$<br>其中，$ELBO(\lambda)=E_q[log p(x,z)]-E_q[log q_{\lambda}(z|x)]$，所以可以转变成最大化ELBO (Evidence Lower BOund)函数。由于数据点之间并没有共享隐含变量，所以总的目标函数可以认为是每个点的目标函数的和，也使得我们可以用梯度下降来更新迭代$\lambda$。所以单独一个点的ELBO可以写成 (需要进行化简)：<br>$$<br>ELBO_i(\lambda)=E_{q_{\lambda}(z|x_i)}[log p(x_i|z)]-KL(q_{\lambda}(z|x_i)||p(z))。<br>$$</p>
-<h3 id="Combination-of-the-Two-Models"><a href="#Combination-of-the-Two-Models" class="headerlink" title="Combination of the Two Models"></a><center><strong>Combination of the Two Models</strong></center></h3><p>从上面的分析可以看出，VAE主要分为两部分，<code>inference network</code> (encoder)和<code>generative network</code> (decoder)。前者是参数化后验概率$q_{\theta}(z|x,\lambda)$，后者是参数化$p(x|z)$。由于没有全局的隐含变量，我们可以用梯度下降(e.g., minibatch)最大化ELBO。统一概率模型跟神经网络的参数，ELBO可以写成：<br>$$<br>ELBO_i(\theta, \phi) = E_{q_{\theta}(z|x_i)}[log p_{phi}(x_i|z)]-KL(q_{\theta}(z|x_i)||p(z)).<br>$$<br>所以，$ELBO_i(\theta, \phi)=-l_i(\theta, \phi)$。</p>
-<p>我们从概率模型的角度，定义了目标函数（ELBO)和inference algorithm (gradient ascent on the ELBO)。<mark>不懂inference到底是哪个过程？？</mark>在神经网络中，inference通常指给定新的之前没有遇到的点来预测隐含的表示形式；而在概率模型中，inference意味着给定观察到的点来预测隐含变量的值。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><center><strong>Reference</strong></center></h3><p>[1] <a href="https://jaan.io/unreasonable-confusion/" target="_blank" rel="external">The unreasonable confusion of variational autoencoders.</a><br>[2] <a href="https://github.com/altosaar/vae/blob/master/vae.py" target="_blank" rel="external">代码.</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;将deep learning和graphical model结合起来理解&lt;a href=&quot;https://jaan.io/unreasonable-confusion/&quot;&gt;VAE&lt;/a&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="daily" scheme="http://cuiyungao.github.io/categories/daily/"/>
-    
-    
-      <category term="NLP" scheme="http://cuiyungao.github.io/tags/NLP/"/>
-    
-      <category term="VAE" scheme="http://cuiyungao.github.io/tags/VAE/"/>
     
   </entry>
   
