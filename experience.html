@@ -25,7 +25,14 @@
     <script src="javascripts/angular.min.js"></script>
     <script src="javascripts/angular-route.min.js"></script>
     <script src="javascripts/angular-resource.min.js"></script>
-
+     <script type="text/javascript">     
+      $(function() {
+            $('img').on('click', function() {
+            $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
+            $('#enlargeImageModal').modal('show');
+          });
+      });
+    </script>
 
     <div class="jumbotron">
 
@@ -98,7 +105,7 @@
 
     <div class="panel panel-default" id="publication">
       <!-- Default panel contents -->
-      <div class="panel-heading" style="color:white;font-size: 18px;">Paper Review</div>
+      <div class="panel-heading" style="color:white;font-size: 18px;">Peer Review</div>
       <div class="panel-body">
       <p style="font-size: 16px">
         <mark>2019:</mark> Reviewer of TSE, IEEE Access; Sub-reviewer of ISSRE, PRDC, etc.<br>
