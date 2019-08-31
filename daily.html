@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Cuiyun Gao's Blog</title>
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+   
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="controller.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="javascripts/angular.min.js"></script>
+    <script src="javascripts/angular-route.min.js"></script>
+    <script src="javascripts/angular-resource.min.js"></script>
+    <script type="text/javascript">     
+      $(function() {
+            $('img').on('click', function() {
+            $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
+            $('#enlargeImageModal').modal('show');
+          });
+      });
+    </script>
+
+
+    <div class="jumbotron">
+
+    
+    <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="index.html"><h4>Cuiyun's Home</h4></a></li>
+                <li><a href="publication.html"><h4>Publication</h4></a></li>
+                <li><a href="experience.html"><h4>Experience</h4></a></li>
+                <li class="active"><a href="daily.html"><h4>Daily</h4></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+
+
+    <div class="panel panel-default" id="publication">
+      <!-- Default panel contents -->
+      <div class="panel-heading" style="color:white;font-size: 18px;">Biggest News</div>
+      <div class="panel-body">
+        <mark>Facebook:</mark> gcyydxf <br>
+      </p>     
+      </div>
+    </div>
+
+     <div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <img src="" class="enlargeImageModalSource" style="width: 100%;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default" id="publication">
+      <!-- Default panel contents -->
+      <div class="panel-heading" style="color:white;font-size: 18px;">Hobbies</div>
+      <div class="panel-body">
+      <p style="font-size: 16px">Travelling, Walking, Jogging, Swimming, and Food (Especially Chengdu's Food)!!</p>
+      <div class="container">
+          <p class="my-4 text-center text-lg-left" style="font-size: 16px">Some Pictures from Our Travelling</p>
+          <div class="row text-center text-lg-left">
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <img class="img-fluid img-thumbnail" src="./images/aershan.jpg" alt="ArxanShan in Inner Mongolia of China">
+              <div class="overlay">
+                <p style="font-size: 14px">ArxanShan in Inner Mongolia</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <img class="img-fluid img-thumbnail" src="./images/great_wall.jpg" alt="The Great Wall in Beijing">
+              <div class="overlay">
+                <p style="font-size: 14px">The Great Wall in Beijing</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <img class="img-fluid img-thumbnail" src="./images/heyuan.jpg" alt="Heyuan City in Guang Dong of China">
+              <div class="overlay">
+                <p style="font-size: 14px">Heyuan City in Guang Dong</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <img class="img-fluid img-thumbnail" src="./images/yinyanghai.jpg" alt="Yin-yang Sea in New Taipei City of Chian">
+              <div class="overlay">
+                <p style="font-size: 14px">Yin-yang Sea in New Taipei</p>
+              </div>
+            </div>           
+          </div>
+        </div>       
+      </div>
+    </div>
+
+<!--     <div class="panel panel-default" id="publication">
+      <div class="panel-heading" style="color:white;font-size: 18px;">Activity Experience</div>
+      <div class="panel-body">
+      <p style="font-size: 16px">
+        <mark>2013-2014:</mark> Liaison Minister of Yoga Association.<br>
+        <mark>2011-2012:</mark> Vice Minister of Communication Department of the Student Union.<br>
+        <mark>2011.7:</mark> Volunteer of 14th FINA World Championships.<br>
+        <mark>2011.10-2012.6:</mark> National Finalist Team of "Yi Warm China" Google Cup 5th Chinese College (508/24500+) <br>
+        <mark>2012.1-2012.10:</mark> 60 hours of volunteer in Huangpu District.
+      </p>
+       
+      </div>
+    </div>
+ -->
+
+    <footer>
+      <p class="pull-right" style="font-size: 14px"><a href="#">Back to top</a></p>
+      <p style="font-size: 14px">&copy; <small>Cuiyun 2015 - 2019</small> </p>
+    </footer>
+
+
+</div>
+    
+
+    
+
+    
+  </body>
+</html>
